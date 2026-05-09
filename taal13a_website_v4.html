@@ -1,0 +1,907 @@
+
+<style>
+:root{
+  --blue:#1A6DC1;--blue-d:#124F96;--blue-l:#EBF4FF;--blue-m:#C2DEFF;
+  --ora:#F4742A;--ora-l:#FEF0E6;--ora-m:#F9924F;
+  --cream:#FFFDF8;--sand:#F7F3EC;--sand-d:#EDE7DA;
+  --ink:#1A1A1A;--ink2:#444;--ink3:#717171;--ink4:#B5B5B5;
+  --bdr:rgba(0,0,0,.1);--bdr2:rgba(0,0,0,.06);
+  --grn:#1C7A45;--grn-l:#E9F5EE;
+  --r:10px;--rl:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);overflow-x:hidden;}
+.tb{background:var(--blue);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2);}
+.nc{display:flex;gap:0;}
+.nl{color:rgba(255,255,255,.6);font-size:12.5px;padding:7px 11px;cursor:pointer;border:none;background:none;font-family:inherit;font-weight:600;white-space:nowrap;transition:color .15s;}
+.nl:hover,.nl.on{color:#fff;}
+.nr{display:flex;align-items:center;gap:6px;}
+.lb{padding:4px 9px;border-radius:20px;border:1.5px solid rgba(255,255,255,.22);background:transparent;color:rgba(255,255,255,.55);font-size:11px;cursor:pointer;font-family:inherit;font-weight:700;}
+.lb.on{background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.5);}
+.cta{background:var(--ora);border:none;color:#fff;padding:7px 16px;border-radius:20px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;}
+.ub{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;}
+.pg{display:none;}.pg.on{display:block;}
+
+/* HERO */
+.hero{position:relative;height:88vh;min-height:520px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.hvid{position:absolute;inset:0;z-index:0;}
+.hvid video{width:100%;height:100%;object-fit:cover;opacity:.42;}
+.hovl{position:absolute;inset:0;z-index:1;background:linear-gradient(150deg,rgba(10,38,82,.82) 0%,rgba(18,58,118,.65) 55%,rgba(10,36,78,.75) 100%);}
+.gfb{position:absolute;inset:0;background:linear-gradient(140deg,#0a2855 0%,#1541a0 50%,#0c2870 100%);z-index:0;}
+.gb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.2;animation:gm 16s ease-in-out infinite;}
+.gb1{width:580px;height:580px;background:#1a6ac0;top:-140px;left:-100px;}
+.gb2{width:460px;height:460px;background:#c05020;bottom:-90px;right:-70px;animation-delay:-8s;}
+.gb3{width:360px;height:360px;background:#1455a8;top:35%;left:38%;animation-delay:-4s;}
+@keyframes gm{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(28px,-20px) scale(1.08)}}
+.hc{position:relative;z-index:2;text-align:center;padding:0 20px;max-width:740px;}
+.hpill{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:30px;padding:5px 15px;font-size:12px;color:rgba(255,255,255,.88);margin-bottom:1.4rem;font-weight:700;}
+.pdot{width:7px;height:7px;border-radius:50%;background:var(--ora);flex-shrink:0;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.6rem);color:#fff;line-height:1.15;margin-bottom:.85rem;}
+.hero h1 em{color:#7EC8F5;font-style:normal;}
+.hsub{color:rgba(255,255,255,.65);font-size:15px;line-height:1.72;max-width:510px;margin:0 auto 2rem;font-weight:500;}
+.hbtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.hb1{background:var(--ora);color:#fff;padding:12px 28px;border-radius:30px;border:none;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 4px 16px rgba(244,116,42,.45);}
+.hb2{background:rgba(255,255,255,.12);color:#fff;padding:12px 28px;border-radius:30px;border:2px solid rgba(255,255,255,.32);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
+.hstats{display:flex;gap:2.5rem;justify-content:center;margin-top:2.8rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.12);}
+.hn{font-family:'Playfair Display',serif;font-size:1.8rem;color:#fff;}
+.hl{color:rgba(255,255,255,.42);font-size:11px;margin-top:2px;letter-spacing:.4px;font-weight:600;}
+
+/* SECTIONS */
+.sec{padding:4rem 20px;max-width:980px;margin:0 auto;}
+.sec-sm{max-width:680px;}
+.eye{font-size:10.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--blue);margin-bottom:.45rem;}
+.stit{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);color:var(--ink);font-weight:700;margin-bottom:.4rem;}
+.ssub{color:var(--ink3);font-size:14.5px;line-height:1.65;max-width:520px;font-weight:500;}
+.shead{margin-bottom:2.4rem;}
+.bg-sky{background:var(--blue-l);}
+.bg-sand{background:var(--sand);}
+.bg-w{background:#fff;}
+
+/* FEAT */
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.1rem;}
+.fcard{background:#fff;border:1.5px solid var(--bdr2);border-radius:var(--rl);padding:1.35rem;}
+.ficon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:.8rem;font-size:20px;}
+.fi-b{background:var(--blue-l);}.fi-o{background:var(--ora-l);}.fi-g{background:#E6FAF5;}.fi-t{background:#FFE9EC;}
+.ft{font-size:13.5px;font-weight:800;color:var(--ink);margin-bottom:.28rem;}
+.fd{font-size:12.5px;color:var(--ink3);line-height:1.58;font-weight:500;}
+
+/* PILLARS */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.1rem;}
+.pillar{background:#fff;border:1.5px solid var(--bdr2);border-radius:var(--rl);overflow:hidden;cursor:pointer;transition:box-shadow .18s,transform .18s;}
+.pillar:hover{box-shadow:0 6px 22px rgba(26,109,193,.12);transform:translateY(-3px);}
+.ph{padding:14px 16px 11px;border-bottom:1.5px solid var(--bdr2);}
+.plv{font-size:19px;font-weight:900;letter-spacing:-.4px;}
+.psub{font-size:11.5px;color:var(--ink3);margin-top:2px;font-weight:600;}
+.pb{padding:13px 16px 15px;}
+.ptit{font-size:13.5px;font-weight:800;color:var(--ink);margin-bottom:.5rem;}
+.ppts{list-style:none;margin-bottom:.85rem;}
+.ppts li{font-size:12px;color:var(--ink2);padding:2.5px 0;display:flex;align-items:flex-start;gap:6px;line-height:1.42;font-weight:500;}
+.ppts li::before{content:'✦';font-size:6.5px;color:var(--ora);flex-shrink:0;margin-top:5.5px;}
+.ptags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.85rem;}
+.ptag{font-size:10px;padding:2px 8px;border-radius:20px;border:1.5px solid var(--bdr);color:var(--ink3);font-weight:700;background:var(--sand);}
+.ppr{display:flex;align-items:flex-end;justify-content:space-between;}
+.pprice{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--ink);font-weight:700;}
+.pnote{font-size:10.5px;color:var(--ink4);margin-top:1px;font-weight:600;}
+.benroll{background:var(--blue);color:#fff;border:none;padding:8px 16px;border-radius:20px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;}
+.pillar[data-l="elearn"] .ph{background:linear-gradient(135deg,#FFF0E6,#FFE4CC);}.pillar[data-l="elearn"] .plv{color:var(--ora);}
+.pillar[data-l="a0a1"] .ph{background:#EAF3FF;}.pillar[data-l="a0a1"] .plv{color:#1A6DC1;}
+.pillar[data-l="a1a2"] .ph{background:#E8F7F0;}.pillar[data-l="a1a2"] .plv{color:#1C7A45;}
+.pillar[data-l="a2b1"] .ph{background:#FFF4EB;}.pillar[data-l="a2b1"] .plv{color:#C05A10;}
+.pillar[data-l="inb"] .ph{background:#F3EEFF;}.pillar[data-l="inb"] .plv{color:#5C1EA8;}
+
+/* TESTIMONIALS */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.1rem;}
+.tcard{background:#fff;border:1.5px solid var(--bdr2);border-radius:var(--rl);padding:1.35rem;}
+.tstars{color:#E8920A;font-size:12.5px;letter-spacing:1px;margin-bottom:.65rem;}
+.ttext{font-size:13px;color:var(--ink2);line-height:1.68;margin-bottom:.85rem;font-style:italic;font-weight:500;}
+.tau{display:flex;align-items:center;gap:9px;}
+.tava{width:34px;height:34px;border-radius:50%;background:var(--blue-l);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:var(--blue);}
+.tname{font-size:13px;font-weight:800;color:var(--ink);}
+.tmeta{font-size:11px;color:var(--ink4);font-weight:600;}
+
+/* ── COURSE OVERVIEW ── */
+.co-hero{background:linear-gradient(140deg,var(--blue) 0%,var(--blue-d) 100%);padding:3rem 20px 0;text-align:center;}
+.co-hero h1{font-family:'Playfair Display',serif;color:#fff;font-size:1.9rem;font-weight:700;margin-bottom:.35rem;}
+.co-hero p{color:rgba(255,255,255,.58);font-size:14px;font-weight:500;padding-bottom:1.5rem;}
+.co-tabs-wrap{background:var(--sand);border-bottom:1.5px solid var(--bdr2);}
+.co-tabs{display:flex;gap:7px;max-width:1040px;margin:0 auto;padding:1.1rem 20px;flex-wrap:wrap;}
+.cotab{padding:8px 18px;border-radius:30px;border:2px solid var(--bdr);background:#fff;font-size:12.5px;font-weight:800;cursor:pointer;color:var(--ink3);font-family:inherit;transition:all .15s;}
+.cotab.on{background:var(--blue);color:#fff;border-color:var(--blue);}
+.cotab:hover:not(.on){border-color:var(--blue);color:var(--blue);}
+.co-body{max-width:1040px;margin:0 auto;padding:1.5rem 20px 3rem;display:grid;grid-template-columns:230px 1fr;gap:1.8rem;align-items:start;}
+.filt{background:#fff;border:1.5px solid var(--bdr2);border-radius:var(--rl);padding:1.2rem;position:sticky;top:60px;}
+.fp-head{font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--ink3);margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1.5px solid var(--bdr2);}
+.fpg{margin-bottom:1.1rem;}
+.fpg-l{font-size:10px;font-weight:800;color:var(--ink3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:.4rem;}
+.fpck{display:flex;align-items:center;gap:7px;padding:3px 0;cursor:pointer;font-size:12.5px;color:var(--ink2);font-weight:600;}
+.fpck input{accent-color:var(--blue);width:14px;height:14px;cursor:pointer;}
+.fptabs{display:flex;gap:5px;flex-wrap:wrap;}
+.fpt{padding:4px 10px;border-radius:20px;border:1.5px solid var(--bdr);background:var(--sand);font-size:11.5px;font-weight:700;cursor:pointer;color:var(--ink3);font-family:inherit;transition:all .15s;}
+.fpt.on{background:var(--blue);color:#fff;border-color:var(--blue);}
+.co-res{flex:1;}
+.co-cnt{font-size:12.5px;color:var(--ink3);margin-bottom:1rem;font-weight:600;}
+.co-cnt strong{color:var(--ink);font-weight:800;}
+.ecard{background:linear-gradient(135deg,var(--blue) 0%,#1a5caa 100%);border-radius:var(--rl);padding:1.1rem 1.3rem;margin-bottom:.75rem;cursor:pointer;display:flex;align-items:center;gap:1.1rem;transition:opacity .15s,transform .15s;}
+.ecard:hover{opacity:.92;transform:translateY(-1px);}
+.ecard-icon{width:50px;height:50px;border-radius:11px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.ecard-info{flex:1;}
+.ecard-tit{font-size:14px;font-weight:800;color:#fff;margin-bottom:.22rem;}
+.ecard-desc{font-size:12px;color:rgba(255,255,255,.68);line-height:1.52;font-weight:500;}
+.ecard-r{text-align:right;flex-shrink:0;}
+.ecard-price{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:#fff;}
+.ecard-note{font-size:10.5px;color:rgba(255,255,255,.5);font-weight:600;}
+.ecard-cta{display:block;margin-top:.4rem;background:var(--ora);color:#fff;border:none;padding:6px 13px;border-radius:20px;font-size:11.5px;font-weight:800;cursor:pointer;font-family:inherit;}
+.crow{background:#fff;border:1.5px solid var(--bdr2);border-radius:var(--rl);padding:1rem 1.3rem;margin-bottom:.65rem;display:flex;align-items:center;gap:1.1rem;cursor:pointer;transition:box-shadow .18s,transform .18s;}
+.crow:hover{box-shadow:0 3px 14px rgba(26,109,193,.1);transform:translateX(3px);}
+.cbadge{width:56px;height:56px;border-radius:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;gap:1px;}
+.cb-a0a1{background:#EAF3FF;color:#1A6DC1}.cb-a1a2{background:#E8F7F0;color:#1C7A45}
+.cb-a2b1{background:#FFF4EB;color:#C05A10}.cb-inb{background:#F3EEFF;color:#5C1EA8}
+.cb-lbl{font-size:13px;font-weight:900;line-height:1;}.cb-sub{font-size:8.5px;font-weight:700;opacity:.7;text-align:center;}
+.cinfo{flex:1;min-width:0;}
+.ctit{font-size:13.5px;font-weight:800;color:var(--ink);margin-bottom:.22rem;}
+.cdesc{font-size:12px;color:var(--ink3);line-height:1.48;margin-bottom:.4rem;font-weight:500;}
+.cmeta{display:flex;gap:.45rem;flex-wrap:wrap;}
+.ctag{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:700;}
+.ct-d{background:var(--blue-l);color:var(--blue)}.ct-dur{background:var(--sand);color:var(--ink2)}
+.ct-l{background:#E9F5EE;color:var(--grn)}.ct-t{background:var(--ora-l);color:var(--ora)}
+.cright{text-align:right;flex-shrink:0;}
+.cprice{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--ink);}
+.cpnote{font-size:10.5px;color:var(--ink4);font-weight:600;}
+.cenroll{display:block;margin-top:.45rem;background:var(--ora);color:#fff;border:none;padding:6px 14px;border-radius:20px;font-size:11.5px;font-weight:800;cursor:pointer;font-family:inherit;}
+
+/* ── SHOP ── */
+.shop-hero{background:linear-gradient(140deg,#1a3a5c 0%,#0d2440 100%);padding:3rem 20px;text-align:center;}
+.shop-hero h1{font-family:'Playfair Display',serif;color:#fff;font-size:1.9rem;font-weight:700;margin-bottom:.35rem;}
+.shop-hero p{color:rgba(255,255,255,.58);font-size:14px;font-weight:500;}
+.shop-cats{display:flex;gap:8px;max-width:980px;margin:0 auto;padding:1.5rem 20px 0;flex-wrap:wrap;}
+.scat{padding:8px 18px;border-radius:30px;border:2px solid var(--bdr);background:#fff;font-size:13px;font-weight:800;cursor:pointer;color:var(--ink3);font-family:inherit;transition:all .15s;}
+.scat.on{background:var(--blue);color:#fff;border-color:var(--blue);}
+.scat:hover:not(.on){border-color:var(--blue);color:var(--blue);}
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.3rem;}
+.scard{background:#fff;border:1.5px solid var(--bdr2);border-radius:var(--rl);overflow:hidden;cursor:pointer;transition:box-shadow .18s,transform .18s;}
+.scard:hover{box-shadow:0 6px 22px rgba(0,0,0,.1);transform:translateY(-3px);}
+.scard-img{width:100%;height:148px;display:flex;align-items:center;justify-content:center;font-size:52px;position:relative;}
+.scard-badge{position:absolute;top:10px;right:10px;background:var(--ora);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px;}
+.scard-body{padding:1rem;}
+.scard-cat{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--blue);margin-bottom:.3rem;}
+.scard-name{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:.3rem;line-height:1.35;}
+.scard-desc{font-size:12px;color:var(--ink3);line-height:1.5;margin-bottom:.75rem;font-weight:500;}
+.scard-foot{display:flex;align-items:center;justify-content:space-between;}
+.scard-price{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--ink);}
+.scard-old{font-size:11px;color:var(--ink4);text-decoration:line-through;margin-left:4px;}
+.btn-cart{background:var(--blue);color:#fff;border:none;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;transition:background .15s;}
+.btn-cart:hover{background:var(--blue-d);}
+.cart-bar{position:fixed;bottom:20px;right:20px;background:var(--ora);color:#fff;border:none;padding:12px 22px;border-radius:30px;font-size:13.5px;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 4px 18px rgba(244,116,42,.5);z-index:50;display:none;transition:all .2s;}
+.cart-bar:hover{background:var(--ora-m);transform:translateY(-2px);}
+
+/* CART PANEL */
+.cart-panel{position:fixed;right:0;top:0;height:100%;width:340px;background:#fff;box-shadow:-4px 0 24px rgba(0,0,0,.12);z-index:200;display:none;flex-direction:column;}
+.cart-panel.open{display:flex;}
+.cart-head{background:var(--blue);padding:1.2rem 1.4rem;display:flex;align-items:center;justify-content:space-between;}
+.cart-head-t{font-family:'Playfair Display',serif;color:#fff;font-size:1.1rem;font-weight:700;}
+.cart-close{background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:18px;font-family:inherit;display:flex;align-items:center;justify-content:center;}
+.cart-items{flex:1;overflow-y:auto;padding:1.2rem;}
+.cart-item{display:flex;gap:12px;padding:.85rem 0;border-bottom:1.5px solid var(--bdr2);}
+.ci-icon{width:48px;height:48px;border-radius:10px;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.ci-info{flex:1;}
+.ci-name{font-size:13px;font-weight:800;color:var(--ink);margin-bottom:.2rem;}
+.ci-price{font-size:13px;font-weight:700;color:var(--blue);}
+.ci-qty{display:flex;align-items:center;gap:8px;margin-top:.4rem;}
+.qty-btn{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--bdr);background:var(--sand);cursor:pointer;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;font-family:inherit;color:var(--ink2);}
+.qty-n{font-size:13px;font-weight:800;min-width:20px;text-align:center;}
+.ci-del{background:none;border:none;color:var(--ink4);cursor:pointer;font-size:16px;padding:0 4px;}
+.cart-empty{text-align:center;padding:2.5rem 1rem;color:var(--ink3);font-size:13.5px;font-weight:600;}
+.cart-foot{padding:1.2rem 1.4rem;border-top:1.5px solid var(--bdr2);}
+.cart-total{display:flex;justify-content:space-between;font-size:15px;font-weight:800;color:var(--ink);margin-bottom:1rem;}
+.cart-total span:last-child{font-family:'Playfair Display',serif;}
+.btn-checkout{width:100%;background:var(--ora);color:#fff;border:none;padding:12px;border-radius:30px;font-size:14.5px;font-weight:900;cursor:pointer;font-family:inherit;box-shadow:0 3px 14px rgba(244,116,42,.35);}
+
+/* ENROLL */
+.ep-hero{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-d) 100%);padding:2.8rem 20px;text-align:center;}
+.ep-hero h1{font-family:'Playfair Display',serif;color:#fff;font-size:1.8rem;font-weight:700;margin-bottom:.3rem;}
+.ep-hero p{color:rgba(255,255,255,.52);font-size:13.5px;font-weight:500;}
+.ep-wrap{max-width:860px;margin:0 auto;padding:2rem 20px 3rem;}
+.ep-cols{display:grid;grid-template-columns:1fr 320px;gap:1.8rem;align-items:start;}
+.fc{background:#fff;border:1.5px solid var(--bdr2);border-radius:var(--rl);padding:1.35rem;margin-bottom:1.1rem;}
+.fct{font-size:10.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--ink3);padding-bottom:.45rem;border-bottom:1.5px solid var(--bdr2);margin-bottom:.85rem;}
+.fr{margin-bottom:.8rem;}
+label{display:block;font-size:11px;font-weight:800;color:var(--ink3);margin-bottom:.28rem;text-transform:uppercase;letter-spacing:.4px;}
+input[type=text],input[type=email],input[type=password]{width:100%;padding:9px 12px;border:2px solid var(--bdr);border-radius:8px;font-size:13.5px;font-family:inherit;color:var(--ink);background:var(--sand);outline:none;font-weight:600;}
+input:focus{border-color:var(--blue);background:#fff;}
+.payopts{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.85rem;}
+.popt{padding:7px 13px;border:2px solid var(--bdr);border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;color:var(--ink3);font-family:inherit;background:var(--sand);}
+.popt.on{border-color:var(--blue);color:var(--blue);background:var(--blue-l);}
+.bpay{width:100%;background:var(--ora);color:#fff;padding:12px;border-radius:30px;border:none;font-size:14.5px;font-weight:900;cursor:pointer;font-family:inherit;box-shadow:0 3px 14px rgba(244,116,42,.35);}
+.bpay:disabled{opacity:.38;cursor:not-allowed;}
+.slbl{text-align:center;font-size:11px;color:var(--ink4);margin-top:.55rem;font-weight:600;}
+.oc{background:#fff;border:1.5px solid var(--bdr2);border-radius:var(--rl);padding:1.3rem;position:sticky;top:60px;}
+.oct{font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--ink3);padding-bottom:.65rem;border-bottom:1.5px solid var(--bdr2);margin-bottom:.75rem;}
+.or{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink3);padding:3px 0;font-weight:600;}
+.ot{font-weight:900;font-size:14.5px;color:var(--ink);border-top:1.5px solid var(--bdr2);padding-top:7px;margin-top:5px;}
+.ibox{background:var(--blue-l);border-radius:8px;padding:.8rem;margin-top:.85rem;}
+.ibt{font-size:10.5px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.4px;margin-bottom:.4rem;}
+.ibi{font-size:12px;color:var(--blue-d);padding:2px 0;font-weight:600;}
+.warn-box{background:var(--ora-l);border:2px solid var(--ora);border-radius:9px;padding:.85rem;margin-bottom:.9rem;font-size:13px;color:var(--ora);font-weight:700;}
+.dflex{display:flex;gap:8px;margin-top:.7rem;}
+
+/* SUCCESS */
+.sw{text-align:center;padding:3.5rem 20px;max-width:420px;margin:0 auto;}
+.si{width:64px;height:64px;border-radius:50%;background:var(--grn-l);display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem;}
+.st2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--ink);margin-bottom:.4rem;font-weight:700;}
+.sd{font-size:13.5px;color:var(--ink3);line-height:1.7;margin-bottom:1.3rem;font-weight:500;}
+.wb{background:var(--blue-l);border:2px solid var(--blue-m);border-radius:11px;padding:.8rem 1.3rem;display:inline-block;margin-bottom:1.3rem;}
+.wid{font-size:17px;font-weight:900;color:var(--blue);letter-spacing:1.5px;}
+.wlb{font-size:11px;color:var(--ink3);margin-top:2px;font-weight:600;}
+
+/* AUTH */
+.aw{min-height:calc(100vh - 52px);display:flex;align-items:center;justify-content:center;background:var(--blue-l);padding:2rem;}
+.acard{background:#fff;border:1.5px solid var(--bdr2);border-radius:18px;padding:2rem 2.2rem;width:100%;max-width:400px;box-shadow:0 8px 30px rgba(26,109,193,.12);}
+.alo{display:flex;justify-content:center;margin-bottom:1.3rem;}
+.atit{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--ink);text-align:center;margin-bottom:.22rem;font-weight:700;}
+.asub{font-size:13px;color:var(--ink3);text-align:center;margin-bottom:1.6rem;font-weight:500;}
+.afoot{text-align:center;margin-top:1rem;font-size:13px;color:var(--ink3);font-weight:600;}
+.afoot a{color:var(--blue);cursor:pointer;font-weight:800;}
+.aerr{background:#FDF0EF;color:#C0281A;border:1.5px solid #F0C0C0;padding:9px 13px;border-radius:8px;font-size:12.5px;font-weight:700;margin-bottom:.85rem;}
+.bf{width:100%;background:var(--blue);color:#fff;padding:11px;border-radius:30px;border:none;font-size:13.5px;font-weight:900;cursor:pointer;font-family:inherit;margin-top:.2rem;}
+.bo{width:100%;background:transparent;color:var(--ink);padding:10px;border-radius:30px;border:2px solid var(--bdr);font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:.45rem;}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:.8rem;}
+
+/* DASHBOARD */
+.dh{background:linear-gradient(130deg,var(--blue) 0%,var(--blue-d) 100%);padding:2.6rem 20px;}
+.di{max-width:960px;margin:0 auto;}
+.dg{color:rgba(255,255,255,.5);font-size:13px;margin-bottom:.2rem;font-weight:600;}
+.dn{font-family:'Playfair Display',serif;color:#fff;font-size:1.65rem;font-weight:700;}
+.db{max-width:960px;margin:0 auto;padding:2.2rem 20px;}
+.dcols{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;margin-bottom:1.6rem;}
+.dcard{background:#fff;border:1.5px solid var(--bdr2);border-radius:var(--rl);padding:1.3rem;}
+.dch{font-size:10.5px;font-weight:900;letter-spacing:.7px;text-transform:uppercase;color:var(--ink3);margin-bottom:.75rem;}
+.cai{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1.5px solid var(--bdr2);}
+.cai:last-child{border-bottom:none;}
+.cad{width:8px;height:8px;border-radius:50%;background:var(--grn);flex-shrink:0;}
+.cain{flex:1;}.cal{font-size:13.5px;font-weight:800;color:var(--ink);}.cat2{font-size:11px;color:var(--ink3);font-weight:500;}
+.cab{font-size:10.5px;padding:2px 8px;border-radius:20px;background:var(--grn-l);color:var(--grn);font-weight:800;}
+.caw{font-size:12px;color:var(--blue);cursor:pointer;font-weight:800;}
+.es{text-align:center;padding:1.3rem;color:var(--ink3);font-size:13px;font-weight:600;}
+.es a{color:var(--blue);cursor:pointer;font-weight:800;}
+
+/* ABOUT / FAQ / CONTACT */
+.ph2{background:linear-gradient(135deg,var(--blue-l) 0%,var(--blue-m) 100%);border-bottom:1.5px solid var(--blue-m);padding:2.8rem 20px;text-align:center;}
+.ph2 h1{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--ink);margin-bottom:.35rem;font-weight:700;}
+.ph2 p{color:var(--ink3);font-size:14.5px;max-width:500px;margin:0 auto;line-height:1.62;font-weight:500;}
+.tcard2{display:flex;gap:1.8rem;align-items:flex-start;background:#fff;border:1.5px solid var(--bdr2);border-radius:18px;padding:1.8rem;max-width:700px;margin:0 auto;}
+.tav{width:88px;height:88px;border-radius:50%;background:var(--blue-l);border:3px solid var(--blue-m);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--blue);flex-shrink:0;font-weight:700;}
+.tna{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--ink);font-weight:700;}
+.tro{font-size:12.5px;color:var(--blue);font-weight:800;margin:.15rem 0 .65rem;}
+.tcreds{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.65rem;}
+.tcred{font-size:10.5px;padding:3px 8px;border-radius:20px;background:var(--blue-l);color:var(--blue);font-weight:700;border:1px solid var(--blue-m);}
+.tbio{font-size:13px;color:var(--ink3);line-height:1.72;white-space:pre-line;font-weight:500;}
+.krow{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;max-width:680px;margin:1.6rem auto 0;}
+.ki{background:#fff;border:1.5px solid var(--bdr2);border-radius:var(--rl);padding:1.1rem;text-align:center;}
+.kn{font-family:'Playfair Display',serif;font-size:1.75rem;color:var(--blue);font-weight:700;}
+.kl{font-size:11.5px;color:var(--ink3);margin-top:2px;font-weight:700;}
+.fi{border-bottom:1.5px solid var(--bdr2);padding:.85rem 0;}
+.fq{display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:1rem;font-size:13.5px;font-weight:800;color:var(--ink);}
+.fic{width:23px;height:23px;border-radius:50%;background:var(--blue-l);border:1.5px solid var(--blue-m);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--blue);flex-shrink:0;font-weight:800;}
+.fa{font-size:13px;color:var(--ink3);line-height:1.65;padding-top:.6rem;display:none;font-weight:500;}
+.fa.on{display:block;}
+.csplit{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;max-width:800px;margin:0 auto;}
+.cinfo2{background:linear-gradient(145deg,var(--blue) 0%,var(--blue-d) 100%);border-radius:var(--rl);padding:1.7rem;color:#fff;}
+.cinfo2 h3{font-family:'Playfair Display',serif;color:rgba(255,255,255,.9);font-size:1.1rem;margin-bottom:.85rem;font-weight:700;}
+.crow2{display:flex;gap:8px;margin-bottom:.72rem;font-size:12.5px;color:rgba(255,255,255,.65);align-items:flex-start;font-weight:500;}
+.cdot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.4);flex-shrink:0;margin-top:5px;}
+.wb2{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.15);border-radius:8px;padding:.8rem;text-align:center;margin-top:.9rem;}
+.wid2{font-size:16px;font-weight:900;color:#fff;letter-spacing:1.5px;}
+.wsub{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px;font-weight:600;}
+.cform{background:#fff;border:1.5px solid var(--bdr2);border-radius:var(--rl);padding:1.7rem;}
+select,textarea{width:100%;padding:9px 12px;border:2px solid var(--bdr);border-radius:8px;font-size:13.5px;font-family:inherit;color:var(--ink);background:var(--sand);outline:none;font-weight:600;}
+
+@media(max-width:700px){
+  .nc{display:none;}.ep-cols{grid-template-columns:1fr;}.co-body{grid-template-columns:1fr;}.filt{position:static;}
+  .dcols{grid-template-columns:1fr;}.krow{grid-template-columns:1fr 1fr;}.csplit{grid-template-columns:1fr;}
+  .tcard2{flex-direction:column;align-items:center;text-align:center;}.cart-panel{width:100%;}
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<!-- TOPBAR -->
+<nav class="tb">
+  <svg height="26" viewBox="0 0 200 40" fill="none">
+    <rect x="2" y="8" width="4" height="24" rx="2" fill="white" opacity=".9"/>
+    <rect x="10" y="2" width="4" height="36" rx="2" fill="white" opacity=".9"/>
+    <rect x="18" y="8" width="4" height="24" rx="2" fill="white" opacity=".9"/>
+    <rect x="26" y="16" width="4" height="8" rx="2" fill="white" opacity=".9"/>
+    <text x="38" y="28" font-family="Nunito,sans-serif" font-weight="800" font-size="19" fill="white">Taal13A</text>
+  </svg>
+  <div class="nc">
+    <button class="nl on" onclick="nav('home')" data-zh="主页" data-nl="Home">主页 / Home</button>
+    <button class="nl" onclick="nav('overview')" data-zh="课程 / Cursussen" data-nl="Cursussen">课程 / Cursussen</button>
+    <button class="nl" onclick="nav('shop')" data-zh="商店" data-nl="Winkel">商店 / Winkel</button>
+    <button class="nl" onclick="nav('about')" data-zh="关于" data-nl="Over ons">关于 / Over ons</button>
+    <button class="nl" onclick="nav('contact')" data-zh="联系" data-nl="Contact">联系 / Contact</button>
+  </div>
+  <div class="nr">
+    <button class="lb on" onclick="setLang('zh',this)">中文</button>
+    <button class="lb" onclick="setLang('nl',this)">NL</button>
+    <span id="auth-btns">
+      <button class="ub" onclick="nav('login')">登录</button>
+      <button class="cta" onclick="nav('register')">注册</button>
+    </span>
+    <span id="user-btns" style="display:none">
+      <button class="ub" onclick="nav('dashboard')" id="ulabel">我的课程</button>
+      <button class="ub" onclick="doLogout()" style="margin-left:4px">退出</button>
+    </span>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div class="pg on" id="pg-home">
+  <div class="hero">
+    <div class="gfb"><div class="gb gb1"></div><div class="gb gb2"></div><div class="gb gb3"></div></div>
+    <div class="hvid" id="hvid"></div>
+    <div class="hovl"></div>
+    <div class="hc">
+      <div class="hpill"><div class="pdot"></div><span data-zh="🇳🇱 专为荷兰华人 · 全中文教学" data-nl="🇳🇱 Voor Chinezen in Nederland · In het Chinees">🇳🇱 专为荷兰华人 · 全中文教学</span></div>
+      <h1 id="hero-h1"><em>学好荷兰语</em><br>开启全新生活</h1>
+      <p class="hsub" data-zh="Taal13A 提供从 E-learning 自学到线上小班的完整荷兰语学习体系，全程中文授课" data-nl="Taal13A biedt e-learning en groepslessen Nederlands voor Chinezen, volledig in het Chinees">Taal13A 提供从 E-learning 自学到线上小班的完整荷兰语学习体系，全程中文授课</p>
+      <div class="hbtns">
+        <button class="hb1" onclick="nav('overview')" data-zh="查看课程 →" data-nl="Bekijk cursussen →">查看课程 →</button>
+        <button class="hb2" onclick="nav('shop')" data-zh="📚 去商店" data-nl="📚 Winkel">📚 去商店</button>
+      </div>
+      <div class="hstats">
+        <div><div class="hn">500+</div><div class="hl" data-zh="累计学员" data-nl="Studenten">累计学员</div></div>
+        <div><div class="hn">95%</div><div class="hl" data-zh="平均通过率" data-nl="Slagingspercentage">平均通过率</div></div>
+        <div><div class="hn">1000+</div><div class="hl" data-zh="课程观看量" data-nl="Video's bekeken">课程观看量</div></div>
+        <div><div class="hn">99%</div><div class="hl" data-zh="好评率" data-nl="Tevredenheid">好评率</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-sky"><div class="sec">
+    <div class="shead">
+      <div class="eye" data-zh="为什么选择 TAAL13A" data-nl="WAAROM TAAL13A">为什么选择 TAAL13A</div>
+      <h2 class="stit" data-zh="学习，从未如此灵活" data-nl="Leren was nog nooit zo flexibel">学习，从未如此灵活</h2>
+      <p class="ssub" data-zh="E-learning 或线上小班，专为忙碌的荷兰华人量身定制" data-nl="E-learning of groepsles, op maat voor Chinezen in Nederland">E-learning 或线上小班，专为忙碌的荷兰华人量身定制</p>
+    </div>
+    <div class="fgrid">
+      <div class="fcard"><div class="ficon fi-b">⏱</div><div class="ft" data-zh="随时随地学习" data-nl="Altijd en overal">随时随地学习</div><div class="fd" data-zh="E-learning 无时间限制，碎片时间也能进步" data-nl="E-learning zonder tijdslimiet">E-learning 无时间限制，碎片时间也能进步</div></div>
+      <div class="fcard"><div class="ficon fi-o">🌐</div><div class="ft" data-zh="全中文授课" data-nl="Volledig in het Chinees">全中文授课</div><div class="fd" data-zh="用母语理解荷兰语语法，事半功倍" data-nl="Begrijp grammatica beter in je moedertaal">用母语理解荷兰语语法，事半功倍</div></div>
+      <div class="fcard"><div class="ficon fi-g">💬</div><div class="ft" data-zh="微信实时答疑" data-nl="WeChat support">微信实时答疑</div><div class="fd" data-zh="加入微信学习群，老师实时解答难题" data-nl="Stel vragen via WeChat, direct antwoord">加入微信学习群，老师实时解答难题</div></div>
+      <div class="fcard"><div class="ficon fi-t">🏅</div><div class="ft" data-zh="认证资质教师" data-nl="Gecertificeerde docent">认证资质教师</div><div class="fd" data-zh="BKE/SKE 荷兰语教师证 · 上外本科 · 复旦硕士" data-nl="BKE/SKE · Ba SISU · Ma Fudan">BKE/SKE 荷兰语教师证 · 上外本科 · 复旦硕士</div></div>
+    </div>
+  </div></div>
+  <div class="bg-w"><div class="sec">
+    <div class="shead">
+      <div class="eye" data-zh="选择您的课程" data-nl="KIES UW CURSUS">选择您的课程</div>
+      <h2 class="stit" data-zh="从 E-learning 到小班课，一站式学习" data-nl="Van e-learning tot groepsles">从 E-learning 到小班课，一站式学习</h2>
+      <p class="ssub" data-zh="立即购买 E-learning，或加入定期小班获得互动体验" data-nl="Begin direct met e-learning of sluit aan bij een groepsles">立即购买 E-learning，或加入定期小班获得互动体验</p>
+    </div>
+    <div class="pgrid" id="home-pillars"></div>
+  </div></div>
+  <div class="bg-sand"><div class="sec">
+    <div class="shead">
+      <div class="eye" data-zh="学员反馈" data-nl="ERVARINGEN">学员反馈</div>
+      <h2 class="stit" data-zh="真实学员评价" data-nl="Wat studenten zeggen">真实学员评价</h2>
+    </div>
+    <div class="tgrid">
+      <div class="tcard"><div class="tstars">★★★★★</div><div class="ttext" data-zh="E-learning 让我一边工作一边备考，三个月通过融入考试！Isa 老师解释非常清晰。" data-nl="E-learning liet me werken en studeren. In drie maanden geslaagd voor het inburgeringsexamen!">E-learning 让我一边工作一边备考，三个月通过融入考试！Isa 老师解释非常清晰。</div><div class="tau"><div class="tava">李</div><div><div class="tname" data-zh="李美娟" data-nl="Li Meijuan">李美娟</div><div class="tmeta" data-zh="融入考试 E-learning" data-nl="Inburgering E-learning">融入考试 E-learning</div></div></div></div>
+      <div class="tcard"><div class="tstars">★★★★★</div><div class="ttext" data-zh="线上小班可以和同学互动，老师对每个人都很关注。比线下课方便多了！" data-nl="Online groepsles is geweldig! Veel handiger dan fysieke lessen.">线上小班可以和同学互动，老师对每个人都很关注。比线下课方便多了！</div><div class="tau"><div class="tava">王</div><div><div class="tname" data-zh="王晓明" data-nl="Wang Xiaoming">王晓明</div><div class="tmeta" data-zh="A1–A2 线上小班" data-nl="A1–A2 groepsles">A1–A2 线上小班</div></div></div></div>
+      <div class="tcard"><div class="tstars">★★★★★</div><div class="ttext" data-zh="Isa 老师把复杂语法讲得非常简单，从来没学过外语也能学会！" data-nl="Docent Isa legt grammatica heel eenvoudig uit. Zelfs zonder taalbasis begrijp ik alles!">Isa 老师把复杂语法讲得非常简单，从来没学过外语也能学会！</div><div class="tau"><div class="tava">张</div><div><div class="tname" data-zh="张慧" data-nl="Zhang Hui">张慧</div><div class="tmeta" data-zh="A0–A1 线上小班" data-nl="A0–A1 groepsles">A0–A1 线上小班</div></div></div></div>
+    </div>
+  </div></div>
+</div>
+
+<!-- COURSE OVERVIEW (was: 课程安排 → now: 课程/Cursussen) -->
+<div class="pg" id="pg-overview">
+  <div class="co-hero">
+    <h1 data-zh="课程 / Cursussen" data-nl="Cursussen">课程 / Cursussen</h1>
+    <p data-zh="E-learning 随时可购 · 线上小班按日期报名" data-nl="E-learning direct · Groepslessen met startdatum">E-learning 随时可购 · 线上小班按日期报名</p>
+  </div>
+  <div class="co-tabs-wrap">
+    <div class="co-tabs">
+      <button class="cotab on" onclick="coTab('all',this)" data-zh="全部" data-nl="Alle">全部</button>
+      <button class="cotab" onclick="coTab('elearn',this)" data-zh="📱 E-learning" data-nl="📱 E-learning">📱 E-learning</button>
+      <button class="cotab" onclick="coTab('live',this)" data-zh="👥 线上小班" data-nl="👥 Groepsles">👥 线上小班</button>
+      <button class="cotab" onclick="coTab('a0a1',this)">A0–A1</button>
+      <button class="cotab" onclick="coTab('a1a2',this)">A1–A2</button>
+      <button class="cotab" onclick="coTab('a2b1',this)">A2–B1</button>
+      <button class="cotab" onclick="coTab('inb',this)" data-zh="融入考试" data-nl="Inburgering">融入考试</button>
+    </div>
+  </div>
+  <div class="bg-sand">
+    <div class="co-body">
+      <div class="filt">
+        <div class="fp-head" data-zh="筛选" data-nl="Filters">筛选</div>
+        <div class="fpg">
+          <div class="fpg-l" data-zh="课程类型" data-nl="Type">课程类型</div>
+          <div class="fptabs">
+            <button class="fpt on" data-f="all" onclick="fFilt(this)" data-zh="全部" data-nl="Alle">全部</button>
+            <button class="fpt" data-f="elearn" onclick="fFilt(this)">E-learning</button>
+            <button class="fpt" data-f="live" onclick="fFilt(this)" data-zh="小班课" data-nl="Groep">小班课</button>
+          </div>
+        </div>
+        <div class="fpg">
+          <div class="fpg-l" data-zh="级别" data-nl="Niveau">级别</div>
+          <label class="fpck"><input type="checkbox" checked onchange="rList()"> A0–A1</label>
+          <label class="fpck"><input type="checkbox" checked onchange="rList()"> A1–A2</label>
+          <label class="fpck"><input type="checkbox" checked onchange="rList()"> A2–B1</label>
+          <label class="fpck"><input type="checkbox" checked onchange="rList()"> <span data-zh="融入考试" data-nl="Inburgering">融入考试</span></label>
+        </div>
+        <div class="fpg">
+          <div class="fpg-l" data-zh="时间" data-nl="Tijdstip">时间</div>
+          <label class="fpck"><input type="checkbox" checked onchange="rList()"><span data-zh=" 随时开始" data-nl=" Altijd"> 随时开始</span></label>
+          <label class="fpck"><input type="checkbox" checked onchange="rList()"><span data-zh=" 周六下午" data-nl=" Zaterdag"> 周六下午</span></label>
+          <label class="fpck"><input type="checkbox" checked onchange="rList()"><span data-zh=" 周日" data-nl=" Zondag"> 周日</span></label>
+        </div>
+      </div>
+      <div class="co-res">
+        <div class="co-cnt" id="co-cnt"></div>
+        <div id="co-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SHOP -->
+<div class="pg" id="pg-shop" style="min-height:calc(100vh - 52px)">
+  <div class="shop-hero">
+    <h1 data-zh="📚 Taal13A 商店" data-nl="📚 Taal13A Winkel">📚 Taal13A 商店</h1>
+    <p data-zh="教材、练习册及周边产品，助力您的荷兰语学习之旅" data-nl="Boeken, oefenwerkboeken en merchandise voor uw Nederlandse leerreis">教材、练习册及周边产品，助力您的荷兰语学习之旅</p>
+  </div>
+  <div class="sec" style="padding-top:1.5rem;padding-bottom:0">
+    <div class="shop-cats" style="padding:0;margin-bottom:1.4rem">
+      <button class="scat on" onclick="shopCat('all',this)" data-zh="全部" data-nl="Alle">全部</button>
+      <button class="scat" onclick="shopCat('books',this)" data-zh="📖 教材书籍" data-nl="📖 Boeken">📖 教材书籍</button>
+      <button class="scat" onclick="shopCat('workbook',this)" data-zh="📝 练习册" data-nl="📝 Werkboeken">📝 练习册</button>
+      <button class="scat" onclick="shopCat('merch',this)" data-zh="🎁 周边产品" data-nl="🎁 Merchandise">🎁 周边产品</button>
+      <button class="scat" onclick="shopCat('bundle',this)" data-zh="📦 超值套装" data-nl="📦 Bundels">📦 超值套装</button>
+    </div>
+    <div class="shop-grid" id="shop-grid"></div>
+  </div>
+  <div style="height:2rem"></div>
+</div>
+
+<!-- ENROLL -->
+<div class="pg" id="pg-enroll" style="background:var(--sand);min-height:calc(100vh - 52px)">
+  <div class="ep-hero"><h1 id="ep-h1">报名</h1><p id="ep-sub">填写信息并完成支付</p></div>
+  <div class="ep-wrap" id="ep-body"></div>
+</div>
+
+<!-- ABOUT -->
+<div class="pg" id="pg-about">
+  <div class="ph2"><h1 data-zh="关于 Taal13A" data-nl="Over Taal13A">关于 Taal13A</h1><p data-zh="专业认证，充满热忱，用最简单的方法教荷兰语" data-nl="Gecertificeerd, gepassioneerd, de eenvoudigste methode">专业认证，充满热忱，用最简单的方法教荷兰语</p></div>
+  <div class="sec">
+    <div class="tcard2">
+      <div class="tav">程</div>
+      <div>
+        <div class="tna" data-zh="Isa Cheng（程老师）" data-nl="Isa Cheng">Isa Cheng（程老师）</div>
+        <div class="tro" data-zh="Taal13A 创始人 · NT2 认证荷兰语教师" data-nl="Oprichter Taal13A · Gecertificeerd NT2-docent">Taal13A 创始人 · NT2 认证荷兰语教师</div>
+        <div class="tcreds">
+          <span class="tcred" data-zh="上海外国语大学 荷兰语本科" data-nl="Ba Neerlandistiek SISU">上海外国语大学 荷兰语本科</span>
+          <span class="tcred" data-zh="复旦大学 新闻学硕士" data-nl="Ma Journalistiek Fudan">复旦大学 新闻学硕士</span>
+          <span class="tcred" data-zh="BKE/SKE 荷兰语教师证" data-nl="BKE/SKE gecertificeerd">BKE/SKE 教师证</span>
+          <span class="tcred" data-zh="NT2 认证讲师" data-nl="NT2 gecertificeerd">NT2 认证讲师</span>
+        </div>
+        <div class="tbio" data-zh="Isa Cheng 毕业于上海外国语大学荷兰语专业（全中国唯一设有荷兰语本科的院校），随后在复旦大学取得新闻学硕士学位。旅居荷兰多年后，她取得了荷兰官方认可的荷兰语教师资格证 BKE/SKE，成为正式注册的 NT2 荷兰语讲师。
+
+作为一名在荷兰生活的华人，Isa 深刻理解中文母语者学习荷兰语时遇到的困难。她独创了一套「以中文思维拆解荷兰语」的教学方法，让完全没有外语基础的学员也能系统快速地学会荷兰语。
+
+Taal13A 的核心理念：让学荷兰语这件事，变得简单、有趣、真正有效。" data-nl="Isa Cheng studeerde Neerlandistiek aan de Shanghai International Studies University — de enige universiteit in China met bachelor Neerlandistiek — en behaalde haar masterdiploma Journalistiek aan de Fudan University.
+
+Na haar verhuizing naar Nederland behaalde ze het officieel erkende lerarendiploma BKE/SKE en is ze geregistreerd NT2-docent. Ze ontwikkelde een unieke methode waarbij Nederlandse grammatica wordt uitgelegd via Chinese denkpatronen.
+
+Het concept van Taal13A: Nederlands leren eenvoudig, leuk en echt effectief maken.">Isa Cheng 毕业于上海外国语大学荷兰语专业，随后在复旦大学取得新闻学硕士学位。旅居荷兰多年后，她取得了荷兰官方认可的荷兰语教师资格证 BKE/SKE，成为正式注册的 NT2 荷兰语讲师。
+
+作为一名在荷兰生活的华人，Isa 深刻理解中文母语者学习荷兰语时遇到的困难。她独创了一套「以中文思维拆解荷兰语」的教学方法，让完全没有外语基础的学员也能系统快速地学会荷兰语。
+
+Taal13A 的核心理念：让学荷兰语这件事，变得简单、有趣、真正有效。</div>
+      </div>
+    </div>
+    <div class="krow">
+      <div class="ki"><div class="kn">500+</div><div class="kl" data-zh="累计学员" data-nl="Studenten">累计学员</div></div>
+      <div class="ki"><div class="kn">95%</div><div class="kl" data-zh="平均通过率" data-nl="Slagingspercentage">平均通过率</div></div>
+      <div class="ki"><div class="kn">99%</div><div class="kl" data-zh="好评率" data-nl="Tevredenheid">好评率</div></div>
+      <div class="ki"><div class="kn">5+</div><div class="kl" data-zh="年教学经验" data-nl="Jaar ervaring">年教学经验</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="pg" id="pg-faq">
+  <div class="ph2"><h1 data-zh="常见问题" data-nl="FAQ">常见问题</h1><p data-zh="找不到答案？通过微信联系我们" data-nl="Vraag niet gevonden? Neem contact op via WeChat">找不到答案？通过微信联系我们</p></div>
+  <div class="sec sec-sm">
+    <div class="fi"><div class="fq" onclick="faqT(this)"><span data-zh="E-learning 和线上小班有什么区别？" data-nl="Verschil e-learning en groepsles?">E-learning 和线上小班有什么区别？</span><div class="fic">+</div></div><div class="fa" data-zh="E-learning 是录制好的视频课，购买后永久访问，随时自主学习。线上小班是固定时间的直播课，可实时与老师和同学互动。" data-nl="E-learning zijn opgenomen videolessen, altijd beschikbaar. Groepslessen zijn live op vaste tijden.">E-learning 是录制好的视频课，购买后永久访问，随时自主学习。线上小班是固定时间的直播课，可实时与老师和同学互动。</div></div>
+    <div class="fi"><div class="fq" onclick="faqT(this)"><span data-zh="我零基础，从哪开始？" data-nl="Ik ben beginner, welke cursus?">我零基础，从哪开始？</span><div class="fic">+</div></div><div class="fa" data-zh="选 A0–A1 课程！E-learning 随时可买，线上小班可看开班日期。都从荷兰语发音开始，全中文讲授。" data-nl="Kies A0–A1! E-learning direct, groepsles heeft startdatums. Starten vanuit uitspraak, volledig Chinees.">选 A0–A1 课程！E-learning 随时可买，线上小班可看开班日期。都从荷兰语发音开始，全中文讲授。</div></div>
+    <div class="fi"><div class="fq" onclick="faqT(this)"><span data-zh="E-learning 购买后可永久访问吗？" data-nl="Levenslange toegang na aankoop?">E-learning 购买后可永久访问吗？</span><div class="fic">+</div></div><div class="fa" data-zh="是的！永久访问，不限观看次数，按自己节奏复习。" data-nl="Ja! Levenslange en onbeperkte toegang.">是的！永久访问，不限观看次数，按自己节奏复习。</div></div>
+    <div class="fi"><div class="fq" onclick="faqT(this)"><span data-zh="商店的实物商品如何配送？" data-nl="Hoe worden fysieke producten verzonden?">商店的实物商品如何配送？</span><div class="fic">+</div></div><div class="fa" data-zh="荷兰境内通过 PostNL 配送，通常 1–3 个工作日送达。购买满 €50 免运费。数字产品（PDF 版练习册）购买后立即通过邮件发送下载链接。" data-nl="Binnen Nederland via PostNL, 1–3 werkdagen. Gratis verzending bij bestelling boven €50. Digitale producten worden direct per e-mail verstuurd.">荷兰境内通过 PostNL 配送，通常 1–3 个工作日送达。购买满 €50 免运费。数字产品（PDF 版练习册）购买后立即通过邮件发送下载链接。</div></div>
+    <div class="fi"><div class="fq" onclick="faqT(this)"><span data-zh="支持哪些付款方式？" data-nl="Betaalmethoden?">支持哪些付款方式？</span><div class="fic">+</div></div><div class="fa" data-zh="支持 iDEAL、Creditcard（Visa/Mastercard）、PayPal 及银行转账。" data-nl="iDEAL, creditcard (Visa/Mastercard), PayPal en bankoverschrijving.">支持 iDEAL、Creditcard（Visa/Mastercard）、PayPal 及银行转账。</div></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="pg" id="pg-contact">
+  <div class="ph2"><h1 data-zh="联系我们" data-nl="Contact">联系我们</h1><p data-zh="有任何问题，欢迎随时联系 Isa 老师" data-nl="Vragen? Neem contact op met Isa">有任何问题，欢迎随时联系 Isa 老师</p></div>
+  <div class="sec">
+    <div class="csplit">
+      <div class="cinfo2">
+        <h3 data-zh="联系方式" data-nl="Contactgegevens">联系方式</h3>
+        <div class="crow2"><div class="cdot"></div><div>info@taal13a.nl</div></div>
+        <div class="crow2"><div class="cdot"></div><div>Rotterdam, Nederland</div></div>
+        <div class="crow2"><div class="cdot"></div><div><span data-zh="周一至周五 9:00–18:00" data-nl="Ma–vr 9:00–18:00">周一至周五 9:00–18:00</span></div></div>
+        <div class="wb2"><div class="wid2">Taal13A_NL</div><div class="wsub" data-zh="微信 ID · 添加 Isa 老师" data-nl="WeChat ID · Voeg Isa toe">微信 ID · 添加 Isa 老师</div></div>
+      </div>
+      <div class="cform">
+        <div class="fr"><label data-zh="姓名" data-nl="Naam">姓名</label><input type="text" placeholder="Name"></div>
+        <div class="fr"><label>Email</label><input type="email" placeholder="email@example.com"></div>
+        <div class="fr"><label data-zh="话题" data-nl="Onderwerp">话题</label><select><option data-zh="课程咨询" data-nl="Cursusadvies">课程咨询</option><option data-zh="商店订单" data-nl="Winkelbestelling">商店订单</option><option data-zh="其他" data-nl="Overig">其他</option></select></div>
+        <div class="fr"><label data-zh="留言" data-nl="Bericht">留言</label><textarea rows="3"></textarea></div>
+        <button class="bf" data-zh="发送留言" data-nl="Verstuur">发送留言</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div class="pg" id="pg-login"><div class="aw"><div class="acard">
+  <div class="alo"><svg height="22" viewBox="0 0 200 40" fill="none"><rect x="2" y="8" width="4" height="24" rx="2" fill="#1A6DC1"/><rect x="10" y="2" width="4" height="36" rx="2" fill="#1A6DC1"/><rect x="18" y="8" width="4" height="24" rx="2" fill="#1A6DC1"/><rect x="26" y="16" width="4" height="8" rx="2" fill="#1A6DC1"/><text x="38" y="28" font-family="Nunito,sans-serif" font-weight="800" font-size="19" fill="#1A6DC1">Taal13A</text></svg></div>
+  <div class="atit" data-zh="登录账号" data-nl="Inloggen">登录账号</div>
+  <div class="asub" data-zh="登录后访问已购课程" data-nl="Log in voor uw cursussen">登录后访问已购课程</div>
+  <div id="lerr"></div>
+  <div class="fr"><label>Email</label><input type="email" id="lei" placeholder="email@example.com"></div>
+  <div class="fr"><label data-zh="密码" data-nl="Wachtwoord">密码</label><input type="password" id="lpw" placeholder="••••••••"></div>
+  <button class="bf" onclick="doLogin()" data-zh="登录" data-nl="Inloggen">登录</button>
+  <div class="afoot"><span data-zh="还没有账号？" data-nl="Nog geen account?">还没有账号？</span> <a onclick="nav('register')" data-zh="立即注册" data-nl="Registreer">立即注册</a></div>
+</div></div></div>
+
+<!-- REGISTER -->
+<div class="pg" id="pg-register"><div class="aw"><div class="acard">
+  <div class="alo"><svg height="22" viewBox="0 0 200 40" fill="none"><rect x="2" y="8" width="4" height="24" rx="2" fill="#1A6DC1"/><rect x="10" y="2" width="4" height="36" rx="2" fill="#1A6DC1"/><rect x="18" y="8" width="4" height="24" rx="2" fill="#1A6DC1"/><rect x="26" y="16" width="4" height="8" rx="2" fill="#1A6DC1"/><text x="38" y="28" font-family="Nunito,sans-serif" font-weight="800" font-size="19" fill="#1A6DC1">Taal13A</text></svg></div>
+  <div class="atit" data-zh="创建账号" data-nl="Registreren">创建账号</div>
+  <div class="asub" data-zh="注册后购买课程，随时学习" data-nl="Registreer om cursussen te kopen">注册后购买课程，随时学习</div>
+  <div id="rerr"></div>
+  <div class="fr2"><div><label data-zh="姓名" data-nl="Naam">姓名</label><input type="text" id="rname" placeholder="Name"></div><div><label>WeChat</label><input type="text" id="rwc" placeholder="WeChat ID"></div></div>
+  <div class="fr"><label>Email</label><input type="email" id="rei" placeholder="email@example.com"></div>
+  <div class="fr"><label data-zh="密码（至少6位）" data-nl="Wachtwoord">密码</label><input type="password" id="rpw" placeholder="••••••••"></div>
+  <div class="fr"><label data-zh="确认密码" data-nl="Bevestig">确认密码</label><input type="password" id="rpw2" placeholder="••••••••"></div>
+  <button class="bf" onclick="doReg()" data-zh="创建账号" data-nl="Registreer">创建账号</button>
+  <div class="afoot"><span data-zh="已有账号？" data-nl="Al een account?">已有账号？</span> <a onclick="nav('login')" data-zh="立即登录" data-nl="Inloggen">立即登录</a></div>
+</div></div></div>
+
+<!-- DASHBOARD -->
+<div class="pg" id="pg-dashboard">
+  <div class="dh"><div class="di"><div class="dg" id="dg">欢迎回来，</div><div class="dn" id="dname">—</div></div></div>
+  <div class="db">
+    <div class="dcols">
+      <div class="dcard"><div class="dch" data-zh="我的课程" data-nl="Mijn cursussen">我的课程</div><div id="my-courses"></div></div>
+      <div class="dcard"><div class="dch" data-zh="账号信息" data-nl="Account">账号信息</div><div id="acct" style="font-size:12.5px;color:var(--ink3);line-height:2;font-weight:600"></div></div>
+    </div>
+    <div style="text-align:center;margin-bottom:1rem"><button class="benroll" onclick="nav('overview')" data-zh="浏览课程" data-nl="Cursussen bekijken">浏览课程</button></div>
+  </div>
+</div>
+
+<!-- CART PANEL -->
+<div class="cart-panel" id="cart-panel">
+  <div class="cart-head">
+    <span class="cart-head-t" data-zh="🛒 购物车" data-nl="🛒 Winkelwagen">🛒 购物车</span>
+    <button class="cart-close" onclick="closeCart()">×</button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-foot" id="cart-foot" style="display:none">
+    <div class="cart-total"><span data-zh="合计" data-nl="Totaal">合计</span><span id="cart-total-price">€0</span></div>
+    <button class="btn-checkout" onclick="cartCheckout()" data-zh="去结算 →" data-nl="Afrekenen →">去结算 →</button>
+  </div>
+</div>
+<button class="cart-bar" id="cart-bar" onclick="openCart()">
+  🛒 <span id="cart-bar-txt">购物车 (0)</span>
+</button>
+
+<script>
+var L='zh',USER=null,ET=null,USERS={},CF='all',SCARF='all';
+var CART=[];
+
+var PIL=[
+  {id:'elearn',l:'elearn',zl:'E-learning',nl_:'E-learning',zs:'随时自学·永久访问',ns:'Zelfstudie·Levenslang',zt:'在线自学课程',nt:'Online zelfstudie',zp:['随时随地按自己节奏学习','视频课永久访问无限回放','A0–A1 到融入考试全覆盖'],np:['Eigen tempo, altijd en overal','Levenslange onbeperkte toegang','Van A0–A1 tot inburgering'],tz:['🎬 录播视频','📱 随时可看','♾ 永久访问'],tn:['🎬 Videolessen','📱 Altijd','♾ Levenslang'],pr:'Vanaf €149',nz:'按级别选择',nn:'Per niveau'},
+  {id:'a0a1',l:'a0a1',zl:'A0–A1',nl_:'A0–A1',zs:'零基础/基础重建',ns:'Nul basis',zt:'零基础入门课程',nt:'Beginnerscursus A0–A1',zp:['从荷兰语发音开始系统学','会读、会听、能开口','打下扎实语言基础'],np:['Leer uitspraak van nul','Lezen, luisteren, spreken','Solide taalbasis'],tz:['E-learning','线上小班','全中文'],tn:['E-learning','Groepsles','Chinees'],pr:'€149–€299',nz:'E-learning 起',nn:'Vanaf e-learning'},
+  {id:'a1a2',l:'a1a2',zl:'A1–A2',nl_:'A1–A2',zs:'初级荷兰语',ns:'Beginner gevorderd',zt:'初级进阶课程',nt:'Gevorderden A1–A2',zp:['日常对话与表达','时态、句型语法进阶','阅读与听力训练'],np:['Dagelijkse gesprekken','Tijden en zinsbouw','Lees- en luisteroefeningen'],tz:['E-learning','线上小班','微信答疑'],tn:['E-learning','Groepsles','WeChat'],pr:'€149–€279',nz:'E-learning 起',nn:'Vanaf e-learning'},
+  {id:'a2b1',l:'a2b1',zl:'A2–B1',nl_:'A2–B1',zs:'中级荷兰语',ns:'Middenniveau',zt:'中级突破课程',nt:'Middenniveau A2–B1',zp:['复杂句型与语法','职场与社会用语','NT2 国家考试备考'],np:['Complexe zinsbouw','Taal op werkvloer','NT2 voorbereiding'],tz:['线上小班','真题演练','综合训练'],tn:['Groepsles','Oefenexamens','Integraal'],pr:'€329',nz:'线上小班',nn:'Groepsles'},
+  {id:'inb',l:'inb',zl:'融入考试',nl_:'Inburgering',zs:'KNM + 荷兰语',ns:'KNM + Nederlands',zt:'融入考试备考',nt:'Inburgeringsexamen',zp:['语言考试全面系统备考','荷兰社会文化知识（KNM）','保过班可选'],np:['Volledige voorbereiding','KNM kennisonderdeel','Garantiegroep'],tz:['E-learning','线上小班','含KNM'],tn:['E-learning','Groepsles','Incl. KNM'],pr:'€199–€349',nz:'E-learning 起',nn:'Vanaf e-learning'}
+];
+
+var SES=[
+  {id:'el-a0a1',tp:'elearn',lv:'a0a1',zt:'A0–A1 E-learning 零基础课程',nt:'A0–A1 E-learning Beginnerscursus',zd:'视频录播，随时观看，永久访问。从荷兰语发音开始，学会读听说。',nd:'Videocursus, altijd beschikbaar, levenslang. Van uitspraak tot spreken.',sd:'随时开始',nd2:'Direct',dur:'永久访问',dun:'Levenslang',lz:'在线',ln:'Online',pr:'€149',pn:'一次付款',nn:'Eenmalig',zp:['从发音开始系统学','视频永久回放','配套练习'],np:['Uitspraak van nul','Onbeperkt herhalen','Oefeningen']},
+  {id:'el-a1a2',tp:'elearn',lv:'a1a2',zt:'A1–A2 E-learning 初级进阶',nt:'A1–A2 E-learning Gevorderden',zd:'初级荷兰语全部语法词汇，含练习题，随时自学。',nd:'Gevorderd A1–A2, grammatica, woordenschat, oefeningen.',sd:'随时开始',nd2:'Direct',dur:'永久访问',dun:'Levenslang',lz:'在线',ln:'Online',pr:'€149',pn:'一次付款',nn:'Eenmalig',zp:['初级语法全覆盖','阅读听力练习','含练习题'],np:['Volledige grammatica','Oefeningen','Levenslang']},
+  {id:'el-a2b1',tp:'elearn',lv:'a2b1',zt:'A2–B1 E-learning 中级课程',nt:'A2–B1 E-learning Middenniveau',zd:'中级荷兰语完整视频课程，为 NT2 考试打好基础。',nd:'Volledig middenniveau, NT2 voorbereiding, direct beschikbaar.',sd:'随时开始',nd2:'Direct',dur:'永久访问',dun:'Levenslang',lz:'在线',ln:'Online',pr:'€179',pn:'一次付款',nn:'Eenmalig',zp:['中级语法系统学','NT2 真题演练','含练习题'],np:['Middenniveau grammatica','NT2 oefenexamens','Oefeningen']},
+  {id:'el-inb',tp:'elearn',lv:'inb',zt:'融入考试 E-learning 备考',nt:'Inburgering E-learning Voorbereiding',zd:'融入考试所有考点+KNM荷兰社会文化知识，随时购买学习。',nd:'Alles voor inburgeringsexamen, incl. KNM, direct beschikbaar.',sd:'随时开始',nd2:'Direct',dur:'永久访问',dun:'Levenslang',lz:'在线',ln:'Online',pr:'€199',pn:'一次付款',nn:'Eenmalig',zp:['语言考试全备考','KNM 社会文化','永久访问'],np:['Taalexamen voorbereiding','KNM inbegrepen','Levenslang']},
+  {id:'l-a0a1-sat',tp:'live',lv:'a0a1',zt:'A0–A1 线上小班 · 周六下午',nt:'A0–A1 Groepsles · Zaterdagmiddag',zd:'每周六 13:30–16:00，6节课，全中文小班直播，最多8人。',nd:'Elke zaterdag 13:30–16:00, 6 lessen, live Chinees, max. 8 personen.',sd:'2025年6月21日',nd2:'21 jun. 2025',dur:'6周',dun:'6 weken',lz:'Zoom',ln:'Online Zoom',pr:'€299',pn:'/ 人',nn:'p.p.',zp:['直播互动小班','全中文讲授','最多8名学员'],np:['Live interactief','Volledig Chinees','Max. 8 studenten']},
+  {id:'l-a0a1-sun',tp:'live',lv:'a0a1',zt:'A0–A1 线上小班 · 周日晚',nt:'A0–A1 Groepsles · Zondagavond',zd:'每周日 19:30–22:00，6节课，适合平日忙碌的学员。',nd:'Elke zondag 19:30–22:00, 6 lessen, ideaal voor werkenden.',sd:'2025年6月22日',nd2:'22 jun. 2025',dur:'6周',dun:'6 weken',lz:'Zoom',ln:'Online Zoom',pr:'€299',pn:'/ 人',nn:'p.p.',zp:['直播小班','适合上班族','全中文'],np:['Live','Ideaal voor werkenden','Volledig Chinees']},
+  {id:'l-a0a1-sep',tp:'live',lv:'a0a1',zt:'A0–A1 线上小班 · 秋季新班',nt:'A0–A1 Groepsles · Herfst',zd:'秋季新班，每周六 13:30–16:00，6节课，9月招募。',nd:'Herfstgroep, zaterdag 13:30–16:00, 6 lessen. Inschrijving open.',sd:'2025年9月6日',nd2:'6 sep. 2025',dur:'6周',dun:'6 weken',lz:'Zoom',ln:'Online Zoom',pr:'€299',pn:'/ 人',nn:'p.p.',zp:['秋季新班','直播小班','全中文'],np:['Herfstgroep','Live','Volledig Chinees']},
+  {id:'l-a1a2-sat',tp:'live',lv:'a1a2',zt:'A1–A2 线上小班 · 周六下午',nt:'A1–A2 Groepsles · Zaterdagmiddag',zd:'每周六 13:30–16:00，6节课，初级进阶全中文小班。',nd:'Elke zaterdag 13:30–16:00, 6 lessen, gevorderd A1–A2.',sd:'2025年6月21日',nd2:'21 jun. 2025',dur:'6周',dun:'6 weken',lz:'Zoom',ln:'Online Zoom',pr:'€279',pn:'/ 人',nn:'p.p.',zp:['直播小班','含听力阅读','互动练习'],np:['Live groepsles','Incl. oefeningen','Interactief']},
+  {id:'l-a1a2-sep',tp:'live',lv:'a1a2',zt:'A1–A2 线上小班 · 秋季',nt:'A1–A2 Groepsles · Herfst',zd:'秋季新班，每周日 19:30–22:00，6节课。',nd:'Herfstgroep, zondag 19:30–22:00. Geschikt na A0–A1.',sd:'2025年9月7日',nd2:'7 sep. 2025',dur:'6周',dun:'6 weken',lz:'Zoom',ln:'Online Zoom',pr:'€279',pn:'/ 人',nn:'p.p.',zp:['秋季新班','周日晚班','全中文'],np:['Herfstgroep','Zondagavond','Volledig Chinees']},
+  {id:'l-a2b1-sat',tp:'live',lv:'a2b1',zt:'A2–B1 线上小班 · 周六',nt:'A2–B1 Groepsles · Zaterdag',zd:'每周六 13:30–16:30，8节课，含 NT2 真题练习。',nd:'Elke zaterdag 13:30–16:30, 8 lessen, incl. NT2 oefenexamens.',sd:'2025年6月21日',nd2:'21 jun. 2025',dur:'8周',dun:'8 weken',lz:'Zoom',ln:'Online Zoom',pr:'€329',pn:'/ 人',nn:'p.p.',zp:['中级语法突破','NT2 真题演练','实用职场用语'],np:['Middenniveau grammatica','NT2 oefenexamens','Zakelijk taalgebruik']},
+  {id:'l-a2b1-sep',tp:'live',lv:'a2b1',zt:'A2–B1 线上小班 · 秋季',nt:'A2–B1 Groepsles · Herfst',zd:'秋季新班，每周六 9:30–12:00，8节课，NT2 考试备考。',nd:'Herfstgroep, zaterdag 9:30–12:00, 8 lessen, NT2 gericht.',sd:'2025年9月6日',nd2:'6 sep. 2025',dur:'8周',dun:'8 weken',lz:'Zoom',ln:'Online Zoom',pr:'€329',pn:'/ 人',nn:'p.p.',zp:['秋季新班','NT2 考试导向','全中文'],np:['Herfstgroep','NT2 gericht','Volledig Chinees']},
+  {id:'l-inb-sun',tp:'live',lv:'inb',zt:'融入考试备考班 · 周日下午',nt:'Inburgering Voorbereiding · Zondag',zd:'每周日 13:30–16:30，10节课，语言考试+KNM，全中文讲授。',nd:'Elke zondag 13:30–16:30, 10 lessen, taal + KNM, volledig Chinees.',sd:'2025年6月22日',nd2:'22 jun. 2025',dur:'10周',dun:'10 weken',lz:'Zoom',ln:'Online Zoom',pr:'€349',pn:'/ 人',nn:'p.p.',zp:['语言考试全备考','KNM 社会文化','全中文讲授'],np:['Taalexamen voorbereiding','KNM inbegrepen','Volledig Chinees']},
+  {id:'l-inb-sep',tp:'live',lv:'inb',zt:'融入考试保过班 · 秋季',nt:'Inburgering Garantiegroep · Herfst',zd:'秋季保过班：10节课+免费补课服务，未过可免费补课。',nd:'Garantiegroep: 10 lessen + gratis herkansing als u niet slaagt.',sd:'2025年9月7日',nd2:'7 sep. 2025',dur:'10周+保过',dun:'10 wk + garantie',lz:'Zoom',ln:'Online Zoom',pr:'€499',pn:'含保过',nn:'Incl. garantie',zp:['保过班服务','10节精品课','免费补考辅导'],np:['Garantiegroep','10 lessen','Gratis herkansing']}
+];
+
+var PRODUCTS=[
+  {id:'p1',cat:'books',emoji:'📘',zn:'《荷兰语入门》教材',nn:'Leerboek Nederlands voor Beginners',zd:'上外荷兰语系权威推荐教材，配合 Taal13A E-learning 使用效果最佳',nd:'Aanbevolen leerboek, ideaal bij Taal13A e-learning',pr:2490,old:null,badge:null,stock:true},
+  {id:'p2',cat:'books',emoji:'📗',zn:'《荷兰语语法精讲》',nn:'Nederlandse Grammatica',zd:'系统讲解荷兰语核心语法，中文注释，适合华人学员',nd:'Systematische grammatica met Chinese uitleg',pr:1990,old:null,badge:'热销',stock:true},
+  {id:'p3',cat:'books',emoji:'📙',zn:'《融入考试必备词汇》',nn:'Inburgering Woordenschat',zd:'融入考试高频词汇 1500 条，按主题分类，附例句',nd:'1500 woorden voor inburgeringsexamen, thematisch',pr:1590,old:null,badge:null,stock:true},
+  {id:'p4',cat:'workbook',emoji:'📝',zn:'A0–A1 练习册（实体版）',nn:'A0–A1 Oefenwerkboek (print)',zd:'配合 E-learning 使用的配套练习册，含答案，A4 印刷版',nd:'Oefenwerkboek bij e-learning, incl. antwoorden, A4 formaat',pr:1290,old:1590,badge:'特价',stock:true},
+  {id:'p5',cat:'workbook',emoji:'📋',zn:'A0–A1 练习册（PDF 版）',nn:'A0–A1 Oefenwerkboek (PDF)',zd:'购买后立即下载，可自行打印，内容与实体版相同',nd:'Direct downloadbaar na aankoop, zelfde inhoud als printversie',pr:590,old:null,badge:'数字版',stock:true},
+  {id:'p6',cat:'workbook',emoji:'📋',zn:'融入考试模拟题（PDF 版）',nn:'Inburgering Oefenexamens PDF',zd:'完整模拟题 5 套，含解析，Isa 老师亲自编写',nd:'5 complete oefenexamens met uitleg, geschreven door docent Isa',pr:890,old:null,badge:'数字版',stock:true},
+  {id:'p7',cat:'merch',emoji:'☕',zn:'Taal13A 马克杯',nn:'Taal13A Mok',zd:'荷兰蓝色配色，印有 Taal13A 品牌波形 logo，350ml 陶瓷',nd:'Nederlandse blauwe kleur, met Taal13A logo, 350ml keramiek',pr:1490,old:null,badge:null,stock:true},
+  {id:'p8',cat:'merch',emoji:'👜',zn:'Taal13A 帆布袋',nn:'Taal13A Canvas Tas',zd:'米色帆布，印有「荷兰语其实很简单」，结实耐用',nd:'Beige canvas, bedrukt met Taal13A slogan, duurzaam',pr:1190,old:null,badge:null,stock:true},
+  {id:'p9',cat:'merch',emoji:'🖊️',zn:'荷兰语学习日记本',nn:'Nederlandse Studiedagboek',zd:'A5 精装笔记本，内页设计专为荷兰语笔记优化，含单词本',nd:'A5 hardcover notitieboek, geoptimaliseerd voor taalnotities',pr:990,old:null,badge:'新品',stock:true},
+  {id:'p10',cat:'bundle',emoji:'📦',zn:'E-learning + 练习册 超值套装',nn:'E-learning + Werkboek Bundel',zd:'购买任意 E-learning 课程 + 对应实体练习册，立省 €10',nd:'E-learning cursus + bijbehorend werkboek, €10 korting',pr:2390,old:2790,badge:'省€10',stock:true},
+  {id:'p11',cat:'bundle',emoji:'🎒',zn:'新生入学礼包',nn:'Starterspakket',zd:'教材 + A0–A1 练习册 + 马克杯 + 帆布袋，送给刚开始学习的自己',nd:'Leerboek + A0–A1 werkboek + mok + tas, perfect cadeau voor jezelf',pr:4290,old:5160,badge:'超值',stock:true}
+];
+
+function t(){return L==='zh';}
+
+function rPil(id){
+  var el=document.getElementById(id);if(!el)return;
+  var ti=t();
+  el.innerHTML=PIL.map(function(c){
+    var lv=ti?c.zl:c.nl_,sb=ti?c.zs:c.ns,tt=ti?c.zt:c.nt,pts=ti?c.zp:c.np,tags=ti?c.tz:c.tn,note=ti?c.nz:c.nn;
+    return '<div class="pillar" data-l="'+c.l+'" onclick="oEnroll(\''+c.id+'\')">' +
+      '<div class="ph"><div class="plv">'+lv+'</div><div class="psub">'+sb+'</div></div>'+
+      '<div class="pb"><div class="ptit">'+tt+'</div>'+
+      '<ul class="ppts">'+pts.map(function(p){return '<li>'+p+'</li>';}).join('')+'</ul>'+
+      '<div class="ptags">'+tags.map(function(g){return '<span class="ptag">'+g+'</span>';}).join('')+'</div>'+
+      '<div class="ppr"><div><div class="pprice">'+c.pr+'</div><div class="pnote">'+note+'</div></div>'+
+      '<button class="benroll" onclick="event.stopPropagation();oEnroll(\''+c.id+'\')">'+(ti?'查看报名':'Bekijk')+'</button></div></div></div>';
+  }).join('');
+}
+
+function shopCat(f,btn){
+  SCARF=f;
+  document.querySelectorAll('.scat').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on');
+  rShop();
+}
+
+function rShop(){
+  var ti=t();
+  var prods=SCARF==='all'?PRODUCTS:PRODUCTS.filter(function(p){return p.cat===SCARF;});
+  var el=document.getElementById('shop-grid');if(!el)return;
+  var bgMap={books:'#EAF3FF',workbook:'#E8F7F0',merch:'#FFF4EB',bundle:'#F3EEFF'};
+  el.innerHTML=prods.map(function(p){
+    var prFmt='€'+(p.pr/100).toFixed(2).replace('.',',');
+    var oldFmt=p.old?'€'+(p.old/100).toFixed(2).replace('.',','):'';
+    return '<div class="scard" onclick="addToCart(\''+p.id+'\')">'+
+      '<div class="scard-img" style="background:'+bgMap[p.cat]+'">'+(p.emoji||'📦')+
+      (p.badge?'<span class="scard-badge">'+p.badge+'</span>':'')+
+      '</div>'+
+      '<div class="scard-body">'+
+      '<div class="scard-cat">'+(ti?{books:'📖 教材书籍',workbook:'📝 练习册',merch:'🎁 周边产品',bundle:'📦 超值套装'}[p.cat]:{books:'Boeken',workbook:'Werkboeken',merch:'Merchandise',bundle:'Bundels'}[p.cat])+'</div>'+
+      '<div class="scard-name">'+(ti?p.zn:p.nn)+'</div>'+
+      '<div class="scard-desc">'+(ti?p.zd:p.nd)+'</div>'+
+      '<div class="scard-foot">'+
+      '<div><span class="scard-price">'+prFmt+'</span>'+(oldFmt?'<span class="scard-old">'+oldFmt+'</span>':'')+'</div>'+
+      '<button class="btn-cart" onclick="event.stopPropagation();addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button>'+
+      '</div></div></div>';
+  }).join('');
+}
+
+function addToCart(pid){
+  var prod=PRODUCTS.find(function(p){return p.id===pid;});if(!prod)return;
+  var ex=CART.find(function(c){return c.id===pid;});
+  if(ex){ex.qty++;}else{CART.push({id:pid,qty:1});}
+  updCart();
+  openCart();
+}
+
+function updCart(){
+  var total=0,count=0;
+  var ti=t();
+  var el=document.getElementById('cart-items');
+  var foot=document.getElementById('cart-foot');
+  if(!CART.length){
+    el.innerHTML='<div class="cart-empty">'+(ti?'购物车是空的':'Winkelwagen is leeg')+'</div>';
+    foot.style.display='none';
+    document.getElementById('cart-bar').style.display='none';
+    return;
+  }
+  el.innerHTML=CART.map(function(ci){
+    var p=PRODUCTS.find(function(x){return x.id===ci.id;});if(!p)return '';
+    var prFmt='€'+(p.pr/100).toFixed(2).replace('.',',');
+    total+=p.pr*ci.qty; count+=ci.qty;
+    return '<div class="cart-item">'+
+      '<div class="ci-icon">'+p.emoji+'</div>'+
+      '<div class="ci-info">'+
+      '<div class="ci-name">'+(ti?p.zn:p.nn)+'</div>'+
+      '<div class="ci-price">'+prFmt+'</div>'+
+      '<div class="ci-qty">'+
+      '<button class="qty-btn" onclick="changeQty(\''+ci.id+'\',-1)">−</button>'+
+      '<span class="qty-n">'+ci.qty+'</span>'+
+      '<button class="qty-btn" onclick="changeQty(\''+ci.id+'\',1)">+</button>'+
+      '<button class="ci-del" onclick="removeCart(\''+ci.id+'\')">🗑</button>'+
+      '</div></div></div>';
+  }).join('');
+  var tot='€'+(total/100).toFixed(2).replace('.',',');
+  document.getElementById('cart-total-price').textContent=tot;
+  foot.style.display='block';
+  var bar=document.getElementById('cart-bar');
+  bar.style.display='block';
+  document.getElementById('cart-bar-txt').textContent=(ti?'购物车':'Winkelwagen')+' ('+count+')';
+}
+
+function changeQty(id,d){
+  var ci=CART.find(function(c){return c.id===id;});if(!ci)return;
+  ci.qty+=d;if(ci.qty<=0)CART=CART.filter(function(c){return c.id!==id;});
+  updCart();
+}
+function removeCart(id){CART=CART.filter(function(c){return c.id!==id;});updCart();}
+function openCart(){document.getElementById('cart-panel').classList.add('open');}
+function closeCart(){document.getElementById('cart-panel').classList.remove('open');}
+function cartCheckout(){
+  var ti=t();
+  alert(ti?'结算功能即将上线！\n目前请通过微信（Taal13A_NL）联系 Isa 老师完成购买。':'Checkout komt binnenkort!\nNeem contact op via WeChat (Taal13A_NL) om uw bestelling te plaatsen.');
+}
+
+function coTab(f,btn){
+  CF=f;
+  document.querySelectorAll('.cotab').forEach(function(b){b.classList.remove('on');});
+  if(btn)btn.classList.add('on');
+  document.querySelectorAll('.fpt').forEach(function(b){b.classList.toggle('on',b.dataset.f===f||(f==='all'&&b.dataset.f==='all'));});
+  rList();
+}
+function fFilt(btn){
+  document.querySelectorAll('.fpt').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on');CF=btn.dataset.f;rList();
+}
+
+function rList(){
+  var ti=t();var ses=SES.slice();
+  if(CF==='elearn')ses=ses.filter(function(s){return s.tp==='elearn';});
+  else if(CF==='live')ses=ses.filter(function(s){return s.tp==='live';});
+  else if(['a0a1','a1a2','a2b1','inb'].indexOf(CF)>=0)ses=ses.filter(function(s){return s.lv===CF;});
+  var cnt=document.getElementById('co-cnt');
+  if(cnt)cnt.innerHTML=(ti?'找到':'Gevonden')+': <strong>'+ses.length+'</strong> '+(ti?'门课程':'cursussen');
+  var listEl=document.getElementById('co-list');if(!listEl)return;
+  var el2=ses.filter(function(s){return s.tp==='elearn';}),li2=ses.filter(function(s){return s.tp==='live';});
+  var bcls={a0a1:'cb-a0a1',a1a2:'cb-a1a2',a2b1:'cb-a2b1',inb:'cb-inb'};
+  var llbl={a0a1:'A0–A1',a1a2:'A1–A2',a2b1:'A2–B1',inb:ti?'融入':'Inb.'};
+  var html='';
+  if(el2.length){
+    if(li2.length)html+='<div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--ora);margin-bottom:.55rem">📱 '+(ti?'E-learning · 随时开始':'E-learning · Direct starten')+'</div>';
+    html+=el2.map(function(s){
+      return '<div class="ecard" onclick="oEnroll(\''+s.id+'\')"><div class="ecard-icon">🎬</div>'+
+        '<div class="ecard-info"><div class="ecard-tit">'+(ti?s.zt:s.nt)+'</div><div class="ecard-desc">'+(ti?s.zd:s.nd)+'</div></div>'+
+        '<div class="ecard-r"><div class="ecard-price">'+s.pr+'</div><div class="ecard-note">'+(ti?s.pn:s.nn)+'</div>'+
+        '<button class="ecard-cta" onclick="event.stopPropagation();oEnroll(\''+s.id+'\')">'+(ti?'立即购买':'Nu kopen')+'</button></div></div>';
+    }).join('');
+  }
+  if(li2.length){
+    if(el2.length)html+='<div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:.55rem;margin-top:1.3rem">👥 '+(ti?'线上小班 · 有固定开课日期':'Online Groepslessen · Met startdatum')+'</div>';
+    html+=li2.map(function(s){
+      return '<div class="crow" onclick="oEnroll(\''+s.id+'\')">'+
+        '<div class="cbadge '+(bcls[s.lv]||'cb-a0a1')+'"><div class="cb-lbl">'+(llbl[s.lv]||s.lv)+'</div><div class="cb-sub">'+(ti?'小班':'Groep')+'</div></div>'+
+        '<div class="cinfo"><div class="ctit">'+(ti?s.zt:s.nt)+'</div><div class="cdesc">'+(ti?s.zd:s.nd)+'</div>'+
+        '<div class="cmeta"><span class="ctag ct-d">📅 '+(ti?s.sd:s.nd2)+'</span><span class="ctag ct-dur">⏱ '+(ti?s.dur:s.dun)+'</span>'+
+        '<span class="ctag ct-l">📍 '+(ti?s.lz:s.ln)+'</span><span class="ctag ct-t">'+(ti?'线上小班':'Groepsles')+'</span></div></div>'+
+        '<div class="cright"><div class="cprice">'+s.pr+'</div><div class="cpnote">'+(ti?s.pn:s.nn)+'</div>'+
+        '<button class="cenroll" onclick="event.stopPropagation();oEnroll(\''+s.id+'\')">'+(ti?'立即报名':'Inschrijven')+'</button></div></div>';
+    }).join('');
+  }
+  if(!html)html='<div style="text-align:center;padding:2rem;color:var(--ink3);font-size:13px;font-weight:600">'+(ti?'暂无课程':'Geen cursussen')+'</div>';
+  listEl.innerHTML=html;
+}
+
+function oEnroll(id){
+  var item=SES.find(function(s){return s.id===id;})||PIL.find(function(p){return p.id===id;});
+  if(!item)return;
+  ET=item;
+  var ti=t();var lv=ti?(item.zl||item.zt):(item.nl_||item.nt);var tt=ti?(item.zt||item.zl):(item.nt||item.nl_);
+  document.getElementById('ep-h1').textContent=(ti?'报名：':'Inschrijven: ')+lv;
+  document.getElementById('ep-sub').textContent=ti?'填写信息并完成支付':'Vul uw gegevens in en betaal';
+  var owned=USER&&USER.cs&&USER.cs.indexOf(id)>=0;var noL=!USER;
+  var pts=ti?(item.zp||[]):(item.np||[]);
+  var body='';
+  if(owned){
+    body='<div class="sw"><div class="si"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C7A45" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></div><div class="st2">'+(ti?'您已拥有此课程':'U heeft al toegang')+'</div><div class="sd">'+(ti?'此课程已在您的账号中。':'Deze cursus staat al in uw account.')+'</div><button class="bf" style="max-width:220px;margin:0 auto" onclick="nav(\'dashboard\')">'+(ti?'前往我的课程':'Naar mijn cursussen')+'</button></div>';
+  }else{
+    var warn=noL?'<div class="warn-box">⚠️ '+(ti?'请先登录或注册，再完成购买':'Log eerst in of registreer')+'<div class="dflex"><button class="bf" style="margin:0" onclick="nav(\'login\')">'+(ti?'登录':'Inloggen')+'</button><button class="bo" style="margin:0" onclick="nav(\'register\')">'+(ti?'注册':'Registreren')+'</button></div></div>':'';
+    var liveF=item.tp==='live'?'<div class="fr"><label>'+(ti?'当前荷兰语水平':'Huidig niveau')+'</label><input type="text" id="elv" placeholder="'+(ti?'例：零基础/学过一点':'Bijv. beginner')+'"></div>':'';
+    body='<div class="ep-cols"><div>'+warn+
+      '<div class="fc"><div class="fct">'+(ti?'联系信息':'Contactgegevens')+'</div>'+
+      '<div class="fr"><label>Email</label><input type="email" id="ee" value="'+(USER?USER.em:'')+'" placeholder="email@example.com" '+(USER?'readonly style="background:var(--sand)"':'')+'/></div>'+
+      '<div class="fr"><label>'+(ti?'姓名':'Naam')+'</label><input type="text" id="en" value="'+(USER?USER.nm:'')+'" placeholder="Name" '+(USER?'readonly style="background:var(--sand)"':'')+'/></div>'+
+      liveF+'</div>'+
+      '<div class="fc"><div class="fct">'+(ti?'支付方式':'Betaalmethode')+'</div>'+
+      '<div class="payopts"><div class="popt on" onclick="sP(this)">🏦 iDEAL</div><div class="popt" onclick="sP(this)">💳 Creditcard</div><div class="popt" onclick="sP(this)">🅿️ PayPal</div><div class="popt" onclick="sP(this)">🏛 Overboeking</div></div>'+
+      '<button class="bpay" onclick="cPur()" '+(noL?'disabled':'')+'>🔒 '+(ti?'立即支付':'Nu betalen')+' — '+item.pr+'</button>'+
+      '<div class="slbl">🔒 '+(ti?'安全支付 · 7天退款保证':'Veilige betaling · 7 dagen garantie')+'</div></div></div>'+
+      '<div><div class="oc"><div class="oct">'+(ti?'订单摘要':'Besteloverzicht')+'</div>'+
+      '<div class="or"><span>'+tt+'</span><span>'+item.pr+'</span></div>'+
+      (item.tp==='live'?'<div class="or"><span>'+(ti?'开课日期':'Startdatum')+'</span><span>'+(ti?item.sd:item.nd2)+'</span></div>':'')+
+      '<div class="or"><span>BTW (0%)</span><span>€0</span></div>'+
+      '<div class="or ot"><span>'+(ti?'合计':'Totaal')+'</span><span>'+item.pr+'</span></div>'+
+      (pts.length?'<div class="ibox"><div class="ibt">'+(ti?'课程包含':'Cursus bevat')+'</div>'+pts.map(function(p){return '<div class="ibi">✓ '+p+'</div>';}).join('')+'</div>':'')+
+      (item.tp==='live'?'<div style="margin-top:.85rem;padding:.75rem;background:var(--ora-l);border-radius:8px;font-size:11.5px;color:var(--ora);font-weight:700">📅 '+(ti?'开课：'+item.sd:'Start: '+item.nd2)+'</div>':'')+
+      '</div></div></div>';
+  }
+  document.getElementById('ep-body').innerHTML=body;
+  nav('enroll');
+}
+
+function sP(el){el.closest('.payopts').querySelectorAll('.popt').forEach(function(e){e.classList.remove('on');});el.classList.add('on');}
+function cPur(){
+  if(!USER||!ET)return;
+  if(!USER.cs)USER.cs=[];
+  if(USER.cs.indexOf(ET.id)<0)USER.cs.push(ET.id);
+  var ti=t();var tt=ti?(ET.zt||ET.zl):(ET.nt||ET.nl_);
+  document.getElementById('ep-body').innerHTML='<div class="sw"><div class="si"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C7A45" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></div><div class="st2">'+(ti?'报名成功！':'Geslaagd!')+'</div><div class="sd">'+(ti?'感谢报名 <strong>'+tt+'</strong>！课程已添加到账号，请添加 Isa 老师微信。':'Bedankt voor <strong>'+tt+'</strong>! Toegevoegd aan uw account.')+'</div><div class="wb"><div class="wid">Taal13A_NL</div><div class="wlb">'+(ti?'添加微信·加入学习群':'WeChat · Studiegroep')+'</div></div><button class="bf" style="max-width:220px;margin:0 auto" onclick="nav(\'dashboard\')">'+(ti?'前往我的课程':'Naar mijn cursussen')+'</button></div>';
+}
+
+function doReg(){
+  var nm=document.getElementById('rname').value.trim(),em=document.getElementById('rei').value.trim(),pw=document.getElementById('rpw').value,p2=document.getElementById('rpw2').value;
+  var ti=t();var al=document.getElementById('rerr');
+  if(!nm||!em||!pw){al.innerHTML='<div class="aerr">'+(ti?'请填写所有必填字段':'Vul alle velden in')+'</div>';return;}
+  if(pw!==p2){al.innerHTML='<div class="aerr">'+(ti?'两次密码不一致':'Wachtwoorden komen niet overeen')+'</div>';return;}
+  if(pw.length<6){al.innerHTML='<div class="aerr">'+(ti?'密码至少6位':'Minimaal 6 tekens')+'</div>';return;}
+  if(USERS[em]){al.innerHTML='<div class="aerr">'+(ti?'该邮箱已注册':'Al geregistreerd')+'</div>';return;}
+  USERS[em]={nm:nm,em:em,pw:pw,wc:document.getElementById('rwc').value,cs:[]};loginAs(USERS[em]);
+}
+function doLogin(){
+  var em=document.getElementById('lei').value.trim(),pw=document.getElementById('lpw').value;
+  var ti=t();var al=document.getElementById('lerr');var u=USERS[em];
+  if(!u||u.pw!==pw){al.innerHTML='<div class="aerr">'+(ti?'邮箱或密码错误':'Onjuist')+'</div>';return;}
+  loginAs(u);
+}
+function loginAs(u){
+  USER=u;
+  document.getElementById('auth-btns').style.display='none';
+  document.getElementById('user-btns').style.display='';
+  document.getElementById('ulabel').textContent=t()?'我的课程':'Mijn cursussen';
+  nav('dashboard');
+}
+function doLogout(){
+  USER=null;
+  document.getElementById('auth-btns').style.display='';
+  document.getElementById('user-btns').style.display='none';
+  nav('home');
+}
+function rDash(){
+  if(!USER)return;var ti=t();
+  document.getElementById('dg').textContent=ti?'欢迎回来，':'Welkom terug,';
+  document.getElementById('dname').textContent=USER.nm;
+  document.getElementById('acct').innerHTML='Email: '+USER.em+'<br>WeChat: '+(USER.wc||'—')+'<br>'+(ti?'已购课程':'Cursussen')+': '+(USER.cs||[]).length;
+  var ow=USER.cs||[],cl=document.getElementById('my-courses');
+  if(!ow.length){cl.innerHTML='<div class="es">'+(ti?'还没有课程。':'Nog geen cursussen.')+'<br><a onclick="nav(\'overview\')">'+(ti?'浏览课程':'Cursussen bekijken')+'</a></div>';return;}
+  cl.innerHTML=ow.map(function(cid){
+    var s=SES.find(function(x){return x.id===cid;})||PIL.find(function(x){return x.id===cid;});if(!s)return '';
+    var lv=ti?(s.zl||s.zt):(s.nl_||s.nt);var tt=ti?(s.zt||s.zl):(s.nt||s.nl_);
+    return '<div class="cai"><div class="cad"></div><div class="cain"><div class="cal">'+lv+'</div><div class="cat2">'+tt+'</div></div><span class="cab">'+(ti?'已购':'Actief')+'</span><span class="caw" onclick="wI(\''+cid+'\')">'+(ti?'▶ 开始':'▶ Start')+'</span></div>';
+  }).join('');
+}
+function wI(cid){var s=SES.find(function(x){return x.id===cid;})||PIL.find(function(x){return x.id===cid;});alert((t()?'正在加载：':'Laden: ')+(s?t()?(s.zt||s.zl):(s.nt||s.nl_):cid));}
+
+function nav(id){
+  document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');});
+  var pg=document.getElementById('pg-'+id);if(pg)pg.classList.add('on');
+  document.querySelectorAll('.nl').forEach(function(b){b.classList.remove('on');});
+  var m={home:0,overview:1,shop:2,about:3,contact:4};
+  if(id in m){var bs=document.querySelectorAll('.nl');if(bs[m[id]])bs[m[id]].classList.add('on');}
+  if(id==='dashboard')rDash();
+  if(id==='overview')rList();
+  if(id==='shop')rShop();
+  rPil('home-pillars');
+  closeCart();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function setLang(l,btn){
+  L=l;
+  document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');
+  document.querySelectorAll('[data-zh]').forEach(function(el){var v=l==='zh'?el.dataset.zh:el.dataset.nl;if(v!==undefined)el.textContent=v;});
+  var h1=document.getElementById('hero-h1');
+  if(h1)h1.innerHTML=l==='zh'?'<em>学好荷兰语</em><br>开启全新生活':'Leer het <em>Nederlands</em><br>Begin een nieuw leven';
+  rPil('home-pillars');rList();rShop();updCart();if(USER)rDash();
+}
+function faqT(el){var a=el.nextElementSibling,ic=el.querySelector('.fic');a.classList.toggle('on');ic.textContent=a.classList.contains('on')?'−':'+';}
+
+(function(){
+  rPil('home-pillars');rList();rShop();
+  var w=document.getElementById('hvid');
+  if(w){var v=document.createElement('video');v.autoplay=true;v.muted=true;v.loop=true;v.playsInline=true;v.style.cssText='width:100%;height:100%;object-fit:cover;opacity:.42';v.src='https://cdn.coverr.co/videos/coverr-amsterdam-canal-and-bikes-4665/1080p.mp4';v.onerror=function(){w.style.display='none';};w.appendChild(v);}
+})();
+</script>
