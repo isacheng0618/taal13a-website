@@ -880,19 +880,66 @@ function rCheckout(){
     '<div class="fr"><label>'+(ti?'发票/备注（选填）':'Factuur/opmerking optioneel')+'</label><input type="text" id="ck-note" placeholder="'+(ti?'例如：需要公司发票':'Bijv. factuur nodig')+'"></div>'+ 
     '<div class="chkbox"><input type="checkbox" id="ck-terms"><span>'+(ti?'我同意 ':'Ik ga akkoord met de ')+'<span class="legal-link" onclick="nav(\'terms\')">Terms & Conditions</span>'+(ti?'，并确认数字产品付款后可即时交付。':' en begrijp dat digitale producten direct geleverd kunnen worden.')+'</span></div>'+ 
     '<div class="chkbox"><input type="checkbox" id="ck-privacy"><span>'+(ti?'我已阅读 ':'Ik heb de ')+'<span class="legal-link" onclick="nav(\'privacy\')">Privacy Policy</span>'+(ti?'，同意为处理订单、交付产品和售后服务收集必要信息。':' gelezen en begrijp dat noodzakelijke gegevens worden verwerkt voor bestelling, levering en service.')+'</span></div>'+ 
-    '<button class="bpay" onclick="placeOrder()">🔒 '+(ti?'继续付款':'Verder naar betaling')+' — '+fmtPrice(total)+'</button><div class="legal-note">'+(ti?'说明：正式上线时，后台应在付款前保存购买人信息，并由后端把购物车总价发送给 Mollie 创建 checkout。':'Let op: bij livegang moet de backend klantgegevens vóór betaling opslaan en het winkelwagentotaal naar Mollie sturen om checkout aan te maken.')+'</div></div></div>'+ 
+    '<button class="bpay" onclick="startMollieCheckout()">🔒 '+(ti?'继续付款':'Verder naar betaling')+' — '+fmtPrice(total)+'</button><div class="legal-note">'+(ti?'说明：正式上线时，后台应在付款前保存购买人信息，并由后端把购物车总价发送给 Mollie 创建 checkout。':'Let op: bij livegang moet de backend klantgegevens vóór betaling opslaan en het winkelwagentotaal naar Mollie sturen om checkout aan te maken.')+'</div></div></div>'+ 
     '<div class="oc"><div class="oct">'+(ti?'订单摘要':'Besteloverzicht')+'</div>'+lines+'<div class="order-line"><span>BTW</span><span>0%</span></div><div class="order-line total"><span>'+(ti?'合计':'Totaal')+'</span><span>'+fmtPrice(total)+'</span></div></div>';
 }
 
-function placeOrder(){
-  var ti=t(),name=document.getElementById('ck-name').value.trim(),email=document.getElementById('ck-email').value.trim();
-  if(!name||!email){alert(ti?'请填写用户名和邮箱。':'Vul gebruikersnaam en e-mail in.');return;}
-  if(!document.getElementById('ck-terms').checked||!document.getElementById('ck-privacy').checked){alert(ti?'请先勾选条款和隐私确认。':'Accepteer eerst de voorwaarden en privacybevestiging.');return;}
-  var ids=[];CART.forEach(function(ci){for(var i=0;i<ci.qty;i++)ids.push(ci.id);});
-  if(USER){if(!USER.ps)USER.ps=[];ids.forEach(function(id){if(USER.ps.indexOf(id)<0)USER.ps.push(id);});}else{GUEST_ORDERS.push({name:name,email:email,items:ids});}
-  var p=CART.length===1?PRODUCTS.find(function(x){return x.id===CART[0].id;}):null;CART=[];updCart();
-  if(p&&p.pay){window.open(p.pay,'_blank');}
-  document.getElementById('checkout-body').innerHTML='<div class="fc"><div class="sw"><div class="si">✓</div><div class="st2">'+(ti?'订单信息已保存':'Bestelgegevens opgeslagen')+'</div><div class="sd">'+(ti?'下一步会跳转到付款。真实上线时，这里需要由后端把购物车总价发送给 Mollie 创建 checkout。':'Volgende stap is betaling. Live moet de backend het winkelwagentotaal naar Mollie sturen om checkout aan te maken.')+'</div><button class="bf" onclick="nav(\'dashboard\')">'+(ti?'查看个人主页':'Naar account')+'</button></div></div>';
+async function startMollieCheckout(){
+  var ti=t();
+  var name=document.getElementById('ck-name').value.trim();
+  var email=document.getElementById('ck-email').value.trim();
+  var wechat=document.getElementById('ck-wc') ? document.getElementById('ck-wc').value.trim() : '';
+  var note=document.getElementById('ck-note') ? document.getElementById('ck-note').value.trim() : '';
+
+  if(!name || !email){
+    alert(ti?'请填写用户名和邮箱。':'Vul gebruikersnaam en e-mail in.');
+    return;
+  }
+
+  if(!document.getElementById('ck-terms').checked || !document.getElementById('ck-privacy').checked){
+    alert(ti?'请先勾选条款和隐私确认。':'Accepteer eerst de voorwaarden en privacybevestiging.');
+    return;
+  }
+
+  if(!CART.length){
+    alert(ti?'购物车为空。':'Uw winkelwagen is leeg.');
+    return;
+  }
+
+  try{
+    var items=CART.map(function(ci){
+      return {
+        productId: ci.id,
+        quantity: ci.qty || 1
+      };
+    });
+
+    var response=await fetch('/api/create-payment',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        username:name,
+        email:email,
+        wechat:wechat,
+        note:note,
+        items:items,
+        acceptedTerms:true,
+        acceptedDigitalDelivery:true
+      })
+    });
+
+    var data=await response.json();
+
+    if(!response.ok){
+      alert(data.error || (ti?'无法创建付款，请稍后再试。':'Betaling kon niet worden gestart.'));
+      return;
+    }
+
+    window.location.href=data.checkoutUrl;
+  }catch(err){
+    console.error(err);
+    alert(ti?'无法开始付款，请稍后再试。':'Betaling kon niet worden gestart.');
+  }
 }
 
 function coTab(f,btn){
