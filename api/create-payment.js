@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 
-import createMollieClient from '@mollie/api-client';
+import { createMollieClient } from '@mollie/api-client';
 
 const supabase = createClient(
 
