@@ -1082,7 +1082,7 @@ async function doReg(){
       }
     }
   });
-
+  console.log('SIGNUP RESULT:', result);
   if(result.error){
     al.innerHTML='<div class="aerr">'+result.error.message+'</div>';
     return;
