@@ -1088,8 +1088,20 @@ async function doReg(){
     return;
   }
 
-  await refreshUser();
-  nav('dashboard');
+if(result.error){
+  al.innerHTML='<div class="aerr">'+result.error.message+'</div>';
+  return;
+}
+
+if(!result.data.user){
+  al.innerHTML='<div class="aerr">'+(ti?'注册没有成功，请检查 Supabase 设置':'Registratie niet gelukt')+'</div>';
+  return;
+}
+
+console.log('SIGNUP RESULT:', result);
+
+await refreshUser();
+nav('dashboard');
 }
 async function doLogin(){
   var em=document.getElementById('lei').value.trim();
