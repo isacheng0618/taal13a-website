@@ -1101,10 +1101,80 @@ function rDash(){
     var lv=ti?(s.zl||s.zt):(s.nl_||s.nt);var tt=ti?(s.zt||s.zl):(s.nt||s.nl_);
     return '<div class="cai"><div class="cad"></div><div class="cain"><div class="cal">'+lv+'</div><div class="cat2">'+tt+'</div></div><span class="cab">'+(ti?'已购':'Actief')+'</span><span class="caw" onclick="wI(\''+cid+'\')">'+(ti?'▶ 开始':'▶ Start')+'</span></div>';
   }).join('');
-  var pl=document.getElementById('my-products'),ps=USER.ps||[];
-  if(pl){pl.innerHTML=ps.length?ps.map(function(pid){var p=PRODUCTS.find(function(x){return x.id===pid;});if(!p)return '';return '<div class="cai"><div class="cad"></div><div class="cain"><div class="cal">PDF</div><div class="cat2">'+(ti?p.zn:p.nn)+'</div></div><span class="cab">'+(ti?'已购':'Actief')+'</span><span class="caw" onclick="downloadProduct(\''+pid+'\')">'+(ti?'下载':'Download')+'</span></div>';}).join(''):'<div class="es">'+(ti?'还没有购买商品。':'Nog geen producten.')+'</div>';}
+  var pl=document.getElementById('my-products');
+  if(pl){
+  pl.innerHTML='<div class="es">'+(ti?'正在加载购买记录...':'Aankopen laden...')+'</div>';
+  loadPurchases();
 }
-function downloadProduct(pid){alert((t()?'真实上线后，从这里下载PDF：':'Na livegang downloadt u hier de PDF: ')+pid);}
+async function loadPurchases(){
+  var ti=t();
+  var pl=document.getElementById('my-products');
+  if(!USER || !USER.em || !pl)return;
+
+  try{
+    var res=await fetch('/api/get-purchases?email='+encodeURIComponent(USER.em));
+    var data=await res.json();
+
+    if(!res.ok){
+      pl.innerHTML='<div class="es">'+(data.error || (ti?'无法加载购买记录。':'Aankopen konden niet worden geladen.'))+'</div>';
+      return;
+    }
+
+    var purchases=data.purchases||[];
+
+    if(!purchases.length){
+      pl.innerHTML='<div class="es">'+(ti?'还没有购买商品。':'Nog geen producten.')+'</div>';
+      return;
+    }
+
+    pl.innerHTML=purchases.map(function(item){
+      var pid=item.product_id;
+      var p=PRODUCTS.find(function(x){return x.id===pid;});
+      var title=p ? (ti?p.zn:p.nn) : pid;
+      return '<div class="cai">'+
+        '<div class="cad"></div>'+
+        '<div class="cain"><div class="cal">PDF</div><div class="cat2">'+title+'</div></div>'+
+        '<span class="cab">'+(ti?'已购':'Actief')+'</span>'+
+        '<span class="caw" onclick="downloadProduct(\''+pid+'\')">'+(ti?'下载':'Download')+'</span>'+
+      '</div>';
+    }).join('');
+
+  }catch(err){
+    console.error(err);
+    pl.innerHTML='<div class="es">'+(ti?'无法加载购买记录。':'Aankopen konden niet worden geladen.')+'</div>';
+  }
+}
+
+async function downloadProduct(pid){
+  var ti=t();
+  if(!USER || !USER.em){
+    alert(ti?'请先登录。':'Log eerst in.');
+    return;
+  }
+
+  try{
+    var res=await fetch('/api/create-download-link',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        email:USER.em,
+        productId:pid
+      })
+    });
+
+    var data=await res.json();
+
+    if(!res.ok){
+      alert(data.error || (ti?'无法生成下载链接。':'Downloadlink kon niet worden gemaakt.'));
+      return;
+    }
+
+    window.open(data.downloadUrl,'_blank');
+  }catch(err){
+    console.error(err);
+    alert(ti?'无法下载，请稍后再试。':'Downloaden lukt niet. Probeer later opnieuw.');
+  }
+}
 function wI(cid){var s=SES.find(function(x){return x.id===cid;})||PIL.find(function(x){return x.id===cid;});alert((t()?'正在加载：':'Laden: ')+(s?t()?(s.zt||s.zl):(s.nt||s.nl_):cid));}
 
 function nav(id,opt){
