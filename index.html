@@ -706,7 +706,12 @@ Taal13A 的教学理念是：让学荷兰语变得简单、接地气、真正有
   🛒 <span id="cart-bar-txt">购物车 (0)</span>
 </button>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+var SUPABASE_URL = 'https://vozecugijbpznbciguks.supabase.co';
+var SUPABASE_ANON_KEY = 'sb_publishable_QW6ZRNJua1mGAIS3wY3mjw_GZYZSHLv';
+var supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 var L='zh',USER=null,ET=null,PDT=null,USERS={},CF='all',SCARF='all';
 var CART=[],GUEST_ORDERS=[];
 
@@ -1045,20 +1050,86 @@ function cPur(){
   document.getElementById('ep-body').innerHTML='<div class="sw"><div class="si"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C7A45" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></div><div class="st2">'+(ti?'报名成功！':'Geslaagd!')+'</div><div class="sd">'+(ti?'感谢报名 <strong>'+tt+'</strong>！课程已添加到账号。':'Bedankt voor <strong>'+tt+'</strong>! Toegevoegd aan uw account.')+'</div><button class="bf" style="max-width:220px;margin:0 auto" onclick="nav(\'dashboard\')">'+(ti?'前往我的课程':'Naar mijn cursussen')+'</button></div>';
 }
 
-function doReg(){
-  var nm=document.getElementById('rname').value.trim(),em=document.getElementById('rei').value.trim(),pw=document.getElementById('rpw').value,p2=document.getElementById('rpw2').value;
-  var ti=t();var al=document.getElementById('rerr');
-  if(!nm||!em||!pw){al.innerHTML='<div class="aerr">'+(ti?'请填写所有必填字段':'Vul alle velden in')+'</div>';return;}
-  if(pw!==p2){al.innerHTML='<div class="aerr">'+(ti?'两次密码不一致':'Wachtwoorden komen niet overeen')+'</div>';return;}
-  if(pw.length<6){al.innerHTML='<div class="aerr">'+(ti?'密码至少6位':'Minimaal 6 tekens')+'</div>';return;}
-  if(USERS[em]){al.innerHTML='<div class="aerr">'+(ti?'该邮箱已注册':'Al geregistreerd')+'</div>';return;}
-  USERS[em]={nm:nm,em:em,pw:pw,wc:document.getElementById('rwc').value,cs:[]};loginAs(USERS[em]);
+async function doReg(){
+  var nm=document.getElementById('rname').value.trim();
+  var em=document.getElementById('rei').value.trim();
+  var pw=document.getElementById('rpw').value;
+  var p2=document.getElementById('rpw2').value;
+  var wc=document.getElementById('rwc').value.trim();
+  var ti=t();
+  var al=document.getElementById('rerr');
+
+  if(!nm||!em||!pw){
+    al.innerHTML='<div class="aerr">'+(ti?'请填写所有必填字段':'Vul alle velden in')+'</div>';
+    return;
+  }
+  if(pw!==p2){
+    al.innerHTML='<div class="aerr">'+(ti?'两次密码不一致':'Wachtwoorden komen niet overeen')+'</div>';
+    return;
+  }
+  if(pw.length<6){
+    al.innerHTML='<div class="aerr">'+(ti?'密码至少6位':'Minimaal 6 tekens')+'</div>';
+    return;
+  }
+
+  var result = await supabaseClient.auth.signUp({
+    email: em,
+    password: pw,
+    options: {
+      data: {
+        name: nm,
+        wechat: wc
+      }
+    }
+  });
+
+  if(result.error){
+    al.innerHTML='<div class="aerr">'+result.error.message+'</div>';
+    return;
+  }
+
+  await refreshUser();
+  nav('dashboard');
 }
-function doLogin(){
-  var em=document.getElementById('lei').value.trim(),pw=document.getElementById('lpw').value;
-  var ti=t();var al=document.getElementById('lerr');var u=USERS[em];
-  if(!u||u.pw!==pw){al.innerHTML='<div class="aerr">'+(ti?'邮箱或密码错误':'Onjuist')+'</div>';return;}
-  loginAs(u);
+async function doLogin(){
+  var em=document.getElementById('lei').value.trim();
+  var pw=document.getElementById('lpw').value;
+  var ti=t();
+  var al=document.getElementById('lerr');
+
+  var result = await supabaseClient.auth.signInWithPassword({
+    email: em,
+    password: pw
+  });
+
+  if(result.error){
+    al.innerHTML='<div class="aerr">'+(ti?'邮箱或密码错误':'Onjuist')+'</div>';
+    return;
+  }
+
+  await refreshUser();
+  nav('dashboard');
+}
+async function refreshUser(){
+  var result = await supabaseClient.auth.getUser();
+
+  if(result.data && result.data.user){
+    var u = result.data.user;
+    USER = {
+      nm: u.user_metadata.name || u.email,
+      em: u.email,
+      wc: u.user_metadata.wechat || '',
+      cs: []
+    };
+
+    document.getElementById('auth-btns').style.display='none';
+    document.getElementById('user-btns').style.display='';
+    document.getElementById('ulabel').textContent=t()?'我的课程':'Mijn cursussen';
+  }else{
+    USER = null;
+    document.getElementById('auth-btns').style.display='';
+    document.getElementById('user-btns').style.display='none';
+  }
 }
 function loginAs(u){
   USER=u;
@@ -1067,7 +1138,8 @@ function loginAs(u){
   document.getElementById('ulabel').textContent=t()?'我的课程':'Mijn cursussen';
   nav('dashboard');
 }
-function doLogout(){
+async function doLogout(){
+  await supabaseClient.auth.signOut();
   USER=null;
   document.getElementById('auth-btns').style.display='';
   document.getElementById('user-btns').style.display='none';
@@ -1249,7 +1321,8 @@ function setLang(l,btn){
 function faqT(el){var a=el.nextElementSibling,ic=el.querySelector('.fic');a.classList.toggle('on');ic.textContent=a.classList.contains('on')?'−':'+';}
 function updNewsTicker(){var el=document.getElementById('news-track');if(!el)return;var ti=t();el.innerHTML=PRODUCTS.map(function(p){return '<span class="news-item" onclick="oProduct(\''+p.id+'\')"><span class="news-dot"></span>🆕 '+(ti?'new · ':'new · ')+(ti?p.zn:p.nn)+'</span>';}).join('');}
 
-(function(){
+(async function(){
+  await refreshUser();
   rPil('home-pillars');rList();rShop();updNewsTicker();
   var w=document.getElementById('hvid');
   if(w){var v=document.createElement('video');v.autoplay=true;v.muted=true;v.loop=true;v.playsInline=true;v.style.cssText='width:100%;height:100%;object-fit:cover;opacity:.42';v.src='https://cdn.coverr.co/videos/coverr-amsterdam-canal-and-bikes-4665/1080p.mp4';v.onerror=function(){w.style.display='none';};w.appendChild(v);}
