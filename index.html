@@ -1,4 +1,9 @@
-
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taal13A</title>
 <style>
 :root{
   --blue:#1A6DC1;--blue-d:#124F96;--blue-l:#EBF4FF;--blue-m:#C2DEFF;
@@ -11,15 +16,23 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);overflow-x:hidden;}
-.tb{background:var(--blue);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2);}
+.tb{background:var(--blue);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2);}
+.logo-main{height:52px;width:auto;flex-shrink:0;}
+.news-ticker{height:28px;background:#fff;border-bottom:1px solid var(--bdr2);overflow:hidden;display:flex;align-items:center;position:sticky;top:64px;z-index:90;}
+.news-track{display:inline-flex;gap:42px;white-space:nowrap;animation:ticker 18s linear infinite;font-size:12.5px;font-weight:850;color:var(--ink2);padding-left:100%;}
+.news-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ora);margin-right:7px;vertical-align:middle;}
+.news-item{display:inline-flex;align-items:center;padding:3px 10px;border-radius:999px;cursor:pointer;transition:background .18s,color .18s,transform .18s;}
+.news-item:hover{background:var(--ora-l);color:var(--ora);transform:translateY(-1px);}
+.news-track:hover{animation-play-state:paused;}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
 .nc{display:flex;gap:0;}
-.nl{color:rgba(255,255,255,.6);font-size:12.5px;padding:7px 11px;cursor:pointer;border:none;background:none;font-family:inherit;font-weight:600;white-space:nowrap;transition:color .15s;}
+.nl{color:rgba(255,255,255,.72);font-size:14px;padding:8px 13px;cursor:pointer;border:none;background:none;font-family:inherit;font-weight:800;white-space:nowrap;transition:color .15s;}
 .nl:hover,.nl.on{color:#fff;}
 .nr{display:flex;align-items:center;gap:6px;}
-.lb{padding:4px 9px;border-radius:20px;border:1.5px solid rgba(255,255,255,.22);background:transparent;color:rgba(255,255,255,.55);font-size:11px;cursor:pointer;font-family:inherit;font-weight:700;}
+.lb{padding:5px 10px;border-radius:20px;border:1.5px solid rgba(255,255,255,.22);background:transparent;color:rgba(255,255,255,.7);font-size:12px;cursor:pointer;font-family:inherit;font-weight:800;}
 .lb.on{background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.5);}
 .cta{background:var(--ora);border:none;color:#fff;padding:7px 16px;border-radius:20px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;}
-.ub{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;}
+.ub{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);padding:7px 13px;border-radius:20px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;}
 .pg{display:none;}.pg.on{display:block;}
 
 /* HERO */
@@ -198,6 +211,34 @@ body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);ove
 .cart-total span:last-child{font-family:'Playfair Display',serif;}
 .btn-checkout{width:100%;background:var(--ora);color:#fff;border:none;padding:12px;border-radius:30px;font-size:14.5px;font-weight:900;cursor:pointer;font-family:inherit;box-shadow:0 3px 14px rgba(244,116,42,.35);}
 
+
+/* PRODUCT DETAIL + CHECKOUT */
+.pd-wrap{max-width:980px;margin:0 auto;padding:2rem 20px 3rem;}
+.back-link{display:inline-flex;align-items:center;gap:6px;border:none;background:transparent;color:var(--blue);font-size:13px;font-weight:900;cursor:pointer;font-family:inherit;margin-bottom:1rem;}
+.pd-card{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;background:#fff;border:1.5px solid var(--bdr2);border-radius:var(--rl);padding:1.4rem;}
+.pd-gallery{display:grid;gap:.75rem;}
+.pd-main-img{height:380px;border-radius:var(--rl);background:var(--sand);display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:72px;}
+.pd-main-img img{width:100%;height:100%;object-fit:contain;background:#fff;padding:14px;}
+.pd-thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;}
+.pd-thumb{height:86px;border:2px solid var(--bdr2);border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:26px;}
+.pd-thumb img{width:100%;height:100%;object-fit:contain;padding:8px;}
+.pd-info h1{font-family:'Playfair Display',serif;font-size:1.9rem;margin-bottom:.5rem;color:var(--ink);}
+.pd-desc{font-size:14px;color:var(--ink3);line-height:1.72;font-weight:550;margin-bottom:1rem;}
+.pd-price{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:800;margin:.6rem 0;color:var(--ink);}
+.pd-list{list-style:none;margin:1rem 0;display:grid;gap:.45rem;}
+.pd-list li{font-size:13px;color:var(--ink2);font-weight:650;}
+.pd-list li:before{content:'✓';color:var(--grn);font-weight:900;margin-right:7px;}
+.pd-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem;}
+.btn-secondary{background:#fff;color:var(--blue);border:2px solid var(--blue);padding:10px 18px;border-radius:26px;font-size:13px;font-weight:900;cursor:pointer;font-family:inherit;}
+.checkout-layout{max-width:1040px;margin:0 auto;padding:2rem 20px 3rem;display:grid;grid-template-columns:1.25fr .75fr;gap:1.4rem;align-items:start;}
+.form-hint{font-size:12px;color:var(--ink3);line-height:1.6;margin:.45rem 0 .8rem;font-weight:600;}
+.chkbox{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--ink2);line-height:1.5;font-weight:650;margin:.6rem 0;}
+.chkbox input{margin-top:2px;accent-color:var(--blue);}
+.legal-note{font-size:11.5px;color:var(--ink3);line-height:1.6;background:var(--sand);border-radius:10px;padding:.75rem;margin-top:.75rem;}
+.order-line{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-bottom:1px solid var(--bdr2);font-size:13px;font-weight:700;color:var(--ink2);}
+.order-line.total{border-bottom:none;font-size:16px;color:var(--ink);font-weight:900;margin-top:.3rem;}
+@media(max-width:700px){.pd-card,.checkout-layout{grid-template-columns:1fr}.news-ticker{top:64px}.logo-main{height:44px}.nl{font-size:13px}}
+
 /* ENROLL */
 .ep-hero{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-d) 100%);padding:2.8rem 20px;text-align:center;}
 .ep-hero h1{font-family:'Playfair Display',serif;color:#fff;font-size:1.8rem;font-weight:700;margin-bottom:.3rem;}
@@ -323,12 +364,55 @@ select,textarea{width:100%;padding:9px 12px;border:2px solid var(--bdr);border-r
   .dcols{grid-template-columns:1fr;}.krow{grid-template-columns:1fr 1fr;}.csplit{grid-template-columns:1fr;}
   .tcard2{flex-direction:column;align-items:center;text-align:center;}.cart-panel{width:100%;}
 }
+
+
+/* FARFETCH-INSPIRED PRODUCT DETAIL + LEGAL PAGES */
+.pd-wrap.fashion{max-width:1180px;padding:1.4rem 20px 3rem;}
+.pd-card.fashion{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(340px,.88fr);gap:2rem;background:transparent;border:none;padding:0;align-items:start;}
+.pd-card.fashion .pd-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;}
+.pd-shot{background:#fff;border:1px solid var(--bdr2);border-radius:4px;min-height:420px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.pd-shot img{width:100%;height:100%;object-fit:contain;padding:18px;background:#fff;}
+.pd-shot.alt{min-height:260px;padding:1.3rem;align-items:flex-start;justify-content:flex-start;}
+.pd-shot-card{width:100%;height:100%;border-radius:12px;background:linear-gradient(135deg,var(--blue-l),#fff);padding:1.3rem;display:flex;flex-direction:column;justify-content:space-between;gap:1rem;color:var(--ink);}
+.pd-shot-kicker{font-size:11px;text-transform:uppercase;letter-spacing:.9px;color:var(--blue);font-weight:900;}
+.pd-shot-title{font-family:'Playfair Display',serif;font-size:1.7rem;line-height:1.15;font-weight:800;}
+.pd-shot-list{font-size:12.5px;color:var(--ink2);line-height:1.8;font-weight:700;}
+.pd-card.fashion .pd-info{background:#fff;border:1px solid var(--bdr2);border-radius:4px;padding:1.6rem;position:sticky;top:108px;}
+.pd-brand{font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:900;color:var(--ink3);margin-bottom:.45rem;}
+.pd-card.fashion .pd-info h1{font-family:'Nunito',sans-serif;font-size:1.45rem;line-height:1.25;margin-bottom:.7rem;}
+.pd-card.fashion .pd-desc{font-size:13.5px;color:var(--ink2);line-height:1.7;margin:.8rem 0 1rem;}
+.pd-meta-row{display:flex;gap:.5rem;flex-wrap:wrap;margin:.85rem 0;}
+.pd-chip{border:1.5px solid var(--bdr);border-radius:30px;padding:6px 10px;font-size:11.5px;font-weight:850;color:var(--ink2);background:var(--sand);}
+.pd-policy{border-top:1px solid var(--bdr2);margin-top:1.2rem;}
+.pd-acc{border-bottom:1px solid var(--bdr2);padding:.95rem 0;}
+.pd-acc summary{cursor:pointer;list-style:none;font-size:13px;font-weight:900;color:var(--ink);display:flex;justify-content:space-between;gap:1rem;}
+.pd-acc summary::-webkit-details-marker{display:none;}
+.pd-acc summary:after{content:'+';font-weight:900;color:var(--blue);}
+.pd-acc[open] summary:after{content:'−';}
+.pd-acc div{font-size:12.5px;color:var(--ink3);line-height:1.7;margin-top:.65rem;font-weight:600;}
+.pd-warning{background:#fff7f1;border:1px solid #ffd7bf;color:#9a4816;border-radius:10px;padding:.75rem .85rem;font-size:12px;line-height:1.55;font-weight:750;margin-top:1rem;}
+.news-track span.news-item{cursor:pointer;transition:opacity .15s;}
+.news-track span.news-item:hover{opacity:.72;text-decoration:underline;}
+.legal-wrap{max-width:1080px;margin:0 auto;padding:2rem 20px 3rem;}
+.legal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;align-items:start;}
+.legal-card{background:#fff;border:1.5px solid var(--bdr2);border-radius:var(--rl);padding:1.15rem;}
+.legal-lang{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--blue);font-weight:900;margin-bottom:.5rem;}
+.legal-card h3{font-family:'Playfair Display',serif;font-size:1.25rem;margin:.4rem 0 .75rem;}
+.legal-card h4{font-size:13px;margin:1rem 0 .35rem;color:var(--ink);}
+.legal-card p,.legal-card li{font-size:12.4px;line-height:1.68;color:var(--ink2);font-weight:600;}
+.legal-card ul{padding-left:1rem;margin:.35rem 0;}
+.legal-disclaimer{background:var(--blue-l);border:1px solid var(--blue-m);border-radius:var(--rl);padding:1rem;font-size:12.5px;line-height:1.65;color:var(--blue-d);font-weight:700;margin-bottom:1rem;}
+.legal-link{color:var(--blue);font-weight:900;text-decoration:underline;cursor:pointer;}
+@media(max-width:850px){.pd-card.fashion{grid-template-columns:1fr}.pd-card.fashion .pd-gallery{grid-template-columns:1fr}.pd-card.fashion .pd-info{position:static}.legal-grid{grid-template-columns:1fr}.pd-shot{min-height:320px}}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
 <!-- TOPBAR -->
 <nav class="tb">
-  <svg height="26" viewBox="0 0 200 40" fill="none">
+  <svg class="logo-main" viewBox="0 0 200 40" fill="none">
     <rect x="2" y="8" width="4" height="24" rx="2" fill="white" opacity=".9"/>
     <rect x="10" y="2" width="4" height="36" rx="2" fill="white" opacity=".9"/>
     <rect x="18" y="8" width="4" height="24" rx="2" fill="white" opacity=".9"/>
@@ -336,11 +420,11 @@ select,textarea{width:100%;padding:9px 12px;border:2px solid var(--bdr);border-r
     <text x="38" y="28" font-family="Nunito,sans-serif" font-weight="800" font-size="19" fill="white">Taal13A</text>
   </svg>
   <div class="nc">
-    <button class="nl on" onclick="nav('home')" data-zh="主页" data-nl="Home">主页 / Home</button>
-    <button class="nl" onclick="nav('overview')" data-zh="课程 / Cursussen" data-nl="Cursussen">课程 / Cursussen</button>
-    <button class="nl" onclick="nav('shop')" data-zh="商店" data-nl="Winkel">商店 / Winkel</button>
-    <button class="nl" onclick="nav('about')" data-zh="关于" data-nl="Over ons">关于 / Over ons</button>
-    <button class="nl" onclick="nav('contact')" data-zh="联系" data-nl="Contact">联系 / Contact</button>
+    <button class="nl on" onclick="nav('home')" data-zh="主页 / Home" data-nl="主页 / Home">主页 / Home</button>
+    <button class="nl" onclick="nav('overview')" data-zh="课程 / Cursussen" data-nl="课程 / Cursussen">课程 / Cursussen</button>
+    <button class="nl" onclick="nav('shop')" data-zh="商店 / Winkel" data-nl="商店 / Winkel">商店 / Winkel</button>
+    <button class="nl" onclick="nav('about')" data-zh="关于 / Over ons" data-nl="关于 / Over ons">关于 / Over ons</button>
+    <button class="nl" onclick="nav('contact')" data-zh="联系 / Contact" data-nl="联系 / Contact">联系 / Contact</button>
   </div>
   <div class="nr">
     <button class="lb on" onclick="setLang('zh',this)">中文</button>
@@ -355,6 +439,7 @@ select,textarea{width:100%;padding:9px 12px;border:2px solid var(--bdr);border-r
     </span>
   </div>
 </nav>
+<div class="news-ticker"><div class="news-track" id="news-track"></div></div>
 
 <!-- HOME -->
 <div class="pg on" id="pg-home">
@@ -470,6 +555,29 @@ select,textarea{width:100%;padding:9px 12px;border:2px solid var(--bdr);border-r
   <div style="height:2rem"></div>
 </div>
 
+<!-- PRODUCT DETAIL -->
+<div class="pg" id="pg-product" style="background:var(--sand);min-height:calc(100vh - 92px)">
+  <div class="pd-wrap" id="product-detail"></div>
+</div>
+
+<!-- CHECKOUT -->
+<div class="pg" id="pg-checkout" style="background:var(--sand);min-height:calc(100vh - 92px)">
+  <div class="ph2"><h1 data-zh="结算" data-nl="Afrekenen">结算</h1><p data-zh="付款前填写购买人信息" data-nl="Vul uw gegevens in vóór betaling">付款前填写购买人信息</p></div>
+  <div class="checkout-layout" id="checkout-body"></div>
+</div>
+
+<!-- LEGAL: PRIVACY -->
+<div class="pg" id="pg-privacy" style="background:var(--sand);min-height:calc(100vh - 92px)">
+  <div class="ph2"><h1>Privacy Policy / 隐私政策 / Privacyverklaring</h1><p data-zh="三语版本，适用于 Taal13A 荷兰语课程和数字商品网站。" data-nl="Drietalige versie voor cursussen en digitale producten van Taal13A.">三语版本，适用于 Taal13A 荷兰语课程和数字商品网站。</p></div>
+  <div class="legal-wrap" id="privacy-body"></div>
+</div>
+
+<!-- LEGAL: TERMS -->
+<div class="pg" id="pg-terms" style="background:var(--sand);min-height:calc(100vh - 92px)">
+  <div class="ph2"><h1>Terms & Conditions / 条款与条件 / Algemene voorwaarden</h1><p data-zh="课程、电子书、账户和付款相关条款。" data-nl="Voorwaarden voor cursussen, e-books, accounts en betalingen.">课程、电子书、账户和付款相关条款。</p></div>
+  <div class="legal-wrap" id="terms-body"></div>
+</div>
+
 <!-- ENROLL -->
 <div class="pg" id="pg-enroll" style="background:var(--sand);min-height:calc(100vh - 52px)">
   <div class="ep-hero"><h1 id="ep-h1">报名</h1><p id="ep-sub">填写信息并完成支付</p></div>
@@ -529,6 +637,7 @@ Taal13A 的教学理念是：让学荷兰语变得简单、接地气、真正有
         <h3 data-zh="联系方式" data-nl="Contactgegevens">联系方式</h3>
         <div class="crow2"><div class="cdot"></div><div>taal13a@gmail.com</div></div>
         <div class="crow2"><div class="cdot"></div><div>Rotterdam, Nederland</div></div>
+        <div class="crow2"><div class="cdot"></div><div><span class="legal-link" onclick="nav('privacy')">Privacy Policy</span> · <span class="legal-link" onclick="nav('terms')">Terms & Conditions</span></div></div>
 
       </div>
       <div class="cform">
@@ -574,6 +683,7 @@ Taal13A 的教学理念是：让学荷兰语变得简单、接地气、真正有
   <div class="db">
     <div class="dcols">
       <div class="dcard"><div class="dch" data-zh="我的课程" data-nl="Mijn cursussen">我的课程</div><div id="my-courses"></div></div>
+      <div class="dcard"><div class="dch" data-zh="我的商品 / 下载" data-nl="Mijn producten / downloads">我的商品 / 下载</div><div id="my-products"></div></div>
       <div class="dcard"><div class="dch" data-zh="账号信息" data-nl="Account">账号信息</div><div id="acct" style="font-size:12.5px;color:var(--ink3);line-height:2;font-weight:600"></div></div>
     </div>
     <div style="text-align:center;margin-bottom:1rem"><button class="benroll" onclick="nav('overview')" data-zh="浏览课程" data-nl="Cursussen bekijken">浏览课程</button></div>
@@ -597,20 +707,20 @@ Taal13A 的教学理念是：让学荷兰语变得简单、接地气、真正有
 </button>
 
 <script>
-var L='zh',USER=null,ET=null,USERS={},CF='all',SCARF='all';
-var CART=[];
+var L='zh',USER=null,ET=null,PDT=null,USERS={},CF='all',SCARF='all';
+var CART=[],GUEST_ORDERS=[];
 
 var PIL=[
   {id:'elearn',l:'elearn',zl:'网课 E-learning',nl_:'E-learning',zs:'火热制作中，敬请期待',ns:'In ontwikkeling',zt:'网课 E-learning',nt:'E-learning',zp:['录播课程正在制作中','上线后可自主安排时间学习','适合想系统自学的同学'],np:['Videolessen in ontwikkeling','Leer op eigen tempo','Voor zelfstudie'],tz:['敬请期待','制作中'],tn:['Binnenkort','In ontwikkeling'],pr:'敬请期待',nz:'暂无价格',nn:'Binnenkort',soon:true},
   {id:'a0a1',l:'a0a1',zl:'线上入门 A0–A1',nl_:'Online beginner A0–A1',zs:'零基础入门',ns:'Voor beginners',zt:'线上入门 A0–A1',nt:'Online beginner A0–A1',zp:['适合零基础同学','从发音、拼读和基础句子开始','课程安排即将更新'],np:['Voor absolute beginners','Uitspraak, lezen en basiszinnen','Planning volgt'],tz:['线上小班','中文讲解'],tn:['Online groep','Chinese uitleg'],pr:'敬请期待',nz:'课程安排即将更新',nn:'Planning volgt',soon:true},
-  {id:'a1a2',l:'a1a2',zl:'线上进阶 A1–A2',nl_:'Online vervolg A1–A2',zs:'A1–A2进阶',ns:'A1–A2 vervolg',zt:'线上进阶 A1–A2',nt:'Online vervolg A1–A2',zp:['适合有一点基础和语感，想继续冲 A2 的同学','8节课｜6-8人小班｜线上会议','包含教学电子版材料、课后答疑、录屏回放','强化语法、口语、听力训练','生活场景表达和日常对话','A2考试常见话题准备','让你真的能听懂、能说话、能参与讨论'],np:['Voor cursisten met basiskennis richting A2','8 lessen｜6-8 cursisten｜online','Materiaal, Q&A en opname inbegrepen','Grammatica, spreken en luisteren','Dagelijkse situaties','A2 examenthema’s'],tz:['线上小班','A1–A2','€399'],tn:['Online groep','A1–A2','€399'],pr:'€399',nz:'课程安排请咨询',nn:'Vraag naar planning',soon:false},
+  {id:'a1a2',l:'a1a2',zl:'线上进阶 A1–A2',nl_:'Online vervolg A1–A2',zs:'A1–A2进阶',ns:'A1–A2 vervolg',zt:'线上进阶 A1–A2',nt:'Online vervolg A1–A2',zp:['适合已有基础，想继续冲 A2 的同学','8节课｜6-8人小班｜线上会议','课程安排即将更新'],np:['Voor cursisten met basiskennis richting A2','8 lessen｜6-8 cursisten｜online','Planning volgt'],tz:['线上小班','A1–A2','敬请期待'],tn:['Online groep','A1–A2','Binnenkort'],pr:'敬请期待',nz:'课程安排即将更新',nn:'Planning volgt',soon:true},
   {id:'a2b1',l:'a2b1',zl:'A2应试冲刺班',nl_:'A2 examen sprint',zs:'9月开班，敬请期待',ns:'Start in september',zt:'A2应试冲刺班',nt:'A2 examen sprint',zp:['适合准备 A2 考试的同学','围绕考试题型和高频话题练习','9月开班，敬请期待'],np:['Voor A2 examenvoorbereiding','Oefenen met examenvragen en thema’s','Start in september'],tz:['A2考试','敬请期待'],tn:['A2 examen','Binnenkort'],pr:'敬请期待',nz:'9月开班',nn:'Start in september',soon:true}
 ];
 
 var SES=[
   {id:'elearn',tp:'elearn',lv:'elearn',zt:'网课 E-learning',nt:'E-learning',zd:'火热制作中，敬请期待。录播课程上线后，可按自己的时间反复学习。',nd:'In ontwikkeling. Videolessen volgen binnenkort.',sd:'',nd2:'',dur:'',dun:'',lz:'在线',ln:'Online',pr:'敬请期待',pn:'暂无价格',nn:'Binnenkort',zp:['火热制作中，敬请期待','适合想系统自学的同学'],np:['In ontwikkeling','Voor zelfstudie'],soon:true},
   {id:'a0a1',tp:'live',lv:'a0a1',zt:'线上入门 A0–A1',nt:'Online beginner A0–A1',zd:'适合零基础、想从发音和基础句子开始学习的同学。课程安排即将更新。',nd:'Voor beginners. Planning volgt.',sd:'',nd2:'',dur:'',dun:'',lz:'线上会议',ln:'Online',pr:'敬请期待',pn:'课程安排即将更新',nn:'Planning volgt',zp:['零基础入门','发音、拼读和基础句子','课程安排即将更新'],np:['Voor beginners','Uitspraak en basiszinnen','Planning volgt'],soon:true},
-  {id:'a1a2',tp:'live',lv:'a1a2',zt:'线上进阶 A1–A2',nt:'Online vervolg A1–A2',zd:'适合对象：差不多有点基础和语感，想继续冲A2的同学。课程时长：8节课。班型：6-8人小班 · 线上会议。包含：教学电子版材料 · 课后答疑 · 录屏回放。课程内容：强化语法、口语、听力训练；生活场景表达和日常对话；A2考试常见话题准备；让你真的能听懂、能说话、能参与讨论。',nd:'Voor cursisten met basiskennis richting A2. 8 lessen, 6-8 cursisten, online. Materiaal, Q&A en opname inbegrepen.',sd:'',nd2:'',dur:'8节课',dun:'8 lessen',lz:'线上会议',ln:'Online',pr:'€399',pn:'小班课',nn:'Groepsles',zp:['强化语法、口语、听力训练','生活场景表达和日常对话','A2考试常见话题准备','让你真的能听懂、能说话、能参与讨论'],np:['Grammatica, spreken en luisteren','Dagelijkse situaties','A2 examenthema’s'],soon:false},
+  {id:'a1a2',tp:'live',lv:'a1a2',zt:'线上进阶 A1–A2',nt:'Online vervolg A1–A2',zd:'适合已有基础，想继续冲 A2 的同学。8节课｜6-8人小班｜线上会议。课程安排即将更新。',nd:'Voor cursisten met basiskennis richting A2. 8 lessen, 6-8 cursisten, online. Planning volgt.',sd:'',nd2:'',dur:'8节课',dun:'8 lessen',lz:'线上会议',ln:'Online',pr:'敬请期待',pn:'课程安排即将更新',nn:'Planning volgt',zp:['强化语法、口语、听力训练','生活场景表达和日常对话','课程安排即将更新'],np:['Grammatica, spreken en luisteren','Dagelijkse situaties','Planning volgt'],soon:true},
   {id:'a2b1',tp:'live',lv:'a2b1',zt:'A2应试冲刺班',nt:'A2 examen sprint',zd:'适合准备 A2 考试的同学。围绕考试题型和高频话题练习。9月开班，敬请期待。',nd:'Voor A2 examenvoorbereiding. Start in september.',sd:'',nd2:'',dur:'',dun:'',lz:'线上会议',ln:'Online',pr:'敬请期待',pn:'9月开班',nn:'Start in september',zp:['A2考试题型训练','高频话题练习','9月开班，敬请期待'],np:['A2 examenvragen','Veelvoorkomende thema’s','Start in september'],soon:true}
 ];
 
@@ -650,7 +760,7 @@ function rShop(){
   el.innerHTML=prods.map(function(p){
     var prFmt='€'+(p.pr/100).toFixed(2).replace('.',',');
     var oldFmt=p.old?'€'+(p.old/100).toFixed(2).replace('.',','):'';
-    return '<div class="scard" onclick="buyProduct(\''+p.id+'\')">'+
+    return '<div class="scard" onclick="oProduct(\''+p.id+'\')">'+
       '<div class="scard-img" style="background:'+bgMap[p.cat]+'">'+(p.img?'<img src="'+p.img+'" alt="'+(ti?p.zn:p.nn)+'">':(p.emoji||'📦'))+
       (p.badge?'<span class="scard-badge">'+p.badge+'</span>':'')+
       '</div>'+
@@ -660,16 +770,48 @@ function rShop(){
       '<div class="scard-desc">'+(ti?p.zd:p.nd)+'</div>'+
       '<div class="scard-foot">'+
       '<div><span class="scard-price">'+prFmt+'</span>'+(oldFmt?'<span class="scard-old">'+oldFmt+'</span>':'')+'</div>'+
-      '<button class="btn-cart" onclick="event.stopPropagation();buyProduct(\''+p.id+'\')">'+(ti?'立即购买 PDF':'Koop PDF')+'</button>'+
+      '<button class="btn-cart" onclick="event.stopPropagation();addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button>'+
       '</div></div></div>';
   }).join('');
 }
 
 
-function buyProduct(pid){
-  var prod=PRODUCTS.find(function(p){return p.id===pid;});
-  if(prod&&prod.pay){window.open(prod.pay,'_blank');return;}
-  addToCart(pid);
+function buyProduct(pid){addToCart(pid);}
+
+function fmtPrice(cents){return '€'+(cents/100).toFixed(2).replace('.',',');}
+function oProduct(pid){PDT=pid;nav('product',{pid:pid});}
+function rProduct(){
+  var ti=t();var p=PRODUCTS.find(function(x){return x.id===PDT;});var el=document.getElementById('product-detail');if(!el||!p)return;
+  var delivery=ti?'付款成功后可即时下载 PDF；如系统邮件延迟，可凭订单邮箱联系 Taal13A 手动补发。':'Na succesvolle betaling is de PDF direct te downloaden. Bij vertraging kan Taal13A het bestand handmatig nasturen op basis van het bestel-e-mailadres.';
+  var access=ti?'注册/登录购买后，商品会出现在个人主页「我的商品 / 下载」中。游客购买则通过订单邮箱获取下载信息。':'Bij aankoop met account verschijnt het product in “Mijn producten / downloads”. Gastbestellingen ontvangen downloadinformatie via e-mail.';
+  var refund=ti?'电子书属于即时交付的数字内容。结算时确认即时交付并放弃冷静期后，付款完成即不支持退款。':'Een e-book is digitale inhoud die direct wordt geleverd. Na toestemming voor directe levering en afstand van herroeping is terugbetaling na betaling niet mogelijk.';
+  el.className='pd-wrap fashion';
+  el.innerHTML='<button class="back-link" onclick="nav(\'shop\')">← '+(ti?'返回商店':'Terug naar winkel')+'</button>'+ 
+    '<div class="pd-card fashion">'+
+      '<div class="pd-gallery">'+
+        '<div class="pd-shot"><img src="'+p.img+'" alt="'+(ti?p.zn:p.nn)+'"></div>'+ 
+        '<div class="pd-shot alt"><div class="pd-shot-card"><div><div class="pd-shot-kicker">Digital PDF</div><div class="pd-shot-title">A2 Spreken<br>Examen Gids</div></div><div class="pd-shot-list">✓ 129 '+(ti?'道高频口语题':'veelvoorkomende vragen')+'<br>✓ '+(ti?'中荷双语示范答案':'Voorbeeldantwoorden met Chinese uitleg')+'<br>✓ '+(ti?'图片题与答题框架':'Plaatjesopdrachten en spreekstructuren')+'</div></div></div>'+ 
+        '<div class="pd-shot alt"><div class="pd-shot-card"><div><div class="pd-shot-kicker">Delivery</div><div class="pd-shot-title">'+(ti?'即时交付':'Direct geleverd')+'</div></div><div class="pd-shot-list">'+delivery+'</div></div></div>'+ 
+        '<div class="pd-shot alt"><div class="pd-shot-card"><div><div class="pd-shot-kicker">Access</div><div class="pd-shot-title">'+(ti?'个人主页下载':'Download in account')+'</div></div><div class="pd-shot-list">'+access+'</div></div></div>'+ 
+      '</div>'+ 
+      '<div class="pd-info">'+
+        '<div class="pd-brand">Taal13A</div>'+ 
+        '<h1>'+(ti?p.zn:p.nn)+'</h1>'+ 
+        '<div class="pd-price">'+fmtPrice(p.pr)+'</div>'+ 
+        '<div class="pd-meta-row"><span class="pd-chip">PDF</span><span class="pd-chip">A2 Spreken</span><span class="pd-chip">'+(ti?'即时下载':'Direct download')+'</span><span class="pd-chip">'+(ti?'中文讲解':'Chinese uitleg')+'</span></div>'+ 
+        '<div class="pd-desc">'+(ti?p.zd:p.nd)+'</div>'+ 
+        '<div class="pd-actions"><button class="bpay" onclick="addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button><button class="btn-secondary" onclick="addToCart(\''+p.id+'\');cartCheckout();">'+(ti?'立即结算':'Direct afrekenen')+'</button></div>'+ 
+        '<div class="pd-warning">'+(ti?'提示：这是电子书 PDF，不是纸质书。购买前请确认邮箱正确，并在结算页勾选数字产品即时交付确认。':'Let op: dit is een digitaal PDF-bestand, geen fysiek boek. Controleer uw e-mailadres en bevestig directe levering bij checkout.')+'</div>'+ 
+        '<div class="pd-policy">'+
+          '<details class="pd-acc" open><summary>'+(ti?'商品描述':'Productomschrijving')+'</summary><div>'+(ti?'适合正在准备荷兰 A2 口语考试、需要题库、答题框架和中荷双语示范答案的学习者。内容重点是考试表达训练，不替代官方考试材料。':'Voor cursisten die zich voorbereiden op het Nederlandse A2-spreekexamen en behoefte hebben aan vraagtypes, spreekstructuren en voorbeeldantwoorden met Chinese uitleg. Het materiaal vervangt geen officieel examenmateriaal.')+'</div></details>'+ 
+          '<details class="pd-acc"><summary>'+(ti?'数字产品交付说明':'Levering digitale inhoud')+'</summary><div>'+delivery+'</div></details>'+ 
+          '<details class="pd-acc"><summary>'+(ti?'访问与下载':'Toegang en download')+'</summary><div>'+access+' '+(ti?'建议注册/登录后购买，方便日后重新下载。':'Wij raden aankoop met account aan, zodat u later opnieuw kunt downloaden.')+'</div></details>'+ 
+          '<details class="pd-acc"><summary>'+(ti?'退换政策':'Retour- en terugbetalingsbeleid')+'</summary><div>'+refund+'</div></details>'+ 
+          '<details class="pd-acc"><summary>'+(ti?'版权与使用范围':'Auteursrecht en gebruik')+'</summary><div>'+(ti?'PDF 仅限购买者本人学习使用，不得转发、转售、公开分享或上传至第三方平台。':'De PDF is uitsluitend voor persoonlijk gebruik door de koper. Doorsturen, doorverkopen, openbaar delen of uploaden naar derden is niet toegestaan.')+'</div></details>'+ 
+        '</div>'+ 
+        '<div class="legal-note">'+(ti?'相关政策：':'Beleid: ')+'<span class="legal-link" onclick="nav(\'terms\')">Terms & Conditions</span> · <span class="legal-link" onclick="nav(\'privacy\')">Privacy Policy</span></div>'+ 
+      '</div>'+ 
+    '</div>';
 }
 
 function addToCart(pid){
@@ -724,9 +866,33 @@ function removeCart(id){CART=CART.filter(function(c){return c.id!==id;});updCart
 function openCart(){document.getElementById('cart-panel').classList.add('open');}
 function closeCart(){document.getElementById('cart-panel').classList.remove('open');}
 function cartCheckout(){
-  if(CART.length===1){var p=PRODUCTS.find(function(x){return x.id===CART[0].id;});if(p&&p.pay){window.open(p.pay,'_blank');return;}}
-  var ti=t();
-  alert(ti?'请点击商品卡片上的“立即购买 PDF”完成付款。':'Klik op “Koop PDF” bij het product om te betalen.');
+  if(!CART.length)return;
+  closeCart();
+  nav('checkout');
+}
+function rCheckout(){
+  var ti=t();var body=document.getElementById('checkout-body');if(!body)return;
+  if(!CART.length){body.innerHTML='<div class="fc"><div class="fct">'+(ti?'购物车':'Winkelwagen')+'</div><div class="cart-empty">'+(ti?'购物车是空的':'Winkelwagen is leeg')+'</div><button class="bf" onclick="nav(\'shop\')">'+(ti?'去商店':'Naar winkel')+'</button></div>';return;}
+  var total=0;var lines=CART.map(function(ci){var p=PRODUCTS.find(function(x){return x.id===ci.id;});if(!p)return '';total+=p.pr*ci.qty;return '<div class="order-line"><span>'+(ti?p.zn:p.nn)+' × '+ci.qty+'</span><span>'+fmtPrice(p.pr*ci.qty)+'</span></div>';}).join('');
+  body.innerHTML='<div><div class="fc"><div class="fct">'+(ti?'购买人信息':'Klantgegevens')+'</div><div class="form-hint">'+(ti?'支持游客购买；注册/登录后购买记录会显示在个人主页。':'Gastbestelling mogelijk; ingelogde aankopen verschijnen in uw account.')+'</div>'+ 
+    '<div class="fr2"><div><label>'+(ti?'用户名':'Gebruikersnaam')+'</label><input type="text" id="ck-name" value="'+(USER?USER.nm:'')+'"></div><div><label>Email</label><input type="email" id="ck-email" value="'+(USER?USER.em:'')+'"></div></div>'+ 
+    '<div class="fr"><label>WeChat '+(ti?'（选填）':'(optioneel)')+'</label><input type="text" id="ck-wc" value="'+(USER?(USER.wc||''):'')+'"></div>'+ 
+    '<div class="fr"><label>'+(ti?'发票/备注（选填）':'Factuur/opmerking optioneel')+'</label><input type="text" id="ck-note" placeholder="'+(ti?'例如：需要公司发票':'Bijv. factuur nodig')+'"></div>'+ 
+    '<div class="chkbox"><input type="checkbox" id="ck-terms"><span>'+(ti?'我同意 ':'Ik ga akkoord met de ')+'<span class="legal-link" onclick="nav(\'terms\')">Terms & Conditions</span>'+(ti?'，并确认数字产品付款后可即时交付。':' en begrijp dat digitale producten direct geleverd kunnen worden.')+'</span></div>'+ 
+    '<div class="chkbox"><input type="checkbox" id="ck-privacy"><span>'+(ti?'我已阅读 ':'Ik heb de ')+'<span class="legal-link" onclick="nav(\'privacy\')">Privacy Policy</span>'+(ti?'，同意为处理订单、交付产品和售后服务收集必要信息。':' gelezen en begrijp dat noodzakelijke gegevens worden verwerkt voor bestelling, levering en service.')+'</span></div>'+ 
+    '<button class="bpay" onclick="placeOrder()">🔒 '+(ti?'继续付款':'Verder naar betaling')+' — '+fmtPrice(total)+'</button><div class="legal-note">'+(ti?'说明：正式上线时，后台应在付款前保存购买人信息，并由后端把购物车总价发送给 Mollie 创建 checkout。':'Let op: bij livegang moet de backend klantgegevens vóór betaling opslaan en het winkelwagentotaal naar Mollie sturen om checkout aan te maken.')+'</div></div></div>'+ 
+    '<div class="oc"><div class="oct">'+(ti?'订单摘要':'Besteloverzicht')+'</div>'+lines+'<div class="order-line"><span>BTW</span><span>0%</span></div><div class="order-line total"><span>'+(ti?'合计':'Totaal')+'</span><span>'+fmtPrice(total)+'</span></div></div>';
+}
+
+function placeOrder(){
+  var ti=t(),name=document.getElementById('ck-name').value.trim(),email=document.getElementById('ck-email').value.trim();
+  if(!name||!email){alert(ti?'请填写用户名和邮箱。':'Vul gebruikersnaam en e-mail in.');return;}
+  if(!document.getElementById('ck-terms').checked||!document.getElementById('ck-privacy').checked){alert(ti?'请先勾选条款和隐私确认。':'Accepteer eerst de voorwaarden en privacybevestiging.');return;}
+  var ids=[];CART.forEach(function(ci){for(var i=0;i<ci.qty;i++)ids.push(ci.id);});
+  if(USER){if(!USER.ps)USER.ps=[];ids.forEach(function(id){if(USER.ps.indexOf(id)<0)USER.ps.push(id);});}else{GUEST_ORDERS.push({name:name,email:email,items:ids});}
+  var p=CART.length===1?PRODUCTS.find(function(x){return x.id===CART[0].id;}):null;CART=[];updCart();
+  if(p&&p.pay){window.open(p.pay,'_blank');}
+  document.getElementById('checkout-body').innerHTML='<div class="fc"><div class="sw"><div class="si">✓</div><div class="st2">'+(ti?'订单信息已保存':'Bestelgegevens opgeslagen')+'</div><div class="sd">'+(ti?'下一步会跳转到付款。真实上线时，这里需要由后端把购物车总价发送给 Mollie 创建 checkout。':'Volgende stap is betaling. Live moet de backend het winkelwagentotaal naar Mollie sturen om checkout aan te maken.')+'</div><button class="bf" onclick="nav(\'dashboard\')">'+(ti?'查看个人主页':'Naar account')+'</button></div></div>';
 }
 
 function coTab(f,btn){
@@ -860,6 +1026,22 @@ function doLogout(){
   document.getElementById('user-btns').style.display='none';
   nav('home');
 }
+
+function legalPrivacyHtml(){
+  return '<div class="legal-disclaimer">'+(t()?'合规提示：以下为网站上线用模板，请在正式发布前补充 KvK 号、BTW 号、公司法定名称、数据保存期限、Cookie 工具和实际付款/邮件服务商，并由专业人士复核。':'Compliance-opmerking: dit is een websitetemplate. Vul vóór publicatie KvK-nummer, btw-nummer, juridische bedrijfsnaam, bewaartermijnen, cookie-tool en gebruikte betaal-/mailproviders in en laat dit professioneel controleren.')+'</div><div class="legal-grid">'+
+  '<div class="legal-card"><div class="legal-lang">中文</div><h3>隐私政策</h3><p>本隐私政策说明 Taal13A 在提供荷兰语课程、电子书、账户、付款和客户服务时如何处理个人信息。</p><h4>我们收集的信息</h4><ul><li>用户名、邮箱、WeChat（选填）</li><li>订单、购买记录、付款状态和下载记录</li><li>课程报名、学习访问和客服沟通内容</li></ul><h4>使用目的</h4><p>用于创建账号、处理订单、交付数字产品、提供课程访问、发送订单通知、售后服务、账务管理以及遵守法律义务。</p><h4>法律依据</h4><p>主要依据合同履行、法定义务、正当利益；营销邮件仅在获得同意后发送。</p><h4>保存期限</h4><p>订单和发票资料按荷兰税务要求保存；账号资料保留至账号删除或不再需要。下载权限可在合理技术期限内保留，以便用户重新访问已购内容。</p><h4>第三方服务</h4><p>可能使用付款服务商、邮件服务商、网站托管和分析工具。正式上线前应列明实际服务商。</p><h4>您的权利</h4><p>您可以请求访问、更正、删除、限制处理、数据可携带或反对处理。请通过网站联系方式提交请求。</p></div>'+ 
+  '<div class="legal-card"><div class="legal-lang">English</div><h3>Privacy Policy</h3><p>This policy explains how Taal13A processes personal data when offering Dutch language courses, e-books, accounts, payments and customer support.</p><h4>Data we collect</h4><ul><li>Username, email address and optional WeChat ID</li><li>Orders, purchase history, payment status and download access</li><li>Course enrolment, access information and support messages</li></ul><h4>Purposes</h4><p>We use this data to create accounts, process orders, deliver digital products, provide course access, send transactional emails, offer support, keep accounting records and comply with legal duties.</p><h4>Legal bases</h4><p>The main bases are performance of contract, legal obligation and legitimate interest. Marketing emails are sent only with consent.</p><h4>Retention</h4><p>Order and invoice records are retained as required by Dutch tax law. Account data is kept until deletion or until no longer necessary. Download access may be retained for a reasonable technical period so users can access purchased content.</p><h4>Third parties</h4><p>We may use payment providers, email providers, hosting and analytics tools. The actual providers should be listed before launch.</p><h4>Your rights</h4><p>You may request access, correction, deletion, restriction, portability or objection. Contact us through the website contact details.</p></div>'+ 
+  '<div class="legal-card"><div class="legal-lang">Nederlands</div><h3>Privacyverklaring</h3><p>Deze verklaring legt uit hoe Taal13A persoonsgegevens verwerkt bij Nederlandse taalcursussen, e-books, accounts, betalingen en klantenservice.</p><h4>Gegevens die wij verzamelen</h4><ul><li>Gebruikersnaam, e-mailadres en optioneel WeChat-ID</li><li>Bestellingen, aankoopgeschiedenis, betaalstatus en downloadtoegang</li><li>Cursusinschrijvingen, toegangsgegevens en supportberichten</li></ul><h4>Doeleinden</h4><p>Wij gebruiken deze gegevens voor accounts, bestellingen, levering van digitale producten, cursustoegang, orderberichten, service, administratie en wettelijke verplichtingen.</p><h4>Grondslagen</h4><p>De belangrijkste grondslagen zijn uitvoering van de overeenkomst, wettelijke verplichting en gerechtvaardigd belang. Marketing wordt alleen verzonden met toestemming.</p><h4>Bewaartermijnen</h4><p>Order- en factuurgegevens worden bewaard volgens Nederlandse fiscale verplichtingen. Accountgegevens blijven bewaard tot verwijdering of zolang nodig. Downloadtoegang kan redelijkerwijs behouden blijven zodat gebruikers aangekochte content opnieuw kunnen openen.</p><h4>Derden</h4><p>Wij kunnen betaalproviders, e-maildiensten, hosting en analytics gebruiken. Vul vóór livegang de daadwerkelijke dienstverleners in.</p><h4>Uw rechten</h4><p>U kunt inzage, correctie, verwijdering, beperking, overdraagbaarheid of bezwaar vragen via de contactgegevens op de website.</p></div>'+ 
+  '</div>';
+}
+function legalTermsHtml(){
+  return '<div class="legal-disclaimer">'+(t()?'合规提示：数字产品“无退款”必须在结算页明确提示，并让消费者主动同意即时交付及放弃冷静期。正式上线请让荷兰专业人士复核。':'Compliance-opmerking: bij digitale inhoud moet vóór betaling duidelijk toestemming worden gevraagd voor directe levering en afstand van herroeping. Laat dit vóór livegang professioneel controleren.')+'</div><div class="legal-grid">'+
+  '<div class="legal-card"><div class="legal-lang">中文</div><h3>条款与条件</h3><h4>1. 适用范围</h4><p>这些条款适用于 Taal13A 网站、线上课程、电子书 PDF、账户、订单和客户服务。</p><h4>2. 商品与课程信息</h4><p>我们会尽量准确展示课程内容、数字商品、价格、交付方式和访问期限。电子书为数字 PDF，不是纸质书。</p><h4>3. 订单与付款</h4><p>订单需在付款完成后生效。正式上线时，付款由第三方支付服务商处理，Taal13A 不直接保存完整银行卡信息。</p><h4>4. 数字产品交付</h4><p>PDF 或数字课程可在付款成功后通过账户、下载链接或邮件交付。请确保邮箱正确。</p><h4>5. 退换与冷静期</h4><p>电子书和即时访问的数字内容在您明确同意即时交付并放弃冷静期后，不支持退款。若因技术问题无法获取文件，请联系 Taal13A 协助补发。</p><h4>6. 账户与访问</h4><p>用户应保护登录信息。购买记录可显示在个人主页；PDF 下载和课程访问仅供购买者本人使用。</p><h4>7. 版权</h4><p>课程、PDF、讲义、视频和页面内容受版权保护，不得转发、转售、公开分享、录屏或上传至第三方平台。</p><h4>8. 责任限制</h4><p>学习材料用于语言学习和考试准备，不保证官方考试结果。因不可控技术故障导致的短暂中断，我们会尽力修复。</p><h4>9. 联系</h4><p>订单、访问或隐私问题可通过网站联系方式联系。</p></div>'+ 
+  '<div class="legal-card"><div class="legal-lang">English</div><h3>Terms & Conditions</h3><h4>1. Scope</h4><p>These terms apply to the Taal13A website, online courses, PDF e-books, accounts, orders and customer service.</p><h4>2. Products and courses</h4><p>We aim to display course content, digital products, prices, delivery method and access terms accurately. E-books are digital PDFs, not physical books.</p><h4>3. Orders and payment</h4><p>An order becomes valid after successful payment. In live use, payments are processed by a third-party payment provider; Taal13A does not store full card details.</p><h4>4. Digital delivery</h4><p>PDFs or digital courses may be delivered after payment through an account, download link or email. Please ensure your email address is correct.</p><h4>5. Withdrawal and refunds</h4><p>For e-books and immediate digital access, refunds are not available after you explicitly consent to immediate delivery and waive the withdrawal period. If a technical issue prevents access, contact Taal13A for support or re-delivery.</p><h4>6. Account and access</h4><p>Users must protect login details. Purchases may appear in the personal dashboard; PDF downloads and course access are for the buyer’s personal use only.</p><h4>7. Copyright</h4><p>Courses, PDFs, handouts, videos and website content are protected by copyright and may not be forwarded, resold, publicly shared, screen-recorded or uploaded to third-party platforms.</p><h4>8. Liability</h4><p>Learning materials support language learning and exam preparation but do not guarantee official exam results. We will make reasonable efforts to resolve technical interruptions.</p><h4>9. Contact</h4><p>For orders, access or privacy questions, use the website contact details.</p></div>'+ 
+  '<div class="legal-card"><div class="legal-lang">Nederlands</div><h3>Algemene voorwaarden</h3><h4>1. Toepassing</h4><p>Deze voorwaarden gelden voor de website van Taal13A, online cursussen, PDF e-books, accounts, bestellingen en klantenservice.</p><h4>2. Producten en cursussen</h4><p>Wij proberen cursusinhoud, digitale producten, prijzen, levering en toegangstermijnen duidelijk weer te geven. E-books zijn digitale PDF-bestanden, geen fysieke boeken.</p><h4>3. Bestelling en betaling</h4><p>Een bestelling is geldig na succesvolle betaling. Bij livegang worden betalingen verwerkt door een externe betaalprovider; Taal13A bewaart geen volledige kaartgegevens.</p><h4>4. Digitale levering</h4><p>PDFs of digitale cursussen kunnen na betaling worden geleverd via account, downloadlink of e-mail. Controleer uw e-mailadres.</p><h4>5. Herroeping en terugbetaling</h4><p>Voor e-books en directe digitale toegang geldt geen terugbetaling nadat u uitdrukkelijk instemt met directe levering en afstand doet van de herroepingstermijn. Bij technische problemen helpt Taal13A met toegang of nalevering.</p><h4>6. Account en toegang</h4><p>Gebruikers beschermen hun inloggegevens. Aankopen kunnen in het persoonlijke dashboard verschijnen; PDF-downloads en cursustoegang zijn uitsluitend voor persoonlijk gebruik door de koper.</p><h4>7. Auteursrecht</h4><p>Cursussen, PDFs, hand-outs, videos en websitecontent zijn auteursrechtelijk beschermd en mogen niet worden doorgestuurd, doorverkocht, openbaar gedeeld, opgenomen of geüpload naar derden.</p><h4>8. Aansprakelijkheid</h4><p>Leermateriaal ondersteunt taalstudie en examenvoorbereiding, maar garandeert geen officieel examenresultaat. Wij doen redelijke inspanningen om technische storingen te verhelpen.</p><h4>9. Contact</h4><p>Voor bestellingen, toegang of privacyvragen kunt u contact opnemen via de website.</p></div>'+ 
+  '</div>';
+}
+function rLegal(){var pb=document.getElementById('privacy-body');if(pb)pb.innerHTML=legalPrivacyHtml();var tb=document.getElementById('terms-body');if(tb)tb.innerHTML=legalTermsHtml();}
 function rDash(){
   if(!USER)return;var ti=t();
   document.getElementById('dg').textContent=ti?'欢迎回来，':'Welkom terug,';
@@ -872,10 +1054,15 @@ function rDash(){
     var lv=ti?(s.zl||s.zt):(s.nl_||s.nt);var tt=ti?(s.zt||s.zl):(s.nt||s.nl_);
     return '<div class="cai"><div class="cad"></div><div class="cain"><div class="cal">'+lv+'</div><div class="cat2">'+tt+'</div></div><span class="cab">'+(ti?'已购':'Actief')+'</span><span class="caw" onclick="wI(\''+cid+'\')">'+(ti?'▶ 开始':'▶ Start')+'</span></div>';
   }).join('');
+  var pl=document.getElementById('my-products'),ps=USER.ps||[];
+  if(pl){pl.innerHTML=ps.length?ps.map(function(pid){var p=PRODUCTS.find(function(x){return x.id===pid;});if(!p)return '';return '<div class="cai"><div class="cad"></div><div class="cain"><div class="cal">PDF</div><div class="cat2">'+(ti?p.zn:p.nn)+'</div></div><span class="cab">'+(ti?'已购':'Actief')+'</span><span class="caw" onclick="downloadProduct(\''+pid+'\')">'+(ti?'下载':'Download')+'</span></div>';}).join(''):'<div class="es">'+(ti?'还没有购买商品。':'Nog geen producten.')+'</div>';}
 }
+function downloadProduct(pid){alert((t()?'真实上线后，从这里下载PDF：':'Na livegang downloadt u hier de PDF: ')+pid);}
 function wI(cid){var s=SES.find(function(x){return x.id===cid;})||PIL.find(function(x){return x.id===cid;});alert((t()?'正在加载：':'Laden: ')+(s?t()?(s.zt||s.zl):(s.nt||s.nl_):cid));}
 
-function nav(id){
+function nav(id,opt){
+  opt=opt||{};
+  if(opt.pid)PDT=opt.pid;
   document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');});
   var pg=document.getElementById('pg-'+id);if(pg)pg.classList.add('on');
   document.querySelectorAll('.nl').forEach(function(b){b.classList.remove('on');});
@@ -884,23 +1071,33 @@ function nav(id){
   if(id==='dashboard')rDash();
   if(id==='overview')rList();
   if(id==='shop')rShop();
+  if(id==='product')rProduct();
+  if(id==='checkout')rCheckout();
+  if(id==='privacy'||id==='terms')rLegal();
   rPil('home-pillars');
   closeCart();
+  if(opt.push!==false){history.pushState({page:id,pid:PDT},'', '#'+id+(PDT&&id==='product'?'-'+PDT:''));}
   window.scrollTo({top:0,behavior:'smooth'});
 }
+window.addEventListener('popstate',function(e){var st=e.state||{page:'home'};nav(st.page||'home',{push:false,pid:st.pid});});
+if(!history.state){history.replaceState({page:'home'},'',location.pathname+location.search+'#home');}
 function setLang(l,btn){
   L=l;
   document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');
   document.querySelectorAll('[data-zh]').forEach(function(el){var v=l==='zh'?el.dataset.zh:el.dataset.nl;if(v!==undefined)el.textContent=v;});
   var h1=document.getElementById('hero-h1');
   if(h1)h1.innerHTML=l==='zh'?'<em>学好荷兰语</em><br>开启全新生活':'Leer het <em>Nederlands</em><br>Begin een nieuw leven';
-  rPil('home-pillars');rList();rShop();updCart();if(USER)rDash();
+  rPil('home-pillars');rList();rShop();updCart();updNewsTicker();if(PDT)rProduct();if(document.getElementById('pg-checkout').classList.contains('on'))rCheckout();rLegal();if(USER)rDash();
 }
 function faqT(el){var a=el.nextElementSibling,ic=el.querySelector('.fic');a.classList.toggle('on');ic.textContent=a.classList.contains('on')?'−':'+';}
+function updNewsTicker(){var el=document.getElementById('news-track');if(!el)return;var ti=t();el.innerHTML=PRODUCTS.map(function(p){return '<span class="news-item" onclick="oProduct(\''+p.id+'\')"><span class="news-dot"></span>🆕 '+(ti?'new · ':'new · ')+(ti?p.zn:p.nn)+'</span>';}).join('');}
 
 (function(){
-  rPil('home-pillars');rList();rShop();
+  rPil('home-pillars');rList();rShop();updNewsTicker();
   var w=document.getElementById('hvid');
   if(w){var v=document.createElement('video');v.autoplay=true;v.muted=true;v.loop=true;v.playsInline=true;v.style.cssText='width:100%;height:100%;object-fit:cover;opacity:.42';v.src='https://cdn.coverr.co/videos/coverr-amsterdam-canal-and-bikes-4665/1080p.mp4';v.onerror=function(){w.style.display='none';};w.appendChild(v);}
 })();
 </script>
+
+</body>
+</html>
