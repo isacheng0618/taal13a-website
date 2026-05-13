@@ -1090,25 +1090,57 @@ function legalTermsHtml(){
 }
 function rLegal(){var pb=document.getElementById('privacy-body');if(pb)pb.innerHTML=legalPrivacyHtml();var tb=document.getElementById('terms-body');if(tb)tb.innerHTML=legalTermsHtml();}
 function rDash(){
-  if(!USER)return;var ti=t();
+  if(!USER)return;
+  var ti=t();
+
   document.getElementById('dg').textContent=ti?'欢迎回来，':'Welkom terug,';
   document.getElementById('dname').textContent=USER.nm;
-  document.getElementById('acct').innerHTML='Email: '+USER.em+'<br>WeChat: '+(USER.wc||'—')+'<br>'+(ti?'已购课程':'Cursussen')+': '+(USER.cs||[]).length;
-  var ow=USER.cs||[],cl=document.getElementById('my-courses');
-  if(!ow.length){cl.innerHTML='<div class="es">'+(ti?'还没有课程。':'Nog geen cursussen.')+'<br><a onclick="nav(\'overview\')">'+(ti?'浏览课程':'Cursussen bekijken')+'</a></div>';return;}
-  cl.innerHTML=ow.map(function(cid){
-    var s=SES.find(function(x){return x.id===cid;})||PIL.find(function(x){return x.id===cid;});if(!s)return '';
-    var lv=ti?(s.zl||s.zt):(s.nl_||s.nt);var tt=ti?(s.zt||s.zl):(s.nt||s.nl_);
-    return '<div class="cai"><div class="cad"></div><div class="cain"><div class="cal">'+lv+'</div><div class="cat2">'+tt+'</div></div><span class="cab">'+(ti?'已购':'Actief')+'</span><span class="caw" onclick="wI(\''+cid+'\')">'+(ti?'▶ 开始':'▶ Start')+'</span></div>';
-  }).join('');
+
+  document.getElementById('acct').innerHTML=
+    'Email: '+USER.em+
+    '<br>WeChat: '+(USER.wc||'—')+
+    '<br>'+(ti?'已购课程':'Cursussen')+': '+(USER.cs||[]).length;
+
+  var ow=USER.cs||[];
+  var cl=document.getElementById('my-courses');
+
+  if(cl){
+    if(!ow.length){
+      cl.innerHTML='<div class="es">'+
+        (ti?'还没有课程。':'Nog geen cursussen.')+
+        '<br><a onclick="nav(\'overview\')">'+
+        (ti?'浏览课程':'Cursussen bekijken')+
+        '</a></div>';
+    }else{
+      cl.innerHTML=ow.map(function(cid){
+        var s=SES.find(function(x){return x.id===cid;})||PIL.find(function(x){return x.id===cid;});
+        if(!s)return '';
+        var lv=ti?(s.zl||s.zt):(s.nl_||s.nt);
+        var tt=ti?(s.zt||s.zl):(s.nt||s.nl_);
+        return '<div class="cai">'+
+          '<div class="cad"></div>'+
+          '<div class="cain">'+
+            '<div class="cal">'+lv+'</div>'+
+            '<div class="cat2">'+tt+'</div>'+
+          '</div>'+
+          '<span class="cab">'+(ti?'已购':'Actief')+'</span>'+
+          '<span class="caw" onclick="wI(\''+cid+'\')">'+(ti?'▶ 开始':'▶ Start')+'</span>'+
+        '</div>';
+      }).join('');
+    }
+  }
+
   var pl=document.getElementById('my-products');
   if(pl){
-  pl.innerHTML='<div class="es">'+(ti?'正在加载购买记录...':'Aankopen laden...')+'</div>';
-  loadPurchases();
+    pl.innerHTML='<div class="es">'+(ti?'正在加载购买记录...':'Aankopen laden...')+'</div>';
+    loadPurchases();
+  }
 }
+
 async function loadPurchases(){
   var ti=t();
   var pl=document.getElementById('my-products');
+
   if(!USER || !USER.em || !pl)return;
 
   try{
@@ -1116,7 +1148,9 @@ async function loadPurchases(){
     var data=await res.json();
 
     if(!res.ok){
-      pl.innerHTML='<div class="es">'+(data.error || (ti?'无法加载购买记录。':'Aankopen konden niet worden geladen.'))+'</div>';
+      pl.innerHTML='<div class="es">'+
+        (data.error || (ti?'无法加载购买记录。':'Aankopen konden niet worden geladen.'))+
+      '</div>';
       return;
     }
 
@@ -1131,9 +1165,13 @@ async function loadPurchases(){
       var pid=item.product_id;
       var p=PRODUCTS.find(function(x){return x.id===pid;});
       var title=p ? (ti?p.zn:p.nn) : pid;
+
       return '<div class="cai">'+
         '<div class="cad"></div>'+
-        '<div class="cain"><div class="cal">PDF</div><div class="cat2">'+title+'</div></div>'+
+        '<div class="cain">'+
+          '<div class="cal">PDF</div>'+
+          '<div class="cat2">'+title+'</div>'+
+        '</div>'+
         '<span class="cab">'+(ti?'已购':'Actief')+'</span>'+
         '<span class="caw" onclick="downloadProduct(\''+pid+'\')">'+(ti?'下载':'Download')+'</span>'+
       '</div>';
@@ -1147,6 +1185,7 @@ async function loadPurchases(){
 
 async function downloadProduct(pid){
   var ti=t();
+
   if(!USER || !USER.em){
     alert(ti?'请先登录。':'Log eerst in.');
     return;
@@ -1170,6 +1209,7 @@ async function downloadProduct(pid){
     }
 
     window.open(data.downloadUrl,'_blank');
+
   }catch(err){
     console.error(err);
     alert(ti?'无法下载，请稍后再试。':'Downloaden lukt niet. Probeer later opnieuw.');
