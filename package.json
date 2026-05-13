@@ -1,0 +1,9 @@
+{
+  "name": "taal13a-website",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@mollie/api-client": "^4.3.2",
+    "@supabase/supabase-js": "^2.49.4"
+  }
+}
