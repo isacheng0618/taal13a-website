@@ -991,6 +991,8 @@ input:focus{border-color:var(--blue);background:#fff;}
   <div class="shop-hero">
     <h1 data-zh="📚 Taal13A 商店" data-nl="📚 Taal13A Winkel">📚 Taal13A 商店</h1>
    <p data-zh="A2口语备考 PDF 电子资料｜购买后即时下载" data-nl="A2 Spreken PDF-materiaal｜Direct downloaden na aankoop">
+  A2口语备考 PDF 电子资料｜购买后即时下载
+</p>
   </div>
   <div class="sec" style="padding-top:1.5rem;padding-bottom:0">
     <div class="shop-cats" style="padding:0;margin-bottom:1.4rem">
@@ -1333,9 +1335,24 @@ function rProduct(){
 }
 
 function addToCart(pid){
-  var prod=PRODUCTS.find(function(p){return p.id===pid;});if(!prod)return;
+  var ti=t();
+
+  if(isProductPurchased(pid)){
+    alert(ti?'你已经购买过这个产品，可以在个人主页下载。':'U heeft dit product al gekocht. U kunt het downloaden in uw dashboard.');
+    nav('dashboard');
+    return;
+  }
+
+  var prod=PRODUCTS.find(function(p){return p.id===pid;});
+  if(!prod)return;
+
   var ex=CART.find(function(c){return c.id===pid;});
-  if(ex){ex.qty++;}else{CART.push({id:pid,qty:1});}
+  if(ex){
+    ex.qty++;
+  }else{
+    CART.push({id:pid,qty:1});
+  }
+
   updCart();
   openCart();
 }
@@ -1392,7 +1409,7 @@ function rCheckout(){
   var ti=t();var body=document.getElementById('checkout-body');if(!body)return;
   if(!CART.length){body.innerHTML='<div class="fc"><div class="fct">'+(ti?'购物车':'Winkelwagen')+'</div><div class="cart-empty">'+(ti?'购物车是空的':'Winkelwagen is leeg')+'</div><button class="bf" onclick="nav(\'shop\')">'+(ti?'去商店':'Naar winkel')+'</button></div>';return;}
   var total=0;var lines=CART.map(function(ci){var p=PRODUCTS.find(function(x){return x.id===ci.id;});if(!p)return '';total+=p.pr*ci.qty;return '<div class="order-line"><span>'+(ti?p.zn:p.nn)+' × '+ci.qty+'</span><span>'+fmtPrice(p.pr*ci.qty)+'</span></div>';}).join('');
-  body.innerHTML='<div><div class="fc"><div class="fct">'+(ti?'购买人信息':'Klantgegevens')+'</div><div class="form-hint">'+(ti?''请先注册/登录后购买。购买记录及电子文件下载入口会绑定账号，并显示在个人主页。':'Registreer of log eerst in voordat u koopt. Uw aankoopgeschiedenis en downloadtoegang voor digitale bestanden worden aan uw account gekoppeld en verschijnen in uw dashboard.')+'</div>'+
+  body.innerHTML='<div><div class="fc"><div class="fct">'+(ti?'购买人信息':'Klantgegevens')+'</div><div class="form-hint">'+(ti?'请先注册/登录后购买。购买记录及电子文件下载入口会绑定账号，并显示在个人主页。':'Registreer of log eerst in voordat u koopt. Uw aankoopgeschiedenis en downloadtoegang voor digitale bestanden worden aan uw account gekoppeld en verschijnen in uw dashboard.')+'</div>'+
     '<div class="fr2"><div><label>'+(ti?'用户名':'Gebruikersnaam')+'</label><input type="text" id="ck-name" value="'+(USER?USER.nm:'')+'"></div><div><label>Email</label><input type="email" id="ck-email" value="'+(USER?USER.em:'')+'"></div></div>'+ 
     '<div class="fr"><label>WeChat '+(ti?'（选填）':'(optioneel)')+'</label><input type="text" id="ck-wc" value="'+(USER?(USER.wc||''):'')+'"></div>'+ 
     '<div class="fr"><label>'+(ti?'发票/备注（选填）':'Factuur/opmerking optioneel')+'</label><input type="text" id="ck-note" placeholder="'+(ti?'例如：需要公司发票':'Bijv. factuur nodig')+'"></div>'+ 
