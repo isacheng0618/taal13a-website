@@ -386,17 +386,175 @@ input:focus{border-color:var(--blue);background:#fff;}
 .fic{width:23px;height:23px;border-radius:50%;background:var(--blue-l);border:1.5px solid var(--blue-m);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--blue);flex-shrink:0;font-weight:800;}
 .fa{font-size:13px;color:var(--ink3);line-height:1.65;padding-top:.6rem;display:none;font-weight:500;}
 .fa.on{display:block;}
-.csplit{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;max-width:800px;margin:0 auto;}
-.cinfo2{background:linear-gradient(145deg,var(--blue) 0%,var(--blue-d) 100%);border-radius:var(--rl);padding:1.7rem;color:#fff;}
-.cinfo2 h3{font-family:'Playfair Display',serif;color:rgba(255,255,255,.9);font-size:1.1rem;margin-bottom:.85rem;font-weight:700;}
-.crow2{display:flex;gap:8px;margin-bottom:.72rem;font-size:12.5px;color:rgba(255,255,255,.65);align-items:flex-start;font-weight:500;}
-.cdot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.4);flex-shrink:0;margin-top:5px;}
-.wb2{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.15);border-radius:8px;padding:.8rem;text-align:center;margin-top:.9rem;}
-.wid2{font-size:16px;font-weight:900;color:#fff;letter-spacing:1.5px;}
-.wsub{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px;font-weight:600;}
-.cform{background:#fff;border:1.5px solid var(--bdr2);border-radius:var(--rl);padding:1.7rem;}
-select,textarea{width:100%;padding:9px 12px;border:2px solid var(--bdr);border-radius:8px;font-size:13.5px;font-family:inherit;color:var(--ink);background:var(--sand);outline:none;font-weight:600;}
+.csplit{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2rem;
+  max-width:980px;
+  margin:0 auto;
+  align-items:stretch;
+}
 
+.cinfo2{
+  background:#fff;
+  border:1px solid var(--bdr2);
+  border-radius:0;
+  padding:0;
+  color:var(--ink);
+  overflow:hidden;
+}
+
+.contact-title{
+  font-size:42px;
+  line-height:1;
+  letter-spacing:-1px;
+  font-weight:900;
+  text-align:center;
+  padding:2.2rem 1rem 1.6rem;
+  color:var(--ink);
+}
+
+.contact-img{
+  height:210px;
+  background:
+    linear-gradient(rgba(255,255,255,.08),rgba(255,255,255,.08)),
+    url('./contact-bg.jpg');
+  background-size:cover;
+  background-position:center;
+}
+
+.contact-info-body{
+  padding:2rem 2.2rem 2.3rem;
+}
+
+.cinfo2 h3{
+  font-family:'Nunito',sans-serif;
+  color:var(--ink);
+  font-size:18px;
+  margin-bottom:1rem;
+  font-weight:900;
+}
+
+.crow2{
+  display:flex;
+  gap:10px;
+  margin-bottom:.9rem;
+  font-size:15px;
+  color:var(--ink2);
+  align-items:flex-start;
+  font-weight:650;
+}
+
+.cdot{
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--ora);
+  flex-shrink:0;
+  margin-top:8px;
+}
+
+.wb2{
+  background:var(--sand);
+  border:1px solid var(--bdr2);
+  border-radius:0;
+  padding:.8rem;
+  text-align:center;
+  margin-top:.9rem;
+}
+
+.wid2{
+  font-size:16px;
+  font-weight:900;
+  color:var(--ink);
+  letter-spacing:1.5px;
+}
+
+.wsub{
+  font-size:11px;
+  color:var(--ink3);
+  margin-top:2px;
+  font-weight:600;
+}
+
+.cform{
+  background:#fff;
+  border:1px solid var(--bdr2);
+  border-radius:0;
+  padding:2.2rem;
+}
+
+select,
+textarea{
+  width:100%;
+  padding:13px 14px;
+  border:1.5px solid #d8d2c8;
+  border-radius:0;
+  font-size:15px;
+  font-family:inherit;
+  color:var(--ink);
+  background:#fff;
+  outline:none;
+  font-weight:600;
+}
+
+.cform input,
+.cform select,
+.cform textarea{
+  background:#fff;
+  border:1.5px solid #d8d2c8;
+  border-radius:0;
+  padding:13px 14px;
+  font-size:15px;
+}
+
+.cform label{
+  font-size:12px;
+  letter-spacing:.7px;
+  color:#6d675e;
+}
+
+.cform .bf{
+  border-radius:0;
+  padding:15px;
+  font-size:15px;
+  background:var(--blue);
+}
+
+.cform .bf:hover{
+  background:var(--blue-d);
+}
+
+.form-msg{
+  margin-top:1rem;
+  font-size:13px;
+  font-weight:750;
+  line-height:1.5;
+}
+
+.form-msg.ok{color:var(--grn);}
+.form-msg.err{color:#C0281A;}
+
+@media(max-width:700px){
+  .csplit{
+    grid-template-columns:1fr;
+    gap:1.2rem;
+  }
+
+  .contact-title{
+    font-size:34px;
+    padding:1.8rem 1rem 1.3rem;
+  }
+
+  .contact-img{
+    height:170px;
+  }
+
+  .contact-info-body,
+  .cform{
+    padding:1.4rem;
+  }
+}
 
 @media(max-width:700px){
 
@@ -926,20 +1084,70 @@ Taal13A 的教学理念是：让学荷兰语变得简单、接地气、真正有
   <div class="ph2"><h1 data-zh="联系我们" data-nl="Contact">联系我们</h1><p data-zh="有任何问题，欢迎随时联系 Isa 老师" data-nl="Vragen? Neem contact op met Isa">有任何问题，欢迎随时联系 Isa 老师</p></div>
   <div class="sec">
     <div class="csplit">
-      <div class="cinfo2">
-        <h3 data-zh="联系方式" data-nl="Contactgegevens">联系方式</h3>
-        <div class="crow2"><div class="cdot"></div><div>taal13a@gmail.com</div></div>
-        <div class="crow2"><div class="cdot"></div><div>Rotterdam, Nederland</div></div>
-        <div class="crow2"><div class="cdot"></div><div><span class="legal-link" onclick="nav('privacy')">Privacy Policy</span> · <span class="legal-link" onclick="nav('terms')">Terms & Conditions</span></div></div>
+<div class="cinfo2">
+  <div class="contact-title" data-zh="联系我们" data-nl="Contact us">联系我们</div>
+  <div class="contact-img"></div>
 
+  <div class="contact-info-body">
+    <h3 data-zh="联系方式" data-nl="Contactgegevens">联系方式</h3>
+
+    <div class="crow2">
+      <div class="cdot"></div>
+      <div>taal13a@gmail.com</div>
+    </div>
+
+    <div class="crow2">
+      <div class="cdot"></div>
+      <div>Rotterdam, Nederland</div>
+    </div>
+
+    <div class="crow2">
+      <div class="cdot"></div>
+      <div>
+        <span class="legal-link" onclick="nav('privacy')">Privacy Policy</span>
+        ·
+        <span class="legal-link" onclick="nav('terms')">Terms & Conditions</span>
       </div>
-      <div class="cform">
-        <div class="fr"><label data-zh="姓名" data-nl="Naam">姓名</label><input type="text" placeholder="Name"></div>
-        <div class="fr"><label>Email</label><input type="email" placeholder="email@example.com"></div>
-        <div class="fr"><label data-zh="话题" data-nl="Onderwerp">话题</label><select><option data-zh="课程咨询" data-nl="Cursusadvies">课程咨询</option><option data-zh="商店订单" data-nl="Winkelbestelling">商店订单</option><option data-zh="其他" data-nl="Overig">其他</option></select></div>
-        <div class="fr"><label data-zh="留言" data-nl="Bericht">留言</label><textarea rows="3"></textarea></div>
-        <button class="bf" data-zh="发送留言" data-nl="Verstuur">发送留言</button>
-      </div>
+    </div>
+  </div>
+</div>
+     <div class="cform">
+  <div class="contact-form-title" data-zh="发送消息" data-nl="Send a message">发送消息</div>
+  <p class="contact-form-sub" data-zh="有课程、购买或合作问题，可以直接留言。" data-nl="For courses, purchases or collaborations, send us a message.">
+    有课程、购买或合作问题，可以直接留言。
+  </p>
+
+  <div id="contact-msg"></div>
+
+  <div class="fr">
+    <label data-zh="姓名" data-nl="Naam">姓名</label>
+    <input type="text" id="contact-name" placeholder="Name">
+  </div>
+
+  <div class="fr">
+    <label>Email</label>
+    <input type="email" id="contact-email" placeholder="email@example.com">
+  </div>
+
+  <div class="fr">
+    <label data-zh="话题" data-nl="Onderwerp">话题</label>
+    <select id="contact-topic">
+      <option data-zh="课程咨询" data-nl="Cursusadvies">课程咨询</option>
+      <option data-zh="商店订单" data-nl="Winkelbestelling">商店订单</option>
+      <option data-zh="合作咨询" data-nl="Samenwerking">合作咨询</option>
+      <option data-zh="其他" data-nl="Overig">其他</option>
+    </select>
+  </div>
+
+  <div class="fr">
+    <label data-zh="留言" data-nl="Bericht">留言</label>
+    <textarea rows="5" id="contact-message"></textarea>
+  </div>
+
+  <button class="bf contact-submit" onclick="sendContactMessage()" data-zh="发送留言" data-nl="Verstuur">
+    发送留言
+  </button>
+</div>
     </div>
   </div>
 </div>
@@ -1632,6 +1840,52 @@ function updNewsTicker(){var el=document.getElementById('news-track');if(!el)ret
   var w=document.getElementById('hvid');
   if(w){var v=document.createElement('video');v.autoplay=true;v.muted=true;v.loop=true;v.playsInline=true;v.style.cssText='width:100%;height:100%;object-fit:cover;opacity:.42';v.src='https://cdn.coverr.co/videos/coverr-amsterdam-canal-and-bikes-4665/1080p.mp4';v.onerror=function(){w.style.display='none';};w.appendChild(v);}
 })();
+})();
+
+async function sendContactMessage(){
+  var ti=t();
+
+  var name=document.getElementById('contact-name').value.trim();
+  var email=document.getElementById('contact-email').value.trim();
+  var topic=document.getElementById('contact-topic').value.trim();
+  var message=document.getElementById('contact-message').value.trim();
+  var box=document.getElementById('contact-msg');
+
+  if(!name || !email || !message){
+    box.innerHTML='<div class="aerr">'+(ti?'请填写姓名、邮箱和留言。':'Vul naam, e-mail en bericht in.')+'</div>';
+    return;
+  }
+
+  box.innerHTML='<div class="contact-ok">'+(ti?'正在发送...':'Bericht wordt verzonden...')+'</div>';
+
+  try{
+    var res=await fetch('/api/contact',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        name:name,
+        email:email,
+        topic:topic,
+        message:message
+      })
+    });
+
+    var data=await res.json();
+
+    if(!res.ok){
+      box.innerHTML='<div class="aerr">'+(data.error || (ti?'发送失败，请稍后再试。':'Verzenden mislukt.'))+'</div>';
+      return;
+    }
+
+    box.innerHTML='<div class="contact-ok">'+(ti?'留言已发送成功，我们会尽快回复。':'Uw bericht is verzonden. We reageren zo snel mogelijk.')+'</div>';
+
+    document.getElementById('contact-message').value='';
+
+  }catch(err){
+    console.error(err);
+    box.innerHTML='<div class="aerr">'+(ti?'发送失败，请稍后再试。':'Verzenden mislukt.')+'</div>';
+  }
+}
 </script>
 
 </body>
