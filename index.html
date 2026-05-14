@@ -43,7 +43,12 @@ body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);ove
   cursor:pointer;
 }
 .news-ticker{height:28px;background:#fff;border-bottom:1px solid var(--bdr2);overflow:hidden;display:flex;align-items:center;position:sticky;top:64px;z-index:90;}
-.news-track{display:inline-flex;gap:42px;white-space:nowrap;animation:ticker 35s linear infinite;font-size:12.5px;font-weight:850;color:var(--ink2);padding-left:100%;}
+.news-track{display:inline-flex;gap:42px;white-space:nowrap;animation:ticker 35s linear infinite;font-size:12.5px;font-weight:850;color:var(--ink2);padding-left:100%;} 
+  @media(max-width:700px){
+  .news-track{
+    animation-duration:18s;
+  }
+}
 .news-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ora);margin-right:7px;vertical-align:middle;}
 .news-item{display:inline-flex;align-items:center;padding:3px 10px;border-radius:999px;cursor:pointer;transition:background .18s,color .18s,transform .18s;}
 .news-item:hover{background:var(--ora-l);color:var(--ora);transform:translateY(-1px);}
@@ -698,11 +703,27 @@ input:focus{border-color:var(--blue);background:#fff;}
 .legal-disclaimer{background:var(--blue-l);border:1px solid var(--blue-m);border-radius:var(--rl);padding:1rem;font-size:12.5px;line-height:1.65;color:var(--blue-d);font-weight:700;margin-bottom:1rem;}
 .legal-link{color:var(--blue);font-weight:900;text-decoration:underline;cursor:pointer;}
 @media(max-width:850px){
-  .pd-card.fashion{grid-template-columns:1fr}
-  .pd-card.fashion .pd-gallery{grid-template-columns:1fr}
-  .pd-card.fashion .pd-info{position:static}
-  .legal-grid{grid-template-columns:1fr}
-  .pd-shot{min-height:320px}
+  .pd-card.fashion{
+    grid-template-columns:1fr;
+  }
+
+  .pd-card.fashion .pd-info{
+    position:static;
+    order:1;
+  }
+
+  .pd-card.fashion .pd-gallery{
+    grid-template-columns:1fr;
+    order:2;
+  }
+
+  .legal-grid{
+    grid-template-columns:1fr;
+  }
+
+  .pd-shot{
+    min-height:320px;
+  }
 }
 
 @media(max-width:700px){
