@@ -237,8 +237,13 @@ body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);ove
 .legal-note{font-size:11.5px;color:var(--ink3);line-height:1.6;background:var(--sand);border-radius:10px;padding:.75rem;margin-top:.75rem;}
 .order-line{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-bottom:1px solid var(--bdr2);font-size:13px;font-weight:700;color:var(--ink2);}
 .order-line.total{border-bottom:none;font-size:16px;color:var(--ink);font-weight:900;margin-top:.3rem;}
-@media(max-width:700px){.pd-card,.checkout-layout{grid-template-columns:1fr}.news-ticker{top:64px}.logo-main{height:44px}.nl{font-size:13px}}
-
+@media(max-width:700px){
+  .pd-card,
+  .checkout-layout{
+    grid-template-columns:1fr;
+  }
+}
+  
 /* ENROLL */
 .ep-hero{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-d) 100%);padding:2.8rem 20px;text-align:center;}
 .ep-hero h1{font-family:'Playfair Display',serif;color:#fff;font-size:1.8rem;font-weight:700;margin-bottom:.3rem;}
@@ -340,29 +345,231 @@ select,textarea{width:100%;padding:9px 12px;border:2px solid var(--bdr);border-r
 
 
 @media(max-width:700px){
-  .hero{height:auto;min-height:390px;padding:64px 18px 48px;}
-  .hero h1{font-size:2.15rem;line-height:1.18;}
-  .hsub{font-size:15.5px;line-height:1.75;}
-  .hstats{gap:1rem;margin-top:1.8rem;padding-top:1.4rem;flex-wrap:wrap;}
-  .hstats>div{width:42%;}
-  .sec{padding:2.6rem 16px;}
-  .shop-grid{grid-template-columns:1fr;gap:1rem;}
-  .scard-img{height:300px;}
-  .scard-body{padding:1.15rem;}
-  .scard-name{font-size:16px;}
-  .scard-desc{font-size:13.5px;line-height:1.65;}
-  .crow,.ecard{flex-direction:column;align-items:flex-start;text-align:left;}
-  .cright,.ecard-r{text-align:left;width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;}
-  .tcard2{padding:1.35rem;}
-  .tbio{font-size:14px;line-height:1.8;}
-  .ph2{padding:2.2rem 16px;}
-  .ph2 h1{font-size:1.65rem;}
-}
 
-@media(max-width:700px){
-  .nc{display:none;}.ep-cols{grid-template-columns:1fr;}.co-body{grid-template-columns:1fr;}.filt{position:static;}
-  .dcols{grid-template-columns:1fr;}.krow{grid-template-columns:1fr 1fr;}.csplit{grid-template-columns:1fr;}
-  .tcard2{flex-direction:column;align-items:center;text-align:center;}.cart-panel{width:100%;}
+  /* 顶部工具栏：手机端显示，两行排版 */
+  .tb{
+    height:auto;
+    min-height:112px;
+    padding:10px 12px;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:8px 10px;
+    position:sticky;
+    top:0;
+  }
+
+  .logo-main{
+    height:42px;
+    width:auto;
+    flex:0 0 auto;
+  }
+
+  .nr{
+    margin-left:auto;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    align-items:center;
+    gap:6px;
+    max-width:210px;
+  }
+
+  #auth-btns,
+  #user-btns{
+    display:inline-flex;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    gap:6px;
+  }
+
+  #user-btns .ub{
+    margin-left:0 !important;
+  }
+
+  /* 中文 / NL / 登录 / 注册 / 我的课程 / 退出：统一大小 */
+  .lb,
+  .ub,
+  .cta{
+    width:64px;
+    height:34px;
+    padding:0;
+    border-radius:18px;
+    font-size:12px;
+    line-height:1.1;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+
+  /* 导航栏不要隐藏，放第二行 */
+  .nc{
+    display:flex !important;
+    order:3;
+    width:100%;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+
+  .nl{
+    font-size:12.5px;
+    padding:6px 8px;
+    border-radius:18px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.14);
+    color:rgba(255,255,255,.78);
+  }
+
+  .nl.on,
+  .nl:hover{
+    color:#fff;
+    background:rgba(255,255,255,.16);
+    border-color:rgba(255,255,255,.34);
+  }
+
+  /* 顶部变高后，新闻条下移 */
+  .news-ticker{
+    top:112px;
+  }
+
+  /* 首页 hero 不要被顶部遮挡 */
+  .hero{
+    height:auto;
+    min-height:390px;
+    padding:76px 18px 48px;
+  }
+
+  .hero h1{
+    font-size:2.15rem;
+    line-height:1.18;
+  }
+
+  .hsub{
+    font-size:15.5px;
+    line-height:1.75;
+  }
+
+  .hstats{
+    gap:1rem;
+    margin-top:1.8rem;
+    padding-top:1.4rem;
+    flex-wrap:wrap;
+  }
+
+  .hstats>div{
+    width:42%;
+  }
+
+  .sec{
+    padding:2.6rem 16px;
+  }
+
+  /* 首页 “学习，从未如此灵活”：手机端两个 tile 一行 */
+  .fgrid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:.8rem;
+  }
+
+  .fcard{
+    padding:1rem .85rem;
+    border-radius:14px;
+  }
+
+  .ficon{
+    width:38px;
+    height:38px;
+    font-size:18px;
+    margin-bottom:.65rem;
+  }
+
+  .ft{
+    font-size:13px;
+    line-height:1.35;
+  }
+
+  .fd{
+    font-size:11.5px;
+    line-height:1.45;
+  }
+
+  .shop-grid{
+    grid-template-columns:1fr;
+    gap:1rem;
+  }
+
+  .scard-img{
+    height:300px;
+  }
+
+  .scard-body{
+    padding:1.15rem;
+  }
+
+  .scard-name{
+    font-size:16px;
+  }
+
+  .scard-desc{
+    font-size:13.5px;
+    line-height:1.65;
+  }
+
+  .crow,
+  .ecard{
+    flex-direction:column;
+    align-items:flex-start;
+    text-align:left;
+  }
+
+  .cright,
+  .ecard-r{
+    text-align:left;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+
+  .ep-cols,
+  .co-body,
+  .dcols,
+  .csplit{
+    grid-template-columns:1fr;
+  }
+
+  .filt{
+    position:static;
+  }
+
+  .krow{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .tcard2{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    padding:1.35rem;
+  }
+
+  .tbio{
+    font-size:14px;
+    line-height:1.8;
+  }
+
+  .ph2{
+    padding:2.2rem 16px;
+  }
+
+  .ph2 h1{
+    font-size:1.65rem;
+  }
+
+  .cart-panel{
+    width:100%;
+  }
 }
 
 
