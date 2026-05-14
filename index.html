@@ -43,7 +43,7 @@ body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);ove
   cursor:pointer;
 }
 .news-ticker{height:28px;background:#fff;border-bottom:1px solid var(--bdr2);overflow:hidden;display:flex;align-items:center;position:sticky;top:64px;z-index:90;}
-.news-track{display:inline-flex;gap:42px;white-space:nowrap;animation:ticker 18s linear infinite;font-size:12.5px;font-weight:850;color:var(--ink2);padding-left:100%;}
+.news-track{display:inline-flex;gap:42px;white-space:nowrap;animation:ticker 35s linear infinite;font-size:12.5px;font-weight:850;color:var(--ink2);padding-left:100%;}
 .news-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ora);margin-right:7px;vertical-align:middle;}
 .news-item{display:inline-flex;align-items:center;padding:3px 10px;border-radius:999px;cursor:pointer;transition:background .18s,color .18s,transform .18s;}
 .news-item:hover{background:var(--ora-l);color:var(--ora);transform:translateY(-1px);}
@@ -1277,7 +1277,10 @@ function rShop(){
       '<div class="scard-desc">'+(ti?p.zd:p.nd)+'</div>'+
       '<div class="scard-foot">'+
       '<div><span class="scard-price">'+prFmt+'</span>'+(oldFmt?'<span class="scard-old">'+oldFmt+'</span>':'')+'</div>'+
-      '<button class="btn-cart" onclick="event.stopPropagation();addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button>'+
+     (isProductPurchased(p.id)
+  ? '<button class="btn-cart" style="background:var(--grn);cursor:default" onclick="event.stopPropagation();">'+(ti?'已购买':'Gekocht')+'</button>'
+  : '<button class="btn-cart" onclick="event.stopPropagation();addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button>'
+)+
       '</div></div></div>';
   }).join('');
 }
@@ -1286,6 +1289,9 @@ function rShop(){
 function buyProduct(pid){addToCart(pid);}
 
 function fmtPrice(cents){return '€'+(cents/100).toFixed(2).replace('.',',');}
+function isProductPurchased(pid){
+  return USER && Array.isArray(USER.products) && USER.products.indexOf(pid) >= 0;
+}
 function oProduct(pid){PDT=pid;nav('product',{pid:pid});}
 function rProduct(){
   var ti=t();var p=PRODUCTS.find(function(x){return x.id===PDT;});var el=document.getElementById('product-detail');if(!el||!p)return;
@@ -1307,7 +1313,12 @@ function rProduct(){
         '<div class="pd-price">'+fmtPrice(p.pr)+'</div>'+ 
         '<div class="pd-meta-row"><span class="pd-chip">PDF</span><span class="pd-chip">A2 Spreken</span><span class="pd-chip">'+(ti?'即时下载':'Direct download')+'</span><span class="pd-chip">'+(ti?'中文讲解':'Chinese uitleg')+'</span></div>'+ 
         '<div class="pd-desc">'+(ti?p.zd:p.nd)+'</div>'+ 
-        '<div class="pd-actions"><button class="bpay" onclick="addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button><button class="btn-secondary" onclick="addToCart(\''+p.id+'\');cartCheckout();">'+(ti?'立即结算':'Direct afrekenen')+'</button></div>'+ 
+        '<div class="pd-actions">'+
+  (isProductPurchased(p.id)
+    ? '<button class="bpay" style="background:var(--grn);cursor:default">'+(ti?'已购买':'Gekocht')+'</button><button class="btn-secondary" onclick="nav(\'dashboard\')">'+(ti?'去下载':'Naar download')+'</button>'
+    : '<button class="bpay" onclick="addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button><button class="btn-secondary" onclick="addToCart(\''+p.id+'\');cartCheckout();">'+(ti?'立即结算':'Direct afrekenen')+'</button>'
+  )+
+'</div>'+
         '<div class="pd-warning">'+(ti?'提示：这是电子书 PDF，不是纸质书。购买前请确认邮箱正确，并在结算页勾选数字产品即时交付确认。':'Let op: dit is een digitaal PDF-bestand, geen fysiek boek. Controleer uw e-mailadres en bevestig directe levering bij checkout.')+'</div>'+ 
         '<div class="pd-policy">'+
           '<details class="pd-acc" open><summary>'+(ti?'商品描述':'Productomschrijving')+'</summary><div>'+(ti?'适合正在准备荷兰 A2 口语考试、需要题库、答题框架和中荷双语示范答案的学习者。内容重点是考试表达训练，不替代官方考试材料。':'Voor cursisten die zich voorbereiden op het Nederlandse A2-spreekexamen en behoefte hebben aan vraagtypes, spreekstructuren en voorbeeldantwoorden met Chinese uitleg. Het materiaal vervangt geen officieel examenmateriaal.')+'</div></details>'+ 
@@ -1381,7 +1392,7 @@ function rCheckout(){
   var ti=t();var body=document.getElementById('checkout-body');if(!body)return;
   if(!CART.length){body.innerHTML='<div class="fc"><div class="fct">'+(ti?'购物车':'Winkelwagen')+'</div><div class="cart-empty">'+(ti?'购物车是空的':'Winkelwagen is leeg')+'</div><button class="bf" onclick="nav(\'shop\')">'+(ti?'去商店':'Naar winkel')+'</button></div>';return;}
   var total=0;var lines=CART.map(function(ci){var p=PRODUCTS.find(function(x){return x.id===ci.id;});if(!p)return '';total+=p.pr*ci.qty;return '<div class="order-line"><span>'+(ti?p.zn:p.nn)+' × '+ci.qty+'</span><span>'+fmtPrice(p.pr*ci.qty)+'</span></div>';}).join('');
-  body.innerHTML='<div><div class="fc"><div class="fct">'+(ti?'购买人信息':'Klantgegevens')+'</div><div class="form-hint">'+(ti?'支持游客购买；注册/登录后购买记录会显示在个人主页。':'Gastbestelling mogelijk; ingelogde aankopen verschijnen in uw account.')+'</div>'+ 
+  body.innerHTML='<div><div class="fc"><div class="fct">'+(ti?'购买人信息':'Klantgegevens')+'</div><div class="form-hint">'+(ti?''请先注册/登录后购买。购买记录及电子文件下载入口会绑定账号，并显示在个人主页。':'Registreer of log eerst in voordat u koopt. Uw aankoopgeschiedenis en downloadtoegang voor digitale bestanden worden aan uw account gekoppeld en verschijnen in uw dashboard.')+'</div>'+
     '<div class="fr2"><div><label>'+(ti?'用户名':'Gebruikersnaam')+'</label><input type="text" id="ck-name" value="'+(USER?USER.nm:'')+'"></div><div><label>Email</label><input type="email" id="ck-email" value="'+(USER?USER.em:'')+'"></div></div>'+ 
     '<div class="fr"><label>WeChat '+(ti?'（选填）':'(optioneel)')+'</label><input type="text" id="ck-wc" value="'+(USER?(USER.wc||''):'')+'"></div>'+ 
     '<div class="fr"><label>'+(ti?'发票/备注（选填）':'Factuur/opmerking optioneel')+'</label><input type="text" id="ck-note" placeholder="'+(ti?'例如：需要公司发票':'Bijv. factuur nodig')+'"></div>'+ 
@@ -1393,6 +1404,11 @@ function rCheckout(){
 
 async function startMollieCheckout(){
   var ti=t();
+if(!USER){
+  alert(ti?'请先注册/登录后购买。购买记录及电子文件下载入口会绑定账号，并显示在个人主页。':'Registreer of log eerst in voordat u koopt. Uw aankoopgeschiedenis en downloadtoegang worden aan uw account gekoppeld en verschijnen in uw dashboard.');
+  nav('login');
+  return;
+}
   var name=document.getElementById('ck-name').value.trim();
   var email=document.getElementById('ck-email').value.trim();
   var wechat=document.getElementById('ck-wc') ? document.getElementById('ck-wc').value.trim() : '';
@@ -1630,11 +1646,25 @@ async function refreshUser(){
   if(result.data && result.data.user){
     var u = result.data.user;
     USER = {
-      nm: u.user_metadata.name || u.email,
-      em: u.email,
-      wc: u.user_metadata.wechat || '',
-      cs: []
-    };
+  nm: u.user_metadata.name || u.email,
+  em: u.email,
+  wc: u.user_metadata.wechat || '',
+  cs: [],
+  products: []
+};
+
+try{
+  var res = await fetch('/api/get-purchases?email=' + encodeURIComponent(u.email));
+  var data = await res.json();
+
+  if(res.ok && data.purchases){
+    USER.products = data.purchases.map(function(item){
+      return item.product_id;
+    });
+  }
+}catch(err){
+  console.error('load user purchases error:', err);
+}
 
     document.getElementById('auth-btns').style.display='none';
     document.getElementById('user-btns').style.display='';
@@ -1826,15 +1856,15 @@ async function loadPurchases(){
       var p=PRODUCTS.find(function(x){return x.id===pid;});
       var title=p ? (ti?p.zn:p.nn) : pid;
 
-      return '<div class="cai">'+
-        '<div class="cad"></div>'+
-        '<div class="cain">'+
-          '<div class="cal">PDF</div>'+
-          '<div class="cat2">'+title+'</div>'+
-        '</div>'+
-        '<span class="cab">'+(ti?'已购':'Actief')+'</span>'+
-        '<span class="caw" onclick="downloadProduct(\''+pid+'\')">'+(ti?'下载':'Download')+'</span>'+
-      '</div>';
+return '<div class="cai">'+
+  '<div class="cad"></div>'+
+  '<div class="cain">'+
+    '<div class="cal">'+title+'</div>'+
+  '</div>'+
+  '<span class="cab">'+(ti?'已购':'Actief')+'</span>'+
+  '<span class="caw" onclick="downloadProduct(\''+pid+'\')">'+(ti?'下载':'Download')+'</span>'+
+'</div>';
+      
     }).join('');
 
   }catch(err){
