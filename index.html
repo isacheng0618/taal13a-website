@@ -346,39 +346,40 @@ select,textarea{width:100%;padding:9px 12px;border:2px solid var(--bdr);border-r
 
 @media(max-width:700px){
 
-  /* 顶部工具栏：手机端显示，两行排版 */
+    /* 手机端顶部栏：logo + 右侧账号按钮同一行，导航在下一行 */
   .tb{
     height:auto;
-    min-height:112px;
-    padding:10px 12px;
+    min-height:86px;
+    padding:10px 12px 8px;
     flex-wrap:wrap;
     align-items:center;
-    gap:8px 10px;
+    gap:4px 8px;
     position:sticky;
     top:0;
   }
 
   .logo-main{
-    height:42px;
+    height:39px;
     width:auto;
     flex:0 0 auto;
   }
 
+  /* 中文 / NL / 我的课程 / 退出 放在 logo 同一高度 */
   .nr{
     margin-left:auto;
     display:flex;
-    flex-wrap:wrap;
-    justify-content:flex-end;
+    flex-wrap:nowrap;
     align-items:center;
+    justify-content:flex-end;
     gap:6px;
-    max-width:210px;
+    max-width:none;
   }
 
   #auth-btns,
   #user-btns{
     display:inline-flex;
-    flex-wrap:wrap;
-    justify-content:flex-end;
+    flex-wrap:nowrap;
+    align-items:center;
     gap:6px;
   }
 
@@ -386,58 +387,89 @@ select,textarea{width:100%;padding:9px 12px;border:2px solid var(--bdr);border-r
     margin-left:0 !important;
   }
 
-  /* 中文 / NL / 登录 / 注册 / 我的课程 / 退出：统一大小 */
+  /* 取消椭圆泡泡：语言和账户按钮更轻、更紧凑 */
   .lb,
   .ub,
   .cta{
-    width:64px;
-    height:34px;
-    padding:0;
-    border-radius:18px;
+    width:auto;
+    height:auto;
+    min-width:auto;
+    padding:2px 4px;
+    border-radius:0;
+    border:none;
+    background:transparent;
+    box-shadow:none;
     font-size:12px;
     line-height:1.1;
+    color:rgba(255,255,255,.82);
     display:inline-flex;
     align-items:center;
     justify-content:center;
     text-align:center;
+    white-space:nowrap;
   }
 
-  /* 导航栏不要隐藏，放第二行 */
+  .lb.on,
+  .ub:hover,
+  .cta:hover{
+    background:transparent;
+    color:#fff;
+    border:none;
+  }
+
+  .cta{
+    color:#fff;
+    font-weight:900;
+  }
+
+  /* 主页 / 课程 / 商店 / 关于 / 联系：放在 logo 下面一行，一行显示 */
   .nc{
     display:flex !important;
     order:3;
     width:100%;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:6px;
+    justify-content:flex-start;
+    align-items:center;
+    flex-wrap:nowrap;
+    gap:10px;
+    overflow-x:auto;
+    padding-left:2px;
+    scrollbar-width:none;
   }
 
+  .nc::-webkit-scrollbar{
+    display:none;
+  }
+
+  /* 取消导航按钮泡泡，只保留文字 */
   .nl{
-    font-size:12.5px;
-    padding:6px 8px;
-    border-radius:18px;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.14);
-    color:rgba(255,255,255,.78);
+    padding:0;
+    border:none;
+    border-radius:0;
+    background:transparent;
+    box-shadow:none;
+    color:rgba(255,255,255,.76);
+    font-size:11.5px;
+    line-height:1.2;
+    font-weight:850;
+    white-space:nowrap;
   }
 
   .nl.on,
   .nl:hover{
     color:#fff;
-    background:rgba(255,255,255,.16);
-    border-color:rgba(255,255,255,.34);
+    background:transparent;
+    border:none;
   }
 
-  /* 顶部变高后，新闻条下移 */
+  /* 顶部变矮后，新闻条跟着上移 */
   .news-ticker{
-    top:112px;
+    top:86px;
   }
-
   /* 首页 hero 不要被顶部遮挡 */
   .hero{
     height:auto;
     min-height:390px;
-    padding:76px 18px 48px;
+    padding:48px 18px 48px;
   }
 
   .hero h1{
