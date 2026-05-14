@@ -67,23 +67,24 @@ body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);ove
 
 .hovl{
   position:absolute;
+  in.hovl{
+  position:absolute;
   inset:0;
   z-index:1;
   background:
-    linear-gradient(120deg,rgba(18,58,90,.66),rgba(22,75,115,.44)),
-    rgba(0,0,0,.08);
+    linear-gradient(120deg,rgba(18,58,90,.28),rgba(22,75,115,.16)),
+    rgba(0,0,0,.04);
 }
+
 .gfb{
   position:absolute;
   inset:0;
   z-index:0;
-  background-image:
-    linear-gradient(120deg,rgba(28,69,102,.72),rgba(37,94,137,.54)),
-    url('./hero-bg.jpg');
+  background-image:url('./hero-bg.jpg');
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
-  filter:saturate(.92) contrast(.96);
+  filter:saturate(1.08) contrast(1.04) brightness(1.04);
 }
 
 .gfb::after{
@@ -91,8 +92,7 @@ body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);ove
   position:absolute;
   inset:0;
   background:
-    linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.28)),
-    radial-gradient(circle at center,rgba(255,255,255,.08),rgba(0,0,0,.18));
+    linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.12));
 }
 
 .gb{
@@ -391,248 +391,6 @@ input:focus{border-color:var(--blue);background:#fff;}
 .fic{width:23px;height:23px;border-radius:50%;background:var(--blue-l);border:1.5px solid var(--blue-m);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--blue);flex-shrink:0;font-weight:800;}
 .fa{font-size:13px;color:var(--ink3);line-height:1.65;padding-top:.6rem;display:none;font-weight:500;}
 .fa.on{display:block;}
-.csplit{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:2rem;
-  max-width:980px;
-  margin:0 auto;
-  align-items:stretch;
-}
-
-.cinfo2{
-  background:#fff;
-  border:1px solid var(--bdr2);
-  border-radius:0;
-  padding:0;
-  color:var(--ink);
-  overflow:hidden;
-}
-
-.contact-title{
-  font-size:42px;
-  line-height:1;
-  letter-spacing:-1px;
-  font-weight:900;
-  text-align:center;
-  padding:2.2rem 1rem 1.6rem;
-  color:var(--ink);
-}
-
-.contact-img{
-  height:210px;
-  background:
-    linear-gradient(rgba(255,255,255,.08),rgba(255,255,255,.08)),
-    url('./contact-bg.jpg');
-  background-size:cover;
-  background-position:center;
-}
-
-.contact-info-body{
-  padding:2rem 2.2rem 2.3rem;
-}
-
-.cinfo2 h3{
-  font-family:'Nunito',sans-serif;
-  color:var(--ink);
-  font-size:18px;
-  margin-bottom:1rem;
-  font-weight:900;
-}
-
-.crow2{
-  display:flex;
-  gap:10px;
-  margin-bottom:.9rem;
-  font-size:15px;
-  color:var(--ink2);
-  align-items:flex-start;
-  font-weight:650;
-}
-
-.cdot{
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:var(--ora);
-  flex-shrink:0;
-  margin-top:8px;
-}
-
-.wb2{
-  background:var(--sand);
-  border:1px solid var(--bdr2);
-  border-radius:0;
-  padding:.8rem;
-  text-align:center;
-  margin-top:.9rem;
-}
-
-.wid2{
-  font-size:16px;
-  font-weight:900;
-  color:var(--ink);
-  letter-spacing:1.5px;
-}
-
-.wsub{
-  font-size:11px;
-  color:var(--ink3);
-  margin-top:2px;
-  font-weight:600;
-}
-
-.cform{
-  background:#fff;
-  border:1px solid var(--bdr2);
-  border-radius:0;
-  padding:2.2rem;
-}
-
-select,
-textarea{
-  width:100%;
-  padding:13px 14px;
-  border:1.5px solid #d8d2c8;
-  border-radius:0;
-  font-size:15px;
-  font-family:inherit;
-  color:var(--ink);
-  background:#fff;
-  outline:none;
-  font-weight:600;
-}
-
-.cform input,
-.cform select,
-.cform textarea{
-  background:#fff;
-  border:1.5px solid #d8d2c8;
-  border-radius:0;
-  padding:13px 14px;
-  font-size:15px;
-}
-
-.cform label{
-  font-size:12px;
-  letter-spacing:.7px;
-  color:#6d675e;
-}
-
-.cform .bf{
-  border-radius:0;
-  padding:15px;
-  font-size:15px;
-  background:var(--blue);
-}
-
-.cform .bf:hover{
-  background:var(--blue-d);
-}
-
-.form-msg{
-  margin-top:1rem;
-  font-size:13px;
-  font-weight:750;
-  line-height:1.5;
-}
-
-.form-msg.ok{color:var(--grn);}
-.form-msg.err{color:#C0281A;}
-
-.csplit{
-  max-width:760px;
-  margin:0 auto;
-}
-
-.cinfo2{
-  background:#fff;
-  border:1.5px solid var(--bdr2);
-  border-radius:var(--rl);
-  padding:0;
-  color:var(--ink);
-  overflow:hidden;
-  box-shadow:0 8px 26px rgba(26,75,115,.08);
-}
-
-.contact-title{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2rem,4vw,3rem);
-  line-height:1.1;
-  font-weight:700;
-  text-align:center;
-  padding:2.4rem 1rem 1.4rem;
-  color:var(--ink);
-  background:linear-gradient(135deg,var(--blue-l),#fff);
-}
-
-.contact-img{
-  height:360px;
-  background:
-    linear-gradient(rgba(255,255,255,.06),rgba(255,255,255,.06)),
-    url('./contact-bg.jpg');
-  background-size:cover;
-  background-position:center;
-}
-
-.contact-info-body{
-  padding:2rem 2.4rem 2.4rem;
-  background:#fff;
-}
-
-.cinfo2 h3{
-  font-family:'Playfair Display',serif;
-  color:var(--ink);
-  font-size:1.45rem;
-  margin-bottom:1.1rem;
-  font-weight:700;
-}
-
-.crow2{
-  display:flex;
-  gap:12px;
-  margin-bottom:1rem;
-  font-size:16px;
-  color:var(--ink2);
-  align-items:flex-start;
-  font-weight:750;
-  line-height:1.55;
-}
-
-.cdot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--ora);
-  flex-shrink:0;
-  margin-top:9px;
-}
-
-.legal-link{
-  color:var(--blue);
-  font-weight:900;
-  text-decoration:underline;
-  cursor:pointer;
-}
-
-@media(max-width:700px){
-  .contact-title{
-    font-size:2rem;
-    padding:2rem 1rem 1.2rem;
-  }
-
-  .contact-img{
-    height:260px;
-  }
-
-  .contact-info-body{
-    padding:1.5rem 1.4rem 1.7rem;
-  }
-
-  .crow2{
-    font-size:15px;
-  }
-}
 
 @media(max-width:700px){
 
@@ -938,46 +696,6 @@ textarea{
   .pd-card.fashion .pd-info{position:static}
   .legal-grid{grid-template-columns:1fr}
   .pd-shot{min-height:320px}
-}
-
-/* Contact page: single full-width contact card */
-#pg-contact .csplit{
-  display:block;
-  max-width:820px;
-  margin:0 auto;
-}
-
-#pg-contact .cinfo2{
-  width:100%;
-  max-width:820px;
-  margin:0 auto;
-  background:#fff;
-  border:1px solid var(--bdr2);
-  border-radius:0;
-}
-
-#pg-contact .contact-title{
-  font-size:56px;
-  padding:2.8rem 1rem 2rem;
-}
-
-#pg-contact .contact-img{
-  height:360px;
-  background-size:cover;
-  background-position:center;
-}
-
-#pg-contact .contact-info-body{
-  padding:2.6rem 3rem 3rem;
-}
-
-#pg-contact .cinfo2 h3{
-  font-size:24px;
-}
-
-#pg-contact .crow2{
-  font-size:18px;
-  margin-bottom:1.1rem;
 }
 
 @media(max-width:700px){
