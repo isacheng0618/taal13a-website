@@ -36,7 +36,12 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);overflow-x:hidden;}
 .tb{background:var(--blue);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2);}
-.logo-main{height:52px;width:auto;flex-shrink:0;}
+.logo-main{
+  height:52px;
+  width:auto;
+  flex-shrink:0;
+  cursor:pointer;
+}
 .news-ticker{height:28px;background:#fff;border-bottom:1px solid var(--bdr2);overflow:hidden;display:flex;align-items:center;position:sticky;top:64px;z-index:90;}
 .news-track{display:inline-flex;gap:42px;white-space:nowrap;animation:ticker 18s linear infinite;font-size:12.5px;font-weight:850;color:var(--ink2);padding-left:100%;}
 .news-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ora);margin-right:7px;vertical-align:middle;}
@@ -535,24 +540,97 @@ textarea{
 .form-msg.ok{color:var(--grn);}
 .form-msg.err{color:#C0281A;}
 
-@media(max-width:700px){
-  .csplit{
-    grid-template-columns:1fr;
-    gap:1.2rem;
-  }
+.csplit{
+  max-width:760px;
+  margin:0 auto;
+}
 
+.cinfo2{
+  background:#fff;
+  border:1.5px solid var(--bdr2);
+  border-radius:var(--rl);
+  padding:0;
+  color:var(--ink);
+  overflow:hidden;
+  box-shadow:0 8px 26px rgba(26,75,115,.08);
+}
+
+.contact-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4vw,3rem);
+  line-height:1.1;
+  font-weight:700;
+  text-align:center;
+  padding:2.4rem 1rem 1.4rem;
+  color:var(--ink);
+  background:linear-gradient(135deg,var(--blue-l),#fff);
+}
+
+.contact-img{
+  height:360px;
+  background:
+    linear-gradient(rgba(255,255,255,.06),rgba(255,255,255,.06)),
+    url('./contact-bg.jpg');
+  background-size:cover;
+  background-position:center;
+}
+
+.contact-info-body{
+  padding:2rem 2.4rem 2.4rem;
+  background:#fff;
+}
+
+.cinfo2 h3{
+  font-family:'Playfair Display',serif;
+  color:var(--ink);
+  font-size:1.45rem;
+  margin-bottom:1.1rem;
+  font-weight:700;
+}
+
+.crow2{
+  display:flex;
+  gap:12px;
+  margin-bottom:1rem;
+  font-size:16px;
+  color:var(--ink2);
+  align-items:flex-start;
+  font-weight:750;
+  line-height:1.55;
+}
+
+.cdot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--ora);
+  flex-shrink:0;
+  margin-top:9px;
+}
+
+.legal-link{
+  color:var(--blue);
+  font-weight:900;
+  text-decoration:underline;
+  cursor:pointer;
+}
+
+@media(max-width:700px){
   .contact-title{
-    font-size:34px;
-    padding:1.8rem 1rem 1.3rem;
+    font-size:2rem;
+    padding:2rem 1rem 1.2rem;
   }
 
   .contact-img{
-    height:170px;
+    height:260px;
   }
 
-  .contact-info-body,
-  .cform{
-    padding:1.4rem;
+  .contact-info-body{
+    padding:1.5rem 1.4rem 1.7rem;
+  }
+
+  .crow2{
+    font-size:15px;
   }
 }
 
@@ -954,7 +1032,7 @@ textarea{
 
 <!-- TOPBAR -->
 <nav class="tb">
-  <svg class="logo-main" viewBox="0 0 200 40" fill="none">
+  <svg class="logo-main" onclick="nav('home')" viewBox="0 0 200 40" fill="none">
     <rect x="2" y="8" width="4" height="24" rx="2" fill="white" opacity=".9"/>
     <rect x="10" y="2" width="4" height="36" rx="2" fill="white" opacity=".9"/>
     <rect x="18" y="8" width="4" height="24" rx="2" fill="white" opacity=".9"/>
