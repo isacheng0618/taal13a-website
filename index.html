@@ -920,7 +920,33 @@ textarea{
     font-size:15px;
   }
 }
+.legal-single{
+  max-width:860px;
+  margin:0 auto;
+  padding:2.2rem 2.4rem;
+}
 
+.legal-single h3{
+  font-size:1.65rem;
+  margin-bottom:1rem;
+}
+
+.legal-single h4{
+  margin-top:1.35rem;
+  margin-bottom:.45rem;
+}
+
+.legal-single p,
+.legal-single li{
+  font-size:14.5px;
+  line-height:1.8;
+}
+
+@media(max-width:700px){
+  .legal-single{
+    padding:1.4rem;
+  }
+}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 </head>
@@ -1084,13 +1110,19 @@ textarea{
 
 <!-- LEGAL: PRIVACY -->
 <div class="pg" id="pg-privacy" style="background:var(--sand);min-height:calc(100vh - 92px)">
-  <div class="ph2"><h1>Privacy Policy / 隐私政策 / Privacyverklaring</h1><p data-zh="三语版本，适用于 Taal13A 荷兰语课程和数字商品网站。" data-nl="Drietalige versie voor cursussen en digitale producten van Taal13A.">三语版本，适用于 Taal13A 荷兰语课程和数字商品网站。</p></div>
+  <div class="ph2">
+  <h1 data-zh="隐私政策" data-nl="Privacyverklaring">隐私政策</h1>
+  <p data-zh="适用于 Taal13A 荷兰语课程、数字商品和网站服务。" data-nl="Van toepassing op cursussen, digitale producten en websitediensten van Taal13A.">适用于 Taal13A 荷兰语课程、数字商品和网站服务。</p>
+</div>
   <div class="legal-wrap" id="privacy-body"></div>
 </div>
 
 <!-- LEGAL: TERMS -->
 <div class="pg" id="pg-terms" style="background:var(--sand);min-height:calc(100vh - 92px)">
-  <div class="ph2"><h1>Terms & Conditions / 条款与条件 / Algemene voorwaarden</h1><p data-zh="课程、电子书、账户和付款相关条款。" data-nl="Voorwaarden voor cursussen, e-books, accounts en betalingen.">课程、电子书、账户和付款相关条款。</p></div>
+  <div class="ph2">
+  <h1 data-zh="条款与条件" data-nl="Algemene voorwaarden">条款与条件</h1>
+  <p data-zh="适用于课程、电子书、账户、订单和付款。" data-nl="Van toepassing op cursussen, e-books, accounts, bestellingen en betalingen.">适用于课程、电子书、账户、订单和付款。</p>
+</div>
   <div class="legal-wrap" id="terms-body"></div>
 </div>
 
@@ -1689,17 +1721,91 @@ async function doLogout(){
 }
 
 function legalPrivacyHtml(){
-  return '<div class="legal-disclaimer">'+(t()?'合规提示：以下为网站上线用模板，请在正式发布前补充 KvK 号、BTW 号、公司法定名称、数据保存期限、Cookie 工具和实际付款/邮件服务商，并由专业人士复核。':'Compliance-opmerking: dit is een websitetemplate. Vul vóór publicatie KvK-nummer, btw-nummer, juridische bedrijfsnaam, bewaartermijnen, cookie-tool en gebruikte betaal-/mailproviders in en laat dit professioneel controleren.')+'</div><div class="legal-grid">'+
-  '<div class="legal-card"><div class="legal-lang">中文</div><h3>隐私政策</h3><p>本隐私政策说明 Taal13A 在提供荷兰语课程、电子书、账户、付款和客户服务时如何处理个人信息。</p><h4>我们收集的信息</h4><ul><li>用户名、邮箱、WeChat（选填）</li><li>订单、购买记录、付款状态和下载记录</li><li>课程报名、学习访问和客服沟通内容</li></ul><h4>使用目的</h4><p>用于创建账号、处理订单、交付数字产品、提供课程访问、发送订单通知、售后服务、账务管理以及遵守法律义务。</p><h4>法律依据</h4><p>主要依据合同履行、法定义务、正当利益；营销邮件仅在获得同意后发送。</p><h4>保存期限</h4><p>订单和发票资料按荷兰税务要求保存；账号资料保留至账号删除或不再需要。下载权限可在合理技术期限内保留，以便用户重新访问已购内容。</p><h4>第三方服务</h4><p>可能使用付款服务商、邮件服务商、网站托管和分析工具。正式上线前应列明实际服务商。</p><h4>您的权利</h4><p>您可以请求访问、更正、删除、限制处理、数据可携带或反对处理。请通过网站联系方式提交请求。</p></div>'+ 
-  '<div class="legal-card"><div class="legal-lang">English</div><h3>Privacy Policy</h3><p>This policy explains how Taal13A processes personal data when offering Dutch language courses, e-books, accounts, payments and customer support.</p><h4>Data we collect</h4><ul><li>Username, email address and optional WeChat ID</li><li>Orders, purchase history, payment status and download access</li><li>Course enrolment, access information and support messages</li></ul><h4>Purposes</h4><p>We use this data to create accounts, process orders, deliver digital products, provide course access, send transactional emails, offer support, keep accounting records and comply with legal duties.</p><h4>Legal bases</h4><p>The main bases are performance of contract, legal obligation and legitimate interest. Marketing emails are sent only with consent.</p><h4>Retention</h4><p>Order and invoice records are retained as required by Dutch tax law. Account data is kept until deletion or until no longer necessary. Download access may be retained for a reasonable technical period so users can access purchased content.</p><h4>Third parties</h4><p>We may use payment providers, email providers, hosting and analytics tools. The actual providers should be listed before launch.</p><h4>Your rights</h4><p>You may request access, correction, deletion, restriction, portability or objection. Contact us through the website contact details.</p></div>'+ 
-  '<div class="legal-card"><div class="legal-lang">Nederlands</div><h3>Privacyverklaring</h3><p>Deze verklaring legt uit hoe Taal13A persoonsgegevens verwerkt bij Nederlandse taalcursussen, e-books, accounts, betalingen en klantenservice.</p><h4>Gegevens die wij verzamelen</h4><ul><li>Gebruikersnaam, e-mailadres en optioneel WeChat-ID</li><li>Bestellingen, aankoopgeschiedenis, betaalstatus en downloadtoegang</li><li>Cursusinschrijvingen, toegangsgegevens en supportberichten</li></ul><h4>Doeleinden</h4><p>Wij gebruiken deze gegevens voor accounts, bestellingen, levering van digitale producten, cursustoegang, orderberichten, service, administratie en wettelijke verplichtingen.</p><h4>Grondslagen</h4><p>De belangrijkste grondslagen zijn uitvoering van de overeenkomst, wettelijke verplichting en gerechtvaardigd belang. Marketing wordt alleen verzonden met toestemming.</p><h4>Bewaartermijnen</h4><p>Order- en factuurgegevens worden bewaard volgens Nederlandse fiscale verplichtingen. Accountgegevens blijven bewaard tot verwijdering of zolang nodig. Downloadtoegang kan redelijkerwijs behouden blijven zodat gebruikers aangekochte content opnieuw kunnen openen.</p><h4>Derden</h4><p>Wij kunnen betaalproviders, e-maildiensten, hosting en analytics gebruiken. Vul vóór livegang de daadwerkelijke dienstverleners in.</p><h4>Uw rechten</h4><p>U kunt inzage, correctie, verwijdering, beperking, overdraagbaarheid of bezwaar vragen via de contactgegevens op de website.</p></div>'+ 
+  if(t()){
+    return '<div class="legal-card legal-single">'+
+      '<h3>隐私政策</h3>'+
+      '<p>本隐私政策说明 Taal13A 在提供荷兰语课程、电子书、账户、付款和客户服务时如何处理个人信息。</p>'+
+      '<h4>我们收集的信息</h4>'+
+      '<ul><li>姓名、用户名、邮箱地址和 WeChat（选填）</li><li>订单、购买记录、付款状态和下载记录</li><li>课程报名、学习访问和客服沟通内容</li></ul>'+
+      '<h4>使用目的</h4>'+
+      '<p>我们使用这些信息来创建账号、处理订单、交付数字产品、提供课程访问、发送订单通知、提供售后服务、进行账务管理以及遵守法律义务。</p>'+
+      '<h4>法律依据</h4>'+
+      '<p>我们主要基于合同履行、法定义务和正当利益处理个人信息。营销邮件仅在获得同意后发送。</p>'+
+      '<h4>保存期限</h4>'+
+      '<p>订单和发票资料会按照荷兰税务要求保存。账号资料会保留至账号删除或不再需要。下载权限可在合理技术期限内保留，以便用户重新访问已购内容。</p>'+
+      '<h4>第三方服务</h4>'+
+      '<p>我们可能使用网站托管、付款服务、邮件服务和数据存储服务来完成订单、付款、邮件通知和数字产品交付。</p>'+
+      '<h4>您的权利</h4>'+
+      '<p>您可以请求访问、更正、删除、限制处理、数据可携带或反对处理您的个人信息。请通过网站联系方式提交请求。</p>'+
+      '<h4>联系方式</h4>'+
+      '<p>如有隐私相关问题，请联系：taal13a@gmail.com。</p>'+
+    '</div>';
+  }
+
+  return '<div class="legal-card legal-single">'+
+    '<h3>Privacyverklaring</h3>'+
+    '<p>Deze privacyverklaring legt uit hoe Taal13A persoonsgegevens verwerkt bij het aanbieden van Nederlandse taalcursussen, e-books, accounts, betalingen en klantenservice.</p>'+
+    '<h4>Welke gegevens verzamelen wij?</h4>'+
+    '<ul><li>Naam, gebruikersnaam, e-mailadres en optioneel WeChat-ID</li><li>Bestellingen, aankoopgeschiedenis, betaalstatus en downloadgegevens</li><li>Cursusinschrijvingen, toegangsgegevens en berichten aan de klantenservice</li></ul>'+
+    '<h4>Waarvoor gebruiken wij deze gegevens?</h4>'+
+    '<p>Wij gebruiken deze gegevens om accounts aan te maken, bestellingen te verwerken, digitale producten te leveren, toegang tot cursussen te geven, orderberichten te sturen, klantenservice te bieden, administratie te voeren en aan wettelijke verplichtingen te voldoen.</p>'+
+    '<h4>Juridische grondslag</h4>'+
+    '<p>Wij verwerken persoonsgegevens voornamelijk op basis van uitvoering van de overeenkomst, wettelijke verplichtingen en gerechtvaardigd belang. Marketingberichten worden alleen verzonden met toestemming.</p>'+
+    '<h4>Bewaartermijn</h4>'+
+    '<p>Order- en factuurgegevens worden bewaard volgens de Nederlandse fiscale verplichtingen. Accountgegevens worden bewaard totdat het account wordt verwijderd of zolang dit nodig is. Downloadtoegang kan redelijkerwijs behouden blijven zodat gebruikers aangekochte producten opnieuw kunnen openen.</p>'+
+    '<h4>Derde partijen</h4>'+
+    '<p>Wij kunnen gebruikmaken van diensten voor hosting, betalingen, e-mail en gegevensopslag om bestellingen, betalingen, e-mailmeldingen en digitale levering mogelijk te maken.</p>'+
+    '<h4>Uw rechten</h4>'+
+    '<p>U kunt verzoeken om inzage, correctie, verwijdering, beperking van verwerking, overdraagbaarheid van gegevens of bezwaar tegen verwerking. Neem hiervoor contact op via de contactgegevens op de website.</p>'+
+    '<h4>Contact</h4>'+
+    '<p>Voor privacyvragen kunt u contact opnemen via: taal13a@gmail.com.</p>'+
   '</div>';
 }
 function legalTermsHtml(){
-  return '<div class="legal-disclaimer">'+(t()?'合规提示：数字产品“无退款”必须在结算页明确提示，并让消费者主动同意即时交付及放弃冷静期。正式上线请让荷兰专业人士复核。':'Compliance-opmerking: bij digitale inhoud moet vóór betaling duidelijk toestemming worden gevraagd voor directe levering en afstand van herroeping. Laat dit vóór livegang professioneel controleren.')+'</div><div class="legal-grid">'+
-  '<div class="legal-card"><div class="legal-lang">中文</div><h3>条款与条件</h3><h4>1. 适用范围</h4><p>这些条款适用于 Taal13A 网站、线上课程、电子书 PDF、账户、订单和客户服务。</p><h4>2. 商品与课程信息</h4><p>我们会尽量准确展示课程内容、数字商品、价格、交付方式和访问期限。电子书为数字 PDF，不是纸质书。</p><h4>3. 订单与付款</h4><p>订单需在付款完成后生效。正式上线时，付款由第三方支付服务商处理，Taal13A 不直接保存完整银行卡信息。</p><h4>4. 数字产品交付</h4><p>PDF 或数字课程可在付款成功后通过账户、下载链接或邮件交付。请确保邮箱正确。</p><h4>5. 退换与冷静期</h4><p>电子书和即时访问的数字内容在您明确同意即时交付并放弃冷静期后，不支持退款。若因技术问题无法获取文件，请联系 Taal13A 协助补发。</p><h4>6. 账户与访问</h4><p>用户应保护登录信息。购买记录可显示在个人主页；PDF 下载和课程访问仅供购买者本人使用。</p><h4>7. 版权</h4><p>课程、PDF、讲义、视频和页面内容受版权保护，不得转发、转售、公开分享、录屏或上传至第三方平台。</p><h4>8. 责任限制</h4><p>学习材料用于语言学习和考试准备，不保证官方考试结果。因不可控技术故障导致的短暂中断，我们会尽力修复。</p><h4>9. 联系</h4><p>订单、访问或隐私问题可通过网站联系方式联系。</p></div>'+ 
-  '<div class="legal-card"><div class="legal-lang">English</div><h3>Terms & Conditions</h3><h4>1. Scope</h4><p>These terms apply to the Taal13A website, online courses, PDF e-books, accounts, orders and customer service.</p><h4>2. Products and courses</h4><p>We aim to display course content, digital products, prices, delivery method and access terms accurately. E-books are digital PDFs, not physical books.</p><h4>3. Orders and payment</h4><p>An order becomes valid after successful payment. In live use, payments are processed by a third-party payment provider; Taal13A does not store full card details.</p><h4>4. Digital delivery</h4><p>PDFs or digital courses may be delivered after payment through an account, download link or email. Please ensure your email address is correct.</p><h4>5. Withdrawal and refunds</h4><p>For e-books and immediate digital access, refunds are not available after you explicitly consent to immediate delivery and waive the withdrawal period. If a technical issue prevents access, contact Taal13A for support or re-delivery.</p><h4>6. Account and access</h4><p>Users must protect login details. Purchases may appear in the personal dashboard; PDF downloads and course access are for the buyer’s personal use only.</p><h4>7. Copyright</h4><p>Courses, PDFs, handouts, videos and website content are protected by copyright and may not be forwarded, resold, publicly shared, screen-recorded or uploaded to third-party platforms.</p><h4>8. Liability</h4><p>Learning materials support language learning and exam preparation but do not guarantee official exam results. We will make reasonable efforts to resolve technical interruptions.</p><h4>9. Contact</h4><p>For orders, access or privacy questions, use the website contact details.</p></div>'+ 
-  '<div class="legal-card"><div class="legal-lang">Nederlands</div><h3>Algemene voorwaarden</h3><h4>1. Toepassing</h4><p>Deze voorwaarden gelden voor de website van Taal13A, online cursussen, PDF e-books, accounts, bestellingen en klantenservice.</p><h4>2. Producten en cursussen</h4><p>Wij proberen cursusinhoud, digitale producten, prijzen, levering en toegangstermijnen duidelijk weer te geven. E-books zijn digitale PDF-bestanden, geen fysieke boeken.</p><h4>3. Bestelling en betaling</h4><p>Een bestelling is geldig na succesvolle betaling. Bij livegang worden betalingen verwerkt door een externe betaalprovider; Taal13A bewaart geen volledige kaartgegevens.</p><h4>4. Digitale levering</h4><p>PDFs of digitale cursussen kunnen na betaling worden geleverd via account, downloadlink of e-mail. Controleer uw e-mailadres.</p><h4>5. Herroeping en terugbetaling</h4><p>Voor e-books en directe digitale toegang geldt geen terugbetaling nadat u uitdrukkelijk instemt met directe levering en afstand doet van de herroepingstermijn. Bij technische problemen helpt Taal13A met toegang of nalevering.</p><h4>6. Account en toegang</h4><p>Gebruikers beschermen hun inloggegevens. Aankopen kunnen in het persoonlijke dashboard verschijnen; PDF-downloads en cursustoegang zijn uitsluitend voor persoonlijk gebruik door de koper.</p><h4>7. Auteursrecht</h4><p>Cursussen, PDFs, hand-outs, videos en websitecontent zijn auteursrechtelijk beschermd en mogen niet worden doorgestuurd, doorverkocht, openbaar gedeeld, opgenomen of geüpload naar derden.</p><h4>8. Aansprakelijkheid</h4><p>Leermateriaal ondersteunt taalstudie en examenvoorbereiding, maar garandeert geen officieel examenresultaat. Wij doen redelijke inspanningen om technische storingen te verhelpen.</p><h4>9. Contact</h4><p>Voor bestellingen, toegang of privacyvragen kunt u contact opnemen via de website.</p></div>'+ 
+  if(t()){
+    return '<div class="legal-card legal-single">'+
+      '<h3>条款与条件</h3>'+
+      '<h4>1. 适用范围</h4>'+
+      '<p>这些条款适用于 Taal13A 网站、线上课程、电子书 PDF、账户、订单、付款和客户服务。</p>'+
+      '<h4>2. 商品与课程信息</h4>'+
+      '<p>我们会尽量准确展示课程内容、数字商品、价格、交付方式和访问期限。电子书为数字 PDF，不是纸质书。</p>'+
+      '<h4>3. 订单与付款</h4>'+
+      '<p>订单在付款成功后生效。付款可能由第三方支付服务商处理，Taal13A 不直接保存完整银行卡信息。</p>'+
+      '<h4>4. 数字产品交付</h4>'+
+      '<p>PDF 或数字课程可在付款成功后通过账户、下载链接或邮件交付。请确保邮箱地址正确。</p>'+
+      '<h4>5. 退换与冷静期</h4>'+
+      '<p>电子书和即时访问的数字内容在您明确同意即时交付并放弃冷静期后，不支持退款。若因技术问题无法获取文件，请联系 Taal13A 协助补发。</p>'+
+      '<h4>6. 账户与访问</h4>'+
+      '<p>用户应保护登录信息。购买记录可显示在个人主页；PDF 下载和课程访问仅供购买者本人使用。</p>'+
+      '<h4>7. 版权</h4>'+
+      '<p>课程、PDF、讲义、视频和网站内容受版权保护，不得转发、转售、公开分享、录屏或上传至第三方平台。</p>'+
+      '<h4>8. 责任限制</h4>'+
+      '<p>学习材料用于语言学习和考试准备，不保证官方考试结果。因不可控技术问题导致的短暂中断，我们会尽力修复。</p>'+
+      '<h4>9. 联系方式</h4>'+
+      '<p>如有订单、访问或条款相关问题，请联系：taal13a@gmail.com。</p>'+
+    '</div>';
+  }
+
+  return '<div class="legal-card legal-single">'+
+    '<h3>Algemene voorwaarden</h3>'+
+    '<h4>1. Toepassing</h4>'+
+    '<p>Deze voorwaarden gelden voor de website van Taal13A, online cursussen, PDF e-books, accounts, bestellingen, betalingen en klantenservice.</p>'+
+    '<h4>2. Producten en cursussen</h4>'+
+    '<p>Wij proberen cursusinhoud, digitale producten, prijzen, levering en toegangstermijnen zo duidelijk mogelijk weer te geven. E-books zijn digitale PDF-bestanden, geen fysieke boeken.</p>'+
+    '<h4>3. Bestelling en betaling</h4>'+
+    '<p>Een bestelling is geldig na succesvolle betaling. Betalingen kunnen worden verwerkt door een externe betaalprovider; Taal13A bewaart geen volledige kaartgegevens.</p>'+
+    '<h4>4. Digitale levering</h4>'+
+    '<p>PDFs of digitale cursussen kunnen na betaling worden geleverd via account, downloadlink of e-mail. Controleer daarom uw e-mailadres goed.</p>'+
+    '<h4>5. Herroeping en terugbetaling</h4>'+
+    '<p>Voor e-books en directe digitale toegang geldt geen terugbetaling nadat u uitdrukkelijk instemt met directe levering en afstand doet van de herroepingstermijn. Bij technische problemen helpt Taal13A met toegang of nalevering.</p>'+
+    '<h4>6. Account en toegang</h4>'+
+    '<p>Gebruikers moeten hun inloggegevens beschermen. Aankopen kunnen in het persoonlijke dashboard verschijnen; PDF-downloads en cursustoegang zijn uitsluitend voor persoonlijk gebruik door de koper.</p>'+
+    '<h4>7. Auteursrecht</h4>'+
+    '<p>Cursussen, PDFs, hand-outs, videos en websitecontent zijn auteursrechtelijk beschermd en mogen niet worden doorgestuurd, doorverkocht, openbaar gedeeld, opgenomen of geüpload naar derden.</p>'+
+    '<h4>8. Aansprakelijkheid</h4>'+
+    '<p>Leermateriaal ondersteunt taalstudie en examenvoorbereiding, maar garandeert geen officieel examenresultaat. Wij doen redelijke inspanningen om technische storingen te verhelpen.</p>'+
+    '<h4>9. Contact</h4>'+
+    '<p>Voor vragen over bestellingen, toegang of voorwaarden kunt u contact opnemen via: taal13a@gmail.com.</p>'+
   '</div>';
 }
 function rLegal(){var pb=document.getElementById('privacy-body');if(pb)pb.innerHTML=legalPrivacyHtml();var tb=document.getElementById('terms-body');if(tb)tb.innerHTML=legalTermsHtml();}
