@@ -1810,6 +1810,17 @@ try{
     USER.products = data.purchases.map(function(item){
       return item.product_id;
     });
+    
+      var purchases=data.purchases||[];
+
+    USER.products = purchases.map(function(item){
+      return item.product_id;
+    });
+
+    if(!purchases.length){
+      pl.innerHTML='<div class="es">'+(ti?'还没有购买商品。':'Nog geen producten.')+'</div>';
+      return;
+    }
   }
 }catch(err){
   console.error('load user purchases error:', err);
@@ -2066,7 +2077,15 @@ function nav(id,opt){
   if(id in m){var bs=document.querySelectorAll('.nl');if(bs[m[id]])bs[m[id]].classList.add('on');}
   if(id==='dashboard')rDash();
   if(id==='overview')rList();
-  if(id==='shop')rShop();
+  if(id==='shop'){
+  if(USER){
+    refreshUser().then(function(){
+      rShop();
+    });
+  }else{
+    rShop();
+  }
+}
   if(id==='product')rProduct();
   if(id==='checkout')rCheckout();
   if(id==='privacy'||id==='terms')rLegal();
