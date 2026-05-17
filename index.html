@@ -2071,6 +2071,29 @@ async function downloadProduct(pid){
 }
 function wI(cid){var s=SES.find(function(x){return x.id===cid;})||PIL.find(function(x){return x.id===cid;});alert((t()?'正在加载：':'Laden: ')+(s?t()?(s.zt||s.zl):(s.nt||s.nl_):cid));}
 
+function handlePaymentReturn(){
+  var params = new URLSearchParams(window.location.search);
+  var payment = params.get('payment');
+  var order = params.get('order');
+
+  if(payment === 'return' && order){
+    CART = [];
+    updCart();
+
+    nav('payment-success', {push:false});
+
+    history.replaceState(
+      {page:'payment-success'},
+      '',
+      window.location.pathname + '#payment-success'
+    );
+
+    return true;
+  }
+
+  return false;
+}
+
 function nav(id,opt){
   opt=opt||{};
   if(opt.pid)PDT=opt.pid;
@@ -2131,6 +2154,10 @@ function updNewsTicker(){var el=document.getElementById('news-track');if(!el)ret
     v.src='https://cdn.coverr.co/videos/coverr-amsterdam-canal-and-bikes-4665/1080p.mp4';
     v.onerror=function(){w.style.display='none';};
     w.appendChild(v);
+  }
+
+  if(handlePaymentReturn()){
+    return;
   }
 
   var initialHash = location.hash ? location.hash.replace('#','') : 'home';
