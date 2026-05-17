@@ -1213,8 +1213,14 @@ Taal13A 的教学理念是：让学荷兰语变得简单、接地气、真正有
   <div id="lerr"></div>
   <div class="fr"><label>Email</label><input type="email" id="lei" placeholder="email@example.com"></div>
   <div class="fr"><label data-zh="密码" data-nl="Wachtwoord">密码</label><input type="password" id="lpw" placeholder="••••••••"></div>
-  <button class="bf" onclick="doLogin()" data-zh="登录" data-nl="Inloggen">登录</button>
-  <div class="afoot"><span data-zh="还没有账号？" data-nl="Nog geen account?">还没有账号？</span> <a onclick="nav('register')" data-zh="立即注册" data-nl="Registreer">立即注册</a></div>
+<button class="bf" onclick="doLogin()" data-zh="登录" data-nl="Inloggen">登录</button>
+<div class="afoot">
+  <a onclick="sendPasswordReset()" data-zh="忘记密码？" data-nl="Wachtwoord vergeten?">忘记密码？</a>
+</div>
+<div class="afoot">
+  <span data-zh="还没有账号？" data-nl="Nog geen account?">还没有账号？</span>
+  <a onclick="nav('register')" data-zh="立即注册" data-nl="Registreer">立即注册</a>
+</div>
 </div></div></div>
 
 <!-- REGISTER -->
@@ -1797,6 +1803,31 @@ async function doLogin(){
 
   await refreshUser();
   nav('dashboard');
+}
+async function sendPasswordReset(){
+  var ti = t();
+  var email = document.getElementById('lei').value.trim();
+  var al = document.getElementById('lerr');
+
+  if(!email){
+    al.innerHTML = '<div class="aerr">'+
+      (ti ? '请先输入你的邮箱。' : 'Vul eerst uw e-mailadres in.')+
+      '</div>';
+    return;
+  }
+
+  var result = await supabaseClient.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin + '/#login'
+  });
+
+  if(result.error){
+    al.innerHTML = '<div class="aerr">'+result.error.message+'</div>';
+    return;
+  }
+
+  al.innerHTML = '<div style="background:#EAF4EE;color:#28724C;border:1.5px solid #BFE2CC;padding:9px 13px;border-radius:8px;font-size:12.5px;font-weight:800;margin-bottom:.85rem;">'+
+    (ti ? '重置密码邮件已发送，请检查邮箱。' : 'E-mail voor wachtwoordherstel is verzonden.')+
+    '</div>';
 }
 async function refreshUser(){
   var result = await supabaseClient.auth.getUser();
