@@ -190,7 +190,7 @@ export default async function handler(req, res) {
 
       description: `Taal13A order ${order.id}`,
 
-      redirectUrl: `${process.env.SITE_URL}/?payment=return&order=${order.id}`,
+      redirectUrl: `${process.env.SITE_URL}/#payment-success`,
 
       webhookUrl: `${process.env.SITE_URL}/api/mollie-webhook`,
 
