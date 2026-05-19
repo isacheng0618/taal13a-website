@@ -1973,59 +1973,62 @@ async function sendPasswordReset(){
     '</div>';
 }
 
-async function updatePassword(){
-  var ti = t();
-  var pw1 = document.getElementById('new-pw').value;
-  var pw2 = document.getElementById('new-pw2').value;
-  var box = document.getElementById('reset-err');
+async function handlePasswordRecoverySession(){
+  // 从 hash 中提取所有参数
+  var hash = window.location.hash.slice(1); // 去掉 #
+  var hashParams = new URLSearchParams(hash);
+  var searchParams = new URLSearchParams(window.location.search);
 
-  if(!pw1 || !pw2){
-    box.innerHTML = '<div class="aerr">'+(ti?'请填写新密码。':'Vul een nieuw wachtwoord in.')+'</div>';
-    return;
+  console.log('Hash:', hash);
+  console.log('Parsed hash params:', Object.fromEntries(hashParams));
+
+  var accessToken = hashParams.get('access_token');
+  var refreshToken = hashParams.get('refresh_token');
+  var type = hashParams.get('type');
+
+  console.log('Token type:', type);
+  console.log('Access token:', accessToken ? 'present' : 'missing');
+  console.log('Refresh token:', refreshToken ? 'present' : 'missing');
+
+  // 检查是否是恢复密码链接
+  var isResetPage = (
+    searchParams.get('reset-password') === '1' ||
+    type === 'recovery' ||
+    (hash.indexOf('type=recovery') >= 0) ||
+    (accessToken && refreshToken)
+  );
+
+  if(!isResetPage){
+    return false;
   }
 
-  if(pw1.length < 6){
-    box.innerHTML = '<div class="aerr">'+(ti?'密码至少需要 6 位。':'Minimaal 6 tekens.')+'</div>';
-    return;
+  // 如果有 tokens，设置会话
+  if(accessToken && refreshToken){
+    console.log('Setting recovery session...');
+    var result = await supabaseClient.auth.setSession({
+      access_token: accessToken,
+      refresh_token: refreshToken
+    });
+
+    if(result.error){
+      console.error('Set recovery session error:', result.error);
+      // 即使失败也继续，因为用户可能想手动输入新密码
+    } else {
+      console.log('Recovery session set successfully');
+    }
+  } else {
+    console.warn('Missing tokens in recovery URL');
   }
 
-  if(pw1 !== pw2){
-    box.innerHTML = '<div class="aerr">'+(ti?'两次输入的密码不一致。':'Wachtwoorden komen niet overeen.')+'</div>';
-    return;
-  }
+  // 清理 URL
+  history.replaceState(
+    {page:'reset-password'},
+    '',
+    window.location.pathname + '#reset-password'
+  );
 
-  var result = await supabaseClient.auth.updateUser({
-    password: pw1
-  });
-
-  if(result.error){
-    box.innerHTML = '<div class="aerr">'+ result.error.message +'</div>';
-    return;
-  }
-
-  box.innerHTML =
-    '<div style="background:#EAF4EE;color:#28724C;border:1.5px solid #BFE2CC;padding:9px 13px;border-radius:8px;font-size:12.5px;font-weight:800;margin-bottom:.85rem;">'+(ti?'密码已成功更新，请重新登录。':'Wachtwoord is bijgewerkt. Log nu in met uw nieuwe wachtwoord.')+'</div>';
-
-  // 清空输入框
-  document.getElementById('new-pw').value = '';
-  document.getElementById('new-pw2').value = '';
-
-  setTimeout(async function(){
-    // 清除当前会话
-    await supabaseClient.auth.signOut();
-    
-    // 等待 signOut 完成后再导航
-    USER = null;
-    document.getElementById('auth-btns').style.display='';
-    document.getElementById('user-btns').style.display='none';
-    
-    nav('login');
-    
-    // 清空登录表单
-    document.getElementById('lei').value = '';
-    document.getElementById('lpw').value = '';
-    document.getElementById('lerr').innerHTML = '';
-  }, 1500);
+  nav('reset-password', {push:false});
+  return true;
 }
   
 async function refreshUser(){
@@ -2311,32 +2314,53 @@ async function downloadProduct(pid){
 function wI(cid){var s=SES.find(function(x){return x.id===cid;})||PIL.find(function(x){return x.id===cid;});alert((t()?'正在加载：':'Laden: ')+(s?t()?(s.zt||s.zl):(s.nt||s.nl_):cid));}
 
 async function handlePasswordRecoverySession(){
-  var params = new URLSearchParams(window.location.search);
-  var hashParams = new URLSearchParams(window.location.hash.replace('#',''));
+  // 从 hash 中提取所有参数
+  var hash = window.location.hash.slice(1); // 去掉 #
+  var hashParams = new URLSearchParams(hash);
+  var searchParams = new URLSearchParams(window.location.search);
 
-  var isResetPage =
-    params.get('reset-password') === '1' ||
-    location.hash.indexOf('reset-password') >= 0 ||
-    hashParams.get('type') === 'recovery';
+  console.log('Hash:', hash);
+  console.log('Parsed hash params:', Object.fromEntries(hashParams));
 
   var accessToken = hashParams.get('access_token');
   var refreshToken = hashParams.get('refresh_token');
+  var type = hashParams.get('type');
+
+  console.log('Token type:', type);
+  console.log('Access token:', accessToken ? 'present' : 'missing');
+  console.log('Refresh token:', refreshToken ? 'present' : 'missing');
+
+  // 检查是否是恢复密码链接
+  var isResetPage = (
+    searchParams.get('reset-password') === '1' ||
+    type === 'recovery' ||
+    (hash.indexOf('type=recovery') >= 0) ||
+    (accessToken && refreshToken)
+  );
 
   if(!isResetPage){
     return false;
   }
 
+  // 如果有 tokens，设置会话
   if(accessToken && refreshToken){
+    console.log('Setting recovery session...');
     var result = await supabaseClient.auth.setSession({
       access_token: accessToken,
       refresh_token: refreshToken
     });
 
     if(result.error){
-      console.error('set recovery session error:', result.error);
+      console.error('Set recovery session error:', result.error);
+      // 即使失败也继续，因为用户可能想手动输入新密码
+    } else {
+      console.log('Recovery session set successfully');
     }
+  } else {
+    console.warn('Missing tokens in recovery URL');
   }
 
+  // 清理 URL
   history.replaceState(
     {page:'reset-password'},
     '',
