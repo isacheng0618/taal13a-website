@@ -1261,6 +1261,44 @@ Taal13A 的教学理念是：让学荷兰语变得简单、接地气、真正有
   </div>
 </div>
 
+<!-- RESET PASSWORD -->
+<div class="pg" id="pg-reset-password">
+  <div class="aw">
+    <div class="acard">
+      <div class="alo">
+        <svg height="22" viewBox="0 0 200 40" fill="none">
+          <rect x="2" y="8" width="4" height="24" rx="2" fill="#1A6DC1"/>
+          <rect x="10" y="2" width="4" height="36" rx="2" fill="#1A6DC1"/>
+          <rect x="18" y="8" width="4" height="24" rx="2" fill="#1A6DC1"/>
+          <rect x="26" y="16" width="4" height="8" rx="2" fill="#1A6DC1"/>
+          <text x="38" y="28" font-family="Nunito,sans-serif" font-weight="800" font-size="19" fill="#1A6DC1">Taal13A</text>
+        </svg>
+      </div>
+
+      <div class="atit">重置密码</div>
+      <div class="asub">请输入你的新密码</div>
+
+      <div id="reset-err"></div>
+
+      <div class="fr">
+        <label>新密码</label>
+        <input type="password" id="new-password" placeholder="至少 6 位">
+      </div>
+
+      <div class="fr">
+        <label>确认新密码</label>
+        <input type="password" id="new-password-2" placeholder="再次输入新密码">
+      </div>
+
+      <button class="bf" onclick="updatePassword()">保存新密码</button>
+
+      <div class="afoot">
+        <a onclick="nav('login')">返回登录</a>
+      </div>
+    </div>
+  </div>
+</div>
+  
 <!-- LOGIN -->
 <div class="pg" id="pg-login"><div class="aw"><div class="acard">
   <div class="alo"><svg height="22" viewBox="0 0 200 40" fill="none"><rect x="2" y="8" width="4" height="24" rx="2" fill="#1A6DC1"/><rect x="10" y="2" width="4" height="36" rx="2" fill="#1A6DC1"/><rect x="18" y="8" width="4" height="24" rx="2" fill="#1A6DC1"/><rect x="26" y="16" width="4" height="8" rx="2" fill="#1A6DC1"/><text x="38" y="28" font-family="Nunito,sans-serif" font-weight="800" font-size="19" fill="#1A6DC1">Taal13A</text></svg></div>
@@ -1927,7 +1965,7 @@ async function sendPasswordReset(){
   }
 
   var result = await supabaseClient.auth.resetPasswordForEmail(email, {
-    redirectTo: window.location.origin + '/#login'
+    redirectTo: window.location.origin + '/#reset-password'
   });
 
   if(result.error){
@@ -1939,6 +1977,46 @@ async function sendPasswordReset(){
     (ti ? '重置密码邮件已发送，请检查邮箱。' : 'E-mail voor wachtwoordherstel is verzonden.')+
     '</div>';
 }
+
+async function updatePassword(){
+  var ti = t();
+  var pw1 = document.getElementById('new-password').value;
+  var pw2 = document.getElementById('new-password-2').value;
+  var box = document.getElementById('reset-err');
+
+  if(!pw1 || !pw2){
+    box.innerHTML = '<div class="aerr">请填写新密码。</div>';
+    return;
+  }
+
+  if(pw1.length < 6){
+    box.innerHTML = '<div class="aerr">密码至少需要 6 位。</div>';
+    return;
+  }
+
+  if(pw1 !== pw2){
+    box.innerHTML = '<div class="aerr">两次输入的密码不一致。</div>';
+    return;
+  }
+
+  var result = await supabaseClient.auth.updateUser({
+    password: pw1
+  });
+
+  if(result.error){
+    box.innerHTML = '<div class="aerr">'+ result.error.message +'</div>';
+    return;
+  }
+
+  box.innerHTML =
+    '<div style="background:#EAF4EE;color:#28724C;border:1.5px solid #BFE2CC;padding:9px 13px;border-radius:8px;font-size:12.5px;font-weight:800;margin-bottom:.85rem;">密码已成功更新，请重新登录。</div>';
+
+  setTimeout(async function(){
+    await supabaseClient.auth.signOut();
+    nav('login');
+  }, 1200);
+}
+  
 async function refreshUser(){
   var result = await supabaseClient.auth.getUser();
 
@@ -2337,6 +2415,7 @@ function updNewsTicker(){var el=document.getElementById('news-track');if(!el)ret
       'contact',
       'login',
       'register',
+      'reset-password',
       'dashboard'
     ];
 
