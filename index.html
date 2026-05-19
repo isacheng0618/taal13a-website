@@ -1973,6 +1973,71 @@ async function sendPasswordReset(){
     '</div>';
 }
 
+async function updatePassword(){
+  var ti = t();
+  var pw1 = document.getElementById('new-pw').value;
+  var pw2 = document.getElementById('new-pw2').value;
+  var box = document.getElementById('reset-err');
+
+  if(!pw1 || !pw2){
+    box.innerHTML = '<div class="aerr">'+(ti?'请填写新密码。':'Vul een nieuw wachtwoord in.')+'</div>';
+    return;
+  }
+
+  if(pw1.length < 6){
+    box.innerHTML = '<div class="aerr">'+(ti?'密码至少需要 6 位。':'Minimaal 6 tekens.')+'</div>';
+    return;
+  }
+
+  if(pw1 !== pw2){
+    box.innerHTML = '<div class="aerr">'+(ti?'两次输入的密码不一致。':'Wachtwoorden komen niet overeen.')+'</div>';
+    return;
+  }
+
+  box.innerHTML = '<div style="background:#E8F5E9;color:#2E7D32;padding:9px 13px;border-radius:8px;font-size:12.5px;font-weight:800;margin-bottom:.85rem;">'+(ti?'正在更新密码...':'Wachtwoord wordt bijgewerkt...')+'</div>';
+
+  try {
+    var result = await supabaseClient.auth.updateUser({
+      password: pw1
+    });
+
+    if(result.error){
+      // "Auth session missing" 的特殊处理
+      if(result.error.message.indexOf('session') >= 0 || result.error.message.indexOf('Auth') >= 0){
+        box.innerHTML = '<div class="aerr">'+(ti?'重置链接已过期，请重新申请密码重置。':'Resetlink is verlopen. Vraag een nieuw aan.')+'</div>'+
+          '<button class="bf" style="max-width:220px;margin:0.85rem auto 0" onclick="nav(\'login\')">'+(ti?'返回登录并申请重置':'Terug naar login')+'</button>';
+        return;
+      }
+      
+      box.innerHTML = '<div class="aerr">'+ result.error.message +'</div>';
+      return;
+    }
+
+    box.innerHTML =
+      '<div style="background:#EAF4EE;color:#28724C;border:1.5px solid #BFE2CC;padding:9px 13px;border-radius:8px;font-size:12.5px;font-weight:800;margin-bottom:.85rem;">'+(ti?'密码已成功更新！':'Wachtwoord is bijgewerkt!')+'</div>';
+
+    document.getElementById('new-pw').value = '';
+    document.getElementById('new-pw2').value = '';
+
+    setTimeout(async function(){
+      await supabaseClient.auth.signOut();
+      USER = null;
+      document.getElementById('auth-btns').style.display='';
+      document.getElementById('user-btns').style.display='none';
+      
+      nav('login');
+      
+      document.getElementById('lei').value = '';
+      document.getElementById('lpw').value = '';
+      document.getElementById('lerr').innerHTML = '';
+    }, 1800);
+
+  } catch(err) {
+    console.error('Update password error:', err);
+    box.innerHTML = '<div class="aerr">'+(ti?'更新失败，请稍后再试。':'Bijwerken mislukt. Probeer later opnieuw.')+'</div>';
+  }
+}
+
 async function handlePasswordRecoverySession(){
   // 从 hash 中提取所有参数
   var hash = window.location.hash.slice(1); // 去掉 #
