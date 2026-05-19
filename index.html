@@ -1943,13 +1943,14 @@ async function doReg(){
     }
   });
   console.log('SIGNUP RESULT:', result);
-  if(result.error){
-    al.innerHTML='<div class="aerr">'+result.error.message+'</div>';
-    return;
+if(result.error){
+  var msg = result.error.message;
+
+  if(msg === 'Auth session missing!'){
+    msg = '重置链接没有成功建立登录状态。请重新发送重置密码邮件，并使用最新邮件里的链接。';
   }
 
-if(result.error){
-  al.innerHTML='<div class="aerr">'+result.error.message+'</div>';
+  box.innerHTML = '<div class="aerr">'+ msg +'</div>';
   return;
 }
 
@@ -2329,6 +2330,43 @@ async function downloadProduct(pid){
 }
 function wI(cid){var s=SES.find(function(x){return x.id===cid;})||PIL.find(function(x){return x.id===cid;});alert((t()?'正在加载：':'Laden: ')+(s?t()?(s.zt||s.zl):(s.nt||s.nl_):cid));}
 
+async function handlePasswordRecoverySession(){
+  var params = new URLSearchParams(window.location.search);
+  var hashParams = new URLSearchParams(window.location.hash.replace('#',''));
+
+  var isResetPage =
+    params.get('reset-password') === '1' ||
+    location.hash.indexOf('reset-password') >= 0 ||
+    hashParams.get('type') === 'recovery';
+
+  var accessToken = hashParams.get('access_token');
+  var refreshToken = hashParams.get('refresh_token');
+
+  if(!isResetPage){
+    return false;
+  }
+
+  if(accessToken && refreshToken){
+    var result = await supabaseClient.auth.setSession({
+      access_token: accessToken,
+      refresh_token: refreshToken
+    });
+
+    if(result.error){
+      console.error('set recovery session error:', result.error);
+    }
+  }
+
+  history.replaceState(
+    {page:'reset-password'},
+    '',
+    window.location.pathname + '#reset-password'
+  );
+
+  nav('reset-password', {push:false});
+  return true;
+}
+  
 function handlePaymentReturn(){
   var params = new URLSearchParams(window.location.search);
   var payment = params.get('payment');
@@ -2430,6 +2468,10 @@ if(handlePaymentReturn()){
   return;
 }
 
+ if(await handlePasswordRecoverySession()){
+  return;
+} 
+  
 if(isPasswordRecoveryUrl()){
   history.replaceState(
     {page:'reset-password'},
