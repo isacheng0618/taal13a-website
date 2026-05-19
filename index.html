@@ -1960,8 +1960,8 @@ async function sendPasswordReset(){
   }
 
   var result = await supabaseClient.auth.resetPasswordForEmail(email, {
-  redirectTo: window.location.origin + '/#reset-password=1'
-});
+    redirectTo: window.location.origin + '/#reset-password'
+  });
 
   if(result.error){
     al.innerHTML = '<div class="aerr">'+result.error.message+'</div>';
