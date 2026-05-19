@@ -2011,22 +2011,22 @@ async function sendPasswordReset(){
 
 async function updatePassword(){
   var ti = t();
-  var pw1 = document.getElementById('new-password').value;
-  var pw2 = document.getElementById('new-password-2').value;
+  var pw1 = document.getElementById('new-pw').value;
+  var pw2 = document.getElementById('new-pw2').value;
   var box = document.getElementById('reset-err');
 
   if(!pw1 || !pw2){
-    box.innerHTML = '<div class="aerr">请填写新密码。</div>';
+    box.innerHTML = '<div class="aerr">'+(ti?'请填写新密码。':'Vul een nieuw wachtwoord in.')+'</div>';
     return;
   }
 
   if(pw1.length < 6){
-    box.innerHTML = '<div class="aerr">密码至少需要 6 位。</div>';
+    box.innerHTML = '<div class="aerr">'+(ti?'密码至少需要 6 位。':'Minimaal 6 tekens.')+'</div>';
     return;
   }
 
   if(pw1 !== pw2){
-    box.innerHTML = '<div class="aerr">两次输入的密码不一致。</div>';
+    box.innerHTML = '<div class="aerr">'+(ti?'两次输入的密码不一致。':'Wachtwoorden komen niet overeen.')+'</div>';
     return;
   }
 
@@ -2040,12 +2040,28 @@ async function updatePassword(){
   }
 
   box.innerHTML =
-    '<div style="background:#EAF4EE;color:#28724C;border:1.5px solid #BFE2CC;padding:9px 13px;border-radius:8px;font-size:12.5px;font-weight:800;margin-bottom:.85rem;">密码已成功更新，请重新登录。</div>';
+    '<div style="background:#EAF4EE;color:#28724C;border:1.5px solid #BFE2CC;padding:9px 13px;border-radius:8px;font-size:12.5px;font-weight:800;margin-bottom:.85rem;">'+(ti?'密码已成功更新，请重新登录。':'Wachtwoord is bijgewerkt. Log nu in met uw nieuwe wachtwoord.')+'</div>';
+
+  // 清空输入框
+  document.getElementById('new-pw').value = '';
+  document.getElementById('new-pw2').value = '';
 
   setTimeout(async function(){
+    // 清除当前会话
     await supabaseClient.auth.signOut();
+    
+    // 等待 signOut 完成后再导航
+    USER = null;
+    document.getElementById('auth-btns').style.display='';
+    document.getElementById('user-btns').style.display='none';
+    
     nav('login');
-  }, 1200);
+    
+    // 清空登录表单
+    document.getElementById('lei').value = '';
+    document.getElementById('lpw').value = '';
+    document.getElementById('lerr').innerHTML = '';
+  }, 1500);
 }
   
 async function refreshUser(){
