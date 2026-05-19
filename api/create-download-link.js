@@ -8,7 +8,13 @@ const supabase = createClient(
 function isEmail(value) {
   return typeof value === 'string' && value.includes('@') && value.includes('.');
 }
-
+const BUNDLE_ACCESS = {
+  a2_sprint_bundle_pdf: [
+    'a2_answer_card_pdf',
+    'a2_words_theme_pdf',
+    'a2_words_frequency_pdf'
+  ]
+};
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -21,20 +27,27 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing email or product.' });
     }
 
-    // 1. 检查用户是否真的购买过这个商品
-    const { data: purchase, error: purchaseError } = await supabase
-      .from('purchases')
-      .select('*')
-      .eq('email', email)
-      .eq('product_id', productId)
-      .maybeSingle();
+// 1. 检查用户是否真的购买过这个商品，或购买过包含它的套餐
+const { data: purchases, error: purchaseError } = await supabase
+  .from('purchases')
+  .select('*')
+  .eq('email', email);
 
-    if (purchaseError) throw purchaseError;
+if (purchaseError) throw purchaseError;
 
-    if (!purchase) {
-      return res.status(403).json({ error: 'No access to this product.' });
-    }
+const hasDirectPurchase = purchases?.some(function (item) {
+  return item.product_id === productId;
+});
 
+const hasBundlePurchase = purchases?.some(function (item) {
+  const bundleItems = BUNDLE_ACCESS[item.product_id];
+
+  return Array.isArray(bundleItems) && bundleItems.includes(productId);
+});
+
+if (!hasDirectPurchase && !hasBundlePurchase) {
+  return res.status(403).json({ error: 'No access to this product.' });
+}
     // 2. 从 products 表读取这个商品对应的 PDF 路径
     const { data: product, error: productError } = await supabase
       .from('products')
