@@ -1349,17 +1349,22 @@ var SES=[
 
 var PRODUCTS=[
   {
-    id:'a2sp_pdf',
-    cat:'guide',
-    emoji:'💡',
-    img:'./images/a2-speaking-guide-cover.jpg?v=2',
-    infoImg:'./images/a2-speaking-guide-info.jpg?v=2',
-    pay:'https://payment-links.mollie.com/payment/9LLPYdtZACygQQ2fMRCuu',
-    zn:'A2口语通关秘籍｜核心备考手册',
-    nn:'A2 Spreken Kernhandleiding｜Examenvoorbereiding',
-    zd:'适合准备 A2 Spreken 口语考试、需要系统练习 A2 口语表达的学习者。包含考试解析、考点讲解、答题技巧、图片题训练、129 道高频题库及中荷双语示范答案。购买后可即时下载 PDF。',
-    nd:'Voor cursisten die zich voorbereiden op het A2 spreekexamen Nederlands en hun spreekvaardigheid op A2-niveau willen oefenen. Inclusief examenuitleg, belangrijke taalpunten, spreekstrategieën, oefenvragen met plaatjes, 129 veelvoorkomende spreekvragen en voorbeeldantwoorden met Chinese uitleg. Direct te downloaden als PDF.',
-    pr:2999,
+   {
+  id:'a2sp_pdf',
+  cat:'guide',
+  emoji:'💡',
+  img:'./images/a2-speaking-guide-cover.jpg?v=2',
+  infoImg:'./images/a2-speaking-guide-info.jpg?v=2',
+  zn:'A2口语通关秘籍',
+
+  // 商品卡片页显示：短一点
+  zd:'系统备考A2口语的主资料，适合需要题库、答题技巧和示范答案的学习者。',
+
+  // 点进详情页显示：更详细
+  longZd:'适合正在准备A2口语考试、需要系统练习A2口语表达的学习者。内容包含考试解析、考点讲解、答题技巧、图片题训练、129 道高频题库及中荷双语示范答案。适合考前系统复习，也适合不知道如何组织答案的同学。',
+
+  pr:2999,
+}
     old:null,
     badge:'PDF 即时下载',
     stock:true,
@@ -1373,9 +1378,9 @@ var PRODUCTS=[
     img:'./images/a2-sprint-bundle-cover.jpg?v=2',
     infoImg:'./images/a2-sprint-bundle-info.jpg?v=2',
     pay:'',
-    zn:'A2口语词库冲刺包｜答题卡+单词库+高频词表',
+    zn:'A2口语词库冲刺包',
     nn:'A2 Spreken Woordenpakket｜Antwoordkaart + Woordenbank + Woordenlijst',
-    zd:'A2 口语考前冲刺合集，包含《A2口语考试答题卡》《A2口语答题单词库》和《A2口语考试高频词表》三份 PDF。适合考前集中刷题、背词、整理答案和查漏补缺。购买后可即时下载。',
+    zd:'zd:'三份 PDF 合集，适合考前集中刷题、背词、整理答案和查漏补缺。',
     nd:'Een praktisch A2 spreekexamenpakket met drie PDF-bestanden: antwoordkaart, woordenbank en hoogfrequente woordenlijst. Geschikt om vlak voor het examen gericht te oefenen met vragen, woordenschat en antwoordstructuren. Direct te downloaden.',
     pr:599,
     old:897,
@@ -1396,9 +1401,9 @@ var PRODUCTS=[
     img:'./images/a2-answer-card-cover.jpg?v=2',
     infoImg:'./images/a2-answer-card-info.jpg?v=2',
     pay:'https://payment-links.mollie.com/payment/VZHPGLdWQjxrHJQpZpyGY',
-    zn:'A2口语考试答题卡｜模拟题含答案',
+    zn:'A2口语实用答题卡',
     nn:'A2 Spreken Antwoordkaart｜Oefenvragen met antwoorden',
-    zd:'A2 口语考试模拟题练习册，适合打印出来复习。包含精选模拟题、每题 2 个简洁示范答案，并预留“我的定制答案”空白区，帮助考生整理答题思路、练习规范表达。适合考前冲刺使用。共 49 页，购买后可即时下载 PDF，建议自行打印使用。',
+    zd:'官方模拟题练习册，适合打印出来写自己的答案，考前反复练习。',
     nd:'Een oefenboekje voor het A2 spreekexamen, geschikt om uit te printen. Inclusief geselecteerde oefenvragen, twee korte voorbeeldantwoorden per vraag en ruimte voor een eigen antwoord. Ideaal voor de laatste examenvoorbereiding. 49 pagina’s, direct te downloaden als PDF.',
     pr:299,
     old:null,
@@ -1416,7 +1421,7 @@ var PRODUCTS=[
     pay:'',
     zn:'A2口语答题单词库',
     nn:'A2 Spreken Woordenbank',
-    zd:'A2 口语考试常用答题词汇小册，按主题整理考试中最容易用到的简单单词和短语，例如人物、日常生活、观点表达、时间频率、地点方位、工作学习、住房、吃喝健康、交通旅行等。每个词配中文解释和 A2 简单例句，适合考前快速背词、替换句子和扩展答案。共 10 页，购买后可即时下载 PDF。',
+    zd:'按主题整理常用答题词汇，适合背词、替换句子和扩展答案。',
     nd:'Een compacte woordenbank voor het A2 spreekexamen. De woorden en korte zinnen zijn per thema geordend, zoals personen, dagelijks leven, mening geven, tijd en frequentie, plaats, werk, wonen, eten, gezondheid, verkeer en reizen. Met Chinese uitleg en eenvoudige A2-voorbeeldzinnen. 10 pagina’s, direct te downloaden als PDF.',
     pr:299,
     old:null,
@@ -1432,9 +1437,9 @@ var PRODUCTS=[
     img:'./images/a2-words-frequency-cover.jpg?v=2',
     infoImg:'./images/a2-words-frequency-info.jpg?v=2',
     pay:'',
-    zn:'A2口语考试高频词表',
+    zn:'A2口语高频词表',
     nn:'A2 Spreken Hoogfrequente Woordenlijst',
-    zd:'根据 A2 口语真题、模拟题和高频题整理的词频资料，按照词语在考试题目中出现的频率和次数排序。帮助学生快速看懂题干关键词，掌握常考表达和基础答题词汇。适合考前快速扫词、查漏补缺和复习重点词。共 15 页，购买后可即时下载 PDF。',
+    zd:'按出现频率整理考试关键词，适合考前快速扫词、看懂题干。',
     nd:'Een woordenlijst op basis van A2-spreekvragen, oefenvragen en veelvoorkomende examenthema’s. De woorden zijn geordend op frequentie in de vraagzinnen. Handig om vraagwoorden, kernwoorden en veelvoorkomende examenwoorden snel te herhalen. 15 pagina’s, direct te downloaden als PDF.',
     pr:299,
     old:null,
@@ -1489,7 +1494,7 @@ function rShop(){
         vocab:'📖 答题词汇',
         books:'📖 教材书籍',
         merch:'🎁 周边产品',
-        bundle:'📦 词库冲刺包'
+        bundle:'📦 单词套餐'
       }[p.cat]
     : {
         guide:'💡 Kernhandleiding',
@@ -1541,7 +1546,7 @@ function rProduct(){
         '<h1>'+(ti?p.zn:p.nn)+'</h1>'+ 
         '<div class="pd-price">'+fmtPrice(p.pr)+'<span style="font-size:14px;color:var(--ink3);font-weight:600;margin-left:7px">incl. BTW</span></div>'+ 
         '<div class="pd-meta-row"><span class="pd-chip">PDF</span><span class="pd-chip">A2 Spreken</span><span class="pd-chip">'+(ti?'即时下载':'Direct download')+'</span><span class="pd-chip">'+(ti?'中文讲解':'Chinese uitleg')+'</span></div>'+ 
-        '<div class="pd-desc">'+(ti?p.zd:p.nd)+'</div>'+ 
+        '<div class="pd-desc">'+(ti?(p.longZd || p.zd):(p.longNd || p.nd))+'</div>'+
         '<div class="pd-actions">'+
   (isProductPurchased(p.id)
     ? '<button class="bpay" style="background:var(--grn);cursor:default">'+(ti?'已购买':'Gekocht')+'</button><button class="btn-secondary" onclick="nav(\'dashboard\')">'+(ti?'去下载':'Naar download')+'</button>'
