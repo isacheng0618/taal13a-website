@@ -1401,39 +1401,160 @@ var L='zh',USER=null,ET=null,PDT=null,USERS={},CF='all',SCARF='all';
 var CART=[],GUEST_ORDERS=[];
 
 var PIL=[
-  {id:'elearn',l:'elearn',zl:'网课 E-learning',nl_:'E-learning',zs:'火热制作中，敬请期待',ns:'In ontwikkeling',zt:'网课 E-learning',nt:'E-learning',zp:['录播课程正在制作中','上线后可自主安排时间学习','适合想系统自学的同学'],np:['Videolessen in ontwikkeling','Leer op eigen tempo','Voor zelfstudie'],tz:['敬请期待','制作中'],tn:['Binnenkort','In ontwikkeling'],pr:'敬请期待',nz:'暂无价格',nn:'Binnenkort',soon:true},
   {
-  id:'a0a1',
-  l:'a0a1',
-  zl:'A0–A1 零基础入门班',
-  nl_:'A0–A1 Beginnerscursus',
-  zs:'6月6日开课｜Teams含回放',
-  ns:'Start 6 juni｜Teams met opname',
-  zt:'A0–A1 零基础入门班',
-  nt:'A0–A1 Beginnerscursus',
-  zp:[
-    '适合荷兰语零基础同学',
-    '6节课｜每节2小时｜最多8人',
-    'Teams线上授课，含录屏回放',
-    '学习发音、拼读、时间、数字、价格和简单句子'
-  ],
-  np:[
-    'Voor absolute beginners',
-    '6 lessen｜2 uur per les｜max. 8 cursisten',
-    'Online via Teams, inclusief opname',
-    'Uitspraak, lezen, tijd, cijfers, prijzen en eenvoudige zinnen'
-  ],
-  tz:['线上小班','A0–A1','含回放'],
-  tn:['Online groep','A0–A1','Met opname'],
-  pr:'€299',
-  nz:'2026年6月6日开课',
-  nn:'Start 6 juni 2026',
-  soon:false
-},
-  {id:'a1a2',l:'a1a2',zl:'线上进阶 A1–A2',nl_:'Online vervolg A1–A2',zs:'A1–A2进阶',ns:'A1–A2 vervolg',zt:'线上进阶 A1–A2',nt:'Online vervolg A1–A2',zp:['适合已有基础，想继续冲 A2 的同学','8节课｜6-8人小班｜线上会议','课程安排即将更新'],np:['Voor cursisten met basiskennis richting A2','8 lessen｜6-8 cursisten｜online','Planning volgt'],tz:['线上小班','A1–A2','敬请期待'],tn:['Online groep','A1–A2','Binnenkort'],pr:'敬请期待',nz:'课程安排即将更新',nn:'Planning volgt',soon:true},
-  {id:'a2b1',l:'a2b1',zl:'A2应试冲刺班',nl_:'A2 examen sprint',zs:'9月开班，敬请期待',ns:'Start in september',zt:'A2应试冲刺班',nt:'A2 examen sprint',zp:['适合准备 A2 考试的同学','围绕考试题型和高频话题练习','9月开班，敬请期待'],np:['Voor A2 examenvoorbereiding','Oefenen met examenvragen en thema’s','Start in september'],tz:['A2考试','敬请期待'],tn:['A2 examen','Binnenkort'],pr:'敬请期待',nz:'9月开班',nn:'Start in september',soon:true}
-];
+    id:'elearn',
+    l:'elearn',
+    zl:'网课 E-learning',
+    nl_:'E-learning',
+    zs:'火热制作中，敬请期待',
+    ns:'In ontwikkeling',
+    zt:'网课 E-learning',
+    nt:'E-learning',
+    zp:['录播课程正在制作中','上线后可自主安排时间学习','适合想系统自学的同学'],
+    np:['Videolessen in ontwikkeling','Leer op eigen tempo','Voor zelfstudie'],
+    tz:['敬请期待','制作中'],
+    tn:['Binnenkort','In ontwikkeling'],
+    pr:'敬请期待',
+    nz:'暂无价格',
+    nn:'Binnenkort',
+    soon:true
+  },
 
+  {
+    id:'a0a1',
+    l:'a0a1',
+    zl:'A0–A1 零基础入门班',
+    nl_:'A0–A1 Beginnerscursus',
+    zs:'6月6日开课｜周六 13:30–15:30',
+    ns:'Start 6 juni｜za. 13:30–15:30',
+    zt:'A0–A1 零基础入门班',
+    nt:'A0–A1 Beginnerscursus',
+    zp:[
+      '适合荷兰语零基础同学',
+      '6节课｜每节2小时｜最多8人',
+      'Teams线上授课，含录屏回放',
+      '学习发音、拼读、时间、数字、价格和简单句子'
+    ],
+    np:[
+      'Voor absolute beginners',
+      '6 lessen｜2 uur per les｜max. 8 cursisten',
+      'Online via Teams, inclusief opname',
+      'Uitspraak, lezen, tijd, cijfers, prijzen en eenvoudige zinnen'
+    ],
+    tz:['线上小班','A0–A1','含回放'],
+    tn:['Online groep','A0–A1','Met opname'],
+    pr:'€299',
+    nz:'2026年6月6日开课｜每周六',
+    nn:'Start 6 juni 2026｜elke zaterdag',
+    soon:false
+  },
+
+  {
+    id:'a0a1plus_morning_thu',
+    l:'a0a1',
+    zl:'A0–A1+ 基础重建｜周四早上班',
+    nl_:'A0–A1+ Basis versterken｜Donderdagochtend',
+    zs:'5月28日开课｜周四 08:45–10:45',
+    ns:'Start 28 mei｜do. 08:45–10:45',
+    zt:'A0–A1+ 基础重建｜周四早上班',
+    nt:'A0–A1+ Basis versterken｜Donderdagochtend',
+    zp:[
+      '适合需要系统学习、打牢基础的同学',
+      '8节课｜每节2小时｜最多8人',
+      'Teams线上授课，含录屏回放',
+      '从发音开始，打牢根基，会读、会听、能开口'
+    ],
+    np:[
+      'Voor cursisten die hun basis systematisch willen versterken',
+      '8 lessen｜2 uur per les｜max. 8 cursisten',
+      'Online via Teams, inclusief opname',
+      'Vanaf uitspraak naar lezen, luisteren en spreken'
+    ],
+    tz:['线上小班','A0–A1+','早上班'],
+    tn:['Online groep','A0–A1+','Ochtendgroep'],
+    pr:'€399',
+    nz:'2026年5月28日开课｜每周四早上',
+    nn:'Start 28 mei 2026｜elke donderdagochtend',
+    soon:false
+  },
+
+  {
+    id:'a0a1plus_evening_thu',
+    l:'a0a1',
+    zl:'A0–A1+ 基础重建｜周四晚间班',
+    nl_:'A0–A1+ Basis versterken｜Donderdagavond',
+    zs:'6月25日开课｜周四 19:30–21:30',
+    ns:'Start 25 juni｜do. 19:30–21:30',
+    zt:'A0–A1+ 基础重建｜周四晚间班',
+    nt:'A0–A1+ Basis versterken｜Donderdagavond',
+    zp:[
+      '适合需要系统学习、打牢基础的同学',
+      '8节课｜每节2小时｜最多8人',
+      'Teams线上授课，含录屏回放',
+      '双时段可选，自由安排'
+    ],
+    np:[
+      'Voor cursisten die hun basis systematisch willen versterken',
+      '8 lessen｜2 uur per les｜max. 8 cursisten',
+      'Online via Teams, inclusief opname',
+      'Twee tijdvakken beschikbaar'
+    ],
+    tz:['线上小班','A0–A1+','晚间班'],
+    tn:['Online groep','A0–A1+','Avondgroep'],
+    pr:'€399',
+    nz:'2026年6月25日开课｜每周四晚上',
+    nn:'Start 25 juni 2026｜elke donderdagavond',
+    soon:false
+  },
+
+  {
+    id:'a1a2_exam_sprint_fri',
+    l:'a1a2',
+    zl:'A1–A2 应试冲刺班｜周五晚间班',
+    nl_:'A1–A2 Examentraining｜Vrijdagavond',
+    zs:'6月12日开课｜周五 19:00–21:00',
+    ns:'Start 12 juni｜vr. 19:00–21:00',
+    zt:'A1–A2 应试冲刺班｜周五晚间班',
+    nt:'A1–A2 Examentraining｜Vrijdagavond',
+    zp:[
+      '适合近期准备 A2 考试的同学',
+      '8节课｜每节2小时｜最多8人',
+      'Teams线上授课，含录屏回放',
+      '以应试为目的，精准备考 A2'
+    ],
+    np:[
+      'Voor cursisten die binnenkort A2-examen doen',
+      '8 lessen｜2 uur per les｜max. 8 cursisten',
+      'Online via Teams, inclusief opname',
+      'Gerichte voorbereiding op het A2-examen'
+    ],
+    tz:['线上小班','A1–A2','A2应试'],
+    tn:['Online groep','A1–A2','A2 examen'],
+    pr:'€399',
+    nz:'2026年6月12日开课｜每周五晚上',
+    nn:'Start 12 juni 2026｜elke vrijdagavond',
+    soon:false
+  },
+
+  {
+    id:'a2b1',
+    l:'a2b1',
+    zl:'A2应试冲刺班',
+    nl_:'A2 examen sprint',
+    zs:'9月开班，敬请期待',
+    ns:'Start in september',
+    zt:'A2应试冲刺班',
+    nt:'A2 examen sprint',
+    zp:['适合准备 A2 考试的同学','围绕考试题型和高频话题练习','9月开班，敬请期待'],
+    np:['Voor A2 examenvoorbereiding','Oefenen met examenvragen en thema’s','Start in september'],
+    tz:['A2考试','敬请期待'],
+    tn:['A2 examen','Binnenkort'],
+    pr:'敬请期待',
+    nz:'9月开班',
+    nn:'Start in september',
+    soon:true
+  }
+];
 var SES=[
   {
     id:'elearn',
@@ -1466,8 +1587,8 @@ var SES=[
     nt:'A0–A1 Beginnerscursus',
     zd:'适合荷兰语零基础同学。从发音和拼读开始，练习时间、数字、价格等日常表达，并逐步开口说简单句子。',
     nd:'Voor absolute beginners Nederlands. We starten met uitspraak en lezen, oefenen dagelijkse uitdrukkingen zoals tijd, cijfers en prijzen, en bouwen eenvoudige zinnen op.',
-    sd:'2026年6月6日 13:30–15:30',
-    nd2:'6 juni 2026, 13:30–15:30',
+    sd:'2026年6月6日 13:30–15:30｜每周六',
+    nd2:'6 juni 2026, 13:30–15:30｜elke zaterdag',
     dur:'6节课｜每节2小时',
     dun:'6 lessen｜2 uur per les',
     lz:'Teams线上课｜含录屏回放',
@@ -1481,38 +1602,140 @@ var SES=[
       '时间、数字、价格等日常表达',
       '荷兰语简单句子练习',
       'Teams线上授课，含录屏回放',
-      '最多8人小班'
+      '最多8人小班',
+      '每周六上课',
+      '支持分期付款，如需分期请联系 taal13a@gmail.com，或私信撒老师的小红书/抖音'
     ],
     np:[
       'Nederlandse uitspraak en leesregels',
       'Dagelijkse uitdrukkingen: tijd, cijfers en prijzen',
       'Oefenen met eenvoudige Nederlandse zinnen',
       'Online via Teams, inclusief opname',
-      'Maximaal 8 cursisten'
+      'Maximaal 8 cursisten',
+      'Elke zaterdag les',
+      'Betaling in termijnen is mogelijk. Neem contact op via taal13a@gmail.com of stuur een bericht via Xiaohongshu/Douyin.'
     ],
     soon:false
   },
 
   {
-    id:'a1a2',
+    id:'a0a1plus_morning_thu',
+    pid:'course_a0a1plus_20260528_thu_morning',
+    tp:'live',
+    lv:'a0a1',
+    zt:'A0–A1+ 基础重建｜周四早上班',
+    nt:'A0–A1+ Basis versterken｜Donderdagochtend',
+    zd:'适合需要系统学习、牢固基础、希望开口说荷兰语的同学。从发音开始打牢根基，训练会读、会听、能开口说话，并轻松掌握单词和句子结构。',
+    nd:'Voor cursisten die hun basis Nederlands systematisch willen versterken en meer willen durven spreken. We beginnen bij uitspraak, bouwen een stevige basis op en oefenen lezen, luisteren, spreken, woordenschat en zinsstructuur.',
+    sd:'2026年5月28日 08:45–10:45｜每周四早上',
+    nd2:'28 mei 2026, 08:45–10:45｜elke donderdagochtend',
+    dur:'8节课｜每节2小时',
+    dun:'8 lessen｜2 uur per les',
+    lz:'Teams线上课｜含录屏回放',
+    ln:'Online via Teams｜met opname',
+    pr:'€399',
+    priceCents:39900,
+    pn:'最多8人小班｜双时段可选',
+    nn:'Max. 8 cursisten｜twee tijdvakken',
+    zp:[
+      '从发音开始，打牢根基',
+      '会读、会听、能开口说话',
+      '轻松掌握单词和句子结构',
+      'Teams线上授课，含录屏回放',
+      '最多8人小班',
+      '双时段可选，自由安排',
+      '支持分期付款，如需分期请联系 taal13a@gmail.com，或私信撒老师的小红书/抖音'
+    ],
+    np:[
+      'Vanaf uitspraak een stevige basis opbouwen',
+      'Lezen, luisteren en durven spreken',
+      'Woordenschat en zinsstructuur op een toegankelijke manier',
+      'Online via Teams, inclusief opname',
+      'Maximaal 8 cursisten',
+      'Twee tijdvakken beschikbaar',
+      'Betaling in termijnen is mogelijk. Neem contact op via taal13a@gmail.com of stuur een bericht via Xiaohongshu/Douyin.'
+    ],
+    soon:false
+  },
+
+  {
+    id:'a0a1plus_evening_thu',
+    pid:'course_a0a1plus_20260625_thu_evening',
+    tp:'live',
+    lv:'a0a1',
+    zt:'A0–A1+ 基础重建｜周四晚间班',
+    nt:'A0–A1+ Basis versterken｜Donderdagavond',
+    zd:'适合需要系统学习、牢固基础、希望开口说荷兰语的同学。从发音开始打牢根基，训练会读、会听、能开口说话，并轻松掌握单词和句子结构。',
+    nd:'Voor cursisten die hun basis Nederlands systematisch willen versterken en meer willen durven spreken. We beginnen bij uitspraak, bouwen een stevige basis op en oefenen lezen, luisteren, spreken, woordenschat en zinsstructuur.',
+    sd:'2026年6月25日 19:30–21:30｜每周四晚上',
+    nd2:'25 juni 2026, 19:30–21:30｜elke donderdagavond',
+    dur:'8节课｜每节2小时',
+    dun:'8 lessen｜2 uur per les',
+    lz:'Teams线上课｜含录屏回放',
+    ln:'Online via Teams｜met opname',
+    pr:'€399',
+    priceCents:39900,
+    pn:'最多8人小班｜双时段可选',
+    nn:'Max. 8 cursisten｜twee tijdvakken',
+    zp:[
+      '从发音开始，打牢根基',
+      '会读、会听、能开口说话',
+      '轻松掌握单词和句子结构',
+      'Teams线上授课，含录屏回放',
+      '最多8人小班',
+      '双时段可选，自由安排',
+      '支持分期付款，如需分期请联系 taal13a@gmail.com，或私信撒老师的小红书/抖音'
+    ],
+    np:[
+      'Vanaf uitspraak een stevige basis opbouwen',
+      'Lezen, luisteren en durven spreken',
+      'Woordenschat en zinsstructuur op een toegankelijke manier',
+      'Online via Teams, inclusief opname',
+      'Maximaal 8 cursisten',
+      'Twee tijdvakken beschikbaar',
+      'Betaling in termijnen is mogelijk. Neem contact op via taal13a@gmail.com of stuur een bericht via Xiaohongshu/Douyin.'
+    ],
+    soon:false
+  },
+
+  {
+    id:'a1a2_exam_sprint_fri',
+    pid:'course_a1a2_exam_sprint_20260612_fri_evening',
     tp:'live',
     lv:'a1a2',
-    zt:'线上进阶 A1–A2',
-    nt:'Online vervolg A1–A2',
-    zd:'适合已有基础，想继续冲 A2 的同学。8节课｜6-8人小班｜线上会议。课程安排即将更新。',
-    nd:'Voor cursisten met basiskennis richting A2. 8 lessen, 6-8 cursisten, online. Planning volgt.',
-    sd:'',
-    nd2:'',
-    dur:'8节课',
-    dun:'8 lessen',
-    lz:'线上会议',
-    ln:'Online',
-    pr:'敬请期待',
-    pn:'课程安排即将更新',
-    nn:'Planning volgt',
-    zp:['强化语法、口语、听力训练','生活场景表达和日常对话','课程安排即将更新'],
-    np:['Grammatica, spreken en luisteren','Dagelijkse situaties','Planning volgt'],
-    soon:true
+    zt:'A1–A2 应试冲刺班｜周五晚间班',
+    nt:'A1–A2 Examentraining｜Vrijdagavond',
+    zd:'适合近期准备 A2 考试的同学。课程以应试为目的，帮助学生精准备考，同时训练说句子、开口表达、语法、听力与口语能力。',
+    nd:'Voor cursisten die binnenkort het A2-examen willen doen. Deze cursus is gericht op examenvoorbereiding en helpt cursisten zinnen te maken, te spreken en grammatica, luisteren en spreken te versterken.',
+    sd:'2026年6月12日 19:00–21:00｜每周五晚上',
+    nd2:'12 juni 2026, 19:00–21:00｜elke vrijdagavond',
+    dur:'8节课｜每节2小时',
+    dun:'8 lessen｜2 uur per les',
+    lz:'Teams线上课｜含录屏回放',
+    ln:'Online via Teams｜met opname',
+    pr:'€399',
+    priceCents:39900,
+    pn:'最多8人小班｜A2考前冲刺',
+    nn:'Max. 8 cursisten｜A2 examentraining',
+    zp:[
+      '以应试为目的，精准备考 A2',
+      '能说句子，能开口表达',
+      '强化语法、听力与口语训练',
+      '围绕 A2 高频考试场景练习',
+      'Teams线上授课，含录屏回放',
+      '最多8人小班',
+      '支持分期付款，如需分期请联系 taal13a@gmail.com，或私信撒老师的小红书/抖音'
+    ],
+    np:[
+      'Gerichte voorbereiding op het A2-examen',
+      'Zinnen kunnen maken en durven spreken',
+      'Extra training in grammatica, luisteren en spreken',
+      'Oefenen met veelvoorkomende A2-examensituaties',
+      'Online via Teams, inclusief opname',
+      'Maximaal 8 cursisten',
+      'Betaling in termijnen is mogelijk. Neem contact op via taal13a@gmail.com of stuur een bericht via Xiaohongshu/Douyin.'
+    ],
+    soon:false
   },
 
   {
@@ -1796,7 +2019,7 @@ function isProductPurchased(pid){
 function oProduct(pid){PDT=pid;nav('product',{pid:pid});}
 function rProduct(){
   var ti=t();
-  var p=PRODUCTS.find(function(x){return x.id===PDT;});
+  var p=getCartItemData(ci.id);
   var el=document.getElementById('product-detail');if(!el||!p)return;
   var delivery=ti?'付款成功后可即时下载 PDF；如系统邮件延迟，可凭订单邮箱联系 Taal13A 手动补发。':'Na succesvolle betaling is de PDF direct te downloaden. Bij vertraging kan Taal13A het bestand handmatig nasturen op basis van het bestel-e-mailadres.';
   var access=ti?'注册/登录购买后，商品会出现在个人主页「我的商品 / 下载」中。游客购买则通过订单邮箱获取下载信息。':'Bij aankoop met account verschijnt het product in “Mijn producten / downloads”. Gastbestellingen ontvangen downloadinformatie via e-mail.';
