@@ -139,7 +139,7 @@ const {
        wechat: wechat || null,
        note: note || null,
        accepted_terms: acceptedTerms === true,
-       accepted_digital_delivery: acceptedDigitalDelivery === true
+       accepted_digital_delivery: acceptedDigitalDelivery === true,
 
         total_cents: totalCents,
 
@@ -183,7 +183,7 @@ const {
 
       description: `Taal13A order ${order.id}`,
 
-      redirectUrl: `${process.env.SITE_URL}/#payment-success`,
+      redirectUrl: `${process.env.SITE_URL}/?payment=return&order=${order.id}`,
 
       webhookUrl: `${process.env.SITE_URL}/api/mollie-webhook`,
 
