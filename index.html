@@ -1430,44 +1430,107 @@ var PIL=[
 ];
 
 var SES=[
-  {id:'elearn',tp:'elearn',lv:'elearn',zt:'网课 E-learning',nt:'E-learning',zd:'火热制作中，敬请期待。录播课程上线后，可按自己的时间反复学习。',nd:'In ontwikkeling. Videolessen volgen binnenkort.',sd:'',nd2:'',dur:'',dun:'',lz:'在线',ln:'Online',pr:'敬请期待',pn:'暂无价格',nn:'Binnenkort',zp:['火热制作中，敬请期待','适合想系统自学的同学'],np:['In ontwikkeling','Voor zelfstudie'],soon:true},
- {
   {
-  id:'a0a1',
-  pid:'course_a0a1_20260606',
-  tp:'live',
-  lv:'a0a1',
-  zt:'A0–A1 零基础入门班',
-  nt:'A0–A1 Beginnerscursus',
-  zd:'适合荷兰语零基础同学。从发音和拼读开始，练习时间、数字、价格等日常表达，并逐步开口说简单句子。',
-  nd:'Voor absolute beginners Nederlands. We starten met uitspraak en lezen, oefenen dagelijkse uitdrukkingen zoals tijd, cijfers en prijzen, en bouwen eenvoudige zinnen op.',
-  sd:'2026年6月6日 13:30–15:30',
-  nd2:'6 juni 2026, 13:30–15:30',
-  dur:'6节课｜每节2小时',
-  dun:'6 lessen｜2 uur per les',
-  lz:'Teams线上课｜含录屏回放',
-  ln:'Online via Teams｜met opname',
-  pr:'€299',
-  pn:'最多8人小班',
-  nn:'Max. 8 cursisten',
-  zp:[
-    '荷兰语发音 + 拼读规则',
-    '时间、数字、价格等日常表达',
-    '荷兰语简单句子练习',
-    'Teams线上授课，含录屏回放',
-    '最多8人小班'
-  ],
-  np:[
-    'Nederlandse uitspraak en leesregels',
-    'Dagelijkse uitdrukkingen: tijd, cijfers en prijzen',
-    'Oefenen met eenvoudige Nederlandse zinnen',
-    'Online via Teams, inclusief opname',
-    'Maximaal 8 cursisten'
-  ],
-  soon:false
-},
-  {id:'a1a2',tp:'live',lv:'a1a2',zt:'线上进阶 A1–A2',nt:'Online vervolg A1–A2',zd:'适合已有基础，想继续冲 A2 的同学。8节课｜6-8人小班｜线上会议。课程安排即将更新。',nd:'Voor cursisten met basiskennis richting A2. 8 lessen, 6-8 cursisten, online. Planning volgt.',sd:'',nd2:'',dur:'8节课',dun:'8 lessen',lz:'线上会议',ln:'Online',pr:'敬请期待',pn:'课程安排即将更新',nn:'Planning volgt',zp:['强化语法、口语、听力训练','生活场景表达和日常对话','课程安排即将更新'],np:['Grammatica, spreken en luisteren','Dagelijkse situaties','Planning volgt'],soon:true},
-  {id:'a2b1',tp:'live',lv:'a2b1',zt:'A2应试冲刺班',nt:'A2 examen sprint',zd:'适合准备 A2 考试的同学。围绕考试题型和高频话题练习。9月开班，敬请期待。',nd:'Voor A2 examenvoorbereiding. Start in september.',sd:'',nd2:'',dur:'',dun:'',lz:'线上会议',ln:'Online',pr:'敬请期待',pn:'9月开班',nn:'Start in september',zp:['A2考试题型训练','高频话题练习','9月开班，敬请期待'],np:['A2 examenvragen','Veelvoorkomende thema’s','Start in september'],soon:true}
+    id:'elearn',
+    tp:'elearn',
+    lv:'elearn',
+    zt:'网课 E-learning',
+    nt:'E-learning',
+    zd:'火热制作中，敬请期待。录播课程上线后，可按自己的时间反复学习。',
+    nd:'In ontwikkeling. Videolessen volgen binnenkort.',
+    sd:'',
+    nd2:'',
+    dur:'',
+    dun:'',
+    lz:'在线',
+    ln:'Online',
+    pr:'敬请期待',
+    pn:'暂无价格',
+    nn:'Binnenkort',
+    zp:['火热制作中，敬请期待','适合想系统自学的同学'],
+    np:['In ontwikkeling','Voor zelfstudie'],
+    soon:true
+  },
+
+  {
+    id:'a0a1',
+    pid:'course_a0a1_20260606',
+    tp:'live',
+    lv:'a0a1',
+    zt:'A0–A1 零基础入门班',
+    nt:'A0–A1 Beginnerscursus',
+    zd:'适合荷兰语零基础同学。从发音和拼读开始，练习时间、数字、价格等日常表达，并逐步开口说简单句子。',
+    nd:'Voor absolute beginners Nederlands. We starten met uitspraak en lezen, oefenen dagelijkse uitdrukkingen zoals tijd, cijfers en prijzen, en bouwen eenvoudige zinnen op.',
+    sd:'2026年6月6日 13:30–15:30',
+    nd2:'6 juni 2026, 13:30–15:30',
+    dur:'6节课｜每节2小时',
+    dun:'6 lessen｜2 uur per les',
+    lz:'Teams线上课｜含录屏回放',
+    ln:'Online via Teams｜met opname',
+    pr:'€299',
+    priceCents:29900,
+    pn:'最多8人小班',
+    nn:'Max. 8 cursisten',
+    zp:[
+      '荷兰语发音 + 拼读规则',
+      '时间、数字、价格等日常表达',
+      '荷兰语简单句子练习',
+      'Teams线上授课，含录屏回放',
+      '最多8人小班'
+    ],
+    np:[
+      'Nederlandse uitspraak en leesregels',
+      'Dagelijkse uitdrukkingen: tijd, cijfers en prijzen',
+      'Oefenen met eenvoudige Nederlandse zinnen',
+      'Online via Teams, inclusief opname',
+      'Maximaal 8 cursisten'
+    ],
+    soon:false
+  },
+
+  {
+    id:'a1a2',
+    tp:'live',
+    lv:'a1a2',
+    zt:'线上进阶 A1–A2',
+    nt:'Online vervolg A1–A2',
+    zd:'适合已有基础，想继续冲 A2 的同学。8节课｜6-8人小班｜线上会议。课程安排即将更新。',
+    nd:'Voor cursisten met basiskennis richting A2. 8 lessen, 6-8 cursisten, online. Planning volgt.',
+    sd:'',
+    nd2:'',
+    dur:'8节课',
+    dun:'8 lessen',
+    lz:'线上会议',
+    ln:'Online',
+    pr:'敬请期待',
+    pn:'课程安排即将更新',
+    nn:'Planning volgt',
+    zp:['强化语法、口语、听力训练','生活场景表达和日常对话','课程安排即将更新'],
+    np:['Grammatica, spreken en luisteren','Dagelijkse situaties','Planning volgt'],
+    soon:true
+  },
+
+  {
+    id:'a2b1',
+    tp:'live',
+    lv:'a2b1',
+    zt:'A2应试冲刺班',
+    nt:'A2 examen sprint',
+    zd:'适合准备 A2 考试的同学。围绕考试题型和高频话题练习。9月开班，敬请期待。',
+    nd:'Voor A2 examenvoorbereiding. Start in september.',
+    sd:'',
+    nd2:'',
+    dur:'',
+    dun:'',
+    lz:'线上会议',
+    ln:'Online',
+    pr:'敬请期待',
+    pn:'9月开班',
+    nn:'Start in september',
+    zp:['A2考试题型训练','高频话题练习','9月开班，敬请期待'],
+    np:['A2 examenvragen','Veelvoorkomende thema’s','Start in september'],
+    soon:true
+  }
 ];
 
 var PRODUCTS=[
@@ -1658,6 +1721,36 @@ function rShop(){
 function buyProduct(pid){addToCart(pid);}
 
 function fmtPrice(cents){return '€'+(cents/100).toFixed(2).replace('.',',');}
+function getCartItemData(id){
+  var p = PRODUCTS.find(function(x){return x.id===id;});
+  if(p){
+    return {
+      id:p.id,
+      zn:p.zn,
+      nn:p.nn,
+      pr:p.pr,
+      old:p.old || null,
+      emoji:p.emoji || '📦',
+      img:p.img || ''
+    };
+  }
+
+  var s = SES.find(function(x){return x.pid===id || x.id===id;});
+  if(s){
+    return {
+      id:s.pid || s.id,
+      zn:s.zt || s.zl,
+      nn:s.nt || s.nl_,
+      pr:s.priceCents || 0,
+      old:null,
+      emoji:'👥',
+      img:''
+    };
+  }
+
+  return null;
+}
+
 function getDiscountPercent(p){
   if(!p || !p.old || !p.pr || p.old <= p.pr)return null;
   return Math.round((1 - p.pr / p.old) * 100);
@@ -1697,7 +1790,9 @@ function isProductPurchased(pid){
 }
 function oProduct(pid){PDT=pid;nav('product',{pid:pid});}
 function rProduct(){
-  var ti=t();var p=PRODUCTS.find(function(x){return x.id===PDT;});var el=document.getElementById('product-detail');if(!el||!p)return;
+  var ti=t();
+  var p=getCartItemData(ci.id);
+  var el=document.getElementById('product-detail');if(!el||!p)return;
   var delivery=ti?'付款成功后可即时下载 PDF；如系统邮件延迟，可凭订单邮箱联系 Taal13A 手动补发。':'Na succesvolle betaling is de PDF direct te downloaden. Bij vertraging kan Taal13A het bestand handmatig nasturen op basis van het bestel-e-mailadres.';
   var access=ti?'注册/登录购买后，商品会出现在个人主页「我的商品 / 下载」中。游客购买则通过订单邮箱获取下载信息。':'Bij aankoop met account verschijnt het product in “Mijn producten / downloads”. Gastbestellingen ontvangen downloadinformatie via e-mail.';
   var refund=ti?'电子书属于即时交付的数字内容。结算时确认即时交付并放弃冷静期后，付款完成即不支持退款。':'Een e-book is digitale inhoud die direct wordt geleverd. Na toestemming voor directe levering en afstand van herroeping is terugbetaling na betaling niet mogelijk.';
@@ -1772,7 +1867,7 @@ function updCart(){
   }
 
   el.innerHTML=CART.map(function(ci){
-    var p=PRODUCTS.find(function(x){return x.id===ci.id;});if(!p)return '';
+    var p=getCartItemData(ci.id);if(!p)return '';
 
     var now=p.pr*ci.qty;
     var old=(p.old||p.pr)*ci.qty;
