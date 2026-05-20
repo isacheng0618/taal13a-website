@@ -1475,7 +1475,7 @@ var PIL=[
   },
 
   {
-    id:'a0a1plus_morning_thu',
+    id:'a0a1plus_morning'
     l:'a0a1',
     zl:'A0–A1+ 基础重建｜周四早上班',
     nl_:'A0–A1+ Basis versterken｜Donderdagochtend',
@@ -1504,7 +1504,7 @@ var PIL=[
   },
 
   {
-    id:'a0a1plus_evening_thu',
+    id:'a0a1plus_evening'
     l:'a0a1',
     zl:'A0–A1+ 基础重建｜周四晚间班',
     nl_:'A0–A1+ Basis versterken｜Donderdagavond',
@@ -1533,7 +1533,7 @@ var PIL=[
   },
 
   {
-    id:'a1a2_exam_sprint_fri',
+    id:'a1a2_exam_sprint'
     l:'a1a2',
     zl:'A1–A2 应试冲刺班｜周五晚间班',
     nl_:'A1–A2 Examentraining｜Vrijdagavond',
@@ -1865,26 +1865,30 @@ function t(){return L==='zh';}
 } 
   
 function rPil(id){
-  var el=document.getElementById(id);if(!el)return;
-  var ti=t();
-  el.innerHTML=PIL.map(function(c){
-    var lv=ti?c.zl:c.nl_,
-    sb=ti?c.zs:c.ns,
-    tt=ti?c.zt:c.nt,
-    pts=ti?c.zp:c.np,
-    tags=ti?c.tz:c.tn,
-    note=ti?c.nz:c.nn;
+  var el=document.getElementById(id);
+  if(!el)return;
 
-var cleanLv = lv.replace(/｜.*$/,'').replace(/\|.*$/,'');
-var cleanTt = tt.replace(/｜.*$/,'').replace(/\|.*$/,'');
-    
+  var ti=t();
+
+  el.innerHTML=PIL.map(function(c){
+    var lv=ti?c.zl:c.nl_;
+    var sb=ti?c.zs:c.ns;
+    var tt=ti?c.zt:c.nt;
+    var pts=ti?c.zp:c.np;
+    var tags=ti?c.tz:c.tn;
+    var note=ti?c.nz:c.nn;
+
+    var cleanLv = lv.replace(/｜.*$/,'').replace(/\|.*$/,'');
+    var cleanTt = tt.replace(/｜.*$/,'').replace(/\|.*$/,'');
+
     return '<div class="pillar" data-l="'+c.l+'" onclick="oCourseDetail(\''+c.id+'\')">' +
-     '<div class="ph"><div class="plv">'+cleanLv+'</div><div class="psub">'+sb+'</div></div>'+
-     '<div class="pb"><div class="ptit">'+cleanTt+'</div>'+
+      '<div class="ph"><div class="plv">'+cleanLv+'</div><div class="psub">'+sb+'</div></div>'+
+      '<div class="pb"><div class="ptit">'+cleanTt+'</div>'+
       '<ul class="ppts">'+pts.map(function(p){return '<li>'+p+'</li>';}).join('')+'</ul>'+
       '<div class="ptags">'+tags.map(function(g){return '<span class="ptag">'+g+'</span>';}).join('')+'</div>'+
       '<div class="ppr"><div><div class="pprice">'+c.pr+'</div><div class="pnote">'+formatCourseNote(note)+'</div></div>'+
       '<button class="benroll" onclick="event.stopPropagation();oCourseDetail(\''+c.id+'\')">'+(ti?'查看报名':'Bekijk')+'</button></div></div></div>';
+  }).join('');
 }
 
 function shopCat(f,btn){
@@ -2029,7 +2033,9 @@ function isProductPurchased(pid){
 function oProduct(pid){PDT=pid;nav('product',{pid:pid});}
 function rProduct(){
   var ti=t();
-  var p=getCartItemData(ci.id);
+  var p=PRODUCTS.find(function(x){return x.id===PDT;});
+  var el=document.getElementById('product-detail');
+  if(!el||!p)return;
   var el=document.getElementById('product-detail');if(!el||!p)return;
   var delivery=ti?'付款成功后可即时下载 PDF；如系统邮件延迟，可凭订单邮箱联系 Taal13A 手动补发。':'Na succesvolle betaling is de PDF direct te downloaden. Bij vertraging kan Taal13A het bestand handmatig nasturen op basis van het bestel-e-mailadres.';
   var access=ti?'注册/登录购买后，商品会出现在个人主页「我的商品 / 下载」中。游客购买则通过订单邮箱获取下载信息。':'Bij aankoop met account verschijnt het product in “Mijn producten / downloads”. Gastbestellingen ontvangen downloadinformatie via e-mail.';
