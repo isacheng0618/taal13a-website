@@ -1796,7 +1796,7 @@ function isProductPurchased(pid){
 function oProduct(pid){PDT=pid;nav('product',{pid:pid});}
 function rProduct(){
   var ti=t();
-  var p=getCartItemData(ci.id);
+  var p=PRODUCTS.find(function(x){return x.id===PDT;});
   var el=document.getElementById('product-detail');if(!el||!p)return;
   var delivery=ti?'付款成功后可即时下载 PDF；如系统邮件延迟，可凭订单邮箱联系 Taal13A 手动补发。':'Na succesvolle betaling is de PDF direct te downloaden. Bij vertraging kan Taal13A het bestand handmatig nasturen op basis van het bestel-e-mailadres.';
   var access=ti?'注册/登录购买后，商品会出现在个人主页「我的商品 / 下载」中。游客购买则通过订单邮箱获取下载信息。':'Bij aankoop met account verschijnt het product in “Mijn producten / downloads”. Gastbestellingen ontvangen downloadinformatie via e-mail.';
@@ -1844,7 +1844,7 @@ function addToCart(pid){
     return;
   }
 
-  var prod=PRODUCTS.find(function(p){return p.id===pid;});
+  var prod=getCartItemData(pid);
   if(!prod)return;
 
   var ex=CART.find(function(c){return c.id===pid;});
@@ -1976,7 +1976,7 @@ function rCheckout(){
   var oldTotal=0;
 
   var lines=CART.map(function(ci){
-    var p=PRODUCTS.find(function(x){return x.id===ci.id;});
+    var p=getCartItemData(ci.id);
     if(!p)return '';
 
     var now=p.pr*ci.qty;
@@ -2414,7 +2414,7 @@ function oEnroll(id){
 
 function sP(el){el.closest('.payopts').querySelectorAll('.popt').forEach(function(e){e.classList.remove('on');});el.classList.add('on');}
 
-ffunction startCourseCheckout(){
+function startCourseCheckout(){
   var ti=t();
 
   if(!USER){
