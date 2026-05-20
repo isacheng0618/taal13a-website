@@ -2279,7 +2279,12 @@ function rCourseDetail(){
               '<div class="pd-shot-kicker">'+(ti?'课程安排':'Planning')+'</div>'+
               '<div class="pd-shot-title">'+date+'</div>'+
             '</div>'+
-            '<div class="pd-shot-list">'+duration+'<br>'+location+'<br>'+note+'</div>'+
+            '<div class="pd-shot-list">'+
+            duration+'<br>'+
+            location+'<br>'+
+            note+'<br>'+
+            (ti?'每周六上课':'Elke zaterdag les')+
+'</div>'+
           '</div>'+
         '</div>'+
 
@@ -2323,9 +2328,17 @@ function rCourseDetail(){
             '<summary>'+(ti?'具体时间':'Planning')+'</summary>'+
             '<div>'+
               (ti
-                ? '开课日期：'+date+'<br>总课时：'+duration+'<br>人数：最多8人<br>授课方式：'+location
-                : 'Startdatum: '+date+'<br>Duur: '+duration+'<br>Groepsgrootte: max. 8 cursisten<br>Lesvorm: '+location
-              )+
+                ? '开课日期：'+date+
+                  '<br>上课频率：每周六上课'+
+                  '<br>总课时：'+duration+
+                  '<br>人数：最多8人'+
+                  '<br>授课方式：'+location
+                : 'Startdatum: '+date+
+                  '<br>Frequentie: elke zaterdag les'+
+                  '<br>Duur: '+duration+
+                  '<br>Groepsgrootte: max. 8 cursisten'+
+                  '<br>Lesvorm: '+location
+                )+
             '</div>'+
           '</details>'+
 
@@ -2341,11 +2354,18 @@ function rCourseDetail(){
         '</div>'+
 
         '<div class="pd-warning">'+
-          (ti
-            ? '请务必填写正确的微信号。线上课通知、学习群和课后回放都会通过微信沟通。'
-            : 'Vul uw WeChat-ID correct in. De cursusgroep, mededelingen en opnames worden via WeChat gedeeld.'
-          )+
-        '</div>'+
+  (ti
+    ? '请务必填写正确的微信号。线上课通知、学习群和课后回放都会通过微信沟通。'
+    : 'Vul uw WeChat-ID correct in. De cursusgroep, mededelingen en opnames worden via WeChat gedeeld.'
+  )+
+'</div>'+
+
+'<div class="pd-warning" style="background:var(--blue-l);border-color:var(--blue-m);color:var(--blue-d)">'+
+  (ti
+    ? '本课程支持分期付款。如需分期，请联系我们：taal13a@gmail.com，或私信撒老师的小红书 / 抖音。'
+    : 'Betaling in termijnen is mogelijk. Neem hiervoor contact op via taal13a@gmail.com of stuur Isa een privébericht via Xiaohongshu / Douyin.'
+  )+
+'</div>'+
 
         '<div class="pd-actions">'+
           '<button class="bpay" onclick="oEnroll(\''+s.id+'\')">'+(ti?'报名并付款':'Inschrijven en betalen')+'</button>'+
