@@ -1797,17 +1797,139 @@ function cartCheckout(){
   nav('checkout');
 }
 function rCheckout(){
-  var ti=t();var body=document.getElementById('checkout-body');if(!body)return;
-  if(!CART.length){body.innerHTML='<div class="fc"><div class="fct">'+(ti?'购物车':'Winkelwagen')+'</div><div class="cart-empty">'+(ti?'购物车是空的':'Winkelwagen is leeg')+'</div><button class="bf" onclick="nav(\'shop\')">'+(ti?'去商店':'Naar winkel')+'</button></div>';return;}
-  var total=0;var lines=CART.map(function(ci){var p=PRODUCTS.find(function(x){return x.id===ci.id;});if(!p)return '';total+=p.pr*ci.qty;return '<div class="order-line"><span>'+(ti?p.zn:p.nn)+' × '+ci.qty+'</span><span>'+fmtPrice(p.pr*ci.qty)+' <span style="font-size:11px;color:var(--ink4)">incl. BTW</span></span></div>';}).join('');
-  body.innerHTML='<div><div class="fc"><div class="fct">'+(ti?'购买人信息':'Klantgegevens')+'</div><div class="form-hint">'+(ti?'请先注册/登录后购买。购买记录及电子文件下载入口会绑定账号，并显示在个人主页。':'Registreer of log eerst in voordat u koopt. Uw aankoopgeschiedenis en downloadtoegang voor digitale bestanden worden aan uw account gekoppeld en verschijnen in uw dashboard.')+'</div>'+
-    '<div class="fr2"><div><label>'+(ti?'用户名':'Gebruikersnaam')+'</label><input type="text" id="ck-name" value="'+(USER?USER.nm:'')+'"></div><div><label>Email</label><input type="email" id="ck-email" value="'+(USER?USER.em:'')+'"></div></div>'+ 
-    '<div class="fr"><label>WeChat '+(ti?'（选填）':'(optioneel)')+'</label><input type="text" id="ck-wc" value="'+(USER?(USER.wc||''):'')+'"></div>'+ 
-    '<div class="fr"><label>'+(ti?'发票/备注（选填）':'Factuur/opmerking optioneel')+'</label><input type="text" id="ck-note" placeholder="'+(ti?'例如：需要公司发票':'Bijv. factuur nodig')+'"></div>'+ 
-    '<div class="chkbox"><input type="checkbox" id="ck-terms"><span>'+(ti?'我同意 ':'Ik ga akkoord met de ')+'<span class="legal-link" onclick="nav(\'terms\')">Terms & Conditions</span>'+(ti?'，并确认数字产品付款后可即时交付。':' en begrijp dat digitale producten direct geleverd kunnen worden.')+'</span></div>'+ 
-    '<div class="chkbox"><input type="checkbox" id="ck-privacy"><span>'+(ti?'我已阅读 ':'Ik heb de ')+'<span class="legal-link" onclick="nav(\'privacy\')">Privacy Policy</span>'+(ti?'，同意为处理订单、交付产品和售后服务收集必要信息。':' gelezen en begrijp dat noodzakelijke gegevens worden verwerkt voor bestelling, levering en service.')+'</span></div>'+ 
-    '<button class="bpay" onclick="startMollieCheckout()">🔒 '+(ti?'继续付款':'Verder naar betaling')+' — '+fmtPrice(total)+'</button><div class="legal-note">'+(ti?'付款将通过 Mollie 安全完成。付款成功后，已购商品会显示在个人主页「我的商品 / 下载」中。':'De betaling wordt veilig verwerkt via Mollie. Na succesvolle betaling verschijnen uw aankopen in uw dashboard onder “Mijn producten / downloads”.')+'</div></div></div>'+ 
-    '<div class="oc"><div class="oct">'+(ti?'订单摘要':'Besteloverzicht')+'</div>'+lines+'<div class="order-line"><span>BTW</span><span>0%</span></div><div class="order-line total"><span>'+(ti?'合计':'Totaal')+'</span><span>'+fmtPrice(total)+'</span></div></div>';
+  var ti=t();
+  var body=document.getElementById('checkout-body');
+  if(!body)return;
+
+  if(!CART.length){
+    body.innerHTML=
+      '<div class="fc">'+
+        '<div class="fct">'+(ti?'购物车':'Winkelwagen')+'</div>'+
+        '<div class="cart-empty">'+(ti?'购物车是空的':'Winkelwagen is leeg')+'</div>'+
+        '<button class="bf" onclick="nav(\'shop\')">'+(ti?'去商店':'Naar winkel')+'</button>'+
+      '</div>';
+    return;
+  }
+
+  var total=0;
+  var oldTotal=0;
+
+  var lines=CART.map(function(ci){
+    var p=PRODUCTS.find(function(x){return x.id===ci.id;});
+    if(!p)return '';
+
+    var now=p.pr*ci.qty;
+    var old=(p.old||p.pr)*ci.qty;
+    var saving=old-now;
+
+    total+=now;
+    oldTotal+=old;
+
+    return '<div class="order-line">'+
+      '<span>'+(ti?p.zn:p.nn)+' × '+ci.qty+'</span>'+
+      '<span>'+
+        (p.old
+          ? '<span style="font-size:12px;color:var(--ink4);text-decoration:line-through;margin-right:6px">'+fmtPrice(old)+'</span>'
+          : ''
+        )+
+        '<strong>'+fmtPrice(now)+'</strong>'+
+      '</span>'+
+    '</div>'+
+    (saving>0
+      ? '<div class="order-line" style="font-size:12px;color:var(--ora);font-weight:900;padding-top:0">'+
+          '<span>'+(ti?'已优惠':'Korting')+'</span>'+
+          '<span>- '+fmtPrice(saving)+'</span>'+
+        '</div>'
+      : ''
+    );
+  }).join('');
+
+  var saveTotal=oldTotal-total;
+
+  body.innerHTML=
+    '<div>'+
+      '<div class="fc">'+
+        '<div class="fct">'+(ti?'购买人信息':'Klantgegevens')+'</div>'+
+        '<div class="form-hint">'+
+          (ti
+            ? '请先注册/登录后购买。购买记录及电子文件下载入口会绑定账号，并显示在个人主页。'
+            : 'Registreer of log eerst in voordat u koopt. Uw aankoopgeschiedenis en downloadtoegang voor digitale bestanden worden aan uw account gekoppeld en verschijnen in uw dashboard.'
+          )+
+        '</div>'+
+
+        '<div class="fr2">'+
+          '<div>'+
+            '<label>'+(ti?'用户名':'Gebruikersnaam')+'</label>'+
+            '<input type="text" id="ck-name" value="'+(USER?USER.nm:'')+'">'+
+          '</div>'+
+          '<div>'+
+            '<label>Email</label>'+
+            '<input type="email" id="ck-email" value="'+(USER?USER.em:'')+'">'+
+          '</div>'+
+        '</div>'+
+
+        '<div class="fr">'+
+          '<label>WeChat '+(ti?'（选填）':'(optioneel)')+'</label>'+
+          '<input type="text" id="ck-wc" value="'+(USER?(USER.wc||''):'')+'">'+
+        '</div>'+
+
+        '<div class="fr">'+
+          '<label>'+(ti?'发票/备注（选填）':'Factuur/opmerking optioneel')+'</label>'+
+          '<input type="text" id="ck-note" placeholder="'+(ti?'例如：需要公司发票':'Bijv. factuur nodig')+'">'+
+        '</div>'+
+
+        '<div class="chkbox">'+
+          '<input type="checkbox" id="ck-terms">'+
+          '<span>'+
+            (ti?'我同意 ':'Ik ga akkoord met de ')+
+            '<span class="legal-link" onclick="nav(\'terms\')">Terms & Conditions</span>'+
+            (ti?'，并确认数字产品付款后可即时交付。':' en begrijp dat digitale producten direct geleverd kunnen worden.')+
+          '</span>'+
+        '</div>'+
+
+        '<div class="chkbox">'+
+          '<input type="checkbox" id="ck-privacy">'+
+          '<span>'+
+            (ti?'我已阅读 ':'Ik heb de ')+
+            '<span class="legal-link" onclick="nav(\'privacy\')">Privacy Policy</span>'+
+            (ti?'，同意为处理订单、交付产品和售后服务收集必要信息。':' gelezen en begrijp dat noodzakelijke gegevens worden verwerkt voor bestelling, levering en service.')+
+          '</span>'+
+        '</div>'+
+
+        '<button class="bpay" onclick="startMollieCheckout()">🔒 '+(ti?'继续付款':'Verder naar betaling')+' — '+fmtPrice(total)+'</button>'+
+
+        '<div class="legal-note">'+
+          (ti
+            ? '付款将通过 Mollie 安全完成。付款成功后，已购商品会显示在个人主页「我的商品 / 下载」中。'
+            : 'De betaling wordt veilig verwerkt via Mollie. Na succesvolle betaling verschijnen uw aankopen in uw dashboard onder “Mijn producten / downloads”.'
+          )+
+        '</div>'+
+      '</div>'+
+    '</div>'+
+
+    '<div class="oc">'+
+      '<div class="oct">'+(ti?'订单摘要':'Besteloverzicht')+'</div>'+
+      lines+
+
+      (saveTotal>0
+        ? '<div class="order-line" style="color:var(--ora);font-weight:900">'+
+            '<span>'+(ti?'折扣总额':'Totale korting')+'</span>'+
+            '<span>- '+fmtPrice(saveTotal)+'</span>'+
+          '</div>'
+        : ''
+      )+
+
+      '<div class="order-line total">'+
+        '<span>'+(ti?'合计':'Totaal')+'</span>'+
+        '<span>'+
+          (saveTotal>0
+            ? '<span style="font-size:13px;color:var(--ink4);text-decoration:line-through;margin-right:8px">'+fmtPrice(oldTotal)+'</span>'
+            : ''
+          )+
+          fmtPrice(total)+
+        '</span>'+
+      '</div>'+
+    '</div>';
 }
 
 async function startMollieCheckout(){
