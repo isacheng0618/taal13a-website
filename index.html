@@ -166,10 +166,27 @@ body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);ove
 .ppts li::before{content:'✦';font-size:6.5px;color:var(--ora);flex-shrink:0;margin-top:5.5px;}
 .ptags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.85rem;}
 .ptag{font-size:10px;padding:2px 8px;border-radius:20px;border:1.5px solid var(--bdr);color:var(--ink3);font-weight:700;background:var(--sand);}
-.ppr{display:flex;align-items:flex-end;justify-content:space-between;}
+.ppr{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+}
 .pprice{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--ink);font-weight:700;}
 .pnote{font-size:10.5px;color:var(--ink4);margin-top:1px;font-weight:600;}
-.benroll{background:var(--blue);color:#fff;border:none;padding:8px 16px;border-radius:20px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;}
+.benroll{
+  background:var(--blue);
+  color:#fff;
+  border:none;
+  padding:8px 18px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+  font-family:inherit;
+  white-space:nowrap;
+  min-width:88px;
+}
 .pillar[data-l="elearn"] .ph{background:linear-gradient(135deg,#FFF0E6,#FFE4CC);}.pillar[data-l="elearn"] .plv{color:var(--ora);}
 .pillar[data-l="a0a1"] .ph{background:#EAF3FF;}.pillar[data-l="a0a1"] .plv{color:#1A6DC1;}
 .pillar[data-l="a1a2"] .ph{background:#E8F7F0;}.pillar[data-l="a1a2"] .plv{color:#1C7A45;}
@@ -1535,25 +1552,6 @@ var PIL=[
     nn:'Start 12 juni 2026｜elke vrijdagavond',
     soon:false
   },
-
-  {
-    id:'a2b1',
-    l:'a2b1',
-    zl:'A2应试冲刺班',
-    nl_:'A2 examen sprint',
-    zs:'9月开班，敬请期待',
-    ns:'Start in september',
-    zt:'A2应试冲刺班',
-    nt:'A2 examen sprint',
-    zp:['适合准备 A2 考试的同学','围绕考试题型和高频话题练习','9月开班，敬请期待'],
-    np:['Voor A2 examenvoorbereiding','Oefenen met examenvragen en thema’s','Start in september'],
-    tz:['A2考试','敬请期待'],
-    tn:['A2 examen','Binnenkort'],
-    pr:'敬请期待',
-    nz:'9月开班',
-    nn:'Start in september',
-    soon:true
-  }
 ];
 var SES=[
   {
@@ -1848,17 +1846,36 @@ var PRODUCTS=[
 
 function t(){return L==='zh';}
 
+ function formatCourseNote(note){
+  if(!note)return '';
+
+  return note
+    .replace('2026年5月28日开课｜每周四早上','2026年5月28日开课<br>每周四早上')
+    .replace('2026年6月25日开课｜每周四晚上','2026年6月25日开课<br>每周四晚上')
+    .replace('2026年6月12日开课｜每周五晚上','2026年6月12日开课<br>每周五晚上')
+    .replace('2026年6月6日开课｜每周六','2026年6月6日开课<br>每周六下午');
+} 
+  
 function rPil(id){
   var el=document.getElementById(id);if(!el)return;
   var ti=t();
   el.innerHTML=PIL.map(function(c){
-    var lv=ti?c.zl:c.nl_,sb=ti?c.zs:c.ns,tt=ti?c.zt:c.nt,pts=ti?c.zp:c.np,tags=ti?c.tz:c.tn,note=ti?c.nz:c.nn;
+    var lv=ti?c.zl:c.nl_,
+    sb=ti?c.zs:c.ns,
+    tt=ti?c.zt:c.nt,
+    pts=ti?c.zp:c.np,
+    tags=ti?c.tz:c.tn,
+    note=ti?c.nz:c.nn;
+
+var cleanLv = lv.replace(/｜.*$/,'').replace(/\|.*$/,'');
+var cleanTt = tt.replace(/｜.*$/,'').replace(/\|.*$/,'');
+    
     return '<div class="pillar" data-l="'+c.l+'" onclick="oEnroll(\''+c.id+'\')">' +
-      '<div class="ph"><div class="plv">'+lv+'</div><div class="psub">'+sb+'</div></div>'+
-      '<div class="pb"><div class="ptit">'+tt+'</div>'+
+     '<div class="ph"><div class="plv">'+cleanLv+'</div><div class="psub">'+sb+'</div></div>'+
+     '<div class="pb"><div class="ptit">'+cleanTt+'</div>'+
       '<ul class="ppts">'+pts.map(function(p){return '<li>'+p+'</li>';}).join('')+'</ul>'+
       '<div class="ptags">'+tags.map(function(g){return '<span class="ptag">'+g+'</span>';}).join('')+'</div>'+
-      '<div class="ppr"><div><div class="pprice">'+c.pr+'</div><div class="pnote">'+note+'</div></div>'+
+      '<div class="ppr"><div><div class="pprice">'+c.pr+'</div><div class="pnote">'+formatCourseNote(note)+'</div></div>'+
       '<button class="benroll" onclick="event.stopPropagation();oEnroll(\''+c.id+'\')">'+(ti?'查看报名':'Bekijk')+'</button></div></div></div>';
   }).join('');
 }
