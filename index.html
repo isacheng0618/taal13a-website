@@ -1159,6 +1159,11 @@ input:focus{border-color:var(--blue);background:#fff;}
   <div class="legal-wrap" id="terms-body"></div>
 </div>
 
+ <!-- COURSE DETAIL -->
+<div class="pg" id="pg-course-detail" style="background:var(--sand);min-height:calc(100vh - 92px)">
+  <div class="pd-wrap fashion" id="course-detail"></div>
+</div> 
+  
 <!-- ENROLL -->
 <div class="pg" id="pg-enroll" style="background:var(--sand);min-height:calc(100vh - 52px)">
   <div class="ep-hero"><h1 id="ep-h1">报名</h1><p id="ep-sub">填写信息并完成支付</p></div>
@@ -2187,20 +2192,170 @@ function rList(){
   if(li2.length){
     if(el2.length)html+='<div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:.55rem;margin-top:1.3rem">👥 '+(ti?'线上课程':'Online cursussen')+'</div>';
     html+=li2.map(function(s){
-      return '<div class="crow" onclick="oEnroll(\''+s.id+'\')">'+
+      return '<div class="crow" onclick="oCourseDetail(\''+s.id+'\')">'+
         '<div class="cbadge '+(bcls[s.lv]||'cb-a0a1')+'"><div class="cb-lbl">'+(llbl[s.lv]||s.lv)+'</div><div class="cb-sub">'+(ti?'小班':'Groep')+'</div></div>'+
         '<div class="cinfo"><div class="ctit">'+(ti?s.zt:s.nt)+'</div><div class="cdesc">'+(ti?s.zd:s.nd)+'</div>'+
         '<div class="cmeta">'+
-        ((s.pr && s.pr.indexOf('€')===0)?'<span class="ctag ct-t">'+s.pr+'</span>':'<span class="ctag ct-d">'+(ti?'敬请期待':'Binnenkort')+'</span>')+
-        '<span class="ctag ct-l">'+(ti?s.lz:s.ln)+'</span></div></div>'+
+        (s.soon
+          ? '<span class="ctag ct-d">'+(ti?'敬请期待':'Binnenkort')+'</span>'
+          : ''
+        )+
+        '<span class="ctag ct-l">'+(ti?s.lz:s.ln)+'</span>'+
+'</div></div>'+
         '<div class="cright"><div class="cprice">'+s.pr+'</div><div class="cpnote">'+(ti?s.pn:s.nn)+'</div>'+
-        '<button class="cenroll" onclick="event.stopPropagation();oEnroll(\''+s.id+'\')">'+(s.soon?(ti?'敬请期待':'Binnenkort'):(ti?'查看详情':'Bekijk'))+'</button></div></div>';
+        '<button class="cenroll" onclick="event.stopPropagation();oCourseDetail(\''+s.id+'\')">'+(s.soon?(ti?'敬请期待':'Binnenkort'):(ti?'查看详情':'Bekijk'))+'</button></div></div>';
     }).join('');
   }
   if(!html)html='<div style="text-align:center;padding:2rem;color:var(--ink3);font-size:13px;font-weight:600">'+(ti?'暂无课程':'Geen cursussen')+'</div>';
   listEl.innerHTML=html;
 }
 
+function oCourseDetail(id){
+  ET = SES.find(function(s){return s.id===id;}) || PIL.find(function(p){return p.id===id;});
+  if(!ET)return;
+  nav('course-detail');
+}
+
+function rCourseDetail(){
+  var ti=t();
+  var s=ET;
+  var el=document.getElementById('course-detail');
+  if(!el || !s)return;
+
+  if(s.soon){
+    el.innerHTML =
+      '<button class="back-link" onclick="nav(\'overview\')">← '+(ti?'返回课程':'Terug naar cursussen')+'</button>'+
+      '<div class="sw">'+
+        '<div class="si">⏳</div>'+
+        '<div class="st2">'+(ti?'敬请期待':'Binnenkort')+'</div>'+
+        '<div class="sd">'+(ti?(s.zd||'课程安排即将更新。'):(s.nd||'Details volgen binnenkort.'))+'</div>'+
+        '<button class="bf" style="max-width:220px;margin:0 auto" onclick="nav(\'overview\')">'+(ti?'返回课程':'Terug')+'</button>'+
+      '</div>';
+    return;
+  }
+
+  var title = ti ? s.zt : s.nt;
+  var desc = ti ? s.zd : s.nd;
+  var date = ti ? s.sd : s.nd2;
+  var duration = ti ? s.dur : s.dun;
+  var location = ti ? s.lz : s.ln;
+  var note = ti ? s.pn : s.nn;
+  var points = ti ? (s.zp||[]) : (s.np||[]);
+
+  el.innerHTML =
+    '<button class="back-link" onclick="nav(\'overview\')">← '+(ti?'返回课程':'Terug naar cursussen')+'</button>'+
+
+    '<div class="pd-card fashion">'+
+
+      '<div class="pd-gallery">'+
+        '<div class="pd-shot alt" style="min-height:360px">'+
+          '<div class="pd-shot-card">'+
+            '<div>'+
+              '<div class="pd-shot-kicker">Taal13A Live Course</div>'+
+              '<div class="pd-shot-title">'+title+'</div>'+
+            '</div>'+
+            '<div class="pd-shot-list">'+desc+'</div>'+
+          '</div>'+
+        '</div>'+
+
+        '<div class="pd-shot alt" style="min-height:360px">'+
+          '<div class="pd-shot-card">'+
+            '<div>'+
+              '<div class="pd-shot-kicker">'+(ti?'课程目标':'Leerdoelen')+'</div>'+
+              '<div class="pd-shot-title">'+(ti?'从零开始，能读、能说、能开口':'Vanaf nul leren lezen en spreken')+'</div>'+
+            '</div>'+
+            '<div class="pd-shot-list">'+
+              (ti
+                ? '这门课适合完全零基础的同学。课程重点不是背很多单词，而是先把发音、拼读和最基础的日常表达打牢。'
+                : 'Deze cursus is bedoeld voor absolute beginners. De focus ligt op uitspraak, lezen en eenvoudige dagelijkse communicatie.'
+              )+
+            '</div>'+
+          '</div>'+
+        '</div>'+
+
+        '<div class="pd-shot alt">'+
+          '<div class="pd-shot-card">'+
+            '<div>'+
+              '<div class="pd-shot-kicker">'+(ti?'课程安排':'Planning')+'</div>'+
+              '<div class="pd-shot-title">'+date+'</div>'+
+            '</div>'+
+            '<div class="pd-shot-list">'+duration+'<br>'+location+'<br>'+note+'</div>'+
+          '</div>'+
+        '</div>'+
+
+        '<div class="pd-shot alt">'+
+          '<div class="pd-shot-card">'+
+            '<div>'+
+              '<div class="pd-shot-kicker">'+(ti?'适合人群':'Voor wie')+'</div>'+
+              '<div class="pd-shot-title">A0–A1</div>'+
+            '</div>'+
+            '<div class="pd-shot-list">'+
+              (ti
+                ? '适合荷兰语零基础、想从发音和简单句子开始系统学习的同学。'
+                : 'Voor cursisten zonder voorkennis die vanaf uitspraak en eenvoudige zinnen willen beginnen.'
+              )+
+            '</div>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+
+      '<div class="pd-info">'+
+        '<div class="pd-brand">Taal13A</div>'+
+        '<h1>'+title+'</h1>'+
+        '<div class="pd-price">'+s.pr+'<span style="font-size:14px;color:var(--ink3);font-weight:600;margin-left:7px">incl. BTW</span></div>'+
+
+        '<div class="pd-meta-row">'+
+          '<span class="pd-chip">A0–A1</span>'+
+          '<span class="pd-chip">'+(ti?'线上小班':'Online groep')+'</span>'+
+          '<span class="pd-chip">Teams</span>'+
+          '<span class="pd-chip">'+(ti?'含录屏回放':'Met opname')+'</span>'+
+        '</div>'+
+
+        '<div class="pd-desc">'+desc+'</div>'+
+
+        '<div class="pd-policy">'+
+          '<details class="pd-acc" open>'+
+            '<summary>'+(ti?'课程包含':'Inbegrepen')+'</summary>'+
+            '<div>'+points.map(function(p){return '✓ '+p;}).join('<br>')+'</div>'+
+          '</details>'+
+
+          '<details class="pd-acc" open>'+
+            '<summary>'+(ti?'具体时间':'Planning')+'</summary>'+
+            '<div>'+
+              (ti
+                ? '开课日期：'+date+'<br>总课时：'+duration+'<br>人数：最多8人<br>授课方式：'+location
+                : 'Startdatum: '+date+'<br>Duur: '+duration+'<br>Groepsgrootte: max. 8 cursisten<br>Lesvorm: '+location
+              )+
+            '</div>'+
+          '</details>'+
+
+          '<details class="pd-acc">'+
+            '<summary>'+(ti?'报名后会收到什么？':'Wat gebeurt er na inschrijving?')+'</summary>'+
+            '<div>'+
+              (ti
+                ? '付款成功后，课程会显示在个人主页「我的课程」里。老师会根据你填写的微信号联系你，并拉你进入课程微信群。'
+                : 'Na betaling verschijnt de cursus in uw dashboard. De docent neemt contact op via WeChat en voegt u toe aan de cursusgroep.'
+              )+
+            '</div>'+
+          '</details>'+
+        '</div>'+
+
+        '<div class="pd-warning">'+
+          (ti
+            ? '请务必填写正确的微信号。线上课通知、学习群和课后回放都会通过微信沟通。'
+            : 'Vul uw WeChat-ID correct in. De cursusgroep, mededelingen en opnames worden via WeChat gedeeld.'
+          )+
+        '</div>'+
+
+        '<div class="pd-actions">'+
+          '<button class="bpay" onclick="oEnroll(\''+s.id+'\')">'+(ti?'报名并付款':'Inschrijven en betalen')+'</button>'+
+          '<button class="btn-secondary" onclick="nav(\'overview\')">'+(ti?'返回课程列表':'Terug naar cursussen')+'</button>'+
+        '</div>'+
+      '</div>'+
+
+    '</div>';
+}
+  
 function oEnroll(id){
   var item=SES.find(function(s){return s.id===id;})||PIL.find(function(p){return p.id===id;});
   if(!item)return;
@@ -2223,7 +2378,18 @@ function oEnroll(id){
     body='<div class="sw"><div class="si"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C7A45" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></div><div class="st2">'+(ti?'您已拥有此课程':'U heeft al toegang')+'</div><div class="sd">'+(ti?'此课程已在您的账号中。':'Deze cursus staat al in uw account.')+'</div><button class="bf" style="max-width:220px;margin:0 auto" onclick="nav(\'dashboard\')">'+(ti?'前往我的课程':'Naar mijn cursussen')+'</button></div>';
   }else{
     var warn=noL?'<div class="warn-box">⚠️ '+(ti?'请先登录或注册，再完成购买':'Log eerst in of registreer')+'<div class="dflex"><button class="bf" style="margin:0" onclick="nav(\'login\')">'+(ti?'登录':'Inloggen')+'</button><button class="bo" style="margin:0" onclick="nav(\'register\')">'+(ti?'注册':'Registreren')+'</button></div></div>':'';
-    var liveF=item.tp==='live'?'<div class="fr"><label>'+(ti?'当前荷兰语水平':'Huidig niveau')+'</label><input type="text" id="elv" placeholder="'+(ti?'例：零基础/学过一点':'Bijv. beginner')+'"></div>':'';
+    var liveF=item.tp==='live'
+  ? '<div class="fr">'+
+      '<label>'+(ti?'微信号（必填）':'WeChat-ID verplicht')+'</label>'+
+      '<input type="text" id="elv" placeholder="'+(ti?'用于拉你进课程群，请填写准确微信号':'Voor de cursusgroep, vul uw WeChat-ID correct in')+'">'+
+      '<div class="form-hint">'+
+        (ti
+          ? '线上课需要通过微信发送课程通知、学习群信息和课后回放，所以微信号为必填。'
+          : 'Voor online lessen gebruiken wij WeChat voor de cursusgroep, mededelingen en opnames. Daarom is WeChat verplicht.'
+        )+
+      '</div>'+
+    '</div>'
+  : '';
     body='<div class="ep-cols"><div>'+warn+
       '<div class="fc"><div class="fct">'+(ti?'联系信息':'Contactgegevens')+'</div>'+
       '<div class="fr"><label>Email</label><input type="email" id="ee" value="'+(USER?USER.em:'')+'" placeholder="email@example.com" '+(USER?'readonly style="background:var(--sand)"':'')+'/></div>'+
@@ -2248,7 +2414,7 @@ function oEnroll(id){
 
 function sP(el){el.closest('.payopts').querySelectorAll('.popt').forEach(function(e){e.classList.remove('on');});el.classList.add('on');}
 
-function startCourseCheckout(){
+ffunction startCourseCheckout(){
   var ti=t();
 
   if(!USER){
@@ -2262,6 +2428,18 @@ function startCourseCheckout(){
     return;
   }
 
+  var wcInput = document.getElementById('elv');
+  var wechat = wcInput ? wcInput.value.trim() : '';
+
+  if(!wechat){
+    alert(ti?'请填写微信号，线上课需要拉你进入课程群。':'Vul uw WeChat-ID in voor de cursusgroep.');
+    return;
+  }
+
+  if(USER){
+    USER.wc = wechat;
+  }
+
   CART = [{
     id: ET.pid,
     qty: 1,
@@ -2269,7 +2447,14 @@ function startCourseCheckout(){
   }];
 
   nav('checkout');
-} 
+
+  setTimeout(function(){
+    var ckWc = document.getElementById('ck-wc');
+    if(ckWc){
+      ckWc.value = wechat;
+    }
+  }, 100);
+}
   
 function cPur(){
   if(!USER||!ET)return;
@@ -2849,6 +3034,7 @@ function nav(id,opt){
 }
   if(id==='product')rProduct();
   if(id==='checkout')rCheckout();
+  if(id==='course-detail')rCourseDetail();
   if(id==='privacy'||id==='terms')rLegal();
   rPil('home-pillars');
   closeCart();
@@ -2926,6 +3112,7 @@ var initialHash = location.hash ? location.hash.replace('#','') : 'home';
       'overview',
       'shop',
       'product',
+      'course-detail',
       'checkout',
       'payment-success',
       'privacy',
