@@ -2411,36 +2411,45 @@ async function refreshUser(){
 
   if(result.data && result.data.user){
     var u = result.data.user;
+
     USER = {
-  nm: u.user_metadata.name || u.email,
-  em: u.email,
-  wc: u.user_metadata.wechat || '',
-  cs: [],
-  products: []
-};
+      nm: u.user_metadata.name || u.email,
+      em: u.email,
+      wc: u.user_metadata.wechat || '',
+      cs: [],
+      products: []
+    };
 
-try{
-  var res = await fetch('/api/get-purchases?email=' + encodeURIComponent(u.email));
-  var data = await res.json();
+    try{
+      var res = await fetch('/api/get-purchases?email=' + encodeURIComponent(u.email));
+      var data = await res.json();
 
-if(res.ok && data.purchases){
-  var purchases = data.purchases || [];
-  USER.products = getOwnedProductIdsFromPurchases(purchases);
-}
-  
-}catch(err){
-  console.error('load user purchases error:', err);
-}
+      if(res.ok){
+        var purchases = data.purchases || [];
+        var coursePurchases = data.coursePurchases || [];
+
+        USER.products = getOwnedProductIdsFromPurchases(purchases);
+
+        USER.cs = coursePurchases
+          .map(function(c){ return c.course_id; })
+          .filter(Boolean);
+      }
+
+    }catch(err){
+      console.error('load user purchases error:', err);
+    }
 
     document.getElementById('auth-btns').style.display='none';
     document.getElementById('user-btns').style.display='';
     document.getElementById('ulabel').textContent=t()?'我的课程':'Mijn cursussen';
+
   }else{
     USER = null;
     document.getElementById('auth-btns').style.display='';
     document.getElementById('user-btns').style.display='none';
   }
 }
+  
 function loginAs(u){
   USER=u;
   document.getElementById('auth-btns').style.display='none';
@@ -2569,7 +2578,8 @@ function rDash(){
         '</a></div>';
     }else{
       cl.innerHTML=ow.map(function(cid){
-        var s=SES.find(function(x){return x.id===cid;})||PIL.find(function(x){return x.id===cid;});
+        var s=SES.find(function(x){return x.id===cid || x.pid===cid;}) ||
+      PIL.find(function(x){return x.id===cid || x.pid===cid;});
         if(!s)return '';
         var lv=ti?(s.zl||s.zt):(s.nl_||s.nt);
         var tt=ti?(s.zt||s.zl):(s.nt||s.nl_);
