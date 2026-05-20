@@ -1432,7 +1432,9 @@ var PIL=[
 var SES=[
   {id:'elearn',tp:'elearn',lv:'elearn',zt:'网课 E-learning',nt:'E-learning',zd:'火热制作中，敬请期待。录播课程上线后，可按自己的时间反复学习。',nd:'In ontwikkeling. Videolessen volgen binnenkort.',sd:'',nd2:'',dur:'',dun:'',lz:'在线',ln:'Online',pr:'敬请期待',pn:'暂无价格',nn:'Binnenkort',zp:['火热制作中，敬请期待','适合想系统自学的同学'],np:['In ontwikkeling','Voor zelfstudie'],soon:true},
  {
+  {
   id:'a0a1',
+  pid:'course_a0a1_20260606',
   tp:'live',
   lv:'a0a1',
   zt:'A0–A1 零基础入门班',
@@ -2019,12 +2021,13 @@ if(!USER){
   }
 
   try{
-    var items=CART.map(function(ci){
-      return {
-        productId: ci.id,
-        quantity: ci.qty || 1
-      };
-    });
+var items=CART.map(function(ci){
+  return {
+    productId: ci.id,
+    quantity: ci.qty || 1,
+    kind: ci.kind || 'product'
+  };
+});
 
     var response=await fetch('/api/create-payment',{
       method:'POST',
@@ -2133,7 +2136,7 @@ function oEnroll(id){
       liveF+'</div>'+
       '<div class="fc"><div class="fct">'+(ti?'支付方式':'Betaalmethode')+'</div>'+
       '<div class="payopts"><div class="popt on" onclick="sP(this)">🏦 iDEAL</div><div class="popt" onclick="sP(this)">💳 Creditcard</div><div class="popt" onclick="sP(this)">🅿️ PayPal</div><div class="popt" onclick="sP(this)">🏛 Overboeking</div></div>'+
-      '<button class="bpay" onclick="cPur()" '+(noL?'disabled':'')+'>🔒 '+(ti?'立即支付':'Nu betalen')+' — '+item.pr+'</button>'+
+      '<button class="bpay" onclick="startCourseCheckout()" '+(noL?'disabled':'')+'>🔒 '+(ti?'立即报名并付款':'Inschrijven en betalen')+' — '+item.pr+'</button>'+
       '<div class="slbl">🔒 '+(ti?'安全支付 · 7天退款保证':'Veilige betaling · 7 dagen garantie')+'</div></div></div>'+
       '<div><div class="oc"><div class="oct">'+(ti?'订单摘要':'Besteloverzicht')+'</div>'+
       '<div class="or"><span>'+tt+'</span><span>'+item.pr+'</span></div>'+
@@ -2149,6 +2152,30 @@ function oEnroll(id){
 }
 
 function sP(el){el.closest('.payopts').querySelectorAll('.popt').forEach(function(e){e.classList.remove('on');});el.classList.add('on');}
+
+function startCourseCheckout(){
+  var ti=t();
+
+  if(!USER){
+    alert(ti?'请先注册/登录后报名课程。':'Log eerst in of registreer om u in te schrijven.');
+    nav('login');
+    return;
+  }
+
+  if(!ET || !ET.pid){
+    alert(ti?'课程付款信息缺失，请联系 Taal13A。':'Betaalinformatie ontbreekt. Neem contact op met Taal13A.');
+    return;
+  }
+
+  CART = [{
+    id: ET.pid,
+    qty: 1,
+    kind: 'course'
+  }];
+
+  nav('checkout');
+} 
+  
 function cPur(){
   if(!USER||!ET)return;
   if(!USER.cs)USER.cs=[];
