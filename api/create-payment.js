@@ -32,23 +32,15 @@ export default async function handler(req, res) {
 
   try {
 
-    const {
-
-      username,
-
-      email,
-
-      wechat,
-
-      note,
-
-      items,
-
-      acceptedTerms,
-
-      acceptedDigitalDelivery
-
-    } = req.body || {};
+const {
+  username,
+  email,
+  wechat,
+  note,
+  items,
+  acceptedTerms,
+  acceptedDigitalDelivery
+} = req.body;
 
     if (!username || !isEmail(email)) {
 
@@ -144,9 +136,10 @@ export default async function handler(req, res) {
 
         email,
 
-        wechat: wechat || null,
-
-        note: note || null,
+       wechat: wechat || null,
+       note: note || null,
+       accepted_terms: acceptedTerms === true,
+       accepted_digital_delivery: acceptedDigitalDelivery === true
 
         total_cents: totalCents,
 
