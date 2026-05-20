@@ -1871,12 +1871,12 @@ function rPil(id){
   var ti=t();
 
   el.innerHTML=PIL.map(function(c){
-    var lv=ti?c.zl:c.nl_;
-    var sb=ti?c.zs:c.ns;
-    var tt=ti?c.zt:c.nt;
-    var pts=ti?c.zp:c.np;
-    var tags=ti?c.tz:c.tn;
-    var note=ti?c.nz:c.nn;
+    var lv=ti?c.zl:c.nl_,
+        sb=ti?c.zs:c.ns,
+        tt=ti?c.zt:c.nt,
+        pts=ti?c.zp:c.np,
+        tags=ti?c.tz:c.tn,
+        note=ti?c.nz:c.nn;
 
     var cleanLv = lv.replace(/｜.*$/,'').replace(/\|.*$/,'');
     var cleanTt = tt.replace(/｜.*$/,'').replace(/\|.*$/,'');
@@ -1890,7 +1890,7 @@ function rPil(id){
       '<button class="benroll" onclick="event.stopPropagation();oCourseDetail(\''+c.id+'\')">'+(ti?'查看报名':'Bekijk')+'</button></div></div></div>';
   }).join('');
 }
-
+  
 function shopCat(f,btn){
   SCARF=f;
   document.querySelectorAll('.scat').forEach(function(b){b.classList.remove('on');});
@@ -2111,8 +2111,8 @@ function updCart(){
   }
 
   el.innerHTML=CART.map(function(ci){
-    var p=getCartItemData(ci.id);if(!p)return '';
-
+    var p=getCartItemData(ci.id);
+    if(!p)return '';
     var now=p.pr*ci.qty;
     var old=(p.old||p.pr)*ci.qty;
     var saving=old-now;
