@@ -250,6 +250,36 @@ body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);ove
 .scard-img{width:100%;height:200px;display:flex;align-items:center;justify-content:center;font-size:52px;position:relative;overflow:hidden;background:var(--sand);}
 .scard-img img{width:100%;height:100%;object-fit:contain;background:#fff;padding:12px;}
 .scard-digital-note{margin-top:1rem;padding:.9rem 1rem;border-radius:var(--rl);background:var(--blue-l);color:var(--blue-d);font-size:12.5px;line-height:1.6;font-weight:650;}
+.must-buy-badge{
+  position:absolute;
+  top:10px;
+  left:10px;
+  z-index:2;
+  background:linear-gradient(135deg,#111,#333);
+  color:#fff;
+  font-size:11px;
+  font-weight:900;
+  padding:5px 10px;
+  border-radius:999px;
+  box-shadow:0 3px 12px rgba(0,0,0,.22);
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+
+.discount-badge{
+  position:absolute;
+  top:10px;
+  right:10px;
+  z-index:2;
+  background:var(--ora);
+  color:#fff;
+  font-size:11px;
+  font-weight:900;
+  padding:5px 9px;
+  border-radius:999px;
+  box-shadow:0 3px 12px rgba(240,107,42,.28);
+}
 .scard-badge{position:absolute;top:10px;right:10px;background:var(--ora);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px;}
 .scard-body{padding:.85rem 1rem 1rem;}
 .scard-cat{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--blue);margin-bottom:.3rem;}
@@ -1384,6 +1414,7 @@ var PRODUCTS=[
     id:'a2sp_pdf',
     cat:'guide',
     emoji:'💡',
+    must:true,
     img:'./images/a2-speaking-guide-cover.jpg?v=2',
     infoImg:'./images/a2-speaking-guide-info.jpg?v=2',
     pay:'https://payment-links.mollie.com/payment/9LLPYdtZACygQQ2fMRCuu',
@@ -1402,6 +1433,7 @@ var PRODUCTS=[
     id:'a2_sprint_bundle_pdf',
     cat:'bundle',
     emoji:'📦',
+    must:true,
     img:'./images/a2-sprint-bundle-cover.jpg?v=2',
     infoImg:'./images/a2-sprint-bundle-info.jpg?v=2',
     pay:'',
@@ -1504,52 +1536,71 @@ function rShop(){
   var ti=t();
   var prods=SCARF==='all'?PRODUCTS:PRODUCTS.filter(function(p){return p.cat===SCARF;});
   var el=document.getElementById('shop-grid');if(!el)return;
-  var bgMap={books:'#EAF3FF',workbook:'#E8F7F0',merch:'#FFF4EB',bundle:'#F3EEFF'};
+  var bgMap={guide:'#EAF3FF',workbook:'#E8F7F0',vocab:'#FFF4EB',books:'#EAF3FF',merch:'#FFF4EB',bundle:'#F3EEFF'};
+
   el.innerHTML=prods.map(function(p){
     var prFmt='€'+(p.pr/100).toFixed(2).replace('.',',');
     var oldFmt=p.old?'€'+(p.old/100).toFixed(2).replace('.',','):'';
+    var discount=getDiscountPercent(p);
+
     return '<div class="scard" onclick="oProduct(\''+p.id+'\')">'+
-      '<div class="scard-img" style="background:'+bgMap[p.cat]+'">'+(p.img?'<img src="'+p.img+'" alt="'+(ti?p.zn:p.nn)+'">':(p.emoji||'📦'))+
-      (p.badge?'<span class="scard-badge">'+p.badge+'</span>':'')+
+      '<div class="scard-img" style="background:'+(bgMap[p.cat]||'#fff')+'">'+
+        (p.img?'<img src="'+p.img+'" alt="'+(ti?p.zn:p.nn)+'">':(p.emoji||'📦'))+
+
+        (p.must?'<span class="must-buy-badge">👍 '+(ti?'本店必买':'Must-have')+'</span>':'')+
+
+        (discount?'<span class="discount-badge">'+discount+'% OFF</span>':'')+
       '</div>'+
+
       '<div class="scard-body">'+
-      '<div class="scard-cat">'+
-  (ti
-    ? {
-        guide:'💡 核心备考手册',
-        workbook:'📝 打印练习册',
-        vocab:'📖 答题词汇',
-        books:'📖 教材书籍',
-        merch:'🎁 周边产品',
-        bundle:'📦 词库冲刺包'
-      }[p.cat]
-    : {
-        guide:'💡 Kernhandleiding',
-        workbook:'📝 Oefenboekje',
-        vocab:'📖 Woordenschat',
-        books:'Boeken',
-        merch:'Merchandise',
-        bundle:'📦 Sprintpakket'
-      }[p.cat]
-  )+
-'</div>'+
-      
-      '<div class="scard-name">'+(ti?p.zn:p.nn)+'</div>'+
-      '<div class="scard-desc">'+(ti?p.zd:p.nd)+'</div>'+
-      '<div class="scard-foot">'+
-      '<div><span class="scard-price">'+prFmt+'</span>'+(oldFmt?'<span class="scard-old">'+oldFmt+'</span>':'')+' <span style="font-size:10px;color:var(--ink4);font-weight:600">incl. BTW</span></div>'+
-     (isProductPurchased(p.id)
-  ? '<button class="btn-cart" style="background:var(--grn);cursor:default" onclick="event.stopPropagation();">'+(ti?'已购买':'Gekocht')+'</button>'
-  : '<button class="btn-cart" onclick="event.stopPropagation();addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button>'
-)+
-      '</div></div></div>';
+        '<div class="scard-cat">'+
+          (ti
+            ? {
+                guide:'💡 核心备考手册',
+                workbook:'📝 打印练习册',
+                vocab:'📖 答题词汇',
+                books:'📖 教材书籍',
+                merch:'🎁 周边产品',
+                bundle:'📦 词库冲刺包'
+              }[p.cat]
+            : {
+                guide:'💡 Kernhandleiding',
+                workbook:'📝 Oefenboekje',
+                vocab:'📖 Woordenschat',
+                books:'Boeken',
+                merch:'Merchandise',
+                bundle:'📦 Sprintpakket'
+              }[p.cat]
+          )+
+        '</div>'+
+
+        '<div class="scard-name">'+(ti?p.zn:p.nn)+'</div>'+
+        '<div class="scard-desc">'+(ti?p.zd:p.nd)+'</div>'+
+
+        '<div class="scard-foot">'+
+          '<div>'+
+            '<span class="scard-price">'+prFmt+'</span>'+
+            (oldFmt?'<span class="scard-old">'+oldFmt+'</span>':'')+
+            ' <span style="font-size:10px;color:var(--ink4);font-weight:600">incl. BTW</span>'+
+          '</div>'+
+
+          (isProductPurchased(p.id)
+            ? '<button class="btn-cart" style="background:var(--grn);cursor:default" onclick="event.stopPropagation();">'+(ti?'已购买':'Gekocht')+'</button>'
+            : '<button class="btn-cart" onclick="event.stopPropagation();addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button>'
+          )+
+        '</div>'+
+      '</div>'+
+    '</div>';
   }).join('');
 }
-
 
 function buyProduct(pid){addToCart(pid);}
 
 function fmtPrice(cents){return '€'+(cents/100).toFixed(2).replace('.',',');}
+function getDiscountPercent(p){
+  if(!p || !p.old || !p.pr || p.old <= p.pr)return null;
+  return Math.round((1 - p.pr / p.old) * 100);
+}
 function getOwnedProductIdsFromPurchases(purchases){
   var ids = [];
 
@@ -1647,40 +1698,91 @@ function addToCart(pid){
 }
 
 function updCart(){
-  var total=0,count=0;
+  var total=0,count=0,oldTotal=0;
   var ti=t();
   var el=document.getElementById('cart-items');
   var foot=document.getElementById('cart-foot');
+
   if(!CART.length){
     el.innerHTML='<div class="cart-empty">'+(ti?'购物车是空的':'Winkelwagen is leeg')+'</div>';
     foot.style.display='none';
     document.getElementById('cart-bar').style.display='none';
     return;
   }
+
   el.innerHTML=CART.map(function(ci){
     var p=PRODUCTS.find(function(x){return x.id===ci.id;});if(!p)return '';
-    var prFmt='€'+(p.pr/100).toFixed(2).replace('.',',');
-    total+=p.pr*ci.qty; count+=ci.qty;
+
+    var now=p.pr*ci.qty;
+    var old=(p.old||p.pr)*ci.qty;
+    var saving=old-now;
+
+    total+=now;
+    oldTotal+=old;
+    count+=ci.qty;
+
+    var prFmt=fmtPrice(now);
+    var oldFmt=p.old?fmtPrice(old):'';
+    var saveFmt=saving>0?fmtPrice(saving):'';
+
     return '<div class="cart-item">'+
-      '<div class="ci-icon">'+p.emoji+'</div>'+
+      '<div class="ci-icon">'+
+        (p.img?'<img src="'+p.img+'" alt="'+(ti?p.zn:p.nn)+'" style="width:100%;height:100%;object-fit:contain;border-radius:10px;background:#fff;padding:4px;">':p.emoji)+
+      '</div>'+
+
       '<div class="ci-info">'+
-      '<div class="ci-name">'+(ti?p.zn:p.nn)+'</div>'+
-      '<div class="ci-price">'+prFmt+'</div>'+
-      '<div class="ci-qty">'+
-      '<button class="qty-btn" onclick="changeQty(\''+ci.id+'\',-1)">−</button>'+
-      '<span class="qty-n">'+ci.qty+'</span>'+
-      '<button class="qty-btn" onclick="changeQty(\''+ci.id+'\',1)">+</button>'+
-      '<button class="ci-del" onclick="removeCart(\''+ci.id+'\')">🗑</button>'+
-      '</div></div></div>';
+        '<div class="ci-name">'+(ti?p.zn:p.nn)+'</div>'+
+
+        '<div class="ci-price">'+
+          '<span>'+prFmt+'</span>'+
+          (oldFmt?'<span style="font-size:11px;color:var(--ink4);text-decoration:line-through;margin-left:6px">'+oldFmt+'</span>':'')+
+        '</div>'+
+
+        (saveFmt?'<div style="font-size:11px;color:var(--ora);font-weight:900;margin-top:2px">'+
+          (ti?'已优惠 ':'U bespaart ')+saveFmt+
+        '</div>':'')+
+
+        '<div class="ci-qty">'+
+          '<button class="qty-btn" onclick="changeQty(\''+ci.id+'\',-1)">−</button>'+
+          '<span class="qty-n">'+ci.qty+'</span>'+
+          '<button class="qty-btn" onclick="changeQty(\''+ci.id+'\',1)">+</button>'+
+          '<button class="ci-del" onclick="removeCart(\''+ci.id+'\')">🗑</button>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
   }).join('');
-  var tot='€'+(total/100).toFixed(2).replace('.',',');
-  document.getElementById('cart-total-price').textContent=tot;
+
+  var tot=fmtPrice(total);
+  var saveTotal=oldTotal-total;
+
+  document.getElementById('cart-total-price').innerHTML =
+    (saveTotal>0
+      ? '<span style="font-size:12px;color:var(--ink4);text-decoration:line-through;margin-right:6px">'+fmtPrice(oldTotal)+'</span>'
+      : ''
+    )+
+    '<span>'+tot+'</span>';
+
+  if(saveTotal>0){
+    foot.insertAdjacentHTML('afterbegin','');
+  }
+
   foot.style.display='block';
+
+  var existingSave=document.getElementById('cart-save-line');
+  if(existingSave)existingSave.remove();
+
+  if(saveTotal>0){
+    var saveLine=document.createElement('div');
+    saveLine.id='cart-save-line';
+    saveLine.style.cssText='font-size:12px;color:var(--ora);font-weight:900;margin-bottom:.75rem;text-align:right;';
+    saveLine.textContent=(ti?'本单已优惠 ':'U bespaart ')+fmtPrice(saveTotal);
+    foot.insertBefore(saveLine, foot.querySelector('.btn-checkout'));
+  }
+
   var bar=document.getElementById('cart-bar');
   bar.style.display='block';
   document.getElementById('cart-bar-txt').textContent=(ti?'购物车':'Winkelwagen')+' ('+count+')';
 }
-
 function changeQty(id,d){
   var ci=CART.find(function(c){return c.id===id;});if(!ci)return;
   ci.qty+=d;if(ci.qty<=0)CART=CART.filter(function(c){return c.id!==id;});
@@ -1914,7 +2016,7 @@ if(result.error){
     msg = '重置链接没有成功建立登录状态。请重新发送重置密码邮件，并使用最新邮件里的链接。';
   }
 
-  box.innerHTML = '<div class="aerr">'+ msg +'</div>';
+  al.innerHTML = '<div class="aerr">'+ msg +'</div>';
   return;
 }
 
@@ -1947,6 +2049,7 @@ async function doLogin(){
   await refreshUser();
   nav('dashboard');
 }
+
 async function sendPasswordReset(){
   var ti = t();
   var email = document.getElementById('lei').value.trim();
@@ -1960,7 +2063,9 @@ async function sendPasswordReset(){
   }
 
   var result = await supabaseClient.auth.resetPasswordForEmail(email, {
-    redirectTo: window.location.origin + '/#reset-password'
+    // 重点：不要用 /#reset-password
+    // 否则 Supabase 的 access_token 可能跟你的 hash 路由冲突
+    redirectTo: window.location.origin + window.location.pathname + '?reset-password=1'
   });
 
   if(result.error){
@@ -1994,27 +2099,38 @@ async function updatePassword(){
     return;
   }
 
-  box.innerHTML = '<div style="background:#E8F5E9;color:#2E7D32;padding:9px 13px;border-radius:8px;font-size:12.5px;font-weight:800;margin-bottom:.85rem;">'+(ti?'正在更新密码...':'Wachtwoord wordt bijgewerkt...')+'</div>';
+  box.innerHTML = '<div style="background:#E8F5E9;color:#2E7D32;padding:9px 13px;border-radius:8px;font-size:12.5px;font-weight:800;margin-bottom:.85rem;">'+
+    (ti?'正在更新密码...':'Wachtwoord wordt bijgewerkt...')+
+    '</div>';
 
-  try {
+  try{
     var result = await supabaseClient.auth.updateUser({
       password: pw1
     });
 
     if(result.error){
-      // "Auth session missing" 的特殊处理
-      if(result.error.message.indexOf('session') >= 0 || result.error.message.indexOf('Auth') >= 0){
-        box.innerHTML = '<div class="aerr">'+(ti?'重置链接已过期，请重新申请密码重置。':'Resetlink is verlopen. Vraag een nieuw aan.')+'</div>'+
-          '<button class="bf" style="max-width:220px;margin:0.85rem auto 0" onclick="nav(\'login\')">'+(ti?'返回登录并申请重置':'Terug naar login')+'</button>';
+      if(
+        result.error.message.indexOf('session') >= 0 ||
+        result.error.message.indexOf('Auth') >= 0
+      ){
+        box.innerHTML =
+          '<div class="aerr">'+
+          (ti?'重置链接已过期或无效，请重新申请密码重置。':'Resetlink is verlopen of ongeldig. Vraag een nieuwe resetlink aan.')+
+          '</div>'+
+          '<button class="bf" style="max-width:220px;margin:0.85rem auto 0" onclick="nav(\'login\')">'+
+          (ti?'返回登录页':'Terug naar login')+
+          '</button>';
         return;
       }
-      
+
       box.innerHTML = '<div class="aerr">'+ result.error.message +'</div>';
       return;
     }
 
     box.innerHTML =
-      '<div style="background:#EAF4EE;color:#28724C;border:1.5px solid #BFE2CC;padding:9px 13px;border-radius:8px;font-size:12.5px;font-weight:800;margin-bottom:.85rem;">'+(ti?'密码已成功更新！':'Wachtwoord is bijgewerkt!')+'</div>';
+      '<div style="background:#EAF4EE;color:#28724C;border:1.5px solid #BFE2CC;padding:9px 13px;border-radius:8px;font-size:12.5px;font-weight:800;margin-bottom:.85rem;">'+
+      (ti?'密码已成功更新！请使用新密码重新登录。':'Wachtwoord is bijgewerkt. Log opnieuw in met uw nieuwe wachtwoord.')+
+      '</div>';
 
     document.getElementById('new-pw').value = '';
     document.getElementById('new-pw2').value = '';
@@ -2024,52 +2140,44 @@ async function updatePassword(){
       USER = null;
       document.getElementById('auth-btns').style.display='';
       document.getElementById('user-btns').style.display='none';
-      
-      nav('login');
-      
+
+      nav('login', {push:false});
+
       document.getElementById('lei').value = '';
       document.getElementById('lpw').value = '';
-      document.getElementById('lerr').innerHTML = '';
-    }, 1800);
+      document.getElementById('lerr').innerHTML =
+        '<div style="background:#EAF4EE;color:#28724C;border:1.5px solid #BFE2CC;padding:9px 13px;border-radius:8px;font-size:12.5px;font-weight:800;margin-bottom:.85rem;">'+
+        (ti?'密码已更新，请用新密码登录。':'Wachtwoord is bijgewerkt. Log in met uw nieuwe wachtwoord.')+
+        '</div>';
+    }, 1500);
 
-  } catch(err) {
+  }catch(err){
     console.error('Update password error:', err);
     box.innerHTML = '<div class="aerr">'+(ti?'更新失败，请稍后再试。':'Bijwerken mislukt. Probeer later opnieuw.')+'</div>';
   }
 }
 
 async function handlePasswordRecoverySession(){
-  // 从 hash 中提取所有参数
-  var hash = window.location.hash.slice(1); // 去掉 #
-  var hashParams = new URLSearchParams(hash);
   var searchParams = new URLSearchParams(window.location.search);
-
-  console.log('Hash:', hash);
-  console.log('Parsed hash params:', Object.fromEntries(hashParams));
+  var hash = window.location.hash || '';
+  var hashText = hash.replace(/^#/, '');
+  var hashParams = new URLSearchParams(hashText);
 
   var accessToken = hashParams.get('access_token');
   var refreshToken = hashParams.get('refresh_token');
   var type = hashParams.get('type');
 
-  console.log('Token type:', type);
-  console.log('Access token:', accessToken ? 'present' : 'missing');
-  console.log('Refresh token:', refreshToken ? 'present' : 'missing');
-
-  // 检查是否是恢复密码链接
-  var isResetPage = (
+  var isResetPage =
     searchParams.get('reset-password') === '1' ||
     type === 'recovery' ||
-    (hash.indexOf('type=recovery') >= 0) ||
-    (accessToken && refreshToken)
-  );
+    hash.indexOf('type=recovery') >= 0 ||
+    hash.indexOf('access_token=') >= 0;
 
   if(!isResetPage){
     return false;
   }
 
-  // 如果有 tokens，设置会话
   if(accessToken && refreshToken){
-    console.log('Setting recovery session...');
     var result = await supabaseClient.auth.setSession({
       access_token: accessToken,
       refresh_token: refreshToken
@@ -2077,15 +2185,9 @@ async function handlePasswordRecoverySession(){
 
     if(result.error){
       console.error('Set recovery session error:', result.error);
-      // 即使失败也继续，因为用户可能想手动输入新密码
-    } else {
-      console.log('Recovery session set successfully');
     }
-  } else {
-    console.warn('Missing tokens in recovery URL');
   }
 
-  // 清理 URL
   history.replaceState(
     {page:'reset-password'},
     '',
@@ -2377,64 +2479,6 @@ async function downloadProduct(pid){
   }
 }
 function wI(cid){var s=SES.find(function(x){return x.id===cid;})||PIL.find(function(x){return x.id===cid;});alert((t()?'正在加载：':'Laden: ')+(s?t()?(s.zt||s.zl):(s.nt||s.nl_):cid));}
-
-async function handlePasswordRecoverySession(){
-  // 从 hash 中提取所有参数
-  var hash = window.location.hash.slice(1); // 去掉 #
-  var hashParams = new URLSearchParams(hash);
-  var searchParams = new URLSearchParams(window.location.search);
-
-  console.log('Hash:', hash);
-  console.log('Parsed hash params:', Object.fromEntries(hashParams));
-
-  var accessToken = hashParams.get('access_token');
-  var refreshToken = hashParams.get('refresh_token');
-  var type = hashParams.get('type');
-
-  console.log('Token type:', type);
-  console.log('Access token:', accessToken ? 'present' : 'missing');
-  console.log('Refresh token:', refreshToken ? 'present' : 'missing');
-
-  // 检查是否是恢复密码链接
-  var isResetPage = (
-    searchParams.get('reset-password') === '1' ||
-    type === 'recovery' ||
-    (hash.indexOf('type=recovery') >= 0) ||
-    (accessToken && refreshToken)
-  );
-
-  if(!isResetPage){
-    return false;
-  }
-
-  // 如果有 tokens，设置会话
-  if(accessToken && refreshToken){
-    console.log('Setting recovery session...');
-    var result = await supabaseClient.auth.setSession({
-      access_token: accessToken,
-      refresh_token: refreshToken
-    });
-
-    if(result.error){
-      console.error('Set recovery session error:', result.error);
-      // 即使失败也继续，因为用户可能想手动输入新密码
-    } else {
-      console.log('Recovery session set successfully');
-    }
-  } else {
-    console.warn('Missing tokens in recovery URL');
-  }
-
-  // 清理 URL
-  history.replaceState(
-    {page:'reset-password'},
-    '',
-    window.location.pathname + '#reset-password'
-  );
-
-  nav('reset-password', {push:false});
-  return true;
-}
   
 function handlePaymentReturn(){
   var params = new URLSearchParams(window.location.search);
@@ -2465,11 +2509,11 @@ function isPasswordRecoveryUrl(){
 
   return (
     params.get('reset-password') === '1' ||
-    params.get('type') === 'recovery' ||
     hash.indexOf('type=recovery') >= 0 ||
-    hash.indexOf('access_token=') >= 0
+    hash.indexOf('access_token=') >= 0 ||
+    hash.indexOf('refresh_token=') >= 0
   );
-}  
+} 
   
 function nav(id,opt){
   opt=opt||{};
