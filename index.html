@@ -268,6 +268,15 @@ body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);ove
 .ctag{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:700;}
 .ct-d{background:var(--blue-l);color:var(--blue)}.ct-dur{background:var(--sand);color:var(--ink2)}
 .ct-l{background:#E9F5EE;color:var(--grn)}.ct-t{background:var(--ora-l);color:var(--ora)}
+.ct-seat-few{
+  background:var(--ora-l);
+  color:var(--ora);
+}
+
+.ct-seat-ok{
+  background:var(--blue-l);
+  color:var(--blue);
+}
 .cright{text-align:right;flex-shrink:0;}
 .cprice{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--ink);}
 .cpnote{font-size:10.5px;color:var(--ink4);font-weight:600;}
@@ -1615,6 +1624,9 @@ var SES=[
     priceCents:29900,
     pn:'最多8人小班',
     nn:'Max. 8 cursisten',
+    seatsZh:'仅剩4席',
+    seatsNl:'Nog 4 plekken',
+    seatStatus:'few',
     targetZh:'适合荷兰语零基础、想从发音和简单句子开始系统学习的同学。',
     targetNl:'Voor cursisten zonder voorkennis die vanaf uitspraak en eenvoudige zinnen willen beginnen.',
     goalZh:'从零开始，能读、能说、能开口',
@@ -1657,6 +1669,9 @@ var SES=[
     priceCents:39900,
     pn:'最多8人小班',
     nn:'Max. 8 cursisten',
+    seatsZh:'仅剩4席',
+    seatsNl:'Nog 4 plekken',
+    seatStatus:'few',
     targetZh:'适合需要系统学习、牢固基础、希望开口说荷兰语的同学。',
     targetNl:'Voor cursisten die hun basis willen versterken en Nederlands willen leren spreken.',
     goalZh:'基础重建，真正会读、会听、敢开口',
@@ -1699,6 +1714,9 @@ var SES=[
     priceCents:39900,
     pn:'最多8人小班',
     nn:'Max. 8 cursisten',
+    seatsZh:'席位充足',
+    seatsNl:'Voldoende plekken',
+    seatStatus:'ok',
     targetZh:'适合需要系统学习、牢固基础、希望开口说荷兰语的同学。',
     targetNl:'Voor cursisten die hun basis willen versterken en Nederlands willen leren spreken.',
     goalZh:'基础重建，真正会读、会听、敢开口',
@@ -1741,6 +1759,9 @@ var SES=[
     priceCents:39900,
     pn:'最多8人小班',
     nn:'Max. 8 cursisten',
+    seatsZh:'席位充足',
+    seatsNl:'Voldoende plekken',
+    seatStatus:'ok',
     targetZh:'适合近期准备A2考试、想集中提高口语表达和应试能力的同学。',
     targetNl:'Voor cursisten die binnenkort het A2-examen doen en gericht willen oefenen met spreken en examenvaardigheid.',
     goalZh:'以考试为目标，能说句子，能开口表达',
@@ -2445,11 +2466,15 @@ function rList(){
         '<div class="cbadge '+(bcls[s.lv]||'cb-a0a1')+'"><div class="cb-lbl">'+(llbl[s.lv]||s.lv)+'</div><div class="cb-sub">'+(ti?'小班':'Groep')+'</div></div>'+
         '<div class="cinfo"><div class="ctit">'+(ti?s.zt:s.nt)+'</div><div class="cdesc">'+(ti?s.zd:s.nd)+'</div>'+
         '<div class="cmeta">'+
-        (s.soon
-          ? '<span class="ctag ct-d">'+(ti?'敬请期待':'Binnenkort')+'</span>'
-          : ''
-        )+
-        '<span class="ctag ct-l">'+(ti?s.lz:s.ln)+'</span>'+
+(s.soon
+  ? '<span class="ctag ct-d">'+(ti?'敬请期待':'Binnenkort')+'</span>'
+  : ''
+)+
+'<span class="ctag ct-l">'+(ti?s.lz:s.ln)+'</span>'+
+(s.seatsZh
+  ? '<span class="ctag '+(s.seatStatus==='few'?'ct-seat-few':'ct-seat-ok')+'">'+(ti?s.seatsZh:s.seatsNl)+'</span>'
+  : ''
+)+
 '</div></div>'+
         '<div class="cright"><div class="cprice">'+s.pr+'</div><div class="cpnote">'+(ti?s.pn:s.nn)+'</div>'+
         '<button class="cenroll" onclick="event.stopPropagation();oCourseDetail(\''+s.id+'\')">'+(s.soon?(ti?'敬请期待':'Binnenkort'):(ti?'查看详情':'Bekijk'))+'</button></div></div>';
