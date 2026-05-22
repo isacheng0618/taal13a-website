@@ -1140,8 +1140,8 @@ input:focus{border-color:var(--blue);background:#fff;}
 <div class="pg" id="pg-shop" style="min-height:calc(100vh - 52px)">
   <div class="shop-hero">
     <h1 data-zh="📚 Taal13A 商店" data-nl="📚 Taal13A Winkel">📚 Taal13A 商店</h1>
-   <p data-zh="A2口语备考 PDF 电子资料｜购买后即时下载" data-nl="A2 Spreken PDF-materiaal｜Direct downloaden na aankoop">
-  A2口语备考 PDF 电子资料｜购买后即时下载
+   <p data-zh="PDF学习资料及周边商品" data-nl="PDF-leermateriaal en merchandise">
+  PDF学习资料及周边商品
 </p>
   </div>
   <div class="sec" style="padding-top:1.5rem;padding-bottom:0">
@@ -1400,8 +1400,17 @@ Taal13A 的教学理念是：让学荷兰语变得简单、接地气、真正有
 <input type="text" id="rname" placeholder="用户名"></div><div><label data-zh="微信（选填）" data-nl="WeChat (optioneel)">微信（选填）</label>
 <input type="text" id="rwc" placeholder="微信号"></div></div>
   <div class="fr"><label>Email</label><input type="email" id="rei" placeholder="email@example.com"></div>
-  <div class="fr"><label data-zh="密码（至少6位）" data-nl="Wachtwoord">密码</label><input type="password" id="rpw" placeholder="••••••••"></div>
-  <div class="fr"><label data-zh="确认密码" data-nl="Bevestig">确认密码</label><input type="password" id="rpw2" placeholder="••••••••"></div>
+ <div class="fr">
+  <label data-zh="密码" data-nl="Wachtwoord">密码</label>
+  <input type="password" id="rpw" placeholder="至少6位密码">
+  <div class="form-hint" data-zh="密码需至少6位。" data-nl="Wachtwoord moet minimaal 6 tekens bevatten.">密码需至少6位。</div>
+</div>
+
+<div class="fr">
+  <label data-zh="确认密码" data-nl="Bevestig wachtwoord">确认密码</label>
+  <input type="password" id="rpw2" placeholder="再次输入至少6位密码">
+  <div class="form-hint" data-zh="请再次输入相同密码，至少6位。" data-nl="Herhaal hetzelfde wachtwoord, minimaal 6 tekens.">请再次输入相同密码，至少6位。</div>
+</div>
   <button class="bf" onclick="doReg()" data-zh="创建账号" data-nl="Registreer">创建账号</button>
   <div class="afoot"><span data-zh="已有账号？" data-nl="Al een account?">已有账号？</span> <a onclick="nav('login')" data-zh="立即登录" data-nl="Inloggen">立即登录</a></div>
 </div></div></div>
@@ -2092,7 +2101,12 @@ function rProduct(){
     : '<button class="bpay" onclick="addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button><button class="btn-secondary" onclick="addToCart(\''+p.id+'\');cartCheckout();">'+(ti?'立即结算':'Direct afrekenen')+'</button>'
   )+
 '</div>'+
-        '<div class="pd-warning">'+(ti?'提示：这是电子书 PDF，不是纸质书。购买前请确认邮箱正确，并在结算页勾选数字产品即时交付确认。':'Let op: dit is een digitaal PDF-bestand, geen fysiek boek. Controleer uw e-mailadres en bevestig directe levering bij checkout.')+'</div>'+ 
+        '<div class="pd-warning">'+
+  (ti
+    ? '提示：这是电子书 PDF，不是纸质书。购买前请确认邮箱正确！'
+    : 'Let op: dit is een digitaal PDF-bestand, geen fysiek boek. Controleer uw e-mailadres goed!'
+  )+
+'</div>'+
         '<div class="pd-policy">'+
           '<details class="pd-acc" open><summary>'+(ti?'商品描述':'Productomschrijving')+'</summary><div>'+(ti?'适合正在准备荷兰 A2 口语考试、需要题库、答题框架和中荷双语示范答案的学习者。内容重点是考试表达训练，不替代官方考试材料。':'Voor cursisten die zich voorbereiden op het Nederlandse A2-spreekexamen en behoefte hebben aan vraagtypes, spreekstructuren en voorbeeldantwoorden met Chinese uitleg. Het materiaal vervangt geen officieel examenmateriaal.')+'</div></details>'+ 
           '<details class="pd-acc"><summary>'+(ti?'数字产品交付说明':'Levering digitale inhoud')+'</summary><div>'+delivery+'</div></details>'+ 
@@ -2532,20 +2546,31 @@ function rCourseDetail(){
           '</div>'+
         '</div>'+
 
-        '<div class="pd-shot alt" style="min-height:360px">'+
-          '<div class="pd-shot-card">'+
-            '<div>'+
-              '<div class="pd-shot-kicker">'+(ti?'课程目标':'Leerdoelen')+'</div>'+
-              '<div class="pd-shot-title">'+(ti?'从零开始，能读、能说、能开口':'Vanaf nul leren lezen en spreken')+'</div>'+
-            '</div>'+
-            '<div class="pd-shot-list">'+
-              (ti
-                ? '这门课适合完全零基础的同学。课程重点不是背很多单词，而是先把发音、拼读和最基础的日常表达打牢。'
-                : 'Deze cursus is bedoeld voor absolute beginners. De focus ligt op uitspraak, lezen en eenvoudige dagelijkse communicatie.'
-              )+
-            '</div>'+
-          '</div>'+
-        '</div>'+
+       '<div class="pd-shot alt" style="min-height:360px">'+
+  '<div class="pd-shot-card">'+
+    '<div>'+
+      '<div class="pd-shot-kicker">'+(ti?'课程目标':'Leerdoelen')+'</div>'+
+      '<div class="pd-shot-title">'+
+        (s.id==='a1a2_exam_sprint'
+          ? (ti?'以应试为目的精准备考':'Gerichte examenvoorbereiding')
+          : (ti?'从零开始，能读、能说、能开口':'Vanaf nul leren lezen en spreken')
+        )+
+      '</div>'+
+    '</div>'+
+    '<div class="pd-shot-list">'+
+      (s.id==='a1a2_exam_sprint'
+        ? (ti
+            ? '以应试为目的精准备考<br>能说句子，能开口表达<br>强化语法、听力与口语训练'
+            : 'Gerichte voorbereiding op het A2-examen<br>Zinnen leren spreken en durven reageren<br>Extra training voor grammatica, luisteren en spreken'
+          )
+        : (ti
+            ? '这门课适合完全零基础的同学。课程重点不是背很多单词，而是先把发音、拼读和最基础的日常表达打牢。'
+            : 'Deze cursus is bedoeld voor absolute beginners. De focus ligt op uitspraak, lezen en eenvoudige dagelijkse communicatie.'
+          )
+      )+
+    '</div>'+
+  '</div>'+
+'</div>'+
 
         '<div class="pd-shot alt">'+
           '<div class="pd-shot-card">'+
@@ -2562,21 +2587,28 @@ function rCourseDetail(){
           '</div>'+
         '</div>'+
 
-        '<div class="pd-shot alt">'+
-          '<div class="pd-shot-card">'+
-            '<div>'+
-              '<div class="pd-shot-kicker">'+(ti?'适合人群':'Voor wie')+'</div>'+
-              '<div class="pd-shot-title">A0–A1</div>'+
-            '</div>'+
-            '<div class="pd-shot-list">'+
-              (ti
-                ? '适合荷兰语零基础、想从发音和简单句子开始系统学习的同学。'
-                : 'Voor cursisten zonder voorkennis die vanaf uitspraak en eenvoudige zinnen willen beginnen.'
-              )+
-            '</div>'+
-          '</div>'+
-        '</div>'+
+      '<div class="pd-shot alt">'+
+  '<div class="pd-shot-card">'+
+    '<div>'+
+      '<div class="pd-shot-kicker">'+(ti?'适合人群':'Voor wie')+'</div>'+
+      '<div class="pd-shot-title">'+
+        (s.id==='a1a2_exam_sprint' ? 'A1–A2 / A2考试' : 'A0–A1')+
       '</div>'+
+    '</div>'+
+    '<div class="pd-shot-list">'+
+      (s.id==='a1a2_exam_sprint'
+        ? (ti
+            ? '近期准备A2考试的同学，希望以应试为目的精准备考，训练能说句子、能开口表达，并强化语法、听力与口语。'
+            : 'Voor cursisten die binnenkort het A2-examen doen en gericht willen oefenen met spreken, grammatica, luisteren en examenvaardigheid.'
+          )
+        : (ti
+            ? '适合荷兰语零基础、想从发音和简单句子开始系统学习的同学。'
+            : 'Voor cursisten zonder voorkennis die vanaf uitspraak en eenvoudige zinnen willen beginnen.'
+          )
+      )+
+    '</div>'+
+  '</div>'+
+'</div>'+
 
       '<div class="pd-info">'+
         '<div class="pd-brand">Taal13A</div>'+
@@ -2584,7 +2616,7 @@ function rCourseDetail(){
         '<div class="pd-price">'+s.pr+'<span style="font-size:14px;color:var(--ink3);font-weight:600;margin-left:7px">incl. BTW</span></div>'+
 
         '<div class="pd-meta-row">'+
-          '<span class="pd-chip">A0–A1</span>'+
+         '<span class="pd-chip">'+(s.id==='a1a2_exam_sprint'?'A1–A2':'A0–A1')+'</span>'+
           '<span class="pd-chip">'+(ti?'线上小班':'Online groep')+'</span>'+
           '<span class="pd-chip">Teams</span>'+
           '<span class="pd-chip">'+(ti?'含录屏回放':'Met opname')+'</span>'+
