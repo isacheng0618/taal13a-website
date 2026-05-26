@@ -48,7 +48,6 @@ export default async function handler(req, res){
       email: email,
       product_id: productId,
       status: 'paid',
-      currency: 'EUR'
     });
 
   if(insertError){
