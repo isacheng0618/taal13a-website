@@ -44,14 +44,13 @@ export default async function handler(req, res){
   }
 
   const { error: insertError } = await supabase
-    .from('purchases')
-    .insert({
-      email: email,
-      product_id: productId,
-      status: 'paid',
-      amount_cents: 0,
-      currency: 'EUR'
-    });
+  .from('purchases')
+  .insert({
+    email: email,
+    product_id: productId,
+    status: 'paid',
+    currency: 'EUR'
+  });
 
   if(insertError){
     return res.status(500).json({error:insertError.message});
