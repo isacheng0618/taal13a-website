@@ -1633,7 +1633,7 @@ var SES=[
     priceCents:29900,
     pn:'最多8人小班',
     nn:'Max. 8 cursisten',
-    seatsZh:'仅剩4席',
+    seatsZh:'仅剩1席',
     seatsNl:'Nog 4 plekken',
     seatStatus:'few',
     targetZh:'适合荷兰语零基础、想从发音和简单句子开始系统学习的同学。',
@@ -1678,7 +1678,7 @@ var SES=[
     priceCents:39900,
     pn:'最多8人小班',
     nn:'Max. 8 cursisten',
-    seatsZh:'仅剩4席',
+    seatsZh:'仅剩3席',
     seatsNl:'Nog 4 plekken',
     seatStatus:'few',
     targetZh:'适合需要系统学习、牢固基础、希望开口说荷兰语的同学。',
@@ -3459,9 +3459,9 @@ function updNewsTicker(){
     var label = '';
 
     if(p.free){
-      label = ti ? '免费' : 'Gratis · ';
+      label = ti ? '免费🎁 · ' : 'Gratis · ';
     }else{
-      label = ti ? 'new' : 'new';
+      label = ti ? 'new · ' : 'new · ';
     }
 
     return '<span class="news-item" onclick="oProduct(\''+p.id+'\')">'+
