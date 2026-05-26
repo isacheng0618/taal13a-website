@@ -3449,7 +3449,27 @@ function setLang(l,btn){
   rPil('home-pillars');rList();rShop();updCart();updNewsTicker();if(PDT)rProduct();if(document.getElementById('pg-checkout').classList.contains('on'))rCheckout();rLegal();if(USER)rDash();
 }
 function faqT(el){var a=el.nextElementSibling,ic=el.querySelector('.fic');a.classList.toggle('on');ic.textContent=a.classList.contains('on')?'−':'+';}
-function updNewsTicker(){var el=document.getElementById('news-track');if(!el)return;var ti=t();el.innerHTML=PRODUCTS.map(function(p){return '<span class="news-item" onclick="oProduct(\''+p.id+'\')"><span class="news-dot"></span>🆕 '+(ti?'new · ':'new · ')+(ti?p.zn:p.nn)+'</span>';}).join('');}
+function updNewsTicker(){
+  var el=document.getElementById('news-track');
+  if(!el)return;
+
+  var ti=t();
+
+  el.innerHTML=PRODUCTS.map(function(p){
+    var label = '';
+
+    if(p.free){
+      label = ti ? '免费' : 'Gratis · ';
+    }else{
+      label = ti ? 'new' : 'new';
+    }
+
+    return '<span class="news-item" onclick="oProduct(\''+p.id+'\')">'+
+      '<span class="news-dot"></span>'+
+      '🆕 '+label+(ti?p.zn:p.nn)+
+    '</span>';
+  }).join('');
+}
 
 (async function(){
   await refreshUser();
