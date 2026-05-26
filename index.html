@@ -2200,12 +2200,59 @@ function addToCart(pid){
   var prod=getCartItemData(pid);
   if(!prod)return;
 
-  var ex=CART.find(function(c){return c.id===pid;});
-  if(ex){
-    ex.qty++;
-  }else{
-    CART.push({id:pid,qty:1});
+  var bundle = PRODUCTS.find(function(p){
+    return p.id === 'a2_sprint_bundle_pdf';
+  });
+
+  var bundleId = bundle ? bundle.id : null;
+  var bundleItems = bundle && Array.isArray(bundle.bundleItems) ? bundle.bundleItems : [];
+
+  var isBundle = pid === bundleId;
+  var isBundleChild = bundleItems.indexOf(pid) >= 0;
+
+  var hasBundleInCart = CART.some(function(item){
+    return item.id === bundleId;
+  });
+
+  var hasBundleChildInCart = CART.some(function(item){
+    return bundleItems.indexOf(item.id) >= 0;
+  });
+
+  // 情况 1：购物车里已有冲刺包，不允许再加入它包含的单品
+  if(isBundleChild && hasBundleInCart){
+    alert(
+      ti
+        ? '你已经把「A2口语词库冲刺包」加入购物车了。这个套餐已经包含答题卡、答题单词库和高频词表，不需要重复购买单个文件。'
+        : 'Het A2-pakket staat al in uw winkelwagen. Dit pakket bevat dit losse bestand al, dus u hoeft het niet apart te kopen.'
+    );
+    openCart();
+    return;
   }
+
+  // 情况 2：购物车里已有单品，用户又想加入冲刺包
+  // 只提示建议，不自动删除，也不阻止加入
+  if(isBundle && hasBundleChildInCart){
+    alert(
+      ti
+        ? '提醒：你的购物车里已经有单个文件了。「A2口语词库冲刺包」已经包含答题卡、答题单词库和高频词表。建议你手动删除单个文件，只保留冲刺包，这样更划算。'
+        : 'Let op: er staan al losse bestanden in uw winkelwagen. Het A2-pakket bevat deze bestanden al. Wij raden aan om de losse bestanden handmatig te verwijderen en alleen het pakket te kopen.'
+    );
+  }
+
+  var ex=CART.find(function(c){
+    return c.id===pid;
+  });
+
+  if(ex){
+    alert(ti?'这个商品已经在购物车里了。':'Dit product staat al in uw winkelwagen.');
+    openCart();
+    return;
+  }
+
+  CART.push({
+    id:pid,
+    qty:1
+  });
 
   updCart();
   openCart();
@@ -3449,6 +3496,7 @@ function setLang(l,btn){
   rPil('home-pillars');rList();rShop();updCart();updNewsTicker();if(PDT)rProduct();if(document.getElementById('pg-checkout').classList.contains('on'))rCheckout();rLegal();if(USER)rDash();
 }
 function faqT(el){var a=el.nextElementSibling,ic=el.querySelector('.fic');a.classList.toggle('on');ic.textContent=a.classList.contains('on')?'−':'+';}
+
 function updNewsTicker(){
   var el=document.getElementById('news-track');
   if(!el)return;
@@ -3456,17 +3504,13 @@ function updNewsTicker(){
   var ti=t();
 
   el.innerHTML=PRODUCTS.map(function(p){
-    var label = '';
-
-    if(p.free){
-      label = ti ? '免费🎁 · ' : 'Gratis · ';
-    }else{
-      label = ti ? 'new · ' : 'new · ';
-    }
+    var prefix = p.free
+      ? (ti ? '🎁 免费 · ' : '🎁 Gratis · ')
+      : '🆕 new · ';
 
     return '<span class="news-item" onclick="oProduct(\''+p.id+'\')">'+
       '<span class="news-dot"></span>'+
-      '🆕 '+label+(ti?p.zn:p.nn)+
+      prefix+(ti?p.zn:p.nn)+
     '</span>';
   }).join('');
 }
