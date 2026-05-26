@@ -1,4 +1,3 @@
-
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
@@ -44,17 +43,19 @@ export default async function handler(req, res){
   }
 
   const { error: insertError } = await supabase
-  .from('purchases')
-  .insert({
-    email: email,
-    product_id: productId,
-    status: 'paid',
-    currency: 'EUR'
-  });
+    .from('purchases')
+    .insert({
+      email: email,
+      product_id: productId,
+      status: 'paid',
+      currency: 'EUR'
+    });
 
   if(insertError){
     return res.status(500).json({error:insertError.message});
   }
 
+  return res.status(200).json({ok:true});
+}
   return res.status(200).json({ok:true});
 }
