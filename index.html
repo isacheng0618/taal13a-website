@@ -1795,6 +1795,26 @@ var SES=[
 
 var PRODUCTS=[
   {
+  id:'het_words_free_pdf',
+  cat:'free',
+  emoji:'🎁',
+  free:true,
+  must:false,
+  img:'./images/het-words-cover.jpg?v=1',
+  infoImg:'./images/het-words-info.jpg?v=1',
+  pay:'',
+  zn:'荷兰语常用het词清单',
+  nn:'Veelgebruikte het-woorden｜PDF woordenlijst',
+  zd:'整理高频 Het 名词，搭配中文注释与学习规律，适合初学者、考试备考和日常积累。',
+  nd:'Een gratis PDF met veelgebruikte het-woorden, Chinese uitleg en leerregels. Geschikt voor beginners, A1–A2 cursisten en examenvoorbereiding.',
+  pr:0,
+  old:null,
+  badge:'免费领取 🎁',
+  stock:true,
+  filePath:'digital-products/free/het-words-list.pdf'
+},
+  
+  {
     id:'a2sp_pdf',
     cat:'guide',
     emoji:'💡',
@@ -1945,7 +1965,7 @@ function rShop(){
   var bgMap={guide:'#EAF3FF',workbook:'#E8F7F0',vocab:'#FFF4EB',books:'#EAF3FF',merch:'#FFF4EB',bundle:'#F3EEFF'};
 
   el.innerHTML=prods.map(function(p){
-    var prFmt='€'+(p.pr/100).toFixed(2).replace('.',',');
+    var prFmt=p.free ? '€0,00' : '€'+(p.pr/100).toFixed(2).replace('.',',');
     var oldFmt=p.old?'€'+(p.old/100).toFixed(2).replace('.',','):'';
     var discount=getDiscountPercent(p);
 
@@ -1955,7 +1975,10 @@ function rShop(){
 
         (p.must?'<span class="must-buy-badge">👍 '+(ti?'本店必买':'Must-have')+'</span>':'')+
 
-        (discount?'<span class="discount-badge">'+discount+'% OFF</span>':'')+
+        (p.free
+  ? '<span class="discount-badge">'+(ti?'免费领取 🎁':'Free 🎁')+'</span>'
+  : (discount?'<span class="discount-badge">'+discount+'% OFF</span>':'')
+)+
       '</div>'+
 
       '<div class="scard-body">'+
@@ -1992,7 +2015,7 @@ function rShop(){
 
           (isProductPurchased(p.id)
             ? '<button class="btn-cart" style="background:var(--grn);cursor:default" onclick="event.stopPropagation();">'+(ti?'已购买':'Gekocht')+'</button>'
-            : '<button class="btn-cart" onclick="event.stopPropagation();addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button>'
+            : '<button class="btn-cart" onclick="event.stopPropagation();'+(p.free?'claimFreeProduct(\''+p.id+'\')':'addToCart(\''+p.id+'\')')+'">'+(p.free?(ti?'免费领取':'Gratis ophalen'):(ti?'加入购物车':'In winkelwagen'))+'</button>'
           )+
         '</div>'+
       '</div>'+
@@ -2092,13 +2115,17 @@ function rProduct(){
       '<div class="pd-info">'+
         '<div class="pd-brand">Taal13A</div>'+ 
         '<h1>'+(ti?p.zn:p.nn)+'</h1>'+ 
-        '<div class="pd-price">'+fmtPrice(p.pr)+'<span style="font-size:14px;color:var(--ink3);font-weight:600;margin-left:7px">incl. BTW</span></div>'+ 
+        '<div class="pd-price">'+(p.free?'€0,00 <span style="font-size:18px;color:var(--ink3);font-weight:800;margin-left:10px">FREE</span>':fmtPrice(p.pr)+'<span style="font-size:14px;color:var(--ink3);font-weight:600;margin-left:7px">incl. BTW</span>')+'</div>'+
         '<div class="pd-meta-row"><span class="pd-chip">PDF</span><span class="pd-chip">A2 Spreken</span><span class="pd-chip">'+(ti?'即时下载':'Direct download')+'</span><span class="pd-chip">'+(ti?'中文讲解':'Chinese uitleg')+'</span></div>'+ 
         '<div class="pd-desc">'+(ti?p.zd:p.nd)+'</div>'+ 
         '<div class="pd-actions">'+
   (isProductPurchased(p.id)
     ? '<button class="bpay" style="background:var(--grn);cursor:default">'+(ti?'已购买':'Gekocht')+'</button><button class="btn-secondary" onclick="nav(\'dashboard\')">'+(ti?'去下载':'Naar download')+'</button>'
-    : '<button class="bpay" onclick="addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button><button class="btn-secondary" onclick="addToCart(\''+p.id+'\');cartCheckout();">'+(ti?'立即结算':'Direct afrekenen')+'</button>'
+   : (
+    p.free
+      ? '<button class="bpay" onclick="claimFreeProduct(\''+p.id+'\')">'+(ti?'🎁 免费领取':'🎁 Gratis ophalen')+'</button><button class="btn-secondary" onclick="nav(\'register\')">'+(ti?'注册后下载':'Registreren')+'</button>'
+      : '<button class="bpay" onclick="addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button><button class="btn-secondary" onclick="addToCart(\''+p.id+'\');cartCheckout();">'+(ti?'立即结算':'Direct afrekenen')+'</button>'
+  )
   )+
 '</div>'+
         '<div class="pd-warning">'+
@@ -2119,6 +2146,48 @@ function rProduct(){
     '</div>';
 }
 
+ async function claimFreeProduct(pid){
+  var ti=t();
+
+  if(!USER){
+    alert(ti?'请先登录或注册后免费领取。':'Log eerst in of registreer om gratis te downloaden.');
+    nav('register');
+    return;
+  }
+
+  if(isProductPurchased(pid)){
+    alert(ti?'你已经领取过这个资料，可以在个人主页下载。':'U heeft dit materiaal al. U kunt het downloaden in uw dashboard.');
+    nav('dashboard');
+    return;
+  }
+
+  try{
+    var res=await fetch('/api/claim-free-product',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        email:USER.em,
+        productId:pid
+      })
+    });
+
+    var data=await res.json();
+
+    if(!res.ok){
+      alert(data.error || (ti?'领取失败，请稍后再试。':'Ophalen mislukt. Probeer later opnieuw.'));
+      return;
+    }
+
+    await refreshUser();
+    alert(ti?'领取成功！你可以在个人主页下载。':'Gelukt! U kunt het downloaden in uw dashboard.');
+    nav('dashboard');
+
+  }catch(err){
+    console.error(err);
+    alert(ti?'领取失败，请稍后再试。':'Ophalen mislukt. Probeer later opnieuw.');
+  }
+} 
+  
 function addToCart(pid){
   var ti=t();
 
