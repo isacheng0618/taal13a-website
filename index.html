@@ -2139,7 +2139,12 @@ function rProduct(){
         '<div class="pd-brand">Taal13A</div>'+ 
         '<h1>'+(ti?p.zn:p.nn)+'</h1>'+ 
         '<div class="pd-price">'+(p.free?'€0,00 <span style="font-size:18px;color:var(--ink3);font-weight:800;margin-left:10px">FREE</span>':fmtPrice(p.pr)+'<span style="font-size:14px;color:var(--ink3);font-weight:600;margin-left:7px">incl. BTW</span>')+'</div>'+
-        '<div class="pd-meta-row"><span class="pd-chip">PDF</span><span class="pd-chip">A2 Spreken</span><span class="pd-chip">'+(ti?'即时下载':'Direct download')+'</span><span class="pd-chip">'+(ti?'中文讲解':'Chinese uitleg')+'</span></div>'+ 
+        '<div class="pd-meta-row">'+
+  ((ti ? (p.tagsZh || ['PDF','即时下载','中文讲解']) : (p.tagsNl || ['PDF','Direct download','Chinese uitleg']))
+    .map(function(tag){
+      return '<span class="pd-chip">'+tag+'</span>';
+    }).join(''))+
+'</div>'+
         '<div class="pd-desc">'+(ti?p.zd:p.nd)+'</div>'+ 
         '<div class="pd-actions">'+
   (isProductPurchased(p.id)
@@ -2158,7 +2163,12 @@ function rProduct(){
   )+
 '</div>'+
         '<div class="pd-policy">'+
-          '<details class="pd-acc" open><summary>'+(ti?'商品描述':'Productomschrijving')+'</summary><div>'+(ti?'适合正在准备荷兰 A2 口语考试、需要题库、答题框架和中荷双语示范答案的学习者。内容重点是考试表达训练，不替代官方考试材料。':'Voor cursisten die zich voorbereiden op het Nederlandse A2-spreekexamen en behoefte hebben aan vraagtypes, spreekstructuren en voorbeeldantwoorden met Chinese uitleg. Het materiaal vervangt geen officieel examenmateriaal.')+'</div></details>'+ 
+          '<details class="pd-acc" open><summary>'+(ti?'商品描述':'Productomschrijving')+'</summary><div>'+
+  (ti
+    ? (p.longZh || p.zd)
+    : (p.longNl || p.nd)
+  )+
+'</div></details>'+ 
           '<details class="pd-acc"><summary>'+(ti?'数字产品交付说明':'Levering digitale inhoud')+'</summary><div>'+delivery+'</div></details>'+ 
           '<details class="pd-acc"><summary>'+(ti?'访问与下载':'Toegang en download')+'</summary><div>'+access+' '+(ti?'建议注册/登录后购买，方便日后重新下载。':'Wij raden aankoop met account aan, zodat u later opnieuw kunt downloaden.')+'</div></details>'+ 
           '<details class="pd-acc"><summary>'+(ti?'退换政策':'Retour- en terugbetalingsbeleid')+'</summary><div>'+refund+'</div></details>'+ 
