@@ -72,8 +72,18 @@ if (!hasDirectPurchase && !hasBundlePurchase) {
       downloadUrl: data.signedUrl
     });
 
-  } catch (error) {
+    } catch (error) {
     console.error('create-download-link error:', error);
-    return res.status(500).json({ error: 'Could not create download link.' });
+
+    return res.status(500).json({
+      error: 'Could not create download link.',
+      debug: {
+        message: error.message,
+        name: error.name,
+        details: error.details || null,
+        hint: error.hint || null,
+        code: error.code || null
+      }
+    });
   }
 }
