@@ -2306,6 +2306,47 @@ button,input,label{
     font-size:24px;
   }
 }
+
+/* === STEP 4：Make testimonial section transparent over fixed background === */
+
+/* 让学员反馈区透出后方 hero-bg.jpg，而不是实色深蓝 */
+#pg-home > .bg-sand{
+  position:relative;
+  background:
+    linear-gradient(90deg,rgba(10,28,38,.72),rgba(10,28,38,.36)),
+    url('./hero-bg.jpg') center center / cover fixed no-repeat !important;
+  color:#fff;
+  overflow:hidden;
+}
+
+/* 取消之前那层太厚的实色遮罩 */
+#pg-home > .bg-sand::before{
+  background:
+    linear-gradient(90deg,rgba(10,28,38,.54),rgba(10,28,38,.18)),
+    linear-gradient(180deg,rgba(10,28,38,.18),rgba(10,28,38,.36)) !important;
+}
+
+/* 让卡片也稍微有一点透明感，但仍然保证文字清楚 */
+.testimonial-card{
+  background:rgba(255,253,248,.90);
+  border:1px solid rgba(255,255,255,.46);
+  backdrop-filter:blur(16px);
+}
+
+/* 进度条和箭头在透明背景上更清楚 */
+.testimonial-progress{
+  background:rgba(255,255,255,.24);
+}
+
+.testimonial-progress-fill{
+  background:#FCF8D8;
+}
+
+.testimonial-arrow{
+  border-color:rgba(255,255,255,.68);
+  background:rgba(255,255,255,.04);
+  backdrop-filter:blur(8px);
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
