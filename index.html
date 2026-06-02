@@ -961,8 +961,431 @@ input:focus{border-color:var(--blue);background:#fff;}
     font-size:15px;
   }
 }
+
+/* === STEP 1: Taal13A visual style refresh only === */
+/* 只改字体、颜色、顶部导航、基础视觉；不改内容和功能 */
+
+:root{
+  --blue:#7C7D75;
+  --blue-d:#4F504A;
+  --blue-l:#F2F3F1;
+  --blue-m:#D9DADF;
+
+  --ora:#DD700B;
+  --ora-l:#FFF3E8;
+  --ora-m:#C96409;
+
+  --cream:#FFFFFF;
+  --sand:#FAFAF8;
+  --sand-d:#E7E7E3;
+
+  --ink:#111111;
+  --ink2:#34342F;
+  --ink3:#6F7069;
+  --ink4:#A7A7A0;
+
+  --bdr:rgba(17,17,17,.12);
+  --bdr2:rgba(17,17,17,.07);
+
+  --grn:#7C7D75;
+  --grn-l:#F2F3F1;
+
+  --r:8px;
+  --rl:10px;
+}
+
+body{
+  font-family:'Archivo','Noto Sans SC',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:#FAFAF8;
+  color:var(--ink);
+  letter-spacing:-.01em;
+}
+
+/* 顶部导航：改成白色现代风格 */
+.tb{
+  height:76px;
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid rgba(17,17,17,.08);
+  box-shadow:none;
+  backdrop-filter:blur(16px);
+  padding:0 22px;
+}
+
+/* Logo 改成黑色，适配白底导航 */
+.logo-main{
+  height:50px;
+}
+
+.logo-main rect{
+  fill:#111111 !important;
+}
+
+.logo-main text{
+  fill:#111111 !important;
+  font-family:'Archivo','Noto Sans SC',sans-serif !important;
+  font-weight:800 !important;
+  letter-spacing:-.04em;
+}
+
+/* 导航菜单不要太粗 */
+.nc{
+  gap:28px;
+}
+
+.nl{
+  color:#242424;
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:-.02em;
+  padding:8px 4px;
+  background:transparent;
+  border:none;
+}
+
+.nl:hover,
+.nl.on{
+  color:#111111;
+  background:transparent;
+}
+
+.nl.on{
+  font-weight:650;
+}
+
+/* 右侧语言、登录、注册按钮 */
+.nr{
+  gap:10px;
+}
+
+.lb,
+.ub{
+  color:#111111;
+  background:#fff;
+  border:1px solid rgba(124,125,117,.28);
+  border-radius:999px;
+  padding:10px 18px;
+  font-size:14px;
+  font-weight:600;
+}
+
+.lb.on{
+  color:#111111;
+  background:#fff;
+  border-color:rgba(124,125,117,.28);
+}
+
+.cta{
+  background:#111111;
+  color:#fff;
+  border-radius:999px;
+  padding:11px 22px;
+  font-size:14px;
+  font-weight:700;
+  box-shadow:none;
+}
+
+.cta:hover{
+  background:#2A2A2A;
+  transform:translateY(-1px);
+}
+
+/* 顶部新闻条跟随导航高度 */
+.news-ticker{
+  top:76px;
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid var(--bdr2);
+}
+
+/* 全站字体统一 */
+.nl,.lb,.ub,.cta,
+button,input,label{
+  font-family:'Archivo','Noto Sans SC',system-ui,sans-serif;
+}
+
+/* 标题字体：更现代、更有品牌感 */
+.hero h1,
+.stit,
+.co-hero h1,
+.shop-hero h1,
+.ep-hero h1,
+.ph2 h1,
+.atit,
+.st2,
+.tna,
+.kn,
+.hn,
+.pprice,
+.cprice,
+.ecard-price,
+.scard-price,
+.pd-info h1,
+.pd-price,
+.cart-head-t,
+.dn,
+.legal-card h3,
+.pd-shot-title,
+#pg-contact .contact-title,
+#pg-contact .cinfo2 h3{
+  font-family:'Noto Serif SC','Archivo',serif;
+  letter-spacing:-.035em;
+}
+
+/* 固定背景图：使用你现有的 hero-bg.jpg */
+.gfb{
+  background-image:url('./hero-bg.jpg');
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  filter:saturate(.78) contrast(.98) brightness(1.03);
+}
+
+/* Hero 遮罩改成冷灰雾感 */
+.hovl{
+  background:
+    linear-gradient(90deg,rgba(17,17,17,.56),rgba(124,125,117,.35)),
+    linear-gradient(180deg,rgba(255,255,255,.06),rgba(0,0,0,.22));
+}
+
+.gfb::after{
+  background:
+    radial-gradient(circle at 22% 30%,rgba(252,248,216,.14),transparent 34%),
+    linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
+}
+
+.hero h1 em{
+  color:#FCF8D8;
+}
+
+.hsub{
+  color:rgba(255,255,255,.74);
+}
+
+/* 按钮从圆润 AI 感改成更克制 */
+.hb1,
+.benroll,
+.cenroll,
+.ecard-cta,
+.btn-cart,
+.btn-checkout,
+.bpay,
+.bf,
+.cart-bar{
+  background:var(--ora);
+  box-shadow:none;
+  border-radius:6px;
+}
+
+.hb1:hover,
+.benroll:hover,
+.cenroll:hover,
+.ecard-cta:hover,
+.btn-cart:hover,
+.btn-checkout:hover,
+.bpay:hover,
+.bf:hover,
+.cart-bar:hover{
+  background:var(--ora-m);
+  transform:translateY(-1px);
+}
+
+.hb2{
+  border-radius:6px;
+}
+
+/* 页面背景减少黄色面积 */
+.bg-sky,
+.bg-sand,
+.co-tabs-wrap,
+#pg-contact,
+#pg-product,
+#pg-checkout,
+#pg-payment-success,
+#pg-privacy,
+#pg-terms,
+#pg-course-detail,
+#pg-enroll{
+  background:#FAFAF8 !important;
+}
+
+.bg-w{
+  background:#FFFFFF;
+}
+
+/* 卡片更扁平、更现代 */
+.fcard,
+.pillar,
+.tcard,
+.crow,
+.filt,
+.scard,
+.cart-panel,
+.pd-card,
+.fc,
+.oc,
+.acard,
+.dcard,
+.tcard2,
+.ki,
+.legal-card,
+#pg-contact .cinfo2{
+  border-radius:10px;
+  border:1px solid var(--bdr2);
+  box-shadow:none;
+}
+
+.fcard:hover,
+.pillar:hover,
+.tcard:hover,
+.crow:hover,
+.scard:hover{
+  box-shadow:0 12px 30px rgba(17,17,17,.06);
+}
+
+/* 课程卡片顶部统一成冷灰，不再五颜六色 */
+.ph,
+.pillar[data-l="elearn"] .ph,
+.pillar[data-l="a0a1"] .ph,
+.pillar[data-l="a1a2"] .ph,
+.pillar[data-l="a2b1"] .ph,
+.pillar[data-l="inb"] .ph{
+  background:#F2F3F1 !important;
+  border-bottom:1px solid var(--bdr2);
+}
+
+.pillar[data-l="elearn"] .plv,
+.pillar[data-l="a0a1"] .plv,
+.pillar[data-l="a1a2"] .plv,
+.pillar[data-l="a2b1"] .plv,
+.pillar[data-l="inb"] .plv{
+  color:var(--ink);
+}
+
+/* 页面大色块改成 Frozen Mist */
+.co-hero,
+.shop-hero,
+.ep-hero,
+.dh{
+  background:linear-gradient(135deg,#7C7D75 0%,#4F504A 100%);
+}
+
+.ph2{
+  background:#F2F3F1;
+  border-bottom:1px solid var(--bdr2);
+}
+
+.ecard{
+  background:linear-gradient(135deg,#7C7D75 0%,#4F504A 100%);
+  border-radius:10px;
+}
+
+/* 标签、tab 从胶囊感变克制 */
+.cotab,
+.fpt,
+.scat,
+.ptag,
+.pd-chip{
+  border-radius:6px;
+}
+
+.cotab.on,
+.fpt.on,
+.scat.on{
+  background:#7C7D75;
+  border-color:#7C7D75;
+}
+
+.cotab:hover:not(.on),
+.fpt:hover:not(.on),
+.scat:hover:not(.on){
+  border-color:#7C7D75;
+  color:#4F504A;
+}
+
+/* 橙色只做强调，不大面积使用 */
+.eye,
+.scard-cat,
+.legal-lang,
+.pd-shot-kicker,
+.tro,
+.caw,
+.back-link,
+.afoot a,
+.es a,
+.legal-link,
+.pd-acc summary:after{
+  color:var(--ora);
+}
+
+.ppts li::before,
+.news-dot,
+.pdot,
+#pg-contact .cdot{
+  background:var(--ora);
+  color:var(--ora);
+}
+
+.scard-digital-note,
+.legal-disclaimer{
+  background:#F2F3F1;
+  color:#4F504A;
+  border:1px solid var(--bdr2);
+}
+
+/* 手机端：白色导航 + 避免 fixed 背景卡顿 */
+@media(max-width:700px){
+  .tb{
+    height:auto;
+    min-height:88px;
+    background:rgba(255,255,255,.97);
+    border-bottom:1px solid rgba(17,17,17,.08);
+  }
+
+  .logo-main rect{
+    fill:#111111 !important;
+  }
+
+  .logo-main text{
+    fill:#111111 !important;
+  }
+
+  .nl{
+    color:#333333;
+    font-weight:600;
+    font-size:12px;
+  }
+
+  .nl.on,
+  .nl:hover{
+    color:#111111;
+  }
+
+  .lb,
+  .ub,
+  .cta{
+    color:#111111;
+    background:transparent;
+    border:none;
+    padding:2px 4px;
+    font-weight:600;
+  }
+
+  .cta{
+    color:#111111;
+  }
+
+  .news-ticker{
+    top:88px;
+  }
+
+  .gfb{
+    background-attachment:scroll;
+    background-position:center;
+  }
+}  
+
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
