@@ -1384,8 +1384,651 @@ button,input,label{
   }
 }  
 
+/* === STEP 1：Taal13A homepage visual refresh based on V2 preview === */
+/* 只改首页美术、字体、配色、Why Taal13A 四格格式；不改内容和功能 */
+
+:root{
+  --ink:#171717;
+  --ink2:#343434;
+  --ink3:#686868;
+  --ink4:#9B968E;
+
+  --line:#E6DED2;
+  --paper:#FFFDF8;
+  --cream:#F6EFE5;
+  --blue:#0F5E8C;
+  --blue-d:#0B486D;
+  --blue-l:#EAF4F8;
+  --blue-m:#CBDDE6;
+
+  --ora:#E96F3C;
+  --ora-l:#FFF0E8;
+  --ora-m:#D95D2C;
+
+  --sand:#FFFDF8;
+  --sand-d:#E6DED2;
+
+  --bdr:rgba(35,31,26,.14);
+  --bdr2:rgba(35,31,26,.08);
+
+  --grn:#476D5B;
+  --grn-l:#EEF5F0;
+
+  --r:8px;
+  --rl:10px;
+}
+
+body{
+  font-family:"Archivo","Noto Sans SC",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  letter-spacing:-.01em;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:geometricPrecision;
+}
+
+/* 顶部导航：改成 V2 首页的白色导航风格 */
+.tb{
+  height:76px;
+  background:rgba(255,253,248,.88);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(230,222,210,.82);
+  box-shadow:none;
+  padding:0 24px;
+}
+
+.logo-main{
+  height:50px;
+}
+
+.logo-main rect{
+  fill:#171717 !important;
+  opacity:1 !important;
+}
+
+.logo-main text{
+  fill:#171717 !important;
+  font-family:"Archivo","Noto Sans SC",sans-serif !important;
+  font-weight:900 !important;
+  letter-spacing:.01em;
+}
+
+.nc{
+  gap:28px;
+}
+
+.nl{
+  color:#313131;
+  font-size:14px;
+  font-weight:750;
+  letter-spacing:-.01em;
+  padding:24px 0;
+  border:none;
+  background:transparent;
+  position:relative;
+}
+
+.nl::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:18px;
+  width:0;
+  height:2px;
+  background:var(--ora);
+  transition:width .2s ease;
+}
+
+.nl:hover::after,
+.nl.on::after{
+  width:100%;
+}
+
+.nl:hover,
+.nl.on{
+  color:#171717;
+  background:transparent;
+}
+
+.nr{
+  gap:10px;
+}
+
+.lb,
+.ub{
+  color:#171717;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:12px;
+  font-weight:850;
+}
+
+.lb.on{
+  color:#171717;
+  background:#fff;
+  border-color:var(--line);
+}
+
+.cta{
+  background:#171717;
+  color:#fff;
+  border:none;
+  border-radius:999px;
+  padding:11px 18px;
+  font-size:13px;
+  font-weight:900;
+  box-shadow:none;
+}
+
+.cta:hover{
+  background:var(--ora);
+  transform:translateY(-1px);
+}
+
+.news-ticker{
+  top:76px;
+  background:rgba(255,253,248,.96);
+  border-bottom:1px solid rgba(230,222,210,.82);
+}
+
+.news-dot,
+.pdot{
+  background:var(--ora);
+}
+
+/* 字体系统 */
+.nl,.lb,.ub,.cta,
+button,input,label{
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif;
+}
+
+.hero h1,
+.stit,
+.co-hero h1,
+.shop-hero h1,
+.ep-hero h1,
+.ph2 h1,
+.atit,
+.st2,
+.tna,
+.kn,
+.hn,
+.pprice,
+.cprice,
+.ecard-price,
+.scard-price,
+.pd-info h1,
+.pd-price,
+.cart-head-t,
+.dn,
+.legal-card h3,
+.pd-shot-title,
+#pg-contact .contact-title,
+#pg-contact .cinfo2 h3{
+  font-family:"Noto Serif SC","Archivo",serif;
+  letter-spacing:-.055em;
+}
+
+/* 首页 Hero：保留你现有 hero-bg.jpg，但调成 V2 那种明亮柔和 */
+.hero{
+  min-height:720px;
+  background:transparent;
+}
+
+.gfb{
+  background-image:url('./hero-bg.jpg');
+  background-size:cover;
+  background-position:center right;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  filter:saturate(.96) contrast(1.02) brightness(1.04);
+}
+
+.hovl{
+  background:
+    linear-gradient(90deg,rgba(255,253,248,.92) 0%,rgba(255,253,248,.76) 38%,rgba(255,253,248,.30) 72%,rgba(255,253,248,.12) 100%),
+    linear-gradient(180deg,rgba(255,253,248,.16),rgba(255,253,248,.04));
+}
+
+.gfb::after{
+  background:linear-gradient(90deg,rgba(255,253,248,.90),rgba(255,253,248,.18));
+}
+
+.hc{
+  text-align:left;
+  max-width:760px;
+  margin-right:auto;
+}
+
+.hpill{
+  background:rgba(255,255,255,.76);
+  border:1px solid var(--line);
+  color:var(--grn);
+  border-radius:999px;
+  padding:8px 14px;
+  font-size:13px;
+  font-weight:850;
+  backdrop-filter:blur(14px);
+}
+
+.hero h1{
+  color:var(--ink);
+  font-weight:900;
+  font-size:clamp(48px,7vw,88px);
+  line-height:1.02;
+}
+
+.hero h1 em{
+  color:var(--ora);
+}
+
+.hsub{
+  color:#454545;
+  font-size:19px;
+  line-height:1.68;
+  max-width:590px;
+  margin-left:0;
+  font-weight:550;
+}
+
+.hbtns{
+  justify-content:flex-start;
+}
+
+.hb1{
+  background:var(--ink);
+  color:#fff;
+  border-radius:999px;
+  padding:11px 18px;
+  font-size:14px;
+  font-weight:900;
+  box-shadow:none;
+}
+
+.hb1:hover{
+  background:var(--ora);
+  transform:translateY(-1px);
+}
+
+.hb2{
+  color:var(--ink);
+  background:rgba(255,255,255,.34);
+  border:1px solid var(--ink);
+  border-radius:999px;
+  padding:11px 18px;
+  font-size:14px;
+  font-weight:900;
+  backdrop-filter:blur(10px);
+}
+
+.hb2:hover{
+  background:#fff;
+  transform:translateY(-1px);
+}
+
+.hstats{
+  justify-content:flex-start;
+  gap:14px;
+  border-top:none;
+  padding-top:0;
+  margin-top:2.8rem;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  max-width:630px;
+}
+
+.hstats > div{
+  border-top:1px solid rgba(130,110,90,.25);
+  padding-top:16px;
+}
+
+.hn{
+  color:var(--ink);
+  font-family:"Archivo","Noto Sans SC",sans-serif;
+  font-size:26px;
+  font-weight:950;
+  letter-spacing:-.035em;
+}
+
+.hl{
+  color:var(--ink3);
+  font-size:12px;
+  font-weight:800;
+}
+
+/* 首页 section 配色 */
+.sec{
+  max-width:1180px;
+}
+
+.bg-sky{
+  background:#EAF4F8;
+}
+
+.bg-w{
+  background:var(--paper);
+}
+
+.bg-sand{
+  background:#F6EFE5;
+}
+
+.eye{
+  color:var(--ora);
+  font-size:13px;
+  font-weight:950;
+  letter-spacing:.18em;
+}
+
+.stit{
+  color:var(--ink);
+  font-size:clamp(34px,4vw,54px);
+  line-height:1.14;
+  font-weight:900;
+}
+
+.ssub{
+  color:var(--ink3);
+  font-weight:600;
+}
+
+/* === 把“学习，从未如此灵活”四个卡片改成 V2 的 Why Taal13A 四格格式 === */
+
+.fgrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+
+.fcard{
+  background:var(--paper);
+  border:none;
+  border-radius:0;
+  padding:34px 28px;
+  min-height:220px;
+  box-shadow:none;
+  transition:none;
+}
+
+.fcard:hover{
+  background:var(--paper);
+  transform:none;
+  box-shadow:none;
+}
+
+.ficon{
+  width:auto;
+  height:auto;
+  border-radius:0;
+  background:transparent !important;
+  display:block;
+  margin-bottom:28px;
+  font-size:0;
+  color:var(--blue);
+}
+
+.fcard:nth-child(1) .ficon::before{
+  content:"01";
+  font-size:28px;
+  font-weight:950;
+  color:var(--blue);
+}
+
+.fcard:nth-child(2) .ficon::before{
+  content:"02";
+  font-size:28px;
+  font-weight:950;
+  color:var(--blue);
+}
+
+.fcard:nth-child(3) .ficon::before{
+  content:"03";
+  font-size:28px;
+  font-weight:950;
+  color:var(--blue);
+}
+
+.fcard:nth-child(4) .ficon::before{
+  content:"04";
+  font-size:28px;
+  font-weight:950;
+  color:var(--blue);
+}
+
+.ft{
+  font-size:20px;
+  font-weight:900;
+  color:var(--ink);
+  letter-spacing:-.025em;
+  margin-bottom:10px;
+}
+
+.fd{
+  font-size:14px;
+  color:var(--ink3);
+  line-height:1.62;
+  font-weight:500;
+}
+
+/* 其余卡片顺便统一成更扁平的现代风 */
+.pillar,
+.tcard,
+.crow,
+.filt,
+.scard,
+.cart-panel,
+.pd-card,
+.fc,
+.oc,
+.acard,
+.dcard,
+.tcard2,
+.ki,
+.legal-card,
+#pg-contact .cinfo2{
+  border-radius:0;
+  border:1px solid var(--line);
+  box-shadow:none;
+}
+
+.pillar:hover,
+.tcard:hover,
+.crow:hover,
+.scard:hover{
+  box-shadow:none;
+}
+
+/* 课程首页卡片降低 AI 彩色感 */
+.ph,
+.pillar[data-l="elearn"] .ph,
+.pillar[data-l="a0a1"] .ph,
+.pillar[data-l="a1a2"] .ph,
+.pillar[data-l="a2b1"] .ph,
+.pillar[data-l="inb"] .ph{
+  background:#fff !important;
+  border-bottom:1px solid var(--line);
+}
+
+.pillar[data-l="elearn"] .plv,
+.pillar[data-l="a0a1"] .plv,
+.pillar[data-l="a1a2"] .plv,
+.pillar[data-l="a2b1"] .plv,
+.pillar[data-l="inb"] .plv{
+  color:var(--ink);
+}
+
+.plv{
+  font-weight:950;
+}
+
+.benroll,
+.cenroll,
+.ecard-cta,
+.btn-cart,
+.btn-checkout,
+.bpay,
+.bf,
+.cart-bar{
+  background:var(--ink);
+  border-radius:0;
+  box-shadow:none;
+  font-weight:900;
+}
+
+.benroll:hover,
+.cenroll:hover,
+.ecard-cta:hover,
+.btn-cart:hover,
+.btn-checkout:hover,
+.bpay:hover,
+.bf:hover,
+.cart-bar:hover{
+  background:var(--ora);
+  transform:translateY(-1px);
+}
+
+.ptag,
+.ctag,
+.cotab,
+.fpt,
+.scat,
+.pd-chip{
+  border-radius:999px;
+}
+
+.co-hero,
+.shop-hero,
+.ep-hero,
+.dh{
+  background:linear-gradient(135deg,#0F5E8C 0%,#0B486D 100%);
+}
+
+.ph2{
+  background:#EAF4F8;
+  border-bottom:1px solid var(--line);
+}
+
+.ecard{
+  background:linear-gradient(135deg,#0F5E8C 0%,#0B486D 100%);
+  border-radius:0;
+}
+
+.scard-digital-note,
+.legal-disclaimer{
+  background:#EAF4F8;
+  color:#0B486D;
+  border:1px solid var(--line);
+}
+
+/* 手机端适配 */
+@media(max-width:980px){
+  .hero{
+    min-height:auto;
+  }
+
+  .hc{
+    text-align:center;
+    margin:0 auto;
+  }
+
+  .hsub{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .hbtns{
+    justify-content:center;
+  }
+
+  .hstats{
+    grid-template-columns:repeat(2,1fr);
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .fgrid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:700px){
+  .tb{
+    height:auto;
+    min-height:88px;
+    background:rgba(255,253,248,.96);
+  }
+
+  .logo-main{
+    height:39px;
+  }
+
+  .logo-main rect,
+  .logo-main text{
+    fill:#171717 !important;
+  }
+
+  .nl{
+    color:#313131;
+    font-weight:750;
+    font-size:12px;
+    padding:0;
+  }
+
+  .nl::after{
+    display:none;
+  }
+
+  .nl.on,
+  .nl:hover{
+    color:#171717;
+  }
+
+  .lb,
+  .ub,
+  .cta{
+    color:#171717;
+    background:transparent;
+    border:none;
+    padding:2px 4px;
+  }
+
+  .cta{
+    color:#171717;
+  }
+
+  .news-ticker{
+    top:88px;
+  }
+
+  .gfb{
+    background-attachment:scroll;
+    background-position:center;
+  }
+
+  .hero h1{
+    font-size:2.7rem;
+  }
+
+  .hsub{
+    font-size:16px;
+  }
+
+  .fgrid{
+    grid-template-columns:1fr;
+  }
+
+  .fcard{
+    min-height:auto;
+    padding:28px 24px;
+  }
+}
+  
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
