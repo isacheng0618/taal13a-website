@@ -2026,6 +2026,84 @@ button,input,label{
     padding:28px 24px;
   }
 }
+
+/* === STEP 2：Homepage spacing + section background adjustment === */
+
+/* 1. 首页首屏文字不要太靠左，回到更居中的视觉 */
+.hc{
+  text-align:center;
+  max-width:760px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.hsub{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.hbtns{
+  justify-content:center;
+}
+
+.hstats{
+  margin-left:auto;
+  margin-right:auto;
+  justify-content:center;
+}
+
+/* 首屏背景遮罩改柔一点，避免左侧太白一整块 */
+.hovl{
+  background:
+    linear-gradient(90deg,rgba(255,253,248,.82) 0%,rgba(255,253,248,.68) 38%,rgba(255,253,248,.30) 72%,rgba(255,253,248,.10) 100%),
+    linear-gradient(180deg,rgba(255,253,248,.12),rgba(255,253,248,.03));
+}
+
+/* 2. “学习，从未如此灵活”区域：改成更明显的淡蓝色 */
+.bg-sky{
+  background:#EAF4F8 !important;
+}
+
+/* 给这一块上下留白更接近参考图 */
+.bg-sky .sec{
+  padding-top:6.5rem;
+  padding-bottom:6.5rem;
+}
+
+/* 3. “选择您的课程”区域：改成淡黄色背景 */
+/* 你的首页课程区结构是：第一个 bg-w 是课程区，所以这里精准选它 */
+#pg-home > .bg-w{
+  background:#FCF8D8 !important;
+}
+
+#pg-home > .bg-w .sec{
+  padding-top:5.8rem;
+  padding-bottom:5.8rem;
+}
+
+/* 课程区里的卡片保持接近白色，不要一起变黄 */
+#pg-home > .bg-w .pillar{
+  background:#FFFDF8;
+}
+
+/* 4. 学员反馈区域可以暂时保持奶油色，不要和课程区撞色 */
+#pg-home > .bg-sand{
+  background:#F6EFE5 !important;
+}
+
+/* 5. Why Taal13A 四格区在淡蓝背景上要更清楚 */
+.fgrid{
+  background:#D9CDBE;
+  border-color:#D9CDBE;
+}
+
+.fcard{
+  background:#FFFDF8;
+}
+
+.fcard:hover{
+  background:#FFFDF8;
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
