@@ -4195,6 +4195,25 @@ button,input,label{
     padding:6px 7px !important;
   }
 }
+
+/* === SHOP LIST ONLY: hide short description on product cards === */
+
+#pg-shop .shop-grid .scard-desc{
+  display:none !important;
+}
+
+/* === MOBILE SHOP: show original price === */
+
+@media(max-width:700px){
+  #pg-shop .shop-grid .scard-old{
+    display:inline !important;
+    font-size:10px !important;
+    color:#9B968E !important;
+    text-decoration:line-through !important;
+    margin-left:3px !important;
+    white-space:nowrap !important;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
