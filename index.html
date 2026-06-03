@@ -3180,6 +3180,91 @@ button,input,label{
     border-color:#0F5E8C;
   }
 }  
+
+/* === WHY TAAL13A: Teacher CTA === */
+.why-teacher-cta{
+  margin-top:28px;
+  background:rgba(255,253,248,.72);
+  border:1px solid #D9CDBE;
+  padding:22px 26px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+  backdrop-filter:blur(10px);
+}
+
+.why-teacher-kicker{
+  color:var(--brand-orange, #E96F3C);
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.16em;
+  margin-bottom:7px;
+}
+
+.why-teacher-title{
+  color:#171717;
+  font-size:17px;
+  line-height:1.55;
+  font-weight:850;
+  letter-spacing:-.02em;
+}
+
+.why-teacher-btn{
+  flex-shrink:0;
+  border:none;
+  background:transparent;
+  color:#171717;
+  font-family:inherit;
+  font-size:15px;
+  font-weight:950;
+  padding:10px 2px 8px;
+  cursor:pointer;
+  position:relative;
+}
+
+.why-teacher-btn::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:2px;
+  width:100%;
+  height:3px;
+  background:var(--brand-orange, #E96F3C);
+  transition:width .18s ease, background .18s ease;
+}
+
+.why-teacher-btn:hover{
+  color:var(--brand-blue-dark, #0B486D);
+}
+
+.why-teacher-btn:hover::after{
+  width:115%;
+  background:var(--brand-blue, #0F5E8C);
+}
+
+@media(max-width:700px){
+  .why-teacher-cta{
+    margin:22px 24px 0;
+    padding:20px 22px;
+    display:block;
+  }
+
+  .why-teacher-kicker{
+    font-size:11px;
+    margin-bottom:8px;
+  }
+
+  .why-teacher-title{
+    font-size:15px;
+    line-height:1.6;
+  }
+
+  .why-teacher-btn{
+    margin-top:16px;
+    font-size:14px;
+  }
+}  
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -3283,6 +3368,16 @@ button,input,label{
   <button class="why-dot" onclick="goWhySlide(2)" aria-label="第3个优势"></button>
   <button class="why-dot" onclick="goWhySlide(3)" aria-label="第4个优势"></button>
 </div>
+
+<div class="why-teacher-cta">
+  <div class="why-teacher-text">
+    <div class="why-teacher-kicker" data-zh="了解授课老师" data-nl="Maak kennis met de docent">了解授课老师</div>
+    <div class="why-teacher-title" data-zh="Isa 老师具备 NT2 教学资质，擅长用中文把复杂语法讲简单。" data-nl="Isa is bevoegd NT2-docent en maakt moeilijke grammatica eenvoudig met uitleg in het Chinees.">Isa 老师具备 NT2 教学资质，擅长用中文把复杂语法讲简单。</div>
+  </div>
+
+  <button class="why-teacher-btn" onclick="nav('about')" data-zh="了解我们的老师 →" data-nl="Over de docent →">了解我们的老师 →</button>
+</div>
+    
   </div></div>
   
   <div class="bg-w"><div class="sec">
