@@ -2751,6 +2751,71 @@ button,input,label{
   }
 }
 
+ /* === FINAL FIX: hero 背景改成更明显的浅蓝蒙版 === */
+.hovl{
+  background:
+    linear-gradient(90deg,
+      rgba(218,238,247,.94) 0%,
+      rgba(218,238,247,.84) 40%,
+      rgba(218,238,247,.56) 72%,
+      rgba(218,238,247,.28) 100%
+    ),
+    linear-gradient(180deg,
+      rgba(233,246,252,.34),
+      rgba(206,230,242,.18)
+    ) !important;
+}
+
+.gfb::after{
+  background:
+    linear-gradient(90deg,
+      rgba(218,238,247,.58),
+      rgba(218,238,247,.18)
+    ) !important;
+} 
+
+/* === FINAL FIX: 手机端 Why Taal13A 四项压缩成一行 === */
+@media(max-width:700px){
+  #pg-home .bg-sky .fgrid{
+    display:grid !important;
+    grid-template-columns:repeat(4, 1fr) !important;
+    gap:6px !important;
+    width:100% !important;
+    border:none !important;
+    background:transparent !important;
+  }
+
+  #pg-home .bg-sky .fcard{
+    min-height:0 !important;
+    padding:9px 4px !important;
+    border-radius:8px !important;
+    border:1px solid rgba(15,94,140,.12) !important;
+    background:rgba(255,253,248,.82) !important;
+    text-align:center !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+  }
+
+  #pg-home .bg-sky .ficon{
+    display:none !important;
+  }
+
+  #pg-home .bg-sky .ft{
+    font-size:10.5px !important;
+    line-height:1.2 !important;
+    font-weight:900 !important;
+    margin:0 !important;
+    color:#0B486D !important;
+    word-break:keep-all !important;
+  }
+
+  #pg-home .bg-sky .fd{
+    display:none !important;
+  }
+}
+  
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
