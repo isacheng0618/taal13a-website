@@ -4227,44 +4227,6 @@ button,input,label{
   cursor:zoom-in !important;
 }
 
-/* 大图弹窗 */
-.img-lightbox{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  background:rgba(0,0,0,.82);
-  align-items:center;
-  justify-content:center;
-  padding:22px;
-}
-
-.img-lightbox.open{
-  display:flex;
-}
-
-.img-lightbox img{
-  max-width:94vw;
-  max-height:88vh;
-  object-fit:contain;
-  background:#fff;
-}
-
-.img-lightbox-close{
-  position:fixed;
-  top:18px;
-  right:18px;
-  width:42px;
-  height:42px;
-  border:none;
-  background:rgba(255,255,255,.92);
-  color:#171717;
-  font-size:28px;
-  line-height:1;
-  font-weight:700;
-  cursor:pointer;
-  z-index:10000;
-}
 
 /* 手机端：商品详情页图片放上方，产品信息放下方 */
 @media(max-width:850px){
@@ -5117,9 +5079,6 @@ button,input,label{
 
   <div class="shop-grid" id="shop-grid"></div>
 </div>
-
-    <div class="shop-grid" id="shop-grid"></div>
-  </div>
 
   <div style="height:2rem"></div>
 </div>
@@ -6225,7 +6184,7 @@ function rShop(){
 
        (isProductPurchased(p.id)
   ? '<button class="btn-cart purchased" onclick="event.stopPropagation();">'+(ti?'已购买':'Gekocht')+'</button>'
-  '<button class="bpay" onclick="addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button>'
+  : '<button class="btn-cart '+(p.free?'free-claim':'')+'" onclick="event.stopPropagation();'+(p.free?'claimFreeProduct':'addToCart')+'(\''+p.id+'\')">'+(p.free?(ti?'免费领取':'Gratis'):(ti?'加入购物车':'In winkelwagen'))+'</button>'
 )+
         '</div>'+
       '</div>'+
@@ -6534,14 +6493,15 @@ function rProduct(){
 '</div>'+
 
         '<div class="pd-desc">'+(ti?p.zd:p.nd)+'</div>'+ 
-        '<div class="pd-actions">'+
+  '<div class="pd-actions">'+
+'<div class="pd-actions">'+
   (isProductPurchased(p.id)
-    ? '<button class="bpay" style="background:var(--grn);cursor:default">'+(ti?'已购买':'Gekocht')+'</button><button class="btn-secondary" onclick="nav(\'dashboard\')">'+(ti?'去下载':'Naar download')+'</button>'
-   : (
-    p.free
-      ? '<button class="bpay" onclick="claimFreeProduct(\''+p.id+'\')">'+(ti?'🎁 免费领取':'🎁 Gratis ophalen')+'</button><button class="btn-secondary" onclick="nav(\'register\')">'+(ti?'注册后下载':'Registreren')+'</button>'
-      '<button class="bpay" onclick="addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button>'
-  )
+    ? '<button class="bpay" style="background:var(--grn);cursor:default">'+(ti?'已购买':'Gekocht')+'</button>'
+    : (
+      p.free
+        ? '<button class="bpay" onclick="claimFreeProduct(\''+p.id+'\')">'+(ti?'🎁 免费领取':'🎁 Gratis ophalen')+'</button>'
+        : '<button class="bpay" onclick="addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button>'
+    )
   )+
 '</div>'+
         '<div class="pd-warning">'+
