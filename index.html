@@ -4214,6 +4214,155 @@ button,input,label{
     white-space:nowrap !important;
   }
 }
+
+/* === PRODUCT DETAIL FINAL: mobile image first + swipe gallery + lightbox === */
+
+/* 所有端：详情页删除立即结算后，让加入购物车按钮占满更自然 */
+#pg-product .pd-actions .bpay{
+  width:100% !important;
+}
+
+/* 图片可点击 */
+#pg-product .pd-shot{
+  cursor:zoom-in !important;
+}
+
+/* 大图弹窗 */
+.img-lightbox{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(0,0,0,.82);
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+}
+
+.img-lightbox.open{
+  display:flex;
+}
+
+.img-lightbox img{
+  max-width:94vw;
+  max-height:88vh;
+  object-fit:contain;
+  background:#fff;
+}
+
+.img-lightbox-close{
+  position:fixed;
+  top:18px;
+  right:18px;
+  width:42px;
+  height:42px;
+  border:none;
+  background:rgba(255,255,255,.92);
+  color:#171717;
+  font-size:28px;
+  line-height:1;
+  font-weight:700;
+  cursor:pointer;
+  z-index:10000;
+}
+
+/* 手机端：商品详情页图片放上方，产品信息放下方 */
+@media(max-width:850px){
+
+  #pg-product .pd-card.fashion{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:1.1rem !important;
+  }
+
+  #pg-product .pd-card.fashion .pd-gallery{
+    order:1 !important;
+  }
+
+  #pg-product .pd-card.fashion .pd-info{
+    order:2 !important;
+  }
+
+  /* 手机端图片区域改成横向滑动 */
+  #pg-product .pd-card.fashion .pd-gallery{
+    display:flex !important;
+    grid-template-columns:none !important;
+    gap:12px !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    scroll-snap-type:x mandatory !important;
+    -webkit-overflow-scrolling:touch !important;
+    padding:0 0 10px !important;
+    scrollbar-width:none !important;
+  }
+
+  #pg-product .pd-card.fashion .pd-gallery::-webkit-scrollbar{
+    display:none !important;
+  }
+
+  #pg-product .pd-shot{
+    flex:0 0 86vw !important;
+    width:86vw !important;
+    min-height:420px !important;
+    scroll-snap-align:center !important;
+    border:1px solid #E6DED2 !important;
+    background:#fff !important;
+  }
+
+  #pg-product .pd-shot img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:contain !important;
+    padding:12px !important;
+  }
+
+  /* 两张说明卡片也作为滑动卡片展示 */
+  #pg-product .pd-shot.alt{
+    min-height:420px !important;
+    padding:0 !important;
+  }
+
+  #pg-product .pd-shot-card{
+    width:100% !important;
+    height:100% !important;
+    padding:28px 24px !important;
+  }
+
+  /* 手机端产品信息卡片更紧凑 */
+  #pg-product .pd-card.fashion .pd-info{
+    padding:1.25rem !important;
+  }
+
+  #pg-product .pd-card.fashion .pd-info h1{
+    font-size:1.45rem !important;
+  }
+
+  #pg-product .pd-price{
+    font-size:1.85rem !important;
+  }
+
+  #pg-product .pd-actions{
+    display:block !important;
+  }
+
+  #pg-product .pd-actions .bpay{
+    width:100% !important;
+    margin-bottom:0 !important;
+  }
+}
+
+/* 很窄的手机再压一点 */
+@media(max-width:430px){
+  #pg-product .pd-shot{
+    flex-basis:88vw !important;
+    width:88vw !important;
+    min-height:380px !important;
+  }
+
+  #pg-product .pd-shot.alt{
+    min-height:380px !important;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -4918,6 +5067,11 @@ Taal13A 的教学理念是：让学荷兰语变得简单、接地气、真正有
   </div>
 </div>
 
+<div class="img-lightbox" id="img-lightbox" onclick="closeProductImage()">
+  <button class="img-lightbox-close" onclick="closeProductImage()">×</button>
+  <img id="img-lightbox-img" src="" alt="">
+</div>
+  
 <!-- CART PANEL -->
 <div class="cart-panel" id="cart-panel">
   <div class="cart-head">
@@ -5735,7 +5889,7 @@ function rShop(){
 
        (isProductPurchased(p.id)
   ? '<button class="btn-cart purchased" onclick="event.stopPropagation();">'+(ti?'已购买':'Gekocht')+'</button>'
-  : '<button class="btn-cart '+(p.free?'free-claim':'')+'" onclick="event.stopPropagation();'+(p.free?'claimFreeProduct(\''+p.id+'\')':'addToCart(\''+p.id+'\')')+'">'+(p.free?(ti?'免费领取':'Gratis ophalen'):(ti?'加入购物车':'In winkelwagen'))+'</button>'
+  : '<button class="bpay" onclick="addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button>'
 )+
         '</div>'+
       '</div>'+
@@ -5813,6 +5967,29 @@ function getOwnedProductIdsFromPurchases(purchases){
 function isProductPurchased(pid){
   return USER && Array.isArray(USER.products) && USER.products.indexOf(pid) >= 0;
 }
+
+function openProductImage(src){
+  var box = document.getElementById('img-lightbox');
+  var img = document.getElementById('img-lightbox-img');
+
+  if(!box || !img || !src) return;
+
+  img.src = src;
+  box.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProductImage(){
+  var box = document.getElementById('img-lightbox');
+  var img = document.getElementById('img-lightbox-img');
+
+  if(!box || !img) return;
+
+  box.classList.remove('open');
+  img.src = '';
+  document.body.style.overflow = '';
+}  
+  
 function oProduct(pid){PDT=pid;nav('product',{pid:pid});}
 function rProduct(){
   var ti=t();
@@ -5827,8 +6004,8 @@ function rProduct(){
   el.innerHTML='<button class="back-link" onclick="nav(\'shop\')">← '+(ti?'返回商店':'Terug naar winkel')+'</button>'+ 
     '<div class="pd-card fashion">'+
 '<div class="pd-gallery">'+
-  '<div class="pd-shot"><img src="'+p.img+'" alt="'+(ti?p.zn:p.nn)+'"></div>'+
-  '<div class="pd-shot"><img src="'+p.infoImg+'" alt="'+(ti?p.zn:p.nn)+' info"></div>'+
+  '<div class="pd-shot" onclick="openProductImage(\''+p.img+'\')"><img src="'+p.img+'" alt="'+(ti?p.zn:p.nn)+'"></div>'+
+'<div class="pd-shot" onclick="openProductImage(\''+p.infoImg+'\')"><img src="'+p.infoImg+'" alt="'+(ti?p.zn:p.nn)+' info"></div>'+
   '<div class="pd-shot alt"><div class="pd-shot-card"><div><div class="pd-shot-kicker">Delivery</div><div class="pd-shot-title">'+(ti?'即时交付':'Direct geleverd')+'</div></div><div class="pd-shot-list">'+delivery+'</div></div></div>'+
   '<div class="pd-shot alt"><div class="pd-shot-card"><div><div class="pd-shot-kicker">Access</div><div class="pd-shot-title">'+(ti?'个人主页下载':'Download in account')+'</div></div><div class="pd-shot-list">'+access+'</div></div></div>'+
 '</div>'+
