@@ -2347,6 +2347,314 @@ button,input,label{
   background:rgba(255,255,255,.04);
   backdrop-filter:blur(8px);
 }
+
+/* === Taal13A refined toolbar + hero controls === */
+/* 只改导航、滚动栏、hero 首屏按钮；不影响学员反馈卡片 */
+
+:root{
+  --warm-paper:#FFFDF8;
+  --warm-cream:#FCF8D8;
+  --warm-line:#E4D7C6;
+  --warm-text:#4E4136;
+  --warm-muted:#7A6C60;
+  --brand-blue:#0F5E8C;
+  --brand-blue-dark:#0B486D;
+  --brand-orange:#E96F3C;
+}
+
+/* 顶部工具栏：保留简洁，但减少椭圆感 */
+.tb{
+  background:rgba(255,253,248,.94) !important;
+  border-bottom:1px solid rgba(228,215,198,.85) !important;
+  box-shadow:none !important;
+  backdrop-filter:blur(18px);
+}
+
+.logo-main rect,
+.logo-main text{
+  fill:#171717 !important;
+}
+
+/* 顶部导航文字 */
+.nl{
+  color:#2F2A25 !important;
+  background:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  font-weight:750;
+}
+
+.nl:hover,
+.nl.on{
+  color:var(--brand-blue-dark) !important;
+}
+
+/* 右侧区域 */
+.nr{
+  gap:14px !important;
+}
+
+/* 中文 / NL 下拉 */
+.lang-select{
+  appearance:none;
+  -webkit-appearance:none;
+  border:none;
+  background:transparent;
+  color:#2F2A25;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:850;
+  padding:8px 18px 8px 2px;
+  cursor:pointer;
+  outline:none;
+  background-image:linear-gradient(45deg, transparent 50%, #7A6C60 50%),linear-gradient(135deg, #7A6C60 50%, transparent 50%);
+  background-position:calc(100% - 8px) 50%, calc(100% - 4px) 50%;
+  background-size:4px 4px,4px 4px;
+  background-repeat:no-repeat;
+}
+
+.lang-select:hover{
+  color:var(--brand-blue-dark);
+}
+
+/* 登录 / 注册容器 */
+.auth-actions{
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+}
+
+/* 登录：文字入口 */
+.login-link{
+  border:none;
+  background:transparent;
+  color:#2F2A25;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:850;
+  cursor:pointer;
+  padding:8px 0;
+  position:relative;
+}
+
+.login-link::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:4px;
+  width:0;
+  height:2px;
+  background:var(--brand-orange);
+  transition:width .18s ease;
+}
+
+.login-link:hover{
+  color:var(--brand-blue-dark);
+}
+
+.login-link:hover::after{
+  width:100%;
+}
+
+/* 注册：现代按钮，不用椭圆 */
+.register-btn{
+  border:none;
+  background:var(--brand-blue);
+  color:#fff;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:900;
+  padding:9px 16px;
+  border-radius:6px;
+  cursor:pointer;
+  box-shadow:none;
+  transition:background .18s ease, transform .18s ease;
+}
+
+.register-btn:hover{
+  background:var(--brand-blue-dark);
+  transform:translateY(-1px);
+}
+
+/* 滚动栏：淡黄背景，hover 只显示下划线 */
+.news-ticker{
+  background:var(--warm-cream) !important;
+  border-bottom:1px solid rgba(228,215,198,.95) !important;
+}
+
+.news-track{
+  color:var(--warm-text) !important;
+}
+
+.news-dot{
+  display:none !important;
+}
+
+.news-item{
+  background:transparent !important;
+  border-radius:0 !important;
+  padding:3px 2px !important;
+  color:var(--warm-text) !important;
+  position:relative;
+  transform:none !important;
+}
+
+.news-item::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0;
+  height:2px;
+  background:var(--brand-orange);
+  transition:width .18s ease;
+}
+
+.news-item:hover{
+  background:transparent !important;
+  color:var(--brand-blue-dark) !important;
+  transform:none !important;
+  text-decoration:none !important;
+}
+
+.news-item:hover::after{
+  width:100%;
+}
+
+/* hero 顶部说明：去椭圆框，改为细线标题 */
+.hpill{
+  background:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  padding:0 !important;
+  color:var(--warm-text) !important;
+  font-size:15px !important;
+  font-weight:900 !important;
+  letter-spacing:.04em;
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin-bottom:2rem !important;
+}
+
+.hpill::before,
+.hpill::after{
+  content:"";
+  display:block;
+  width:108px;
+  height:1.5px;
+  background:rgba(122,108,96,.48);
+}
+
+.pdot{
+  display:none !important;
+}
+
+/* 主按钮：蓝色现代按钮，不用黑色大框 */
+.hb1{
+  background:var(--brand-blue) !important;
+  color:#fff !important;
+  border:none !important;
+  border-radius:6px !important;
+  padding:14px 30px !important;
+  font-size:16px !important;
+  font-weight:950 !important;
+  box-shadow:0 12px 26px rgba(15,94,140,.16) !important;
+  transition:background .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+
+.hb1:hover{
+  background:var(--brand-blue-dark) !important;
+  transform:translateY(-1px);
+  box-shadow:0 14px 30px rgba(15,94,140,.22) !important;
+}
+
+/* 去商店：文字链接 + 更长暖橙下划线 */
+.hb2{
+  background:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  color:#171717 !important;
+  padding:14px 4px 10px !important;
+  font-size:16px !important;
+  font-weight:950 !important;
+  position:relative;
+  box-shadow:none !important;
+}
+
+.hb2::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:3px;
+  width:118%;
+  height:3px;
+  background:var(--brand-orange);
+  transform:translateX(-50%);
+  transition:width .18s ease, background .18s ease;
+}
+
+.hb2:hover{
+  color:var(--brand-blue-dark) !important;
+  background:transparent !important;
+  transform:none !important;
+}
+
+.hb2:hover::after{
+  width:132%;
+  background:var(--brand-blue);
+}
+
+/* 手机端适配 */
+@media(max-width:700px){
+  .tb{
+    background:rgba(255,253,248,.96) !important;
+  }
+
+  .nr{
+    gap:10px !important;
+  }
+
+  .auth-actions{
+    gap:10px;
+  }
+
+  .lang-select,
+  .login-link,
+  .register-btn{
+    font-size:12px;
+  }
+
+  .register-btn{
+    padding:6px 10px;
+    border-radius:5px;
+  }
+
+  .hpill{
+    font-size:12.5px !important;
+    gap:8px;
+    letter-spacing:.02em;
+  }
+
+  .hpill::before,
+  .hpill::after{
+    width:42px;
+  }
+
+  .hbtns{
+    gap:18px;
+  }
+
+  .hb1,
+  .hb2{
+    font-size:14px !important;
+  }
+
+  .news-ticker{
+    top:88px !important;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -2369,18 +2677,23 @@ button,input,label{
     <button class="nl" onclick="nav('about')" data-zh="关于 / Over ons" data-nl="关于 / Over ons">关于 / Over ons</button>
     <button class="nl" onclick="nav('contact')" data-zh="联系 / Contact" data-nl="联系 / Contact">联系 / Contact</button>
   </div>
-  <div class="nr">
-    <button class="lb on" onclick="setLang('zh',this)">中文</button>
-    <button class="lb" onclick="setLang('nl',this)">NL</button>
-    <span id="auth-btns">
-      <button class="ub" onclick="nav('login')">登录</button>
-      <button class="cta" onclick="nav('register')">注册</button>
-    </span>
-    <span id="user-btns" style="display:none">
-      <button class="ub" onclick="nav('dashboard')" id="ulabel">我的课程</button>
-      <button class="ub" onclick="doLogout()" style="margin-left:4px">退出</button>
-    </span>
-  </div>
+<div class="nr">
+  <select class="lang-select" id="lang-select" onchange="setLang(this.value,this)">
+    <option value="zh">中文</option>
+    <option value="nl">NL</option>
+  </select>
+
+  <span id="auth-btns" class="auth-actions">
+    <button class="login-link" onclick="nav('login')" data-zh="登录" data-nl="Inloggen">登录</button>
+    <button class="register-btn" onclick="nav('register')" data-zh="注册" data-nl="Registreren">注册</button>
+  </span>
+
+  <span id="user-btns" class="auth-actions" style="display:none">
+    <button class="login-link" onclick="nav('dashboard')" id="ulabel">我的课程</button>
+    <button class="register-btn" onclick="doLogout()" data-zh="退出" data-nl="Uitloggen">退出</button>
+  </span>
+</div>
+  
 </nav>
 <div class="news-ticker"><div class="news-track" id="news-track"></div></div>
 
@@ -5058,14 +5371,39 @@ window.addEventListener('popstate',function(e){var st=e.state||{page:'home'};nav
   
 function setLang(l,btn){
   L=l;
-  document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');
+
+  var langSelect = document.getElementById('lang-select');
+  if(langSelect){
+    langSelect.value = l;
+  }
+
   document.querySelectorAll('[data-zh-placeholder]').forEach(function(el){
-  el.placeholder = l === 'zh' ? el.dataset.zhPlaceholder : el.dataset.nlPlaceholder;
-});
+    el.placeholder = l === 'zh' ? el.dataset.zhPlaceholder : el.dataset.nlPlaceholder;
+  });
+
+  document.querySelectorAll('[data-zh][data-nl]').forEach(function(el){
+    if(el.id === 'hero-h1') return;
+    el.textContent = l === 'zh' ? el.dataset.zh : el.dataset.nl;
+  });
+
   var h1=document.getElementById('hero-h1');
-  if(h1)h1.innerHTML=l==='zh'?'<em>学好荷兰语</em><br>开启全新生活':'Leer het <em>Nederlands</em><br>Begin een nieuw leven';
-  rPil('home-pillars');rList();rShop();updCart();updNewsTicker();if(PDT)rProduct();if(document.getElementById('pg-checkout').classList.contains('on'))rCheckout();rLegal();if(USER)rDash();
+  if(h1){
+    h1.innerHTML = l === 'zh'
+      ? '<em>学好荷兰语</em><br>开启全新生活'
+      : 'Leer het <em>Nederlands</em><br>Begin een nieuw leven';
+  }
+
+  rPil('home-pillars');
+  rList();
+  rShop();
+  updCart();
+  updNewsTicker();
+  if(PDT)rProduct();
+  if(document.getElementById('pg-checkout').classList.contains('on'))rCheckout();
+  rLegal();
+  if(USER)rDash();
 }
+  
 function faqT(el){var a=el.nextElementSibling,ic=el.querySelector('.fic');a.classList.toggle('on');ic.textContent=a.classList.contains('on')?'−':'+';}
 
 function updNewsTicker(){
