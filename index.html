@@ -3008,52 +3008,55 @@ button,input,label{
 
   /* === COURSE TABLE TWEAK: 橙色竖线加长 === */
 .course-main::before{
-  height:72px !important;
+  height:64px !important;
   top:8px !important;
 }
 
-/* === COURSE TABLE MOBILE: 开课日期 / 时间 / 周期压缩成一行 === */
+/* === FINAL FIX: 手机端课程信息三列均分居中 === */
 @media(max-width:800px){
-  .course-row{
-    gap:14px !important;
-    padding:22px 18px !important;
-  }
-
-  .course-main::before{
-    height:74px !important;
-    top:8px !important;
-  }
-
   .course-meta{
     display:grid !important;
-    grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
-    gap:8px !important;
-    padding-top:2px !important;
+    grid-template-columns:repeat(3, 1fr) !important;
+    column-gap:0 !important;
+    width:100% !important;
+    padding-top:8px !important;
+    margin-top:2px !important;
+    align-items:start !important;
   }
 
   .course-field{
+    width:100% !important;
     min-width:0 !important;
+    text-align:center !important;
+    padding:0 4px !important;
+  }
+
+  .course-field:first-child{
+    text-align:left !important;
+    padding-left:0 !important;
+  }
+
+  .course-field:nth-child(2){
+    text-align:center !important;
+  }
+
+  .course-field:nth-child(3){
+    text-align:right !important;
+    padding-right:0 !important;
   }
 
   .course-label{
-    font-size:10px !important;
-    margin-bottom:3px !important;
+    font-size:10.5px !important;
+    line-height:1.2 !important;
+    margin-bottom:4px !important;
     white-space:nowrap !important;
   }
 
   .course-value{
-    font-size:12px !important;
-    line-height:1.28 !important;
+    font-size:12.5px !important;
+    line-height:1.3 !important;
+    font-weight:950 !important;
     white-space:normal !important;
-  }
-
-  .course-price{
-    font-size:24px !important;
-    margin-top:2px !important;
-  }
-
-  .course-action{
-    margin-top:0 !important;
   }
 }
   
@@ -4241,23 +4244,27 @@ function rPil(id){
   }
 
 function getType(c){
-  if(c.id === 'elearn'){
+  var title = ti ? (c.zt || '') : (c.nt || '');
+  var level = c.l || '';
+  var id = c.id || '';
+
+  if(id === 'elearn'){
     return ti ? 'E-learning 自学课' : 'E-learning';
   }
 
-  if(c.id === 'a0a1'){
+  if(title.indexOf('A0–A1 零基础') >= 0 || title.indexOf('A0-A1 零基础') >= 0){
     return ti ? '线上小班：零基础' : 'Online groep: beginner';
   }
 
-  if(c.id === 'a1a2'){
-    return ti ? '线上小班：A2备考' : 'Online groep: A2 examen';
-  }
-
-  if(c.l === 'a1a2'){
+  if(title.indexOf('A0–A1+ 基础重建') >= 0 || title.indexOf('A0-A1+ 基础重建') >= 0){
     return ti ? '线上小班：A1备考' : 'Online groep: A1 examen';
   }
 
-  if(c.l === 'a2b1' || c.id.indexOf('exam') >= 0){
+  if(title.indexOf('A1–A2') >= 0 || title.indexOf('A1-A2') >= 0 || title.indexOf('应试冲刺') >= 0){
+    return ti ? '线上小班：A2备考' : 'Online groep: A2 examen';
+  }
+
+  if(level === 'a2b1' || id.indexOf('exam') >= 0){
     return ti ? '线上小班：A2备考' : 'Online groep: A2 examen';
   }
 
