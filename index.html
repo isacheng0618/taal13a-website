@@ -9,6 +9,56 @@
   "logo": "https://www.taal13a.nl/favicon.png",
   "description": "Taal13A 提供面向中文学习者的荷兰语课程、荷兰语考试备考资料、E-learning和线上小班课。"
 }
+
+function updateWhyDots(){
+  var slider = document.getElementById('why-slider');
+  var dots = document.querySelectorAll('#why-dots .why-dot');
+
+  if(!slider || !dots.length) return;
+
+  var cards = slider.querySelectorAll('.fcard');
+  if(!cards.length) return;
+
+  var sliderLeft = slider.scrollLeft;
+  var cardWidth = cards[0].offsetWidth + 14;
+  var index = Math.round(sliderLeft / cardWidth);
+
+  if(index < 0) index = 0;
+  if(index > dots.length - 1) index = dots.length - 1;
+
+  dots.forEach(function(dot){
+    dot.classList.remove('active');
+  });
+
+  dots[index].classList.add('active');
+}
+
+function goWhySlide(index){
+  var slider = document.getElementById('why-slider');
+  if(!slider) return;
+
+  var cards = slider.querySelectorAll('.fcard');
+  if(!cards[index]) return;
+
+  slider.scrollTo({
+    left: cards[index].offsetLeft - 24,
+    behavior: 'smooth'
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  var slider = document.getElementById('why-slider');
+  if(slider){
+    slider.addEventListener('scroll', function(){
+      window.requestAnimationFrame(updateWhyDots);
+    });
+  }
+
+  updateWhyDots();
+});
+
+window.addEventListener('resize', updateWhyDots);  
+  
 </script>
 <head>
 <link rel="icon" type="image/png" href="/favicon.png">
@@ -3124,6 +3174,39 @@ button,input,label{
 #pg-home .bg-sky{
   background:#DCE9EE !important;
 }
+
+/* === WHY TAAL13A MOBILE DOTS === */
+.why-dots{
+  display:none;
+}
+
+@media(max-width:700px){
+  .why-dots{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    margin-top:14px;
+  }
+
+  .why-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    border:1.5px solid rgba(15,94,140,.65);
+    background:transparent;
+    padding:0;
+    cursor:pointer;
+    transition:background .18s ease, width .18s ease, border-color .18s ease;
+  }
+
+  .why-dot.active{
+    width:22px;
+    border-radius:999px;
+    background:#0F5E8C;
+    border-color:#0F5E8C;
+  }
+}  
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -3194,7 +3277,7 @@ button,input,label{
       <h2 class="stit" data-zh="学习，从未如此简单" data-nl="Nederlands leren, eenvoudiger dan ooit">学习，从未如此简单</h2>
       <p class="ssub" data-zh="E-learning 或线上小班，专为忙碌的荷兰华人量身定制" data-nl="E-learning of groepsles, op maat voor Chinezen in Nederland">E-learning 或线上小班，专为忙碌的荷兰华人量身定制</p>
     </div>
-    <div class="fgrid">
+    <div class="fgrid" id="why-slider">
   <div class="fcard">
     <div class="ficon fi-b">⏱</div>
     <div class="ft" data-zh="随时随地学习" data-nl="Altijd en overal leren">随时随地学习</div>
@@ -3218,8 +3301,17 @@ button,input,label{
     <div class="ft" data-zh="NT2 资质教师" data-nl="Bevoegde NT2-docent">NT2 资质教师</div>
     <div class="fd" data-zh="Isa 老师具备 NT2 教学资质，擅长把复杂语法讲简单，让学习更轻松。" data-nl="Isa is bevoegd NT2-docent en maakt moeilijke grammatica eenvoudig en begrijpelijk.">Isa 老师具备 NT2 教学资质，擅长把复杂语法讲简单，让学习更轻松。</div>
   </div>
+
+ <div class="why-dots" id="why-dots">
+  <button class="why-dot active" onclick="goWhySlide(0)" aria-label="第1个优势"></button>
+  <button class="why-dot" onclick="goWhySlide(1)" aria-label="第2个优势"></button>
+  <button class="why-dot" onclick="goWhySlide(2)" aria-label="第3个优势"></button>
+  <button class="why-dot" onclick="goWhySlide(3)" aria-label="第4个优势"></button>
+</div>
+      
 </div>
   </div></div>
+  
   <div class="bg-w"><div class="sec">
     <div class="shead">
       <div class="eye" data-zh="选择您的课程" data-nl="KIES UW CURSUS">选择您的课程</div>
