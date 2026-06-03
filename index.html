@@ -2756,32 +2756,6 @@ button,input,label{
   }
 }
 
-/* === FINAL FIX: hero 背景改成更有蓝色氛围，但保留背景图 === */
-.hovl{
-  background:
-    linear-gradient(90deg,
-      rgba(205,232,244,.54) 0%,
-      rgba(205,232,244,.46) 38%,
-      rgba(205,232,244,.30) 70%,
-      rgba(205,232,244,.16) 100%
-    ),
-    linear-gradient(180deg,
-      rgba(15,94,140,.08),
-      rgba(15,94,140,.16)
-    ) !important;
-}
-
-.gfb{
-  filter:saturate(1.08) contrast(1.02) brightness(.96) !important;
-}
-
-.gfb::after{
-  background:
-    linear-gradient(90deg,
-      rgba(15,94,140,.10),
-      rgba(15,94,140,.04)
-    ) !important;
-}
 
 /* === FINAL FIX: 手机端 Why Taal13A 四项改成 2x2 小信息块 === */
 @media(max-width:700px){
@@ -2860,44 +2834,6 @@ button,input,label{
     -webkit-box-orient:vertical;
     overflow:hidden;
   }
-}
-
-/* === FINAL HERO MASK: 通透深蓝渐变，不闷，提升文字可读性 === */
-.hovl{
-  background:
-    radial-gradient(
-      circle at 50% 42%,
-      rgba(255,253,248,.28) 0%,
-      rgba(255,253,248,.18) 28%,
-      rgba(15,94,140,.20) 58%,
-      rgba(8,45,70,.34) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255,253,248,.18) 0%,
-      rgba(15,94,140,.18) 45%,
-      rgba(8,45,70,.34) 100%
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255,253,248,.20) 0%,
-      rgba(255,253,248,.08) 42%,
-      rgba(8,45,70,.24) 100%
-    ) !important;
-}
-
-.gfb{
-  filter:saturate(1.08) contrast(1.06) brightness(.88) !important;
-}
-
-.gfb::after{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,253,248,.10) 0%,
-      rgba(15,94,140,.08) 45%,
-      rgba(8,45,70,.26) 100%
-    ) !important;
 }
   
 </style>
