@@ -2856,6 +2856,33 @@ button,input,label{
     overflow:hidden;
   }
 }
+
+/* === FINAL FIX: hero 蓝色蒙版加重，提升文字可读性 === */
+.hovl{
+  background:
+    linear-gradient(90deg,
+      rgba(178,218,235,.72) 0%,
+      rgba(178,218,235,.66) 36%,
+      rgba(178,218,235,.54) 68%,
+      rgba(178,218,235,.42) 100%
+    ),
+    linear-gradient(180deg,
+      rgba(15,94,140,.18),
+      rgba(15,94,140,.30)
+    ) !important;
+}
+
+.gfb{
+  filter:saturate(1.05) contrast(1.04) brightness(.82) !important;
+}
+
+.gfb::after{
+  background:
+    linear-gradient(180deg,
+      rgba(15,94,140,.12),
+      rgba(15,94,140,.24)
+    ) !important;
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
