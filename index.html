@@ -3580,6 +3580,7 @@ button,input,label{
     font-size:12.5px !important;
   }
 }
+  
   /* === SHOP PRODUCT CARD FINAL FLAT BUTTON FIX === */
 /* 商品卡片按钮改成简约扁平购物车 icon */
 
@@ -3702,6 +3703,100 @@ button,input,label{
     font-size:17px;
   }
 }
+
+/* === SHOP PRODUCT CARD BUTTON: flat text button === */
+/* 商品卡片按钮改回简约文字按钮，不使用购物车 icon */
+
+.shop-grid .btn-cart{
+  width:auto !important;
+  height:auto !important;
+  min-width:auto !important;
+  padding:9px 14px !important;
+  border-radius:0 !important;
+  border:1.5px solid #171717 !important;
+  background:#171717 !important;
+  color:#fff !important;
+  box-shadow:none !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-size:13px !important;
+  line-height:1 !important;
+  font-weight:900 !important;
+  white-space:nowrap !important;
+  cursor:pointer !important;
+  transition:background .16s ease, border-color .16s ease, color .16s ease, transform .16s ease !important;
+}
+
+/* 取消之前 icon */
+.shop-grid .btn-cart::before{
+  content:none !important;
+}
+
+/* hover 轻一点 */
+.shop-grid .btn-cart:hover{
+  background:#0F5E8C !important;
+  border-color:#0F5E8C !important;
+  color:#fff !important;
+  transform:translateY(-1px) !important;
+  box-shadow:none !important;
+}
+
+/* 免费领取按钮：不要黑底，用浅色更轻 */
+.shop-grid .btn-cart.free-claim{
+  background:#FFF0E8 !important;
+  border-color:#E96F3C !important;
+  color:#A84E28 !important;
+}
+
+.shop-grid .btn-cart.free-claim:hover{
+  background:#E96F3C !important;
+  border-color:#E96F3C !important;
+  color:#fff !important;
+}
+
+/* 已购买状态 */
+.shop-grid .btn-cart.purchased{
+  background:#EEF5F0 !important;
+  border-color:#476D5B !important;
+  color:#476D5B !important;
+  cursor:default !important;
+}
+
+.shop-grid .btn-cart.purchased:hover{
+  background:#EEF5F0 !important;
+  border-color:#476D5B !important;
+  color:#476D5B !important;
+  transform:none !important;
+}
+
+/* 商品底部对齐 */
+.scard-foot{
+  align-items:flex-end !important;
+  gap:12px !important;
+}
+
+.scard-foot .btn-cart{
+  flex-shrink:0 !important;
+}
+
+/* 价格区域不要被按钮挤乱 */
+.scard-price{
+  white-space:nowrap !important;
+}
+
+.scard-old{
+  white-space:nowrap !important;
+}
+
+/* 手机端按钮稍微更小 */
+@media(max-width:700px){
+  .shop-grid .btn-cart{
+    font-size:12px !important;
+    padding:8px 11px !important;
+  }
+}  
+
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -5172,9 +5267,9 @@ function rShop(){
             ' <span style="font-size:10px;color:var(--ink4);font-weight:600">incl. BTW</span>'+
           '</div>'+
 
-          (isProductPurchased(p.id)
-  ? '<button class="btn-cart purchased" title="'+(ti?'已购买':'Gekocht')+'" onclick="event.stopPropagation();"></button>'
-  : '<button class="btn-cart '+(p.free?'free-claim':'')+'" title="'+(p.free?(ti?'免费领取':'Gratis ophalen'):(ti?'加入购物车':'In winkelwagen'))+'" onclick="event.stopPropagation();'+(p.free?'claimFreeProduct(\''+p.id+'\')':'addToCart(\''+p.id+'\')')+'"></button>'
+       (isProductPurchased(p.id)
+  ? '<button class="btn-cart purchased" onclick="event.stopPropagation();">'+(ti?'已购买':'Gekocht')+'</button>'
+  : '<button class="btn-cart '+(p.free?'free-claim':'')+'" onclick="event.stopPropagation();'+(p.free?'claimFreeProduct(\''+p.id+'\')':'addToCart(\''+p.id+'\')')+'">'+(p.free?(ti?'免费领取':'Gratis ophalen'):(ti?'加入购物车':'In winkelwagen'))+'</button>'
 )+
         '</div>'+
       '</div>'+
