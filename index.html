@@ -4458,7 +4458,7 @@ var PRODUCTS=[
   id:'spreken_sentences_300_pdf',
   cat:'vocab',
   type:'material',
-  level:'all- level','zero',
+  level:['zero','all-level'],
   goal:'daily',
   format:'pdf',
   emoji:'🗣️',
@@ -4601,7 +4601,7 @@ format:'pdf',
   id:'emotion_sentences_100_pdf',
   cat:'vocab',
   type:'material',
-level:'all-level','zero',
+level:['zero','all-level'],
 goal:'daily',
 format:'pdf',
   emoji:'📖',
@@ -4797,7 +4797,10 @@ function rShop(){
 
   var prods=PRODUCTS.filter(function(p){
     var okType = filterType==='all' || p.type===filterType;
-    var okLevel = filterLevel==='all' || p.level===filterLevel;
+    var okLevel =
+      filterLevel === 'all' ||
+      p.level === filterLevel ||
+      (Array.isArray(p.level) && p.level.indexOf(filterLevel) >= 0);
     var okGoal = filterGoal==='all' || p.goal===filterGoal;
     var okFormat = filterFormat==='all' || p.format===filterFormat;
 
