@@ -3401,6 +3401,185 @@ button,input,label{
     justify-content:flex-start;
   }
 }
+
+/* === SHOP PAGE FINAL CLEAN FIX === */
+/* 目标：书店页和课程页统一，去掉广告感，筛选栏更扁平紧凑 */
+
+/* 1. 书店蓝色头图：高度改成和课程页接近 */
+.shop-hero-new{
+  background:linear-gradient(135deg,#0F5E8C 0%,#0B486D 100%) !important;
+  padding:3rem 20px 2.8rem !important;
+  text-align:center !important;
+  position:relative;
+  overflow:hidden;
+}
+
+/* 去掉之前的复杂光斑 */
+.shop-hero-new::after{
+  display:none !important;
+}
+
+.shop-hero-inner{
+  max-width:760px !important;
+  margin:0 auto !important;
+}
+
+/* 去掉 TAAL13A BOOKSTORE 小字，即使 HTML 没删也隐藏 */
+.shop-kicker{
+  display:none !important;
+}
+
+/* 书店标题字体改回课程页那种感觉 */
+.shop-hero-new h1{
+  font-family:"Noto Serif SC","Archivo",serif !important;
+  font-size:1.9rem !important;
+  line-height:1.25 !important;
+  font-weight:700 !important;
+  letter-spacing:-.035em !important;
+  color:#fff !important;
+  margin:0 0 .35rem !important;
+}
+
+/* 副标题也压小，和课程页统一 */
+.shop-hero-new p{
+  color:rgba(255,255,255,.58) !important;
+  font-size:14px !important;
+  line-height:1.6 !important;
+  font-weight:500 !important;
+  max-width:620px !important;
+  margin:0 auto !important;
+}
+
+/* 去掉四个气泡，即使 HTML 没删也隐藏 */
+.shop-hero-tags{
+  display:none !important;
+}
+
+/* 2. 书店内容区上方距离缩小 */
+.shop-sec{
+  padding-top:1.35rem !important;
+  padding-bottom:0 !important;
+}
+
+/* 3. 筛选栏：扁平、紧凑、无阴影 */
+.shop-filter-bar{
+  display:grid !important;
+  grid-template-columns:repeat(4, minmax(0, 1fr)) auto !important;
+  gap:10px !important;
+  align-items:center !important;
+  background:transparent !important;
+  border:1px solid #E6DED2 !important;
+  box-shadow:none !important;
+  padding:12px !important;
+  margin-bottom:1rem !important;
+}
+
+/* 不显示外部 label，把提示直接放进 select */
+.shop-filter-group label{
+  display:none !important;
+}
+
+/* select 扁平化 */
+.shop-filter-group select{
+  width:100% !important;
+  height:40px !important;
+  border:1px solid #E6DED2 !important;
+  background:#FFFDF8 !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+  color:#686868 !important;
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+  font-size:13px !important;
+  font-weight:750 !important;
+  padding:0 12px !important;
+  outline:none !important;
+  cursor:pointer !important;
+}
+
+/* 选中之后文字不要太黑，保持轻一点 */
+.shop-filter-group select:focus{
+  border-color:#0F5E8C !important;
+  background:#fff !important;
+  color:#171717 !important;
+}
+
+/* 重置按钮也压小 */
+.shop-reset-btn{
+  height:40px !important;
+  border:1px solid #171717 !important;
+  background:#171717 !important;
+  color:#fff !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+  font-size:13px !important;
+  font-weight:900 !important;
+  padding:0 16px !important;
+  cursor:pointer !important;
+  white-space:nowrap !important;
+}
+
+.shop-reset-btn:hover{
+  background:#E96F3C !important;
+  border-color:#E96F3C !important;
+}
+
+/* 说明条也压缩，避免占太多空间 */
+.shop-sec .scard-digital-note{
+  margin-top:0 !important;
+  margin-bottom:1rem !important;
+  padding:.7rem .9rem !important;
+  border-radius:0 !important;
+  background:#EAF4F8 !important;
+  border:1px solid #CBDDE6 !important;
+  color:#0B486D !important;
+  font-size:12.5px !important;
+  line-height:1.5 !important;
+  font-weight:700 !important;
+}
+
+/* 商品卡片顶部不要贴太远 */
+.shop-grid{
+  margin-top:0 !important;
+}
+
+/* 手机端筛选栏改成一列，但也保持紧凑 */
+@media(max-width:980px){
+  .shop-filter-bar{
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .shop-reset-btn{
+    grid-column:1 / -1 !important;
+    width:100% !important;
+  }
+}
+
+@media(max-width:700px){
+  .shop-hero-new{
+    padding:2.6rem 20px 2.4rem !important;
+  }
+
+  .shop-hero-new h1{
+    font-size:1.75rem !important;
+  }
+
+  .shop-hero-new p{
+    font-size:13.5px !important;
+  }
+
+  .shop-filter-bar{
+    grid-template-columns:1fr !important;
+    padding:10px !important;
+    gap:8px !important;
+  }
+
+  .shop-filter-group select,
+  .shop-reset-btn{
+    height:38px !important;
+    font-size:12.5px !important;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -3750,68 +3929,60 @@ button,input,label{
 <div class="pg" id="pg-shop" style="min-height:calc(100vh - 52px)">
   <div class="shop-hero shop-hero-new">
     <div class="shop-hero-inner">
-      <div class="shop-kicker" data-zh="TAAL13A BOOKSTORE" data-nl="TAAL13A BOOKSTORE">TAAL13A BOOKSTORE</div>
       <h1 data-zh="📚 Taal13A 荷兰语书店" data-nl="📚 Taal13A Nederlandse boekwinkel">📚 Taal13A 荷兰语书店</h1>
       <p data-zh="学习资料、电子书与周边商品，适合日常学习、考试备考和课后复习。" data-nl="Leermateriaal, e-books en merchandise voor dagelijks leren, examenvoorbereiding en herhaling.">
         学习资料、电子书与周边商品，适合日常学习、考试备考和课后复习。
       </p>
-
-      <div class="shop-hero-tags">
-        <span>PDF电子资料</span>
-        <span>中文注释</span>
-        <span>可打印</span>
-        <span>手机电脑可查看</span>
-      </div>
     </div>
   </div>
 
   <div class="sec shop-sec">
     <div class="shop-filter-bar">
 
-      <div class="shop-filter-group">
-        <label>产品类型</label>
-        <select id="shop-filter-type" onchange="rShop()">
-          <option value="all">全部产品</option>
-          <option value="material">学习资料</option>
-          <option value="merch">周边商品</option>
-        </select>
-      </div>
+  <div class="shop-filter-group">
+    <label>产品类型</label>
+    <select id="shop-filter-type" onchange="rShop()">
+      <option value="all">产品类型</option>
+      <option value="material">学习资料</option>
+      <option value="merch">周边商品</option>
+    </select>
+  </div>
 
-      <div class="shop-filter-group">
-        <label>适合等级</label>
-        <select id="shop-filter-level" onchange="rShop()">
-          <option value="all">全部等级</option>
-          <option value="zero">零基础</option>
-          <option value="a1">A1</option>
-          <option value="a2">A2</option>
-          <option value="b1">B1</option>
-          <option value="b2">B2</option>
-          <option value="all-level">全等级适用</option>
-        </select>
-      </div>
+  <div class="shop-filter-group">
+    <label>适合等级</label>
+    <select id="shop-filter-level" onchange="rShop()">
+      <option value="all">适合等级</option>
+      <option value="zero">零基础</option>
+      <option value="a1">A1</option>
+      <option value="a2">A2</option>
+      <option value="b1">B1</option>
+      <option value="b2">B2</option>
+      <option value="all-level">全等级适用</option>
+    </select>
+  </div>
 
-      <div class="shop-filter-group">
-        <label>学习目标</label>
-        <select id="shop-filter-goal" onchange="rShop()">
-          <option value="all">全部目标</option>
-          <option value="daily">日常使用</option>
-          <option value="exam">考试备考</option>
-        </select>
-      </div>
+  <div class="shop-filter-group">
+    <label>学习目标</label>
+    <select id="shop-filter-goal" onchange="rShop()">
+      <option value="all">学习目标</option>
+      <option value="daily">日常使用</option>
+      <option value="exam">考试备考</option>
+    </select>
+  </div>
 
-      <div class="shop-filter-group">
-        <label>材料形式</label>
-        <select id="shop-filter-format" onchange="rShop()">
-          <option value="all">全部形式</option>
-          <option value="pdf">PDF 电子资料</option>
-          <option value="book">纸质书</option>
-          <option value="physical">实体周边</option>
-        </select>
-      </div>
+  <div class="shop-filter-group">
+    <label>材料形式</label>
+    <select id="shop-filter-format" onchange="rShop()">
+      <option value="all">材料形式</option>
+      <option value="pdf">PDF 电子资料</option>
+      <option value="book">纸质书</option>
+      <option value="physical">实体周边</option>
+    </select>
+  </div>
 
-      <button class="shop-reset-btn" onclick="resetShopFilters()">重置筛选</button>
-    </div>
-
+  <button class="shop-reset-btn" onclick="resetShopFilters()">重置筛选</button>
+</div>
+    
     <div class="scard-digital-note" 
       data-zh="更多教材、练习册和周边产品正在准备中。以下为目前开放购买的产品。"
       data-nl="Meer lesmateriaal, werkboeken en merchandise zijn in voorbereiding. Hieronder staan de producten die nu beschikbaar zijn.">
