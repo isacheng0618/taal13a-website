@@ -3006,10 +3006,54 @@ button,input,label{
   }
 }
 
-@media(max-width:430px){
+  /* === COURSE TABLE TWEAK: 橙色竖线加长 === */
+.course-main::before{
+  height:72px !important;
+  top:8px !important;
+}
+
+/* === COURSE TABLE MOBILE: 开课日期 / 时间 / 周期压缩成一行 === */
+@media(max-width:800px){
+  .course-row{
+    gap:14px !important;
+    padding:22px 18px !important;
+  }
+
+  .course-main::before{
+    height:74px !important;
+    top:8px !important;
+  }
+
   .course-meta{
-    grid-template-columns:1fr;
-    gap:8px;
+    display:grid !important;
+    grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+    gap:8px !important;
+    padding-top:2px !important;
+  }
+
+  .course-field{
+    min-width:0 !important;
+  }
+
+  .course-label{
+    font-size:10px !important;
+    margin-bottom:3px !important;
+    white-space:nowrap !important;
+  }
+
+  .course-value{
+    font-size:12px !important;
+    line-height:1.28 !important;
+    white-space:normal !important;
+  }
+
+  .course-price{
+    font-size:24px !important;
+    margin-top:2px !important;
+  }
+
+  .course-action{
+    margin-top:0 !important;
   }
 }
   
@@ -4196,11 +4240,29 @@ function rPil(id){
     return '—';
   }
 
-  function getType(c){
-    if(c.id === 'elearn') return ti ? 'E-learning' : 'E-learning';
-    if(c.l === 'a2b1' || c.id.indexOf('exam') >= 0) return ti ? 'A2备考' : 'A2 examen';
-    return ti ? '线上小班' : 'Online groep';
+function getType(c){
+  if(c.id === 'elearn'){
+    return ti ? 'E-learning 自学课' : 'E-learning';
   }
+
+  if(c.id === 'a0a1'){
+    return ti ? '线上小班：零基础' : 'Online groep: beginner';
+  }
+
+  if(c.id === 'a1a2'){
+    return ti ? '线上小班：A2备考' : 'Online groep: A2 examen';
+  }
+
+  if(c.l === 'a1a2'){
+    return ti ? '线上小班：A1备考' : 'Online groep: A1 examen';
+  }
+
+  if(c.l === 'a2b1' || c.id.indexOf('exam') >= 0){
+    return ti ? '线上小班：A2备考' : 'Online groep: A2 examen';
+  }
+
+  return ti ? '线上小班' : 'Online groep';
+}
 
   function getTitle(c){
     var title = ti ? c.zt : c.nt;
