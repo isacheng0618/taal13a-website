@@ -2835,6 +2835,183 @@ button,input,label{
     overflow:hidden;
   }
 }
+
+/* === HOME COURSE TABLE: 首页课程区改成横向表单 === */
+
+#home-pillars.course-table{
+  display:block !important;
+  width:100%;
+  background:transparent !important;
+  border:none !important;
+}
+
+.course-row{
+  display:grid;
+  grid-template-columns:minmax(260px, 1.45fr) minmax(420px, 1.6fr) 110px 118px;
+  align-items:center;
+  gap:24px;
+  min-height:132px;
+  padding:28px 28px;
+  background:#FFFDF8;
+  border:1px solid #E6DED2;
+  margin-bottom:14px;
+  cursor:pointer;
+  transition:background .18s ease, transform .18s ease, border-color .18s ease;
+}
+
+.course-row:hover{
+  background:#fff;
+  border-color:rgba(233,111,60,.45);
+  transform:translateY(-1px);
+}
+
+.course-main{
+  position:relative;
+  padding-left:18px;
+}
+
+.course-main::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:6px;
+  width:4px;
+  height:42px;
+  background:var(--brand-orange, #E96F3C);
+  border-radius:4px;
+}
+
+.course-type{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:#A84E28;
+  background:#FFF0E8;
+  font-size:12px;
+  font-weight:900;
+  padding:6px 10px;
+  border-radius:999px;
+  margin-bottom:12px;
+}
+
+.course-type span{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--brand-orange, #E96F3C);
+  display:none;
+}
+
+.course-title{
+  font-size:22px;
+  line-height:1.35;
+  font-weight:950;
+  color:#171717;
+  letter-spacing:-.035em;
+}
+
+.course-meta{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:26px;
+}
+
+.course-label{
+  font-size:12px;
+  color:#686868;
+  font-weight:900;
+  margin-bottom:6px;
+}
+
+.course-value{
+  font-size:16px;
+  line-height:1.35;
+  color:#171717;
+  font-weight:900;
+}
+
+.course-price{
+  font-size:22px;
+  font-weight:950;
+  color:#171717;
+  text-align:right;
+  white-space:nowrap;
+}
+
+.course-action{
+  background:transparent;
+  border:1.5px solid #171717;
+  color:#171717;
+  padding:13px 16px;
+  font-size:14px;
+  font-weight:950;
+  cursor:pointer;
+  font-family:inherit;
+  border-radius:0;
+  transition:background .18s ease, color .18s ease, border-color .18s ease;
+}
+
+.course-action:hover{
+  background:#171717;
+  color:#fff;
+}
+
+/* 手机端：横向表单改成紧凑列表，不要挤成一行 */
+@media(max-width:800px){
+  .course-row{
+    grid-template-columns:1fr;
+    gap:16px;
+    min-height:auto;
+    padding:22px 18px;
+  }
+
+  .course-main{
+    padding-left:14px;
+  }
+
+  .course-main::before{
+    width:3px;
+    height:38px;
+    top:5px;
+  }
+
+  .course-title{
+    font-size:20px;
+  }
+
+  .course-meta{
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:10px;
+    padding-top:4px;
+  }
+
+  .course-label{
+    font-size:10.5px;
+    margin-bottom:4px;
+  }
+
+  .course-value{
+    font-size:12.5px;
+    line-height:1.35;
+  }
+
+  .course-price{
+    text-align:left;
+    font-size:22px;
+  }
+
+  .course-action{
+    width:100%;
+    padding:12px 14px;
+  }
+}
+
+@media(max-width:430px){
+  .course-meta{
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -3984,24 +4161,103 @@ function rPil(id){
 
   var ti=t();
 
-  el.innerHTML=PIL.map(function(c){
-    var lv=ti?c.zl:c.nl_,
-        sb=ti?c.zs:c.ns,
-        tt=ti?c.zt:c.nt,
-        pts=ti?c.zp:c.np,
-        tags=ti?c.tz:c.tn,
-        note=ti?c.nz:c.nn;
+  function splitNote(note){
+    note = note || '';
 
-    var cleanLv = lv.replace(/｜.*$/,'').replace(/\|.*$/,'');
-    var cleanTt = tt.replace(/｜.*$/,'').replace(/\|.*$/,'');
+    var date = '—';
+    var time = '—';
 
-    return '<div class="pillar" data-l="'+c.l+'" onclick="oCourseDetail(\''+c.id+'\')">' +
-      '<div class="ph"><div class="plv">'+cleanLv+'</div><div class="psub">'+sb+'</div></div>'+
-      '<div class="pb"><div class="ptit">'+cleanTt+'</div>'+
-      '<ul class="ppts">'+pts.map(function(p){return '<li>'+p+'</li>';}).join('')+'</ul>'+
-      '<div class="ptags">'+tags.map(function(g){return '<span class="ptag">'+g+'</span>';}).join('')+'</div>'+
-      '<div class="ppr"><div><div class="pprice">'+c.pr+'</div><div class="pnote">'+formatCourseNote(note)+'</div></div>'+
-      '<button class="benroll" onclick="event.stopPropagation();oCourseDetail(\''+c.id+'\')">'+(ti?'查看报名':'Bekijk')+'</button></div></div></div>';
+    if(note.indexOf('｜') >= 0){
+      var parts = note.split('｜');
+      date = parts[0] || '—';
+      time = parts[1] || '—';
+    }else if(note.indexOf('|') >= 0){
+      var parts2 = note.split('|');
+      date = parts2[0] || '—';
+      time = parts2[1] || '—';
+    }else{
+      date = note || '—';
+    }
+
+    return {
+      date: date.replace('开课','').replace('Start ',''),
+      time: time
+    };
+  }
+
+  function getWeeks(c){
+    var pts = ti ? c.zp : c.np;
+    var joined = (pts || []).join(' ');
+
+    if(joined.indexOf('8节') >= 0 || joined.indexOf('8 lessen') >= 0) return ti ? '8周' : '8 weken';
+    if(joined.indexOf('6节') >= 0 || joined.indexOf('6 lessen') >= 0) return ti ? '6周' : '6 weken';
+
+    if(c.id === 'elearn') return ti ? '永久访问' : 'Altijd toegang';
+    return '—';
+  }
+
+  function getType(c){
+    if(c.id === 'elearn') return ti ? 'E-learning' : 'E-learning';
+    if(c.l === 'a2b1' || c.id.indexOf('exam') >= 0) return ti ? 'A2备考' : 'A2 examen';
+    return ti ? '线上小班' : 'Online groep';
+  }
+
+  function getTitle(c){
+    var title = ti ? c.zt : c.nt;
+    title = title || (ti ? c.zl : c.nl_) || '';
+    return title;
+  }
+
+  function getPrice(c){
+    return c.pr || (ti ? '敬请期待' : 'Binnenkort');
+  }
+
+  function getAction(c){
+    if(c.id === 'elearn' || c.soon){
+      return ti ? '查看详情' : 'Bekijk';
+    }
+    return ti ? '查看报名' : 'Bekijk';
+  }
+
+  el.classList.add('course-table');
+
+  el.innerHTML = PIL.map(function(c){
+    var title = getTitle(c);
+    var note = splitNote(ti ? c.nz : c.nn);
+    var weeks = getWeeks(c);
+    var type = getType(c);
+    var price = getPrice(c);
+
+    return ''+
+      '<div class="course-row" onclick="oCourseDetail(\''+c.id+'\')">'+
+
+        '<div class="course-main">'+
+          '<div class="course-type"><span></span>'+type+'</div>'+
+          '<div class="course-title">'+title+'</div>'+
+        '</div>'+
+
+        '<div class="course-meta">'+
+          '<div class="course-field">'+
+            '<div class="course-label">'+(ti?'开课日期':'Start')+'</div>'+
+            '<div class="course-value">'+note.date+'</div>'+
+          '</div>'+
+
+          '<div class="course-field">'+
+            '<div class="course-label">'+(ti?'时间':'Tijd')+'</div>'+
+            '<div class="course-value">'+note.time+'</div>'+
+          '</div>'+
+
+          '<div class="course-field">'+
+            '<div class="course-label">'+(ti?'周期':'Duur')+'</div>'+
+            '<div class="course-value">'+weeks+'</div>'+
+          '</div>'+
+        '</div>'+
+
+        '<div class="course-price">'+price+'</div>'+
+
+        '<button class="course-action" onclick="event.stopPropagation();oCourseDetail(\''+c.id+'\')">'+getAction(c)+'</button>'+
+
+      '</div>';
   }).join('');
 }
   
