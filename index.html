@@ -4058,6 +4058,144 @@ button,input,label{
 .mobile-filter-done{
   display:none;
 }
+
+/* === MOBILE FILTER ACTIONS: reset + done side by side === */
+
+.mobile-filter-actions{
+  display:none;
+}
+
+@media(max-width:700px){
+
+  /* 手机端隐藏原本单独的重置按钮 */
+  #pg-shop .shop-reset-btn{
+    display:none !important;
+  }
+
+  .mobile-filter-actions{
+    display:grid !important;
+    grid-template-columns:1fr 1.5fr;
+    gap:12px;
+    margin-top:4px;
+  }
+
+  .mobile-filter-reset,
+  .mobile-filter-done{
+    height:48px !important;
+    border-radius:0 !important;
+    font-family:inherit !important;
+    font-size:15px !important;
+    font-weight:950 !important;
+    cursor:pointer !important;
+    box-shadow:none !important;
+  }
+
+  .mobile-filter-reset{
+    background:#fff !important;
+    color:#171717 !important;
+    border:1.5px solid #171717 !important;
+  }
+
+  .mobile-filter-done{
+    background:#E96F3C !important;
+    color:#fff !important;
+    border:1.5px solid #E96F3C !important;
+  }
+
+  .mobile-filter-reset:hover,
+  .mobile-filter-done:hover{
+    transform:none !important;
+    box-shadow:none !important;
+  }
+}
+
+/* === SHOP PRODUCT CARD: larger cover, tighter spacing === */
+
+/* 桌面端商品图更大 */
+#pg-shop .scard-img{
+  height:260px !important;
+  background:#fff !important;
+}
+
+#pg-shop .scard-img img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  padding:10px !important;
+}
+
+/* 图片和文字之间更紧凑 */
+#pg-shop .scard-body{
+  padding:14px 16px 16px !important;
+}
+
+#pg-shop .scard-cat{
+  margin-bottom:6px !important;
+}
+
+#pg-shop .scard-name{
+  margin-bottom:6px !important;
+}
+
+#pg-shop .scard-desc{
+  margin-bottom:12px !important;
+}
+
+#pg-shop .scard-foot{
+  margin-top:0 !important;
+}
+
+/* 桌面端商品卡间距略微收紧 */
+#pg-shop .shop-grid{
+  gap:1rem !important;
+}
+
+/* 手机端继续两列，但图片更大、文字更紧凑 */
+@media(max-width:700px){
+
+  #pg-shop .shop-grid{
+    gap:9px !important;
+  }
+
+  #pg-shop .scard-img{
+    height:205px !important;
+  }
+
+  #pg-shop .scard-img img{
+    padding:6px !important;
+  }
+
+  #pg-shop .scard-body{
+    padding:8px 9px 10px !important;
+  }
+
+  #pg-shop .scard-cat{
+    font-size:9.5px !important;
+    margin-bottom:4px !important;
+  }
+
+  #pg-shop .scard-name{
+    font-size:13.5px !important;
+    line-height:1.25 !important;
+    margin-bottom:4px !important;
+  }
+
+  #pg-shop .scard-desc{
+    font-size:11.5px !important;
+    line-height:1.38 !important;
+    margin-bottom:8px !important;
+    -webkit-line-clamp:2 !important;
+  }
+
+  #pg-shop .scard-price{
+    font-size:17px !important;
+  }
+
+  #pg-shop .btn-cart{
+    font-size:10.5px !important;
+    padding:6px 7px !important;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -4469,8 +4607,9 @@ button,input,label{
     </select>
   </div>
 
-  <button class="shop-reset-btn" onclick="resetShopFilters()">重置筛选</button>
-  <button class="mobile-filter-done" onclick="closeMobileFilter()">完成</button>
+<div class="mobile-filter-actions">
+  <button class="mobile-filter-reset" onclick="resetShopFilters()">重置筛选</button>
+  <button class="mobile-filter-done" onclick="closeMobileFilter()">完成筛选</button>
 </div>
     
     <div class="scard-digital-note" 
@@ -5568,7 +5707,6 @@ function rShop(){
           '<div>'+
             '<span class="scard-price">'+prFmt+'</span>'+
             (oldFmt?'<span class="scard-old">'+oldFmt+'</span>':'')+
-            ' <span style="font-size:10px;color:var(--ink4);font-weight:600">incl. BTW</span>'+
           '</div>'+
 
        (isProductPurchased(p.id)
@@ -5673,7 +5811,7 @@ function rProduct(){
       '<div class="pd-info">'+
         '<div class="pd-brand">Taal13A</div>'+ 
         '<h1>'+(ti?p.zn:p.nn)+'</h1>'+ 
-        '<div class="pd-price">'+(p.free?'€0,00 <span style="font-size:18px;color:var(--ink3);font-weight:800;margin-left:10px">FREE</span>':fmtPrice(p.pr)+'<span style="font-size:14px;color:var(--ink3);font-weight:600;margin-left:7px">incl. BTW</span>')+'</div>'+
+        '<div class="pd-price">'+(p.free?'€0,00 <span style="font-size:18px;color:var(--ink3);font-weight:800;margin-left:10px">FREE</span>':fmtPrice(p.pr)
         '<div class="pd-meta-row">'+
   ((ti ? (p.tagsZh || ['PDF','即时下载','中文讲解']) : (p.tagsNl || ['PDF','Direct download','Chinese uitleg']))
     .map(function(tag){
@@ -6297,7 +6435,7 @@ function rCourseDetail(){
       '<div class="pd-info">'+
         '<div class="pd-brand">Taal13A</div>'+
         '<h1>'+title+'</h1>'+
-        '<div class="pd-price">'+s.pr+'<span style="font-size:14px;color:var(--ink3);font-weight:600;margin-left:7px">incl. BTW</span></div>'+
+        '<div class="pd-price">'+s.pr+'</div>'+
 
         '<div class="pd-meta-row">'+
           '<span class="pd-chip">'+levelLabel+'</span>'+
