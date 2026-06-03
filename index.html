@@ -3234,6 +3234,173 @@ button,input,label{
     font-size:14.5px;
   }
 }
+
+/* === SHOP PAGE REFRESH：Taal13A 荷兰语书店 === */
+
+.shop-hero-new{
+  background:
+    radial-gradient(circle at 18% 20%, rgba(252,248,216,.18) 0%, rgba(252,248,216,0) 32%),
+    radial-gradient(circle at 80% 30%, rgba(233,111,60,.20) 0%, rgba(233,111,60,0) 34%),
+    linear-gradient(135deg,#0F5E8C 0%,#0B486D 58%,#07324D 100%) !important;
+  padding:5rem 20px 4.4rem !important;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.shop-hero-new::after{
+  content:"";
+  position:absolute;
+  inset:auto 0 0 0;
+  height:1px;
+  background:rgba(255,255,255,.18);
+}
+
+.shop-hero-inner{
+  max-width:860px;
+  margin:0 auto;
+  position:relative;
+  z-index:1;
+}
+
+.shop-kicker{
+  color:#FCF8D8;
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.22em;
+  margin-bottom:1rem;
+}
+
+.shop-hero-new h1{
+  font-size:clamp(2.2rem,4.8vw,4.4rem) !important;
+  line-height:1.08;
+  margin-bottom:1rem !important;
+  color:#fff;
+}
+
+.shop-hero-new p{
+  color:rgba(255,255,255,.78) !important;
+  font-size:16px !important;
+  line-height:1.7;
+  font-weight:650;
+  max-width:660px;
+  margin:0 auto;
+}
+
+.shop-hero-tags{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:1.7rem;
+}
+
+.shop-hero-tags span{
+  color:#fff;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.20);
+  padding:7px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:850;
+  backdrop-filter:blur(10px);
+}
+
+.shop-sec{
+  padding-top:2rem !important;
+  padding-bottom:0 !important;
+}
+
+.shop-filter-bar{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr)) auto;
+  gap:12px;
+  align-items:end;
+  background:#FFFDF8;
+  border:1px solid #E6DED2;
+  padding:18px;
+  margin-bottom:1.2rem;
+}
+
+.shop-filter-group label{
+  display:block;
+  font-size:11px;
+  font-weight:950;
+  color:#686868;
+  letter-spacing:.08em;
+  margin-bottom:7px;
+  text-transform:uppercase;
+}
+
+.shop-filter-group select{
+  width:100%;
+  height:42px;
+  border:1.5px solid #E6DED2;
+  background:#fff;
+  color:#171717;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:850;
+  padding:0 12px;
+  outline:none;
+  cursor:pointer;
+}
+
+.shop-filter-group select:focus{
+  border-color:#0F5E8C;
+}
+
+.shop-reset-btn{
+  height:42px;
+  border:1.5px solid #171717;
+  background:#171717;
+  color:#fff;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:950;
+  padding:0 18px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+.shop-reset-btn:hover{
+  background:#E96F3C;
+  border-color:#E96F3C;
+}
+
+@media(max-width:980px){
+  .shop-filter-bar{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+
+  .shop-reset-btn{
+    grid-column:1 / -1;
+    width:100%;
+  }
+}
+
+@media(max-width:700px){
+  .shop-hero-new{
+    padding:3.8rem 20px 3.2rem !important;
+  }
+
+  .shop-hero-new h1{
+    font-size:2.4rem !important;
+  }
+
+  .shop-hero-new p{
+    font-size:14.5px !important;
+  }
+
+  .shop-filter-bar{
+    grid-template-columns:1fr;
+    padding:16px;
+  }
+
+  .shop-hero-tags{
+    justify-content:flex-start;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -3252,7 +3419,7 @@ button,input,label{
   <div class="nc">
     <button class="nl on" onclick="nav('home')" data-zh="主页 / Home" data-nl="主页 / Home">主页 / Home</button>
     <button class="nl" onclick="nav('overview')" data-zh="课程 / Cursussen" data-nl="课程 / Cursussen">课程 / Cursussen</button>
-    <button class="nl" onclick="nav('shop')" data-zh="商店 / Winkel" data-nl="商店 / Winkel">商店 / Winkel</button>
+    <button class="nl" onclick="nav('shop')" data-zh="书店 / Winkel" data-nl="书店 / Winkel">书店 / Winkel</button>
     <button class="nl" onclick="nav('about')" data-zh="关于 / Over ons" data-nl="关于 / Over ons">关于 / Over ons</button>
     <button class="nl" onclick="nav('contact')" data-zh="联系 / Contact" data-nl="联系 / Contact">联系 / Contact</button>
   </div>
@@ -3579,25 +3746,81 @@ button,input,label{
   </div>
 </div>
 
-<!-- SHOP -->
+  <!-- SHOP -->
 <div class="pg" id="pg-shop" style="min-height:calc(100vh - 52px)">
-  <div class="shop-hero">
-    <h1 data-zh="📚 Taal13A 商店" data-nl="📚 Taal13A Winkel">📚 Taal13A 商店</h1>
-   <p data-zh="PDF学习资料及周边商品" data-nl="PDF-leermateriaal en merchandise">
-  PDF学习资料及周边商品
-</p>
-  </div>
-  <div class="sec" style="padding-top:1.5rem;padding-bottom:0">
-    <div class="shop-cats" style="padding:0;margin-bottom:1.4rem">
-      <button class="scat on" onclick="shopCat('all',this)" data-zh="PDF 电子资料" data-nl="PDF digitaal product">PDF 电子资料</button>
+  <div class="shop-hero shop-hero-new">
+    <div class="shop-hero-inner">
+      <div class="shop-kicker" data-zh="TAAL13A BOOKSTORE" data-nl="TAAL13A BOOKSTORE">TAAL13A BOOKSTORE</div>
+      <h1 data-zh="📚 Taal13A 荷兰语书店" data-nl="📚 Taal13A Nederlandse boekwinkel">📚 Taal13A 荷兰语书店</h1>
+      <p data-zh="学习资料、电子书与周边商品，适合日常学习、考试备考和课后复习。" data-nl="Leermateriaal, e-books en merchandise voor dagelijks leren, examenvoorbereiding en herhaling.">
+        学习资料、电子书与周边商品，适合日常学习、考试备考和课后复习。
+      </p>
+
+      <div class="shop-hero-tags">
+        <span>PDF电子资料</span>
+        <span>中文注释</span>
+        <span>可打印</span>
+        <span>手机电脑可查看</span>
+      </div>
     </div>
+  </div>
+
+  <div class="sec shop-sec">
+    <div class="shop-filter-bar">
+
+      <div class="shop-filter-group">
+        <label>产品类型</label>
+        <select id="shop-filter-type" onchange="rShop()">
+          <option value="all">全部产品</option>
+          <option value="material">学习资料</option>
+          <option value="merch">周边商品</option>
+        </select>
+      </div>
+
+      <div class="shop-filter-group">
+        <label>适合等级</label>
+        <select id="shop-filter-level" onchange="rShop()">
+          <option value="all">全部等级</option>
+          <option value="zero">零基础</option>
+          <option value="a1">A1</option>
+          <option value="a2">A2</option>
+          <option value="b1">B1</option>
+          <option value="b2">B2</option>
+          <option value="all-level">全等级适用</option>
+        </select>
+      </div>
+
+      <div class="shop-filter-group">
+        <label>学习目标</label>
+        <select id="shop-filter-goal" onchange="rShop()">
+          <option value="all">全部目标</option>
+          <option value="daily">日常使用</option>
+          <option value="exam">考试备考</option>
+        </select>
+      </div>
+
+      <div class="shop-filter-group">
+        <label>材料形式</label>
+        <select id="shop-filter-format" onchange="rShop()">
+          <option value="all">全部形式</option>
+          <option value="pdf">PDF 电子资料</option>
+          <option value="book">纸质书</option>
+          <option value="physical">实体周边</option>
+        </select>
+      </div>
+
+      <button class="shop-reset-btn" onclick="resetShopFilters()">重置筛选</button>
+    </div>
+
     <div class="scard-digital-note" 
-  data-zh="更多教材、练习册和周边产品正在准备中。以下为目前开放购买的产品。"
-  data-nl="Meer lesmateriaal, werkboeken en merchandise zijn in voorbereiding. Hieronder staan de producten die nu beschikbaar zijn.">
-  更多教材、练习册和周边产品正在准备中。以下为目前开放购买的产品。
-</div>
+      data-zh="更多教材、练习册和周边产品正在准备中。以下为目前开放购买的产品。"
+      data-nl="Meer lesmateriaal, werkboeken en merchandise zijn in voorbereiding. Hieronder staan de producten die nu beschikbaar zijn.">
+      更多教材、练习册和周边产品正在准备中。以下为目前开放购买的产品。
+    </div>
+
     <div class="shop-grid" id="shop-grid"></div>
   </div>
+
   <div style="height:2rem"></div>
 </div>
 
@@ -4211,6 +4434,10 @@ var PRODUCTS=[
   {
   id:'het_words_list_pdf',
   cat:'vocab',
+  type:'material',
+  level:'all-level',
+  goal:'daily',
+  format:'pdf',
   emoji:'🎁',
   free:true,
   must:false,
@@ -4230,6 +4457,10 @@ var PRODUCTS=[
   {
   id:'spreken_sentences_300_pdf',
   cat:'vocab',
+  type:'material',
+  level:'all- level','zero',
+  goal:'daily',
+  format:'pdf',
   emoji:'🗣️',
   must:false,
   img:'./images/spreken-sentences-300-cover.png?v=1',
@@ -4252,6 +4483,10 @@ var PRODUCTS=[
   {
     id:'a2sp_pdf',
     cat:'guide',
+    type:'material',
+level:'a2',
+goal:'exam',
+format:'pdf',
     emoji:'💡',
     must:true,
     img:'./images/a2-speaking-guide-cover.jpg?v=2',
@@ -4272,6 +4507,10 @@ var PRODUCTS=[
     id:'a2_sprint_bundle_pdf',
     cat:'bundle',
     emoji:'📦',
+    type:'material',
+level:'a2',
+goal:'exam',
+format:'pdf',
     must:true,
     img:'./images/a2-sprint-bundle-cover.jpg?v=2',
     infoImg:'./images/a2-sprint-bundle-info.jpg?v=2',
@@ -4295,6 +4534,10 @@ var PRODUCTS=[
   {
     id:'a2_answer_card_pdf',
     cat:'workbook',
+    type:'material',
+level:'a2',
+goal:'exam',
+format:'pdf',
     emoji:'📝',
     img:'./images/a2-answer-card-cover.jpg?v=2',
     infoImg:'./images/a2-answer-card-info.jpg?v=2',
@@ -4313,6 +4556,10 @@ var PRODUCTS=[
   {
     id:'a2_words_theme_pdf',
     cat:'vocab',
+    type:'material',
+level:'a2',
+goal:'exam',
+format:'pdf',
     emoji:'📖',
     img:'./images/a2-words-theme-cover.jpg?v=2',
     infoImg:'./images/a2-words-theme-info.jpg?v=2',
@@ -4331,6 +4578,10 @@ var PRODUCTS=[
   {
     id:'a2_words_frequency_pdf',
     cat:'vocab',
+    type:'material',
+level:'a2',
+goal:'exam',
+format:'pdf',
     emoji:'📖',
     img:'./images/a2-words-frequency-cover.jpg?v=2',
     infoImg:'./images/a2-words-frequency-info.jpg?v=2',
@@ -4349,6 +4600,10 @@ var PRODUCTS=[
 {
   id:'emotion_sentences_100_pdf',
   cat:'vocab',
+  type:'material',
+level:'all-level','zero',
+goal:'daily',
+format:'pdf',
   emoji:'📖',
   img:'./images/emotion-sentences-100-cover.png?v=1',
   infoImg:'./images/emotion-sentences-100-info.png?v=1',
@@ -4510,18 +4765,67 @@ function getType(c){
   }).join('');
 }
   
-function shopCat(f,btn){
-  SCARF=f;
-  document.querySelectorAll('.scat').forEach(function(b){b.classList.remove('on');});
-  btn.classList.add('on');
+
+function getShopFilterValue(id){
+  var el=document.getElementById(id);
+  return el ? el.value : 'all';
+}
+
+function resetShopFilters(){
+  var ids=[
+    'shop-filter-type',
+    'shop-filter-level',
+    'shop-filter-goal',
+    'shop-filter-format'
+  ];
+
+  ids.forEach(function(id){
+    var el=document.getElementById(id);
+    if(el)el.value='all';
+  });
+
   rShop();
 }
 
 function rShop(){
   var ti=t();
-  var prods=SCARF==='all'?PRODUCTS:PRODUCTS.filter(function(p){return p.cat===SCARF;});
-  var el=document.getElementById('shop-grid');if(!el)return;
-  var bgMap={guide:'#EAF3FF',workbook:'#E8F7F0',vocab:'#FFF4EB',books:'#EAF3FF',merch:'#FFF4EB',bundle:'#F3EEFF'};
+
+  var filterType=getShopFilterValue('shop-filter-type');
+  var filterLevel=getShopFilterValue('shop-filter-level');
+  var filterGoal=getShopFilterValue('shop-filter-goal');
+  var filterFormat=getShopFilterValue('shop-filter-format');
+
+  var prods=PRODUCTS.filter(function(p){
+    var okType = filterType==='all' || p.type===filterType;
+    var okLevel = filterLevel==='all' || p.level===filterLevel;
+    var okGoal = filterGoal==='all' || p.goal===filterGoal;
+    var okFormat = filterFormat==='all' || p.format===filterFormat;
+
+    return okType && okLevel && okGoal && okFormat;
+  });
+
+  var el=document.getElementById('shop-grid');
+  if(!el)return;
+
+  if(!prods.length){
+    el.innerHTML=
+      '<div style="grid-column:1 / -1;background:#FFFDF8;border:1px solid #E6DED2;padding:2.2rem;text-align:center;color:#686868;font-size:14px;font-weight:750;">'+
+        (ti
+          ? '暂时没有符合条件的产品。你可以重置筛选，查看更多资料。'
+          : 'Geen producten gevonden. Reset de filters om meer producten te bekijken.'
+        )+
+      '</div>';
+    return;
+  }
+
+  var bgMap={
+    guide:'#EAF3FF',
+    workbook:'#E8F7F0',
+    vocab:'#FFF4EB',
+    books:'#EAF3FF',
+    merch:'#FFF4EB',
+    bundle:'#F3EEFF'
+  };
 
   el.innerHTML=prods.map(function(p){
     var prFmt=p.free ? '€0,00' : '€'+(p.pr/100).toFixed(2).replace('.',',');
@@ -4535,9 +4839,9 @@ function rShop(){
         (p.must?'<span class="must-buy-badge">👍 '+(ti?'本店必买':'Must-have')+'</span>':'')+
 
         (p.free
-  ? '<span class="discount-badge">'+(ti?'免费领取 🎁':'Free 🎁')+'</span>'
-  : (discount?'<span class="discount-badge">'+discount+'% OFF</span>':'')
-)+
+          ? '<span class="discount-badge">'+(ti?'免费领取 🎁':'Free 🎁')+'</span>'
+          : (discount?'<span class="discount-badge">'+discount+'% OFF</span>':'')
+        )+
       '</div>'+
 
       '<div class="scard-body">'+
