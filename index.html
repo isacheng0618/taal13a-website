@@ -1588,8 +1588,16 @@ button,input,label{
 
 .hovl{
   background:
-    linear-gradient(90deg,rgba(255,253,248,.92) 0%,rgba(255,253,248,.76) 38%,rgba(255,253,248,.30) 72%,rgba(255,253,248,.12) 100%),
-    linear-gradient(180deg,rgba(255,253,248,.16),rgba(255,253,248,.04));
+    linear-gradient(90deg,
+      rgba(234,244,248,.92) 0%,
+      rgba(234,244,248,.78) 38%,
+      rgba(234,244,248,.42) 72%,
+      rgba(234,244,248,.18) 100%
+    ),
+    linear-gradient(180deg,
+      rgba(255,253,248,.20),
+      rgba(234,244,248,.08)
+    ) !important;
 }
 
 .gfb::after{
@@ -2487,7 +2495,14 @@ button,input,label{
 }
 
 .news-dot{
-  display:none !important;
+  display:inline-block !important;
+  width:7px !important;
+  height:7px !important;
+  border-radius:50% !important;
+  background:var(--brand-orange) !important;
+  margin-right:10px !important;
+  vertical-align:middle !important;
+  flex-shrink:0;
 }
 
 .news-item{
@@ -2655,7 +2670,87 @@ button,input,label{
     top:88px !important;
   }
 }
-  
+
+/* === 调整首页 hero 两个按钮距离 === */
+.hbtns{
+  gap:34px !important;
+  align-items:center;
+}
+
+@media(max-width:700px){
+  .hbtns{
+    gap:24px !important;
+  }
+}
+
+  /* === 手机端 hero 统计数据居中 === */
+@media(max-width:700px){
+  .hstats{
+    display:grid !important;
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+    gap:18px 22px !important;
+    width:100% !important;
+    max-width:360px !important;
+    margin:2rem auto 0 !important;
+    justify-content:center !important;
+    justify-items:center !important;
+    text-align:center !important;
+  }
+
+  .hstats > div{
+    width:100% !important;
+    text-align:center !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+  }
+
+  .hn,
+  .hl{
+    text-align:center !important;
+  }
+}
+
+/* === 调整首页 hero 两个按钮距离 === */
+.hbtns{
+  gap:34px !important;
+  align-items:center;
+}
+
+@media(max-width:700px){
+  .hbtns{
+    gap:24px !important;
+  }
+}
+
+/* === 手机端 hero 统计数据居中 === */
+@media(max-width:700px){
+  .hstats{
+    display:grid !important;
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+    gap:18px 22px !important;
+    width:100% !important;
+    max-width:360px !important;
+    margin:2rem auto 0 !important;
+    justify-content:center !important;
+    justify-items:center !important;
+    text-align:center !important;
+  }
+
+  .hstats > div{
+    width:100% !important;
+    text-align:center !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+  }
+
+  .hn,
+  .hl{
+    text-align:center !important;
+  }
+}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
@@ -5415,9 +5510,9 @@ function updNewsTicker(){
   el.innerHTML=PRODUCTS.map(function(p){
     var prefix = p.free
       ? (ti ? '🎁 免费 · ' : '🎁 Gratis · ')
-      : '🆕 new · ';
+      : '';
 
-    return '<span class="news-item" onclick="oProduct(\''+p.id+'\')">'+
+    return '<span class="news-item '+(p.free?'news-free':'')+'" onclick="oProduct(\''+p.id+'\')">'+
       '<span class="news-dot"></span>'+
       prefix+(ti?p.zn:p.nn)+
     '</span>';
