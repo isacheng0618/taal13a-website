@@ -6931,7 +6931,7 @@ var items=CART.map(function(ci){
       return;
     }
 
-    window.open(data.checkoutUrl, '_blank', 'noopener,noreferrer');
+    window.location.href = data.checkoutUrl;
   }catch(err){
     console.error(err);
     alert(ti?'无法开始付款，请稍后再试。':'Betaling kon niet worden gestart.');
