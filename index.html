@@ -7792,7 +7792,7 @@ async function downloadProduct(pid){
       return;
     }
 
-    window.open(data.downloadUrl,'_blank');
+    window.location.href = data.downloadUrl;
 
   }catch(err){
     console.error(err);
