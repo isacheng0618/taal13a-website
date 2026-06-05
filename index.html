@@ -140,14 +140,22 @@ body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);ove
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.6rem);color:#fff;line-height:1.15;margin-bottom:.85rem;}
 .hero h1 em{color:#7EC8F5;font-style:normal;}
 .hsub{color:rgba(255,255,255,.65);font-size:15px;line-height:1.72;max-width:510px;margin:0 auto 2rem;font-weight:500;}
-.hbtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+.hbtns{
+  display:flex;
+  gap:18px;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
 .hb1,
 .hb2{
-  min-width:220px;
-  min-height:58px;
-  padding:0 30px;
+  min-width:250px;
+  min-height:64px;
+  padding:0 34px;
   border-radius:10px;
-  font-size:18px;
+  font-size:20px;
   font-weight:900;
   cursor:pointer;
   font-family:inherit;
@@ -158,15 +166,14 @@ body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);ove
   background:#0F5E8C;
   color:#fff;
   border:2px solid #0F5E8C;
-  box-shadow:0 12px 28px rgba(15,94,140,.18);
+  box-shadow:0 12px 26px rgba(15,94,140,.18);
 }
 
 .hb2{
-  background:rgba(255,255,255,.88);
+  background:rgba(255,255,255,.86);
   color:#111;
-  border:2px solid rgba(233,111,60,.25);
-  border-bottom:5px solid #E96F3C;
-  box-shadow:0 12px 28px rgba(17,17,17,.06);
+  border:2px solid rgba(255,255,255,.9);
+  box-shadow:0 12px 26px rgba(15,94,140,.10);
 }
 
 .hb1:hover,
@@ -181,7 +188,8 @@ body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);ove
 
 .hb2:hover{
   background:#fff;
-}  啊~XZ
+  border-color:#E96F3C;
+}
 .hstats{display:flex;gap:2.5rem;justify-content:center;margin-top:2.8rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.12);}
 .hn{font-family:'Playfair Display',serif;font-size:1.8rem;color:#fff;}
 .hl{color:rgba(255,255,255,.42);font-size:11px;margin-top:2px;letter-spacing:.4px;font-weight:600;}
@@ -4747,7 +4755,7 @@ button,input,label{
 </div>
       <h1 id="hero-h1"><em>学好荷兰语</em><br>开启全新生活</h1>
       <p class="hsub">
-  专为中文母语学习者设计, 从零基础到考试备考，用中文讲清重点，帮你高效备考、真正用起来。
+  从零基础到考试备考，用中文讲清重点，帮你高效备考，让荷兰语真正用起来
 </p>
       <div class="hbtns">
   <button class="hb1" onclick="showPage('courses')">查看适合我的课程 →</button>
