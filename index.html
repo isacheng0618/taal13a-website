@@ -5690,7 +5690,123 @@ button,input,label{
     top:74px !important;
   }
 }
-  
+
+ /* === FINAL FIX: toolbar icons size + stroke weight === */
+
+/* 右侧工具区整体对齐 */
+.language-tool{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:7px !important;
+  height:36px !important;
+}
+
+/* 语言 globe icon：缩小、变细 */
+.language-tool svg,
+.language-icon svg{
+  width:24px !important;
+  height:24px !important;
+  stroke-width:1.9 !important;
+}
+
+/* 如果 globe 是直接放在 .language-icon 里面 */
+.language-icon{
+  width:24px !important;
+  height:24px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  line-height:1 !important;
+}
+
+/* 语言文字：和导航文字统一重量 */
+.lang-select{
+  font-size:15px !important;
+  font-weight:750 !important;
+  color:#2F2A25 !important;
+  height:36px !important;
+  line-height:36px !important;
+  padding:0 18px 0 0 !important;
+}
+
+/* 登录后的个人 icon 按钮：不要圆框，不要太大 */
+#ulabel{
+  width:28px !important;
+  height:28px !important;
+  min-width:28px !important;
+  padding:0 !important;
+  border:none !important;
+  background:transparent !important;
+  border-radius:0 !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+
+/* 个人 icon 里面的 svg：缩小、线条变细 */
+#ulabel svg{
+  width:25px !important;
+  height:25px !important;
+  stroke-width:1.9 !important;
+}
+
+/* 防止旧 CSS 还在用伪元素画头像 */
+#ulabel::before,
+#ulabel::after{
+  display:none !important;
+  content:none !important;
+}
+
+/* 桌面端右侧区域间距更克制 */
+.nr,
+.auth-actions{
+  align-items:center !important;
+  gap:14px !important;
+}
+
+/* 手机端单独再压一点 */
+@media(max-width:700px){
+  .language-tool{
+    gap:5px !important;
+    height:32px !important;
+  }
+
+  .language-tool svg,
+  .language-icon svg{
+    width:22px !important;
+    height:22px !important;
+    stroke-width:1.8 !important;
+  }
+
+  .language-icon{
+    width:22px !important;
+    height:22px !important;
+  }
+
+  .lang-select{
+    font-size:0 !important;
+    width:30px !important;
+    height:32px !important;
+    padding:0 !important;
+  }
+
+  #ulabel{
+    width:28px !important;
+    height:28px !important;
+    min-width:28px !important;
+  }
+
+  #ulabel svg{
+    width:24px !important;
+    height:24px !important;
+    stroke-width:1.8 !important;
+  }
+
+  .nr,
+  .auth-actions{
+    gap:11px !important;
+  }
+} 
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
