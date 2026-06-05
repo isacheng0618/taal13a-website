@@ -5097,16 +5097,6 @@ button,input,label{
     position:relative !important;
   }
 
-  .nr::before{
-    content:"🌐";
-    font-size:23px;
-    line-height:1;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    margin-right:-7px;
-  }
-
   /* 当前语言文字：用 select 本身显示会受浏览器限制，所以用固定宽度保留点击区域 */
   .lang-select option{
     font-size:14px;
@@ -5229,6 +5219,251 @@ button,input,label{
     top:72px !important;
   }
 } 
+
+/* === FINAL MOBILE HEADER FIX === */
+/* 修复手机端顶部：去双地球、Logo 与工具栏一行、登录/注册/账号 icon 稳定显示 */
+
+@media(max-width:700px){
+
+  /* 顶部整体 */
+  .tb{
+    height:auto !important;
+    min-height:74px !important;
+    padding:10px 16px 8px !important;
+    display:flex !important;
+    flex-wrap:wrap !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:8px 10px !important;
+    background:rgba(255,253,248,.97) !important;
+    border-bottom:1px solid rgba(228,215,198,.85) !important;
+    box-shadow:none !important;
+  }
+
+  /* Logo */
+  .logo-main{
+    order:1 !important;
+    height:42px !important;
+    width:auto !important;
+    flex:0 0 auto !important;
+  }
+
+  .logo-main rect,
+  .logo-main text{
+    fill:#171717 !important;
+  }
+
+  /* 右侧工具栏 */
+  .nr{
+    order:2 !important;
+    margin-left:auto !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    gap:12px !important;
+    flex-wrap:nowrap !important;
+    max-width:none !important;
+  }
+
+  /* 禁止再用伪元素制造地球，避免双地球 */
+  .nr::before{
+    display:none !important;
+    content:none !important;
+  }
+
+  /* 语言区域 */
+  .language-tool{
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:4px !important;
+    flex:0 0 auto !important;
+  }
+
+  .language-icon{
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    font-size:22px !important;
+    line-height:1 !important;
+  }
+
+  .lang-select{
+    width:24px !important;
+    height:32px !important;
+    border:none !important;
+    background:transparent !important;
+    color:transparent !important;
+    font-size:0 !important;
+    padding:0 !important;
+    margin:0 !important;
+    appearance:none !important;
+    -webkit-appearance:none !important;
+    outline:none !important;
+    cursor:pointer !important;
+  }
+
+  .lang-select option{
+    color:#171717 !important;
+    font-size:14px !important;
+  }
+
+  /* 登录 / 注册 */
+  #auth-btns{
+    display:inline-flex !important;
+    align-items:center !important;
+    gap:12px !important;
+    flex-wrap:nowrap !important;
+  }
+
+  #auth-btns .login-link{
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    height:34px !important;
+    padding:0 !important;
+    border:none !important;
+    background:transparent !important;
+    color:#171717 !important;
+    font-size:14px !important;
+    font-weight:900 !important;
+    white-space:nowrap !important;
+  }
+
+  #auth-btns .login-link::after{
+    display:none !important;
+  }
+
+  #auth-btns .register-btn{
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    height:38px !important;
+    padding:0 16px !important;
+    border:none !important;
+    border-radius:8px !important;
+    background:#0F5E8C !important;
+    color:#fff !important;
+    font-size:14px !important;
+    font-weight:900 !important;
+    white-space:nowrap !important;
+  }
+
+  /* 登录后：我的课程变成账号 icon */
+  #user-btns{
+    display:inline-flex !important;
+    align-items:center !important;
+    gap:10px !important;
+    flex-wrap:nowrap !important;
+  }
+
+  #ulabel{
+    width:38px !important;
+    height:38px !important;
+    min-width:38px !important;
+    padding:0 !important;
+    border:2px solid #171717 !important;
+    border-radius:50% !important;
+    background:#fff !important;
+    color:transparent !important;
+    font-size:0 !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    position:relative !important;
+  }
+
+  #ulabel::before{
+    content:"";
+    width:9px;
+    height:9px;
+    border:2px solid #171717;
+    border-radius:50%;
+    position:absolute;
+    top:7px;
+    left:50%;
+    transform:translateX(-50%);
+  }
+
+  #ulabel::after{
+    content:"";
+    width:18px;
+    height:9px;
+    border:2px solid #171717;
+    border-top:none;
+    border-radius:0 0 14px 14px;
+    position:absolute;
+    bottom:7px;
+    left:50%;
+    transform:translateX(-50%);
+  }
+
+  /* 第二行导航 */
+  .nc{
+    order:3 !important;
+    width:100% !important;
+    margin-top:4px !important;
+    padding:0 !important;
+    display:flex !important;
+    justify-content:space-between !important;
+    align-items:center !important;
+    gap:0 !important;
+    overflow:hidden !important;
+  }
+
+  .nl{
+    padding:0 !important;
+    border:none !important;
+    background:transparent !important;
+    color:#171717 !important;
+    font-size:0 !important;
+    font-weight:900 !important;
+    line-height:1.2 !important;
+    white-space:nowrap !important;
+  }
+
+  .nl::after{
+    display:none !important;
+  }
+
+  .nl[data-zh="主页 / Home"]::before{
+    content:"首页";
+    font-size:14px;
+  }
+
+  .nl[data-zh="课程 / Cursussen"]::before{
+    content:"课程";
+    font-size:14px;
+  }
+
+  .nl[data-zh="书店 / Winkel"]::before{
+    content:"书店";
+    font-size:14px;
+  }
+
+  .nl[data-zh="关于 / Over ons"]::before{
+    content:"关于";
+    font-size:14px;
+  }
+
+  .nl[data-zh="联系 / Contact"]::before{
+    content:"联系";
+    font-size:14px;
+  }
+
+  /* 上新条跟随顶部真实高度 */
+  .news-ticker{
+    top:74px !important;
+    height:30px !important;
+  }
+
+  /* 购物车悬浮按钮不要出现在顶部区域，避免视觉误判 */
+  .cart-bar{
+    right:14px !important;
+    bottom:22px !important;
+    top:auto !important;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -5270,7 +5505,6 @@ button,input,label{
       我的课程
     </button>
   </span>
-</div>
 </div>
   
 </nav>
