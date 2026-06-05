@@ -5464,6 +5464,232 @@ button,input,label{
     top:auto !important;
   }
 }
+
+/* === FINAL FIX: mobile header auth + language icons === */
+
+.is-hidden{
+  display:none !important;
+}
+
+/* 桌面端：顶部右侧保持正常 */
+.nr{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  gap:14px !important;
+}
+
+.auth-actions{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* 语言按钮：线性 globe，不用 emoji */
+.mobile-icon-btn{
+  border:none;
+  background:transparent;
+  color:#171717;
+  padding:0;
+  margin:0;
+  font-family:inherit;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+}
+
+.mobile-icon-btn svg{
+  width:28px;
+  height:28px;
+  stroke:#171717;
+  stroke-width:2.2;
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.lang-text{
+  font-size:14px;
+  font-weight:900;
+  color:#171717;
+  line-height:1;
+}
+
+/* 个人中心 icon：参考图那种头像 */
+.account-icon-btn{
+  width:38px;
+  height:38px;
+}
+
+.account-icon-btn svg{
+  width:32px;
+  height:32px;
+}
+
+/* 删除旧 emoji / 伪元素干扰 */
+.language-icon{
+  display:none !important;
+}
+
+.nr::before{
+  display:none !important;
+  content:none !important;
+}
+
+/* 桌面端如果已登录，只显示个人中心，不显示退出 */
+#user-btns .account-link{
+  font-size:0 !important;
+}
+
+/* 手机端 */
+@media(max-width:700px){
+
+  .tb{
+    min-height:74px !important;
+    padding:10px 18px 8px !important;
+    display:flex !important;
+    flex-wrap:wrap !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    background:rgba(255,253,248,.96) !important;
+  }
+
+  .logo-main{
+    order:1 !important;
+    height:40px !important;
+    flex:0 0 auto !important;
+  }
+
+  .nr{
+    order:2 !important;
+    margin-left:auto !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    gap:18px !important;
+    flex-wrap:nowrap !important;
+    width:auto !important;
+    max-width:none !important;
+  }
+
+  #auth-btns,
+  #user-btns{
+    align-items:center !important;
+    gap:14px !important;
+    flex-wrap:nowrap !important;
+  }
+
+  /* 注意：不能再写 display:inline-flex !important 到 #user-btns，
+     否则会把隐藏状态覆盖掉 */
+  #auth-btns:not(.is-hidden),
+  #user-btns:not(.is-hidden){
+    display:inline-flex !important;
+  }
+
+  #auth-btns.is-hidden,
+  #user-btns.is-hidden{
+    display:none !important;
+  }
+
+  .lang-icon-btn svg{
+    width:30px !important;
+    height:30px !important;
+  }
+
+  .lang-text{
+    font-size:14px !important;
+    font-weight:900 !important;
+  }
+
+  .account-icon-btn{
+    width:38px !important;
+    height:38px !important;
+  }
+
+  .account-icon-btn svg{
+    width:32px !important;
+    height:32px !important;
+  }
+
+  #auth-btns .login-link{
+    font-size:14px !important;
+    font-weight:900 !important;
+    color:#171717 !important;
+    padding:0 !important;
+    background:transparent !important;
+    border:none !important;
+  }
+
+  #auth-btns .register-btn{
+    height:38px !important;
+    padding:0 16px !important;
+    border-radius:8px !important;
+    background:#0F5E8C !important;
+    color:#fff !important;
+    border:none !important;
+    font-size:14px !important;
+    font-weight:900 !important;
+  }
+
+  .nc{
+    order:3 !important;
+    width:100% !important;
+    margin-top:10px !important;
+    display:flex !important;
+    justify-content:space-between !important;
+    align-items:center !important;
+    gap:0 !important;
+    overflow:hidden !important;
+  }
+
+  .nl{
+    font-size:0 !important;
+    padding:0 !important;
+    color:#171717 !important;
+    background:transparent !important;
+    border:none !important;
+  }
+
+  .nl::after{
+    display:none !important;
+  }
+
+  .nl[data-zh="主页 / Home"]::before{
+    content:"首页";
+    font-size:14px;
+    font-weight:900;
+  }
+
+  .nl[data-zh="课程 / Cursussen"]::before{
+    content:"课程";
+    font-size:14px;
+    font-weight:900;
+  }
+
+  .nl[data-zh="书店 / Winkel"]::before{
+    content:"书店";
+    font-size:14px;
+    font-weight:900;
+  }
+
+  .nl[data-zh="关于 / Over ons"]::before{
+    content:"关于";
+    font-size:14px;
+    font-weight:900;
+  }
+
+  .nl[data-zh="联系 / Contact"]::before{
+    content:"联系";
+    font-size:14px;
+    font-weight:900;
+  }
+
+  .news-ticker{
+    top:74px !important;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -5486,25 +5712,33 @@ button,input,label{
     <button class="nl" onclick="nav('about')" data-zh="关于 / Over ons" data-nl="关于 / Over ons">关于 / Over ons</button>
     <button class="nl" onclick="nav('contact')" data-zh="联系 / Contact" data-nl="联系 / Contact">联系 / Contact</button>
   </div>
-<div class="nr">
-  <div class="language-tool">
-    <span class="language-icon">🌐</span>
-    <select class="lang-select" id="lang-select" onchange="setLang(this.value,this)">
-      <option value="zh">中文</option>
-      <option value="nl">NL</option>
-    </select>
-  </div>
+  
+  <div class="nr">
+
+  <button class="mobile-icon-btn lang-icon-btn" onclick="toggleLang()" aria-label="切换语言">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M3 12h18"></path>
+      <path d="M12 3c2.4 2.7 3.6 5.7 3.6 9s-1.2 6.3-3.6 9"></path>
+      <path d="M12 3c-2.4 2.7-3.6 5.7-3.6 9s1.2 6.3 3.6 9"></path>
+    </svg>
+    <span class="lang-text" id="lang-text">中文</span>
+  </button>
 
   <span id="auth-btns" class="auth-actions">
     <button class="login-link" onclick="nav('login')" data-zh="登录" data-nl="Inloggen">登录</button>
     <button class="register-btn" onclick="nav('register')" data-zh="注册" data-nl="Registreren">注册</button>
   </span>
 
-  <span id="user-btns" class="auth-actions" style="display:none">
-    <button class="login-link account-link" onclick="nav('dashboard')" id="ulabel" aria-label="我的课程">
-      我的课程
+  <span id="user-btns" class="auth-actions is-hidden">
+    <button class="mobile-icon-btn account-icon-btn" onclick="nav('dashboard')" id="ulabel" aria-label="我的课程">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="8" r="4"></circle>
+        <path d="M4.5 21c1.2-4.2 4-6.5 7.5-6.5s6.3 2.3 7.5 6.5"></path>
+      </svg>
     </button>
   </span>
+
 </div>
   
 </nav>
@@ -8366,29 +8600,28 @@ async function refreshUser(){
       console.error('load user purchases error:', err);
     }
 
-    document.getElementById('auth-btns').style.display='none';
-    document.getElementById('user-btns').style.display='';
-    document.getElementById('ulabel').textContent=t()?'我的课程':'Mijn cursussen';
+    document.getElementById('auth-btns').classList.add('is-hidden');
+    document.getElementById('user-btns').classList.remove('is-hidden');
 
   }else{
     USER = null;
-    document.getElementById('auth-btns').style.display='';
-    document.getElementById('user-btns').style.display='none';
+document.getElementById('auth-btns').classList.remove('is-hidden');
+document.getElementById('user-btns').classList.add('is-hidden');
   }
 }
   
 function loginAs(u){
   USER=u;
-  document.getElementById('auth-btns').style.display='none';
-  document.getElementById('user-btns').style.display='';
-  document.getElementById('ulabel').textContent=t()?'我的课程':'Mijn cursussen';
+  document.getElementById('auth-btns').classList.add('is-hidden');
+  document.getElementById('user-btns').classList.remove('is-hidden');
   nav('dashboard');
 }
+  
 async function doLogout(){
   await supabaseClient.auth.signOut();
   USER=null;
-  document.getElementById('auth-btns').style.display='';
-  document.getElementById('user-btns').style.display='none';
+  document.getElementById('auth-btns').classList.remove('is-hidden');
+  document.getElementById('user-btns').classList.add('is-hidden');
   nav('home');
 }
 
@@ -8725,9 +8958,19 @@ function nav(id,opt){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 window.addEventListener('popstate',function(e){var st=e.state||{page:'home'};nav(st.page||'home',{push:false,pid:st.pid});});
+
+function toggleLang(){
+  var nextLang = L === 'zh' ? 'nl' : 'zh';
+  setLang(nextLang);
+}
   
 function setLang(l,btn){
   L=l;
+
+  var langText = document.getElementById('lang-text');
+  if(langText){
+    langText.textContent = L === 'zh' ? '中文' : 'NL';
+  }
 
   var langSelect = document.getElementById('lang-select');
   if(langSelect){
