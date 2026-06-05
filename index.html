@@ -3626,222 +3626,6 @@ button,input,label{
     font-size:12.5px !important;
   }
 }
-  
-  /* === SHOP PRODUCT CARD FINAL FLAT BUTTON FIX === */
-/* 商品卡片按钮改成简约扁平购物车 icon */
-
-/* 去掉商品卡片按钮阴影和大块黑按钮感 */
-.shop-grid .btn-cart{
-  width:42px !important;
-  height:42px !important;
-  min-width:42px !important;
-  padding:0 !important;
-  border-radius:0 !important;
-  border:1.5px solid #171717 !important;
-  background:#171717 !important;
-  color:#fff !important;
-  box-shadow:none !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  font-size:0 !important;
-  line-height:1 !important;
-  cursor:pointer !important;
-  transition:background .16s ease, border-color .16s ease, color .16s ease, transform .16s ease !important;
-}
-
-/* 用购物车 icon 替代文字 */
-.shop-grid .btn-cart::before{
-  content:"🛒";
-  font-size:18px;
-  line-height:1;
-}
-
-/* hover 简洁一点 */
-.shop-grid .btn-cart:hover{
-  background:#0F5E8C !important;
-  border-color:#0F5E8C !important;
-  color:#fff !important;
-  transform:translateY(-1px) !important;
-  box-shadow:none !important;
-}
-
-/* 免费领取 icon */
-.shop-grid .btn-cart.free-claim::before{
-  content:"🎁";
-}
-
-/* 已购买状态 */
-.shop-grid .btn-cart.purchased{
-  background:#EEF5F0 !important;
-  border-color:#476D5B !important;
-  color:#476D5B !important;
-  cursor:default !important;
-}
-
-.shop-grid .btn-cart.purchased::before{
-  content:"✓";
-  font-size:20px;
-  font-weight:900;
-}
-
-.shop-grid .btn-cart.purchased:hover{
-  background:#EEF5F0 !important;
-  border-color:#476D5B !important;
-  color:#476D5B !important;
-  transform:none !important;
-}
-
-/* 商品卡片底部价格和按钮对齐 */
-.scard-foot{
-  align-items:flex-end !important;
-  gap:12px !important;
-}
-
-/* 去掉卡片里按钮造成的文字换行影响 */
-.scard-foot .btn-cart{
-  flex-shrink:0 !important;
-}
-
-/* 商品卡片整体继续保持扁平 */
-.scard{
-  box-shadow:none !important;
-}
-
-.scard:hover{
-  box-shadow:none !important;
-  transform:none !important;
-  border-color:#D9CDBE !important;
-}
-
-/* 折扣角标和必买角标也去掉阴影，变扁平 */
-.must-buy-badge,
-.discount-badge{
-  box-shadow:none !important;
-  border-radius:0 !important;
-}
-
-/* 顶部筛选 select 里浏览器默认阴影再压一次 */
-.shop-filter-group select{
-  box-shadow:none !important;
-  -webkit-box-shadow:none !important;
-  appearance:none !important;
-  -webkit-appearance:none !important;
-  background-image:
-    linear-gradient(45deg, transparent 50%, #686868 50%),
-    linear-gradient(135deg, #686868 50%, transparent 50%) !important;
-  background-position:
-    calc(100% - 18px) 50%,
-    calc(100% - 13px) 50% !important;
-  background-size:5px 5px, 5px 5px !important;
-  background-repeat:no-repeat !important;
-}
-
-/* 手机端按钮稍微小一点 */
-@media(max-width:700px){
-  .shop-grid .btn-cart{
-    width:40px !important;
-    height:40px !important;
-    min-width:40px !important;
-  }
-
-  .shop-grid .btn-cart::before{
-    font-size:17px;
-  }
-}
-
-/* === SHOP PRODUCT CARD BUTTON: flat text button === */
-/* 商品卡片按钮改回简约文字按钮，不使用购物车 icon */
-
-.shop-grid .btn-cart{
-  width:auto !important;
-  height:auto !important;
-  min-width:auto !important;
-  padding:9px 14px !important;
-  border-radius:0 !important;
-  border:1.5px solid #171717 !important;
-  background:#171717 !important;
-  color:#fff !important;
-  box-shadow:none !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  font-size:13px !important;
-  line-height:1 !important;
-  font-weight:900 !important;
-  white-space:nowrap !important;
-  cursor:pointer !important;
-  transition:background .16s ease, border-color .16s ease, color .16s ease, transform .16s ease !important;
-}
-
-/* 取消之前 icon */
-.shop-grid .btn-cart::before{
-  content:none !important;
-}
-
-/* hover 轻一点 */
-.shop-grid .btn-cart:hover{
-  background:#0F5E8C !important;
-  border-color:#0F5E8C !important;
-  color:#fff !important;
-  transform:translateY(-1px) !important;
-  box-shadow:none !important;
-}
-
-/* 免费领取按钮：不要黑底，用浅色更轻 */
-.shop-grid .btn-cart.free-claim{
-  background:#FFF0E8 !important;
-  border-color:#E96F3C !important;
-  color:#A84E28 !important;
-}
-
-.shop-grid .btn-cart.free-claim:hover{
-  background:#E96F3C !important;
-  border-color:#E96F3C !important;
-  color:#fff !important;
-}
-
-/* 已购买状态 */
-.shop-grid .btn-cart.purchased{
-  background:#EEF5F0 !important;
-  border-color:#476D5B !important;
-  color:#476D5B !important;
-  cursor:default !important;
-}
-
-.shop-grid .btn-cart.purchased:hover{
-  background:#EEF5F0 !important;
-  border-color:#476D5B !important;
-  color:#476D5B !important;
-  transform:none !important;
-}
-
-/* 商品底部对齐 */
-.scard-foot{
-  align-items:flex-end !important;
-  gap:12px !important;
-}
-
-.scard-foot .btn-cart{
-  flex-shrink:0 !important;
-}
-
-/* 价格区域不要被按钮挤乱 */
-.scard-price{
-  white-space:nowrap !important;
-}
-
-.scard-old{
-  white-space:nowrap !important;
-}
-
-/* 手机端按钮稍微更小 */
-@media(max-width:700px){
-  .shop-grid .btn-cart{
-    font-size:12px !important;
-    padding:8px 11px !important;
-  }
-}  
 
 /* === MOBILE SHOP: two-column product grid + filter drawer === */
 
@@ -4155,112 +3939,6 @@ button,input,label{
   }
 }
 
-/* === SHOP PRODUCT CARD: larger cover, tighter spacing === */
-
-/* 桌面端商品图更大 */
-#pg-shop .scard-img{
-  height:260px !important;
-  background:#fff !important;
-}
-
-#pg-shop .scard-img img{
-  width:100% !important;
-  height:100% !important;
-  object-fit:contain !important;
-  padding:10px !important;
-}
-
-/* 图片和文字之间更紧凑 */
-#pg-shop .scard-body{
-  padding:14px 16px 16px !important;
-}
-
-#pg-shop .scard-cat{
-  margin-bottom:6px !important;
-}
-
-#pg-shop .scard-name{
-  margin-bottom:6px !important;
-}
-
-#pg-shop .scard-desc{
-  margin-bottom:12px !important;
-}
-
-#pg-shop .scard-foot{
-  margin-top:0 !important;
-}
-
-/* 桌面端商品卡间距略微收紧 */
-#pg-shop .shop-grid{
-  gap:1rem !important;
-}
-
-/* 手机端继续两列，但图片更大、文字更紧凑 */
-@media(max-width:700px){
-
-  #pg-shop .shop-grid{
-    gap:9px !important;
-  }
-
-  #pg-shop .scard-img{
-    height:205px !important;
-  }
-
-  #pg-shop .scard-img img{
-    padding:6px !important;
-  }
-
-  #pg-shop .scard-body{
-    padding:8px 9px 10px !important;
-  }
-
-  #pg-shop .scard-cat{
-    font-size:9.5px !important;
-    margin-bottom:4px !important;
-  }
-
-  #pg-shop .scard-name{
-    font-size:13.5px !important;
-    line-height:1.25 !important;
-    margin-bottom:4px !important;
-  }
-
-  #pg-shop .scard-desc{
-    font-size:11.5px !important;
-    line-height:1.38 !important;
-    margin-bottom:8px !important;
-    -webkit-line-clamp:2 !important;
-  }
-
-  #pg-shop .scard-price{
-    font-size:17px !important;
-  }
-
-  #pg-shop .btn-cart{
-    font-size:10.5px !important;
-    padding:6px 7px !important;
-  }
-}
-
-/* === SHOP LIST ONLY: hide short description on product cards === */
-
-#pg-shop .shop-grid .scard-desc{
-  display:none !important;
-}
-
-/* === MOBILE SHOP: show original price === */
-
-@media(max-width:700px){
-  #pg-shop .shop-grid .scard-old{
-    display:inline !important;
-    font-size:10px !important;
-    color:#9B968E !important;
-    text-decoration:line-through !important;
-    margin-left:3px !important;
-    white-space:nowrap !important;
-  }
-}
 
 /* === PRODUCT DETAIL FINAL: mobile image first + swipe gallery + lightbox === */
 
@@ -6633,516 +6311,7 @@ button,input,label{
   }
 }
 
-/* =====================================================
-   SHOP MODULE V3 - CLEAN BOOKSTORE DISPLAY
-   书店页：去边框、靠近封面、线条购物车 icon、免费角标简化
-===================================================== */
 
-/* 1. 整体商品区：更像书店陈列，不像卡片货架 */
-#pg-shop .shop-grid{
-  gap:34px 26px !important;
-  align-items:start !important;
-}
-
-/* 2. 商品单卡：取消所有边框、阴影、背景块 */
-#pg-shop .scard{
-  background:transparent !important;
-  border:none !important;
-  box-shadow:none !important;
-  border-radius:0 !important;
-  overflow:visible !important;
-  cursor:pointer !important;
-  transition:opacity .16s ease, transform .16s ease !important;
-}
-
-#pg-shop .scard:hover{
-  border:none !important;
-  box-shadow:none !important;
-  transform:none !important;
-  opacity:.92 !important;
-}
-
-/* 3. 封面区域：去掉卡片框感，只保留封面本身 */
-#pg-shop .scard-img{
-  background:transparent !important;
-  border:none !important;
-  box-shadow:none !important;
-  height:auto !important;
-  aspect-ratio:4 / 5 !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  overflow:visible !important;
-  position:relative !important;
-  margin-bottom:12px !important;
-}
-
-/* 封面图本身保持清楚、干净 */
-#pg-shop .scard-img img{
-  width:100% !important;
-  height:100% !important;
-  object-fit:contain !important;
-  padding:0 !important;
-  background:transparent !important;
-  display:block !important;
-}
-
-/* 4. 商品文字区：贴近封面，不要像独立卡片 */
-#pg-shop .scard-body{
-  padding:0 !important;
-  margin:0 !important;
-  background:transparent !important;
-}
-
-/* 产品属性更像书店分类，不要太抢 */
-#pg-shop .scard-cat{
-  font-size:12px !important;
-  line-height:1.25 !important;
-  font-weight:850 !important;
-  color:#8A7B68 !important;
-  margin:0 0 6px !important;
-  letter-spacing:0 !important;
-  text-transform:none !important;
-}
-
-/* 产品名靠近属性，和封面形成一个整体 */
-#pg-shop .scard-name{
-  font-size:17px !important;
-  line-height:1.32 !important;
-  font-weight:950 !important;
-  color:#171717 !important;
-  margin:0 0 9px !important;
-  letter-spacing:-.025em !important;
-}
-
-/* 描述继续隐藏，详情页再讲 */
-#pg-shop .scard-desc{
-  display:none !important;
-}
-
-/* 5. 底部价格 + 购物车 icon */
-#pg-shop .scard-foot{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:space-between !important;
-  gap:12px !important;
-  margin-top:0 !important;
-}
-
-/* 价格更像书籍价格 */
-#pg-shop .scard-price{
-  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
-  font-size:16px !important;
-  line-height:1 !important;
-  font-weight:850 !important;
-  color:#B08A4A !important;
-  letter-spacing:-.02em !important;
-}
-
-#pg-shop .scard-old{
-  font-size:11px !important;
-  color:#B8B0A4 !important;
-  text-decoration:line-through !important;
-  margin-left:5px !important;
-}
-
-/* 6. 加入购物车按钮：取消黑色文字按钮，改成线条购物车 icon */
-#pg-shop .btn-cart{
-  width:32px !important;
-  height:32px !important;
-  min-width:32px !important;
-  padding:0 !important;
-  border:none !important;
-  background:transparent !important;
-  color:#171717 !important;
-  box-shadow:none !important;
-  border-radius:0 !important;
-  font-size:0 !important;
-  line-height:1 !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  cursor:pointer !important;
-  transform:none !important;
-  position:relative !important;
-}
-
-/* 线条购物车 icon */
-#pg-shop .btn-cart::before{
-  content:"" !important;
-  width:22px !important;
-  height:22px !important;
-  display:block !important;
-  background-color:currentColor !important;
-  mask-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='20' r='1.5'/%3E%3Ccircle cx='18' cy='20' r='1.5'/%3E%3Cpath d='M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H7'/%3E%3C/g%3E%3C/svg%3E") !important;
-  -webkit-mask-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='20' r='1.5'/%3E%3Ccircle cx='18' cy='20' r='1.5'/%3E%3Cpath d='M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H7'/%3E%3C/g%3E%3C/svg%3E") !important;
-  mask-size:contain !important;
-  -webkit-mask-size:contain !important;
-  mask-repeat:no-repeat !important;
-  -webkit-mask-repeat:no-repeat !important;
-  mask-position:center !important;
-  -webkit-mask-position:center !important;
-}
-
-/* hover 只轻微变色，不要出现大按钮 */
-#pg-shop .btn-cart:hover{
-  background:transparent !important;
-  border:none !important;
-  color:#0F5E8C !important;
-  transform:translateY(-1px) !important;
-  box-shadow:none !important;
-}
-
-/* 免费领取也用同一个按钮风格，不要橙色按钮 */
-#pg-shop .btn-cart.free-claim{
-  background:transparent !important;
-  border:none !important;
-  color:#171717 !important;
-}
-
-#pg-shop .btn-cart.free-claim:hover{
-  background:transparent !important;
-  border:none !important;
-  color:#E96F3C !important;
-}
-
-/* 已购买状态：变成简洁 check icon */
-#pg-shop .btn-cart.purchased{
-  background:transparent !important;
-  border:none !important;
-  color:#476D5B !important;
-  cursor:default !important;
-}
-
-#pg-shop .btn-cart.purchased::before{
-  content:"✓" !important;
-  width:auto !important;
-  height:auto !important;
-  background:none !important;
-  mask-image:none !important;
-  -webkit-mask-image:none !important;
-  font-size:22px !important;
-  font-weight:950 !important;
-  line-height:1 !important;
-}
-
-#pg-shop .btn-cart.purchased:hover{
-  color:#476D5B !important;
-  transform:none !important;
-}
-
-/* 7. 免费商品右上角：只显示 🎁，不要文字 */
-#pg-shop .discount-badge{
-  top:0 !important;
-  right:0 !important;
-  left:auto !important;
-  width:34px !important;
-  height:34px !important;
-  padding:0 !important;
-  border:none !important;
-  background:rgba(255,255,255,.92) !important;
-  color:#171717 !important;
-  box-shadow:none !important;
-  border-radius:50% !important;
-  font-size:0 !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  z-index:3 !important;
-}
-
-/* 默认折扣仍显示文字，但更小更轻 */
-#pg-shop .discount-badge::before{
-  content:attr(data-label);
-}
-
-/* 免费产品：通过原有文字里包含 🎁 的角标，统一改成只显示 🎁 */
-#pg-shop .discount-badge{
-  font-weight:900 !important;
-}
-
-/* 因为原本 HTML 没有单独 class，只能用 font-size 0 + after 显示 */
-#pg-shop .discount-badge::after{
-  content:"🎁" !important;
-  font-size:20px !important;
-  line-height:1 !important;
-}
-
-/* 8. 本店必买角标：保留但弱化，避免太像促销贴纸 */
-#pg-shop .must-buy-badge{
-  top:0 !important;
-  left:0 !important;
-  padding:5px 8px !important;
-  background:#171717 !important;
-  color:#fff !important;
-  border-radius:0 !important;
-  box-shadow:none !important;
-  font-size:10px !important;
-  font-weight:900 !important;
-}
-
-/* 9. 商品提示条可以继续保留，但降低存在感 */
-#pg-shop .scard-digital-note{
-  background:#F3F7F8 !important;
-  border:1px solid #D9E6EA !important;
-  color:#0B486D !important;
-  border-radius:0 !important;
-  box-shadow:none !important;
-  margin-bottom:1.6rem !important;
-}
-
-/* 10. 手机端：继续两列，但去掉框感 */
-@media(max-width:700px){
-
-  #pg-shop .sec.shop-sec{
-    padding-left:14px !important;
-    padding-right:14px !important;
-  }
-
-  #pg-shop .shop-grid{
-    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
-    gap:28px 14px !important;
-  }
-
-  #pg-shop .scard{
-    border:none !important;
-    background:transparent !important;
-  }
-
-  #pg-shop .scard-img{
-    aspect-ratio:4 / 5 !important;
-    height:auto !important;
-    margin-bottom:9px !important;
-  }
-
-  #pg-shop .scard-img img{
-    padding:0 !important;
-  }
-
-  #pg-shop .scard-body{
-    padding:0 !important;
-  }
-
-  #pg-shop .scard-cat{
-    font-size:10.5px !important;
-    line-height:1.25 !important;
-    margin-bottom:5px !important;
-  }
-
-  #pg-shop .scard-name{
-    font-size:13.5px !important;
-    line-height:1.28 !important;
-    margin-bottom:8px !important;
-    display:-webkit-box !important;
-    -webkit-line-clamp:2 !important;
-    -webkit-box-orient:vertical !important;
-    overflow:hidden !important;
-  }
-
-  #pg-shop .scard-price{
-    font-size:14.5px !important;
-  }
-
-  #pg-shop .scard-old{
-    font-size:10px !important;
-  }
-
-  #pg-shop .btn-cart{
-    width:28px !important;
-    height:28px !important;
-    min-width:28px !important;
-  }
-
-  #pg-shop .btn-cart::before{
-    width:21px !important;
-    height:21px !important;
-  }
-
-  #pg-shop .discount-badge{
-    width:30px !important;
-    height:30px !important;
-  }
-
-  #pg-shop .discount-badge::after{
-    font-size:18px !important;
-  }
-
-  #pg-shop .must-buy-badge{
-    font-size:9px !important;
-    padding:4px 6px !important;
-  }
-}
-
-/* 免费商品角标：只显示礼物 emoji */
-#pg-shop .free-gift-badge{
-  position:absolute !important;
-  top:0 !important;
-  right:0 !important;
-  width:34px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  background:rgba(255,255,255,.92) !important;
-  border-radius:50% !important;
-  font-size:20px !important;
-  line-height:1 !important;
-  z-index:4 !important;
-}
-
-/* 折扣角标：保留文字，但更简洁 */
-#pg-shop .discount-badge{
-  top:0 !important;
-  right:0 !important;
-  left:auto !important;
-  padding:5px 8px !important;
-  background:#E96F3C !important;
-  color:#fff !important;
-  border-radius:0 !important;
-  box-shadow:none !important;
-  font-size:10px !important;
-  font-weight:900 !important;
-}
-
-/* 避免上面 V3 里把 discount-badge 统一变成礼物 */
-#pg-shop .discount-badge::after{
-  content:none !important;
-}  
-
-/* =====================================================
-   SHOP CART ICON FINAL FIX
-   付费商品：购物车+向下箭头 icon
-   免费商品：保留“免费领取”文字按钮
-===================================================== */
-
-/* 付费商品：线条购物车 icon */
-#pg-shop .btn-cart.cart-icon-btn{
-  width:36px !important;
-  height:36px !important;
-  min-width:36px !important;
-  padding:0 !important;
-  border:none !important;
-  background:transparent !important;
-  color:#8F8F8F !important;
-  box-shadow:none !important;
-  border-radius:0 !important;
-  font-size:0 !important;
-  line-height:1 !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  cursor:pointer !important;
-  transform:none !important;
-}
-
-/* 购物车 + 向下箭头 SVG icon */
-#pg-shop .btn-cart.cart-icon-btn::before{
-  content:"" !important;
-  width:30px !important;
-  height:30px !important;
-  display:block !important;
-  background-color:currentColor !important;
-
-  mask-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='black' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 12h8l7 28h25l5-20H24'/%3E%3Cpath d='M25 40h25'/%3E%3Ccircle cx='27' cy='52' r='5'/%3E%3Ccircle cx='48' cy='52' r='5'/%3E%3Cpath d='M38 8v20'/%3E%3Cpath d='M30 21l8 8 8-8'/%3E%3C/g%3E%3C/svg%3E") !important;
-  -webkit-mask-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='black' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 12h8l7 28h25l5-20H24'/%3E%3Cpath d='M25 40h25'/%3E%3Ccircle cx='27' cy='52' r='5'/%3E%3Ccircle cx='48' cy='52' r='5'/%3E%3Cpath d='M38 8v20'/%3E%3Cpath d='M30 21l8 8 8-8'/%3E%3C/g%3E%3C/svg%3E") !important;
-
-  mask-size:contain !important;
-  -webkit-mask-size:contain !important;
-  mask-repeat:no-repeat !important;
-  -webkit-mask-repeat:no-repeat !important;
-  mask-position:center !important;
-  -webkit-mask-position:center !important;
-}
-
-/* hover：轻微变蓝即可，不要出现按钮块 */
-#pg-shop .btn-cart.cart-icon-btn:hover{
-  background:transparent !important;
-  border:none !important;
-  color:#0F5E8C !important;
-  transform:translateY(-1px) !important;
-  box-shadow:none !important;
-}
-
-/* 免费商品：保留“免费领取”文字按钮 */
-#pg-shop .btn-cart.free-claim{
-  width:auto !important;
-  height:34px !important;
-  min-width:auto !important;
-  padding:0 12px !important;
-  border:1.5px solid #E96F3C !important;
-  background:transparent !important;
-  color:#A84E28 !important;
-  box-shadow:none !important;
-  border-radius:0 !important;
-  font-size:13px !important;
-  line-height:1 !important;
-  font-weight:950 !important;
-  white-space:nowrap !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-}
-
-/* 免费按钮不要有 icon */
-#pg-shop .btn-cart.free-claim::before{
-  content:none !important;
-  display:none !important;
-}
-
-/* 免费按钮 hover */
-#pg-shop .btn-cart.free-claim:hover{
-  background:#E96F3C !important;
-  border-color:#E96F3C !important;
-  color:#fff !important;
-  transform:translateY(-1px) !important;
-}
-
-/* 已购买状态：简洁文字 */
-#pg-shop .btn-cart.purchased{
-  width:auto !important;
-  height:34px !important;
-  padding:0 12px !important;
-  border:1.5px solid #476D5B !important;
-  background:#EEF5F0 !important;
-  color:#476D5B !important;
-  font-size:13px !important;
-  font-weight:950 !important;
-  border-radius:0 !important;
-  cursor:default !important;
-}
-
-#pg-shop .btn-cart.purchased::before{
-  content:none !important;
-  display:none !important;
-}
-
-#pg-shop .btn-cart.purchased:hover{
-  background:#EEF5F0 !important;
-  border-color:#476D5B !important;
-  color:#476D5B !important;
-  transform:none !important;
-}
-
-/* 手机端微调 */
-@media(max-width:700px){
-  #pg-shop .btn-cart.cart-icon-btn{
-    width:32px !important;
-    height:32px !important;
-    min-width:32px !important;
-  }
-
-  #pg-shop .btn-cart.cart-icon-btn::before{
-    width:27px !important;
-    height:27px !important;
-  }
-
-  #pg-shop .btn-cart.free-claim,
-  #pg-shop .btn-cart.purchased{
-    height:30px !important;
-    padding:0 9px !important;
-    font-size:11.5px !important;
-  }
-}
 
 /* === FINAL SHOP CARD STYLE：书店商品卡片极简版 + 方框加号 === */
 /* 目标：
@@ -7463,6 +6632,453 @@ button,input,label{
 
   #pg-shop .discount-badge::before{
     font-size:19px !important;
+  }
+}
+
+/* =====================================================
+   SHOP CARD CLEAN FINAL V1
+   书店商品卡片最终清理版
+   目标：
+   1. 去掉商品单卡边框
+   2. 封面、属性、标题距离更近
+   3. 付费商品使用圆圈 + 号 icon
+   4. 免费商品保留“免费领取”
+   5. 免费商品右上角只显示 🎁
+   6. 折扣商品正常显示 40% OFF / 25% OFF
+===================================================== */
+
+
+/* 商品网格：书店陈列感 */
+#pg-shop .shop-grid{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr)) !important;
+  gap:38px 28px !important;
+  align-items:start !important;
+  margin-top:0 !important;
+}
+
+
+/* 单个商品：去掉边框、阴影、背景 */
+#pg-shop .scard{
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+  overflow:visible !important;
+  cursor:pointer !important;
+  transition:opacity .16s ease, transform .16s ease !important;
+}
+
+#pg-shop .scard:hover{
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  transform:none !important;
+  opacity:.92 !important;
+}
+
+
+/* 封面区域：去掉框，只保留封面 */
+#pg-shop .scard-img{
+  position:relative !important;
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio:4 / 5 !important;
+  margin:0 0 12px !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+
+#pg-shop .scard-img img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  padding:0 !important;
+  background:transparent !important;
+  display:block !important;
+}
+
+
+/* 文字区域：贴近封面 */
+#pg-shop .scard-body{
+  padding:0 !important;
+  margin:0 !important;
+  background:transparent !important;
+}
+
+
+/* 产品属性 */
+#pg-shop .scard-cat{
+  margin:0 0 5px !important;
+  font-size:12px !important;
+  line-height:1.25 !important;
+  font-weight:850 !important;
+  color:#8A7B68 !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+}
+
+
+/* 产品名 */
+#pg-shop .scard-name{
+  margin:0 0 9px !important;
+  font-size:17px !important;
+  line-height:1.3 !important;
+  font-weight:950 !important;
+  color:#171717 !important;
+  letter-spacing:-.025em !important;
+}
+
+
+/* 商品列表不显示描述 */
+#pg-shop .scard-desc{
+  display:none !important;
+}
+
+
+/* 价格 + 操作 */
+#pg-shop .scard-foot{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+  margin-top:0 !important;
+}
+
+#pg-shop .scard-price{
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+  font-size:17px !important;
+  line-height:1 !important;
+  font-weight:900 !important;
+  color:#B08A4A !important;
+  letter-spacing:-.02em !important;
+  white-space:nowrap !important;
+}
+
+#pg-shop .scard-old{
+  display:inline !important;
+  font-size:11px !important;
+  color:#B8B0A4 !important;
+  text-decoration:line-through !important;
+  margin-left:5px !important;
+  white-space:nowrap !important;
+}
+
+
+/* 付费商品按钮：圆圈 + 号 */
+#pg-shop .btn-cart.cart-icon-btn{
+  width:30px !important;
+  height:30px !important;
+  min-width:30px !important;
+  padding:0 !important;
+  border:1.6px solid #9A9A94 !important;
+  background:transparent !important;
+  color:#8F8F8A !important;
+  border-radius:50% !important;
+  box-shadow:none !important;
+  font-size:0 !important;
+  line-height:1 !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  position:relative !important;
+  cursor:pointer !important;
+  transform:none !important;
+  transition:border-color .16s ease, color .16s ease, transform .16s ease, background .16s ease !important;
+}
+
+
+/* 横线 */
+#pg-shop .btn-cart.cart-icon-btn::before{
+  content:"" !important;
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  width:12px !important;
+  height:1.6px !important;
+  background:currentColor !important;
+  transform:translate(-50%,-50%) !important;
+  display:block !important;
+  mask-image:none !important;
+  -webkit-mask-image:none !important;
+}
+
+
+/* 竖线 */
+#pg-shop .btn-cart.cart-icon-btn::after{
+  content:"" !important;
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  width:1.6px !important;
+  height:12px !important;
+  background:currentColor !important;
+  transform:translate(-50%,-50%) !important;
+  display:block !important;
+}
+
+
+/* 付费 icon hover */
+#pg-shop .btn-cart.cart-icon-btn:hover{
+  background:transparent !important;
+  border-color:#0F5E8C !important;
+  color:#0F5E8C !important;
+  transform:translateY(-1px) !important;
+  box-shadow:none !important;
+}
+
+
+/* 免费商品按钮：继续保留“免费领取” */
+#pg-shop .btn-cart.free-claim{
+  width:auto !important;
+  height:34px !important;
+  min-width:auto !important;
+  padding:0 13px !important;
+  border:1.5px solid #E96F3C !important;
+  background:transparent !important;
+  color:#A84E28 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  font-size:13px !important;
+  line-height:1 !important;
+  font-weight:950 !important;
+  white-space:nowrap !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+
+
+/* 免费按钮不要出现 + 号 */
+#pg-shop .btn-cart.free-claim::before,
+#pg-shop .btn-cart.free-claim::after{
+  display:none !important;
+  content:none !important;
+}
+
+#pg-shop .btn-cart.free-claim:hover{
+  background:#E96F3C !important;
+  border-color:#E96F3C !important;
+  color:#fff !important;
+  transform:translateY(-1px) !important;
+}
+
+
+/* 已购买状态 */
+#pg-shop .btn-cart.purchased{
+  width:auto !important;
+  height:34px !important;
+  min-width:auto !important;
+  padding:0 12px !important;
+  border:1.5px solid #476D5B !important;
+  background:#EEF5F0 !important;
+  color:#476D5B !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  font-size:13px !important;
+  line-height:1 !important;
+  font-weight:950 !important;
+  white-space:nowrap !important;
+  cursor:default !important;
+}
+
+#pg-shop .btn-cart.purchased::before,
+#pg-shop .btn-cart.purchased::after{
+  display:none !important;
+  content:none !important;
+}
+
+#pg-shop .btn-cart.purchased:hover{
+  background:#EEF5F0 !important;
+  border-color:#476D5B !important;
+  color:#476D5B !important;
+  transform:none !important;
+}
+
+
+/* 免费礼物角标 */
+#pg-shop .free-gift-badge{
+  position:absolute !important;
+  top:0 !important;
+  right:0 !important;
+  width:34px !important;
+  height:34px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:rgba(255,255,255,.92) !important;
+  border-radius:50% !important;
+  box-shadow:none !important;
+  font-size:20px !important;
+  line-height:1 !important;
+  z-index:4 !important;
+}
+
+
+/* 折扣角标：只给付费折扣商品用 */
+#pg-shop .discount-badge{
+  position:absolute !important;
+  top:0 !important;
+  right:0 !important;
+  left:auto !important;
+  width:auto !important;
+  height:auto !important;
+  min-width:0 !important;
+  padding:6px 8px !important;
+  background:#E96F3C !important;
+  color:#fff !important;
+  border:none !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  font-size:10px !important;
+  line-height:1 !important;
+  font-weight:950 !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  z-index:3 !important;
+}
+
+
+/* 防止折扣角标被旧规则塞礼物 */
+#pg-shop .discount-badge::before,
+#pg-shop .discount-badge::after{
+  display:none !important;
+  content:none !important;
+}
+
+
+/* 本店必买角标：保留，但降低促销感 */
+#pg-shop .must-buy-badge{
+  position:absolute !important;
+  top:0 !important;
+  left:0 !important;
+  right:auto !important;
+  padding:6px 9px !important;
+  background:#171717 !important;
+  color:#fff !important;
+  border:none !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  font-size:10px !important;
+  line-height:1 !important;
+  font-weight:950 !important;
+  z-index:3 !important;
+}
+
+
+/* 提示条轻一点 */
+#pg-shop .scard-digital-note{
+  background:#F3F7F8 !important;
+  border:1px solid #D9E6EA !important;
+  color:#0B486D !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  margin:0 0 1.6rem !important;
+  padding:.75rem .9rem !important;
+  font-size:12.5px !important;
+  line-height:1.5 !important;
+  font-weight:700 !important;
+}
+
+
+/* 手机端 */
+@media(max-width:700px){
+
+  #pg-shop .sec.shop-sec{
+    padding-left:14px !important;
+    padding-right:14px !important;
+  }
+
+  #pg-shop .shop-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:30px 14px !important;
+  }
+
+  #pg-shop .scard{
+    border:none !important;
+    background:transparent !important;
+    box-shadow:none !important;
+  }
+
+  #pg-shop .scard-img{
+    aspect-ratio:4 / 5 !important;
+    height:auto !important;
+    margin-bottom:9px !important;
+  }
+
+  #pg-shop .scard-img img{
+    padding:0 !important;
+  }
+
+  #pg-shop .scard-cat{
+    font-size:10.5px !important;
+    line-height:1.25 !important;
+    margin-bottom:5px !important;
+  }
+
+  #pg-shop .scard-name{
+    font-size:13.5px !important;
+    line-height:1.28 !important;
+    margin-bottom:8px !important;
+    display:-webkit-box !important;
+    -webkit-line-clamp:2 !important;
+    -webkit-box-orient:vertical !important;
+    overflow:hidden !important;
+  }
+
+  #pg-shop .scard-price{
+    font-size:14.5px !important;
+  }
+
+  #pg-shop .scard-old{
+    font-size:10px !important;
+    margin-left:3px !important;
+  }
+
+  #pg-shop .btn-cart.cart-icon-btn{
+    width:28px !important;
+    height:28px !important;
+    min-width:28px !important;
+  }
+
+  #pg-shop .btn-cart.cart-icon-btn::before{
+    width:11px !important;
+    height:1.5px !important;
+  }
+
+  #pg-shop .btn-cart.cart-icon-btn::after{
+    width:1.5px !important;
+    height:11px !important;
+  }
+
+  #pg-shop .btn-cart.free-claim,
+  #pg-shop .btn-cart.purchased{
+    height:30px !important;
+    padding:0 9px !important;
+    font-size:11.5px !important;
+  }
+
+  #pg-shop .free-gift-badge{
+    width:30px !important;
+    height:30px !important;
+    font-size:18px !important;
+  }
+
+  #pg-shop .discount-badge{
+    font-size:9px !important;
+    padding:5px 7px !important;
+  }
+
+  #pg-shop .must-buy-badge{
+    font-size:9px !important;
+    padding:5px 7px !important;
   }
 }
   
