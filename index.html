@@ -6000,6 +6000,246 @@ button,input,label{
     top:92px !important;
   }
 }
+
+/* === FINAL FINAL MOBILE HEADER FIX 2026-06-05 === */
+/* 目标：
+   1. 手机端 logo 和右侧工具强制同一行
+   2. 手机端语言只显示地球 icon，不显示“中文/NL”
+   3. 手机端登录/注册固定短中文，避免 Inloggen / Registreren 撑爆
+   4. 防止 user-btns 隐藏状态被 display:inline-flex 覆盖
+*/
+
+@media(max-width:700px){
+
+  .tb{
+    height:auto !important;
+    min-height:92px !important;
+    padding:12px 14px 8px !important;
+    display:grid !important;
+    grid-template-columns:minmax(0, 1fr) auto !important;
+    grid-template-rows:auto auto !important;
+    align-items:center !important;
+    column-gap:8px !important;
+    row-gap:10px !important;
+    background:rgba(255,253,248,.97) !important;
+    border-bottom:1px solid rgba(228,215,198,.85) !important;
+    overflow:hidden !important;
+  }
+
+  .logo-main{
+    grid-column:1 !important;
+    grid-row:1 !important;
+    justify-self:start !important;
+    align-self:center !important;
+    height:42px !important;
+    width:auto !important;
+    max-width:190px !important;
+    flex-shrink:1 !important;
+  }
+
+  .nr{
+    grid-column:2 !important;
+    grid-row:1 !important;
+    justify-self:end !important;
+    align-self:center !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    gap:10px !important;
+    width:auto !important;
+    max-width:none !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    flex-wrap:nowrap !important;
+  }
+
+  .mobile-icon-btn{
+    flex-shrink:0 !important;
+  }
+
+  .lang-icon-btn{
+    width:28px !important;
+    height:34px !important;
+    padding:0 !important;
+    margin:0 !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:0 !important;
+  }
+
+  .lang-icon-btn svg{
+    width:24px !important;
+    height:24px !important;
+    stroke-width:1.8 !important;
+  }
+
+  .lang-text{
+    display:none !important;
+  }
+
+  #auth-btns,
+  #user-btns{
+    align-items:center !important;
+    gap:10px !important;
+    flex-wrap:nowrap !important;
+    min-width:0 !important;
+  }
+
+  #auth-btns:not(.is-hidden),
+  #user-btns:not(.is-hidden){
+    display:inline-flex !important;
+  }
+
+  #auth-btns.is-hidden,
+  #user-btns.is-hidden{
+    display:none !important;
+  }
+
+  #auth-btns .login-link{
+    width:auto !important;
+    height:34px !important;
+    padding:0 !important;
+    margin:0 !important;
+    border:none !important;
+    background:transparent !important;
+    color:#171717 !important;
+    font-size:0 !important;
+    line-height:34px !important;
+    font-weight:900 !important;
+    white-space:nowrap !important;
+    flex-shrink:0 !important;
+  }
+
+  #auth-btns .login-link::before{
+    content:"登录" !important;
+    font-size:14px !important;
+    font-weight:900 !important;
+  }
+
+  #auth-btns .login-link::after{
+    display:none !important;
+    content:none !important;
+  }
+
+  #auth-btns .register-btn{
+    width:auto !important;
+    height:36px !important;
+    padding:0 14px !important;
+    margin:0 !important;
+    border:none !important;
+    border-radius:8px !important;
+    background:#0F5E8C !important;
+    color:#fff !important;
+    font-size:0 !important;
+    font-weight:900 !important;
+    white-space:nowrap !important;
+    flex-shrink:0 !important;
+  }
+
+  #auth-btns .register-btn::before{
+    content:"注册" !important;
+    font-size:14px !important;
+    font-weight:900 !important;
+  }
+
+  #ulabel{
+    width:30px !important;
+    height:30px !important;
+    min-width:30px !important;
+    padding:0 !important;
+    margin:0 !important;
+    border:none !important;
+    background:transparent !important;
+    border-radius:0 !important;
+    color:#171717 !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    flex-shrink:0 !important;
+  }
+
+  #ulabel svg{
+    width:25px !important;
+    height:25px !important;
+    stroke-width:1.8 !important;
+  }
+
+  #ulabel::before,
+  #ulabel::after{
+    display:none !important;
+    content:none !important;
+  }
+
+  .nc{
+    grid-column:1 / -1 !important;
+    grid-row:2 !important;
+    width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:0 !important;
+    overflow:hidden !important;
+  }
+
+  .nl{
+    padding:0 !important;
+    margin:0 !important;
+    border:none !important;
+    background:transparent !important;
+    color:#171717 !important;
+    font-size:0 !important;
+    line-height:1 !important;
+    font-weight:900 !important;
+    white-space:nowrap !important;
+  }
+
+  .nl::after{
+    display:none !important;
+    content:none !important;
+  }
+
+  .nl[data-zh="主页 / Home"]::before{
+    content:"首页" !important;
+    font-size:14px !important;
+    font-weight:900 !important;
+  }
+
+  .nl[data-zh="课程 / Cursussen"]::before{
+    content:"课程" !important;
+    font-size:14px !important;
+    font-weight:900 !important;
+  }
+
+  .nl[data-zh="书店 / Winkel"]::before{
+    content:"书店" !important;
+    font-size:14px !important;
+    font-weight:900 !important;
+  }
+
+  .nl[data-zh="关于 / Over ons"]::before{
+    content:"关于" !important;
+    font-size:14px !important;
+    font-weight:900 !important;
+  }
+
+  .nl[data-zh="联系 / Contact"]::before{
+    content:"联系" !important;
+    font-size:14px !important;
+    font-weight:900 !important;
+  }
+
+  .news-ticker{
+    top:92px !important;
+  }
+
+  body{
+    overflow-x:hidden !important;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -8817,8 +9057,8 @@ async function updatePassword(){
     setTimeout(async function(){
       await supabaseClient.auth.signOut();
       USER = null;
-      document.getElementById('auth-btns').style.display='';
-      document.getElementById('user-btns').style.display='none';
+      document.getElementById('auth-btns').classList.remove('is-hidden');
+      document.getElementById('user-btns').classList.add('is-hidden');
 
       nav('login', {push:false});
 
