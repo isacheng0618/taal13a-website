@@ -6240,6 +6240,196 @@ button,input,label{
     overflow-x:hidden !important;
   }
 }
+
+/* === DASHBOARD REFINED STYLE === */
+/* 个人主页：删除底部大按钮后，卡片内按钮统一为扁平高级风 */
+
+#pg-dashboard .db{
+  max-width:1180px !important;
+  padding-top:2.8rem !important;
+}
+
+#pg-dashboard .dcols{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:1.6rem !important;
+  align-items:start !important;
+}
+
+#pg-dashboard .dcard{
+  background:#FFFDF8 !important;
+  border:1px solid #E6DED2 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  padding:1.8rem 2rem !important;
+  min-height:180px !important;
+}
+
+#pg-dashboard .dch{
+  font-size:13px !important;
+  color:#686868 !important;
+  font-weight:950 !important;
+  letter-spacing:.04em !important;
+  margin-bottom:1.2rem !important;
+}
+
+#pg-dashboard .es{
+  min-height:120px !important;
+  padding:1.2rem 0 !important;
+  color:#686868 !important;
+  font-size:15px !important;
+  font-weight:750 !important;
+}
+
+.dash-empty-action{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:14px !important;
+  text-align:center !important;
+}
+
+.dash-card-action{
+  display:flex !important;
+  justify-content:flex-end !important;
+  margin-top:1.2rem !important;
+  padding-top:1.1rem !important;
+  border-top:1px solid #E6DED2 !important;
+}
+
+.dash-link-btn{
+  height:38px !important;
+  padding:0 18px !important;
+  border:1.5px solid #171717 !important;
+  background:transparent !important;
+  color:#171717 !important;
+  font-family:inherit !important;
+  font-size:13px !important;
+  font-weight:950 !important;
+  cursor:pointer !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  transition:background .16s ease, color .16s ease, border-color .16s ease, transform .16s ease !important;
+}
+
+.dash-link-btn:hover{
+  background:#171717 !important;
+  color:#fff !important;
+  border-color:#171717 !important;
+  transform:translateY(-1px) !important;
+}
+
+#pg-dashboard .cai{
+  padding:12px 0 !important;
+  border-bottom:1px solid #E6DED2 !important;
+  gap:12px !important;
+}
+
+#pg-dashboard .cai:last-child{
+  border-bottom:none !important;
+}
+
+#pg-dashboard .cad{
+  width:8px !important;
+  height:8px !important;
+  background:#476D5B !important;
+}
+
+#pg-dashboard .cal{
+  font-size:15px !important;
+  font-weight:950 !important;
+  color:#171717 !important;
+  line-height:1.35 !important;
+}
+
+#pg-dashboard .cat2{
+  font-size:13px !important;
+  color:#686868 !important;
+  font-weight:650 !important;
+  margin-top:2px !important;
+}
+
+#pg-dashboard .cab{
+  background:#EEF5F0 !important;
+  color:#476D5B !important;
+  border-radius:999px !important;
+  padding:4px 10px !important;
+  font-size:12px !important;
+  font-weight:900 !important;
+}
+
+#pg-dashboard .caw{
+  color:#E96F3C !important;
+  font-size:13px !important;
+  font-weight:950 !important;
+  cursor:pointer !important;
+  white-space:nowrap !important;
+}
+
+#pg-dashboard .caw:hover{
+  color:#0F5E8C !important;
+  text-decoration:underline !important;
+}
+
+.dashboard-logout-btn{
+  height:38px !important;
+  padding:0 18px !important;
+  border:1.5px solid #171717 !important;
+  background:#171717 !important;
+  color:#fff !important;
+  font-size:13px !important;
+  font-weight:950 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+
+.dashboard-logout-btn:hover{
+  background:#E96F3C !important;
+  border-color:#E96F3C !important;
+}
+
+/* 账号信息卡片放下面时不要太挤 */
+#pg-dashboard .dcard:nth-child(3){
+  grid-column:1 / 2 !important;
+}
+
+/* 手机端：个人主页卡片一列显示 */
+@media(max-width:800px){
+  #pg-dashboard .db{
+    padding:1.6rem 18px 2.4rem !important;
+  }
+
+  #pg-dashboard .dcols{
+    grid-template-columns:1fr !important;
+    gap:1rem !important;
+  }
+
+  #pg-dashboard .dcard{
+    padding:1.35rem 1.45rem !important;
+    min-height:auto !important;
+  }
+
+  #pg-dashboard .dcard:nth-child(3){
+    grid-column:auto !important;
+  }
+
+  .dash-card-action{
+    justify-content:center !important;
+  }
+
+  .dash-link-btn{
+    width:100% !important;
+  }
+
+  #pg-dashboard .cai{
+    align-items:flex-start !important;
+  }
+
+  #pg-dashboard .cab{
+    margin-left:auto !important;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -6957,7 +7147,6 @@ Taal13A 的教学理念是：让学荷兰语变得简单、接地气、真正有
       <div class="dcard"><div class="dch" data-zh="我的商品 / 下载" data-nl="Mijn producten / downloads">我的商品 / 下载</div><div id="my-products"></div></div>
       <div class="dcard"><div class="dch" data-zh="账号信息" data-nl="Account">账号信息</div><div id="acct" style="font-size:12.5px;color:var(--ink3);line-height:2;font-weight:600"></div></div>
     </div>
-    <div style="text-align:center;margin-bottom:1rem"><button class="benroll" onclick="nav('overview')" data-zh="浏览课程" data-nl="Cursussen bekijken">浏览课程</button></div>
   </div>
 </div>
 
@@ -9284,11 +9473,13 @@ function rDash(){
 
   if(cl){
     if(!ow.length){
-      cl.innerHTML='<div class="es">'+
-        (ti?'还没有课程。':'Nog geen cursussen.')+
-        '<br><a onclick="nav(\'overview\')">'+
-        (ti?'浏览课程':'Cursussen bekijken')+
-        '</a></div>';
+      cl.innerHTML=
+  '<div class="es dash-empty-action">'+
+    '<div>'+(ti?'还没有课程。':'Nog geen cursussen.')+'</div>'+
+    '<button class="dash-link-btn" onclick="nav(\'overview\')">'+
+      (ti?'浏览课程':'Cursussen bekijken')+
+    '</button>'+
+  '</div>';
     }else{
       cl.innerHTML=ow.map(function(cid){
         var s=SES.find(function(x){return x.id===cid || x.pid===cid;}) ||
@@ -9336,9 +9527,15 @@ async function loadPurchases(){
     var purchases=data.purchases||[];
 
     if(!purchases.length){
-      pl.innerHTML='<div class="es">'+(ti?'还没有购买商品。':'Nog geen producten.')+'</div>';
-      return;
-    }
+  pl.innerHTML=
+    '<div class="es dash-empty-action">'+
+      '<div>'+(ti?'还没有购买商品。':'Nog geen producten.')+'</div>'+
+      '<button class="dash-link-btn" onclick="nav(\'shop\')">'+
+        (ti?'浏览书店':'Naar de winkel')+
+      '</button>'+
+    '</div>';
+  return;
+}
 
     // 把套餐展开成子产品
     var ownedIds = getOwnedProductIdsFromPurchases(purchases);
@@ -9354,21 +9551,28 @@ async function loadPurchases(){
       return;
     }
 
-    pl.innerHTML=ownedIds.map(function(pid){
-      var p=PRODUCTS.find(function(x){return x.id===pid;});
-      var title=p ? (ti?p.zn:p.nn) : pid;
+    pl.innerHTML=
+  ownedIds.map(function(pid){
+    var p=PRODUCTS.find(function(x){return x.id===pid;});
+    var title=p ? (ti?p.zn:p.nn) : pid;
 
-      return '<div class="cai">'+
-        '<div class="cad"></div>'+
-        '<div class="cain">'+
-          '<div class="cal">'+title+'</div>'+
-          '<div class="cat2">'+(ti?'PDF 电子资料':'PDF digitaal product')+'</div>'+
-        '</div>'+
-        '<span class="cab">'+(ti?'已购':'Actief')+'</span>'+
-        '<span class="caw" onclick="downloadProduct(\''+pid+'\')">'+(ti?'下载':'Download')+'</span>'+
-      '</div>';
+    return '<div class="cai">'+
+      '<div class="cad"></div>'+
+      '<div class="cain">'+
+        '<div class="cal">'+title+'</div>'+
+        '<div class="cat2">'+(ti?'PDF 电子资料':'PDF digitaal product')+'</div>'+
+      '</div>'+
+      '<span class="cab">'+(ti?'已购':'Actief')+'</span>'+
+      '<span class="caw" onclick="downloadProduct(\''+pid+'\')">'+(ti?'下载':'Download')+'</span>'+
+    '</div>';
 
-    }).join('');
+  }).join('')+
+
+  '<div class="dash-card-action">'+
+    '<button class="dash-link-btn" onclick="nav(\'shop\')">'+
+      (ti?'浏览书店':'Naar de winkel')+
+    '</button>'+
+  '</div>';
 
   }catch(err){
     console.error(err);
