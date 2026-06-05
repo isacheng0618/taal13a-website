@@ -6488,14 +6488,19 @@ button,input,label{
   }
 }
 
-/* 商品下载列表更干净一点 */
+/* === FINAL DASHBOARD PRODUCT LINE FIX === */
+/* 我的商品 / 下载：取消商品项底线，只保留按钮上方一条线 */
+
 #pg-dashboard #my-products .cai{
   padding:12px 0 !important;
-  border-bottom:1px solid #E6DED2 !important;
+  border-bottom:none !important;
 }
 
-#pg-dashboard #my-products .cai:last-of-type{
-  border-bottom:none !important;
+#pg-dashboard #my-products .dash-card-action{
+  border-top:1px solid #E6DED2 !important;
+  margin-top:1.2rem !important;
+  padding-top:1.2rem !important;
+  justify-content:flex-start !important;
 }
 
 /* 浏览课程 / 浏览书店按钮统一尺寸 */
@@ -6522,6 +6527,109 @@ button,input,label{
 
   #pg-dashboard .dash-link-btn{
     width:100% !important;
+  }
+}
+
+/* === FINAL DASHBOARD CLEAN FIX === */
+/* 个人主页最终修正：按钮位置统一、商品区只保留一条线、卡片高度自然 */
+
+@media(min-width:801px){
+
+  #pg-dashboard .dcols{
+    grid-template-columns:1fr 1fr !important;
+    gap:1.6rem !important;
+    align-items:start !important;
+  }
+
+  #pg-dashboard .dcard{
+    min-height:auto !important;
+    padding:1.9rem 2rem !important;
+    display:flex !important;
+    flex-direction:column !important;
+  }
+
+  #pg-dashboard .dcard:nth-child(1),
+  #pg-dashboard .dcard:nth-child(2){
+    min-height:240px !important;
+  }
+
+  #pg-dashboard .dcard:nth-child(3){
+    min-height:auto !important;
+    grid-column:1 / 2 !important;
+  }
+
+  #pg-dashboard .dash-empty-action{
+    flex:1 !important;
+    align-items:flex-start !important;
+    justify-content:flex-end !important;
+    text-align:left !important;
+    gap:18px !important;
+    padding-top:1.4rem !important;
+  }
+
+  #pg-dashboard .dash-card-action{
+    justify-content:flex-start !important;
+  }
+}
+
+/* 我的商品 / 下载：关键修复，只保留浏览书店上方一条线 */
+#pg-dashboard #my-products .cai{
+  padding:12px 0 !important;
+  border-bottom:none !important;
+}
+
+#pg-dashboard #my-products .dash-card-action{
+  border-top:1px solid #E6DED2 !important;
+  margin-top:1.2rem !important;
+  padding-top:1.2rem !important;
+  justify-content:flex-start !important;
+}
+
+/* 浏览课程 / 浏览书店按钮统一 */
+#pg-dashboard .dash-link-btn{
+  min-width:128px !important;
+  height:40px !important;
+  padding:0 18px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border:1.5px solid #171717 !important;
+  background:transparent !important;
+  color:#171717 !important;
+  font-family:inherit !important;
+  font-size:13px !important;
+  font-weight:950 !important;
+  cursor:pointer !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+
+#pg-dashboard .dash-link-btn:hover{
+  background:#171717 !important;
+  color:#fff !important;
+  border-color:#171717 !important;
+  transform:translateY(-1px) !important;
+}
+
+/* 手机端保持居中和满宽 */
+@media(max-width:800px){
+  #pg-dashboard .dash-empty-action{
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+  }
+
+  #pg-dashboard .dash-card-action{
+    justify-content:center !important;
+    border-top:1px solid #E6DED2 !important;
+  }
+
+  #pg-dashboard .dash-link-btn{
+    width:100% !important;
+  }
+
+  #pg-dashboard #my-products .cai{
+    border-bottom:none !important;
   }
 }
   
