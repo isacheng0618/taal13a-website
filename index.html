@@ -6430,6 +6430,100 @@ button,input,label{
     margin-left:auto !important;
   }
 }
+
+/* === DASHBOARD DESKTOP ALIGNMENT FIX === */
+/* 个人主页电脑端按钮统一：全部靠左，商品卡片只保留一条分割线 */
+
+@media(min-width:801px){
+
+  #pg-dashboard .dcols{
+    grid-template-columns:1fr 1fr !important;
+    gap:1.6rem !important;
+    align-items:start !important;
+  }
+
+  #pg-dashboard .dcard{
+    min-height:240px !important;
+    padding:1.9rem 2rem !important;
+    display:flex !important;
+    flex-direction:column !important;
+  }
+
+  /* 我的课程空状态：按钮不要居中，改成左下方 */
+  #pg-dashboard .dash-empty-action{
+    flex:1 !important;
+    align-items:flex-start !important;
+    justify-content:flex-end !important;
+    text-align:left !important;
+    gap:18px !important;
+    padding-top:1.4rem !important;
+  }
+
+  /* 我的商品：按钮区域统一靠左 */
+  #pg-dashboard .dash-card-action{
+    justify-content:flex-start !important;
+    margin-top:auto !important;
+    padding-top:1.2rem !important;
+    border-top:1px solid #E6DED2 !important;
+  }
+
+  /* 重点：避免商品列表最后一条和按钮上方形成双线 */
+  #pg-dashboard #my-products .cai:last-of-type{
+    border-bottom:none !important;
+  }
+
+  /* 商品列表和按钮之间只留一条线 */
+  #pg-dashboard #my-products .dash-card-action{
+    margin-top:1.1rem !important;
+  }
+
+  /* 账号信息卡片高度不要被强行拉太高 */
+  #pg-dashboard .dcard:nth-child(3){
+    min-height:230px !important;
+  }
+
+  /* 账号信息里的退出按钮也和其他按钮保持同一风格宽度 */
+  #pg-dashboard .dashboard-logout-btn{
+    margin-top:18px !important;
+  }
+}
+
+/* 商品下载列表更干净一点 */
+#pg-dashboard #my-products .cai{
+  padding:12px 0 !important;
+  border-bottom:1px solid #E6DED2 !important;
+}
+
+#pg-dashboard #my-products .cai:last-of-type{
+  border-bottom:none !important;
+}
+
+/* 浏览课程 / 浏览书店按钮统一尺寸 */
+#pg-dashboard .dash-link-btn{
+  min-width:128px !important;
+  height:40px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+
+/* 手机端保持你现在觉得可以的效果 */
+@media(max-width:800px){
+  #pg-dashboard .dash-empty-action{
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+  }
+
+  #pg-dashboard .dash-card-action{
+    justify-content:center !important;
+    border-top:1px solid #E6DED2 !important;
+  }
+
+  #pg-dashboard .dash-link-btn{
+    width:100% !important;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
