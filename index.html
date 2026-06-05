@@ -6632,6 +6632,382 @@ button,input,label{
     border-bottom:none !important;
   }
 }
+
+/* =====================================================
+   SHOP MODULE V3 - CLEAN BOOKSTORE DISPLAY
+   书店页：去边框、靠近封面、线条购物车 icon、免费角标简化
+===================================================== */
+
+/* 1. 整体商品区：更像书店陈列，不像卡片货架 */
+#pg-shop .shop-grid{
+  gap:34px 26px !important;
+  align-items:start !important;
+}
+
+/* 2. 商品单卡：取消所有边框、阴影、背景块 */
+#pg-shop .scard{
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+  overflow:visible !important;
+  cursor:pointer !important;
+  transition:opacity .16s ease, transform .16s ease !important;
+}
+
+#pg-shop .scard:hover{
+  border:none !important;
+  box-shadow:none !important;
+  transform:none !important;
+  opacity:.92 !important;
+}
+
+/* 3. 封面区域：去掉卡片框感，只保留封面本身 */
+#pg-shop .scard-img{
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  height:auto !important;
+  aspect-ratio:4 / 5 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:visible !important;
+  position:relative !important;
+  margin-bottom:12px !important;
+}
+
+/* 封面图本身保持清楚、干净 */
+#pg-shop .scard-img img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  padding:0 !important;
+  background:transparent !important;
+  display:block !important;
+}
+
+/* 4. 商品文字区：贴近封面，不要像独立卡片 */
+#pg-shop .scard-body{
+  padding:0 !important;
+  margin:0 !important;
+  background:transparent !important;
+}
+
+/* 产品属性更像书店分类，不要太抢 */
+#pg-shop .scard-cat{
+  font-size:12px !important;
+  line-height:1.25 !important;
+  font-weight:850 !important;
+  color:#8A7B68 !important;
+  margin:0 0 6px !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+}
+
+/* 产品名靠近属性，和封面形成一个整体 */
+#pg-shop .scard-name{
+  font-size:17px !important;
+  line-height:1.32 !important;
+  font-weight:950 !important;
+  color:#171717 !important;
+  margin:0 0 9px !important;
+  letter-spacing:-.025em !important;
+}
+
+/* 描述继续隐藏，详情页再讲 */
+#pg-shop .scard-desc{
+  display:none !important;
+}
+
+/* 5. 底部价格 + 购物车 icon */
+#pg-shop .scard-foot{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+  margin-top:0 !important;
+}
+
+/* 价格更像书籍价格 */
+#pg-shop .scard-price{
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+  font-size:16px !important;
+  line-height:1 !important;
+  font-weight:850 !important;
+  color:#B08A4A !important;
+  letter-spacing:-.02em !important;
+}
+
+#pg-shop .scard-old{
+  font-size:11px !important;
+  color:#B8B0A4 !important;
+  text-decoration:line-through !important;
+  margin-left:5px !important;
+}
+
+/* 6. 加入购物车按钮：取消黑色文字按钮，改成线条购物车 icon */
+#pg-shop .btn-cart{
+  width:32px !important;
+  height:32px !important;
+  min-width:32px !important;
+  padding:0 !important;
+  border:none !important;
+  background:transparent !important;
+  color:#171717 !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+  font-size:0 !important;
+  line-height:1 !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  cursor:pointer !important;
+  transform:none !important;
+  position:relative !important;
+}
+
+/* 线条购物车 icon */
+#pg-shop .btn-cart::before{
+  content:"" !important;
+  width:22px !important;
+  height:22px !important;
+  display:block !important;
+  background-color:currentColor !important;
+  mask-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='20' r='1.5'/%3E%3Ccircle cx='18' cy='20' r='1.5'/%3E%3Cpath d='M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H7'/%3E%3C/g%3E%3C/svg%3E") !important;
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='20' r='1.5'/%3E%3Ccircle cx='18' cy='20' r='1.5'/%3E%3Cpath d='M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H7'/%3E%3C/g%3E%3C/svg%3E") !important;
+  mask-size:contain !important;
+  -webkit-mask-size:contain !important;
+  mask-repeat:no-repeat !important;
+  -webkit-mask-repeat:no-repeat !important;
+  mask-position:center !important;
+  -webkit-mask-position:center !important;
+}
+
+/* hover 只轻微变色，不要出现大按钮 */
+#pg-shop .btn-cart:hover{
+  background:transparent !important;
+  border:none !important;
+  color:#0F5E8C !important;
+  transform:translateY(-1px) !important;
+  box-shadow:none !important;
+}
+
+/* 免费领取也用同一个按钮风格，不要橙色按钮 */
+#pg-shop .btn-cart.free-claim{
+  background:transparent !important;
+  border:none !important;
+  color:#171717 !important;
+}
+
+#pg-shop .btn-cart.free-claim:hover{
+  background:transparent !important;
+  border:none !important;
+  color:#E96F3C !important;
+}
+
+/* 已购买状态：变成简洁 check icon */
+#pg-shop .btn-cart.purchased{
+  background:transparent !important;
+  border:none !important;
+  color:#476D5B !important;
+  cursor:default !important;
+}
+
+#pg-shop .btn-cart.purchased::before{
+  content:"✓" !important;
+  width:auto !important;
+  height:auto !important;
+  background:none !important;
+  mask-image:none !important;
+  -webkit-mask-image:none !important;
+  font-size:22px !important;
+  font-weight:950 !important;
+  line-height:1 !important;
+}
+
+#pg-shop .btn-cart.purchased:hover{
+  color:#476D5B !important;
+  transform:none !important;
+}
+
+/* 7. 免费商品右上角：只显示 🎁，不要文字 */
+#pg-shop .discount-badge{
+  top:0 !important;
+  right:0 !important;
+  left:auto !important;
+  width:34px !important;
+  height:34px !important;
+  padding:0 !important;
+  border:none !important;
+  background:rgba(255,255,255,.92) !important;
+  color:#171717 !important;
+  box-shadow:none !important;
+  border-radius:50% !important;
+  font-size:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  z-index:3 !important;
+}
+
+/* 默认折扣仍显示文字，但更小更轻 */
+#pg-shop .discount-badge::before{
+  content:attr(data-label);
+}
+
+/* 免费产品：通过原有文字里包含 🎁 的角标，统一改成只显示 🎁 */
+#pg-shop .discount-badge{
+  font-weight:900 !important;
+}
+
+/* 因为原本 HTML 没有单独 class，只能用 font-size 0 + after 显示 */
+#pg-shop .discount-badge::after{
+  content:"🎁" !important;
+  font-size:20px !important;
+  line-height:1 !important;
+}
+
+/* 8. 本店必买角标：保留但弱化，避免太像促销贴纸 */
+#pg-shop .must-buy-badge{
+  top:0 !important;
+  left:0 !important;
+  padding:5px 8px !important;
+  background:#171717 !important;
+  color:#fff !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  font-size:10px !important;
+  font-weight:900 !important;
+}
+
+/* 9. 商品提示条可以继续保留，但降低存在感 */
+#pg-shop .scard-digital-note{
+  background:#F3F7F8 !important;
+  border:1px solid #D9E6EA !important;
+  color:#0B486D !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  margin-bottom:1.6rem !important;
+}
+
+/* 10. 手机端：继续两列，但去掉框感 */
+@media(max-width:700px){
+
+  #pg-shop .sec.shop-sec{
+    padding-left:14px !important;
+    padding-right:14px !important;
+  }
+
+  #pg-shop .shop-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+    gap:28px 14px !important;
+  }
+
+  #pg-shop .scard{
+    border:none !important;
+    background:transparent !important;
+  }
+
+  #pg-shop .scard-img{
+    aspect-ratio:4 / 5 !important;
+    height:auto !important;
+    margin-bottom:9px !important;
+  }
+
+  #pg-shop .scard-img img{
+    padding:0 !important;
+  }
+
+  #pg-shop .scard-body{
+    padding:0 !important;
+  }
+
+  #pg-shop .scard-cat{
+    font-size:10.5px !important;
+    line-height:1.25 !important;
+    margin-bottom:5px !important;
+  }
+
+  #pg-shop .scard-name{
+    font-size:13.5px !important;
+    line-height:1.28 !important;
+    margin-bottom:8px !important;
+    display:-webkit-box !important;
+    -webkit-line-clamp:2 !important;
+    -webkit-box-orient:vertical !important;
+    overflow:hidden !important;
+  }
+
+  #pg-shop .scard-price{
+    font-size:14.5px !important;
+  }
+
+  #pg-shop .scard-old{
+    font-size:10px !important;
+  }
+
+  #pg-shop .btn-cart{
+    width:28px !important;
+    height:28px !important;
+    min-width:28px !important;
+  }
+
+  #pg-shop .btn-cart::before{
+    width:21px !important;
+    height:21px !important;
+  }
+
+  #pg-shop .discount-badge{
+    width:30px !important;
+    height:30px !important;
+  }
+
+  #pg-shop .discount-badge::after{
+    font-size:18px !important;
+  }
+
+  #pg-shop .must-buy-badge{
+    font-size:9px !important;
+    padding:4px 6px !important;
+  }
+}
+
+/* 免费商品角标：只显示礼物 emoji */
+#pg-shop .free-gift-badge{
+  position:absolute !important;
+  top:0 !important;
+  right:0 !important;
+  width:34px !important;
+  height:34px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:rgba(255,255,255,.92) !important;
+  border-radius:50% !important;
+  font-size:20px !important;
+  line-height:1 !important;
+  z-index:4 !important;
+}
+
+/* 折扣角标：保留文字，但更简洁 */
+#pg-shop .discount-badge{
+  top:0 !important;
+  right:0 !important;
+  left:auto !important;
+  padding:5px 8px !important;
+  background:#E96F3C !important;
+  color:#fff !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  font-size:10px !important;
+  font-weight:900 !important;
+}
+
+/* 避免上面 V3 里把 discount-badge 统一变成礼物 */
+#pg-shop .discount-badge::after{
+  content:none !important;
+}  
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -8145,9 +8521,9 @@ function rShop(){
         (p.must?'<span class="must-buy-badge">👍 '+(ti?'本店必买':'Must-have')+'</span>':'')+
 
         (p.free
-          ? '<span class="discount-badge">'+(ti?'免费领取 🎁':'Free 🎁')+'</span>'
-          : (discount?'<span class="discount-badge">'+discount+'% OFF</span>':'')
-        )+
+  ? '<span class="free-gift-badge">🎁</span>'
+  : (discount?'<span class="discount-badge">'+discount+'% OFF</span>':'')
+)+
       '</div>'+
 
       '<div class="scard-body">'+
