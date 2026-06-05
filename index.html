@@ -141,8 +141,47 @@ body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);ove
 .hero h1 em{color:#7EC8F5;font-style:normal;}
 .hsub{color:rgba(255,255,255,.65);font-size:15px;line-height:1.72;max-width:510px;margin:0 auto 2rem;font-weight:500;}
 .hbtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
-.hb1{background:var(--ora);color:#fff;padding:12px 28px;border-radius:30px;border:none;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 4px 16px rgba(244,116,42,.45);}
-.hb2{background:rgba(255,255,255,.12);color:#fff;padding:12px 28px;border-radius:30px;border:2px solid rgba(255,255,255,.32);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
+.hb1,
+.hb2{
+  min-width:220px;
+  min-height:58px;
+  padding:0 30px;
+  border-radius:10px;
+  font-size:18px;
+  font-weight:900;
+  cursor:pointer;
+  font-family:inherit;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.hb1{
+  background:#0F5E8C;
+  color:#fff;
+  border:2px solid #0F5E8C;
+  box-shadow:0 12px 28px rgba(15,94,140,.18);
+}
+
+.hb2{
+  background:rgba(255,255,255,.88);
+  color:#111;
+  border:2px solid rgba(233,111,60,.25);
+  border-bottom:5px solid #E96F3C;
+  box-shadow:0 12px 28px rgba(17,17,17,.06);
+}
+
+.hb1:hover,
+.hb2:hover{
+  transform:translateY(-2px);
+}
+
+.hb1:hover{
+  background:#0B486D;
+  border-color:#0B486D;
+}
+
+.hb2:hover{
+  background:#fff;
+}  啊~XZ
 .hstats{display:flex;gap:2.5rem;justify-content:center;margin-top:2.8rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.12);}
 .hn{font-family:'Playfair Display',serif;font-size:1.8rem;color:#fff;}
 .hl{color:rgba(255,255,255,.42);font-size:11px;margin-top:2px;letter-spacing:.4px;font-weight:600;}
@@ -4702,13 +4741,18 @@ button,input,label{
     <div class="hvid" id="hvid"></div>
     <div class="hovl"></div>
     <div class="hc">
-      <div class="hpill"><div class="pdot"></div><span data-zh="🇳🇱 专为荷兰华人 · 全中文教学" data-nl="🇳🇱 Voor Chinezen in Nederland · In het Chinees">🇳🇱 专为荷兰华人 · 全中文教学</span></div>
+      <div class="hpill">
+  <span class="pdot"></span>
+  🇳🇱 更适合中文母语者的荷兰语学习平台
+</div>
       <h1 id="hero-h1"><em>学好荷兰语</em><br>开启全新生活</h1>
-      <p class="hsub" data-zh="Taal13A 提供从 E-learning 自学到线上小班的完整荷兰语学习体系，全程中文授课" data-nl="Taal13A biedt e-learning en groepslessen Nederlands voor Chinezen, volledig in het Chinees">Taal13A 提供从 E-learning 自学到线上小班的完整荷兰语学习体系，全程中文授课</p>
+      <p class="hsub">
+  专为中文母语学习者设计, 从零基础到考试备考，用中文讲清重点，帮你高效备考、真正用起来。
+</p>
       <div class="hbtns">
-        <button class="hb1" onclick="nav('overview')" data-zh="查看课程 →" data-nl="Bekijk cursussen →">查看课程 →</button>
-        <button class="hb2" onclick="nav('shop')" data-zh="📚 获取学习资料" data-nl="📚 Lesmateriaal">📚 获取学习资料</button>
-      </div>
+  <button class="hb1" onclick="showPage('courses')">查看适合我的课程 →</button>
+  <button class="hb2" onclick="showPage('shop')">📚 获取学习资料 →</button>
+</div>
       <div class="hstats">
         <div><div class="hn">100+</div><div class="hl" data-zh="累计学员" data-nl="Studenten">累计学员</div></div>
         <div><div class="hn">95%</div><div class="hl" data-zh="平均通过率" data-nl="Slagingspercentage">平均通过率</div></div>
