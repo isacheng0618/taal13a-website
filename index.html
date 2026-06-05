@@ -4916,6 +4916,102 @@ button,input,label{
     font-size:12px !important;
   }
 } 
+
+/* === FINAL PREMIUM NEWS BAR CLEAN === */
+/* 顶部上新条：单条居中、无蓝框、无橙点、淡入淡出 */
+
+.news-ticker{
+  height:34px !important;
+  background:#FCF8D8 !important;
+  border-top:1px solid rgba(228,215,198,.55) !important;
+  border-bottom:1px solid rgba(228,215,198,.85) !important;
+  overflow:hidden !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  position:sticky !important;
+  top:76px !important;
+  z-index:90 !important;
+}
+
+.news-track{
+  animation:none !important;
+  padding-left:0 !important;
+  transform:none !important;
+  width:100% !important;
+  height:100% !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  white-space:nowrap !important;
+  transition:opacity .36s ease, transform .36s ease !important;
+  opacity:1 !important;
+}
+
+.news-track.ticker-fade-out{
+  opacity:0 !important;
+  transform:translateY(4px) !important;
+}
+
+.news-item.news-single{
+  height:100% !important;
+  max-width:100% !important;
+  padding:0 18px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  color:#4E4136 !important;
+  cursor:pointer !important;
+  transform:none !important;
+}
+
+.news-item.news-single::after{
+  display:none !important;
+  content:none !important;
+}
+
+.news-item.news-single:hover{
+  background:transparent !important;
+  color:#0B486D !important;
+  text-decoration:none !important;
+}
+
+.news-dot,
+.news-label{
+  display:none !important;
+}
+
+.news-title{
+  display:inline-block !important;
+  max-width:78vw !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+  font-size:13.5px !important;
+  line-height:1 !important;
+  font-weight:900 !important;
+  letter-spacing:.02em !important;
+  color:#4E4136 !important;
+}
+
+@media(max-width:700px){
+  .news-ticker{
+    top:72px !important;
+    height:28px !important;
+  }
+
+  .news-title{
+    max-width:82vw !important;
+    font-size:12.5px !important;
+  }
+
+  .news-item.news-single{
+    padding:0 12px !important;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -8217,7 +8313,16 @@ function getTickerProducts(){
   });
 }
 
-function updNewsTicker(){
+var tickerIndex = 0;
+var tickerTimer = null;
+
+function getTickerProducts(){
+  return PRODUCTS.slice().filter(function(p){
+    return p.stock !== false;
+  });
+}
+
+function renderTickerItem(){
   var el = document.getElementById('news-track');
   if(!el)return;
 
@@ -8235,31 +8340,38 @@ function updNewsTicker(){
 
   var p = items[tickerIndex];
 
-  var label = p.free
-    ? (ti ? '免费领取' : 'Gratis')
-    : (p.badge || (ti ? '新资料' : 'Nieuw'));
+  var prefix = p.free
+    ? (ti ? '🎁 免费领取' : '🎁 Gratis')
+    : (ti ? '上新' : 'Nieuw');
 
   el.innerHTML =
     '<span class="news-item news-single" onclick="oProduct(\''+p.id+'\')">'+
-      '<span class="news-label">'+label+'</span>'+
-      '<span class="news-title">'+(ti ? p.zn : p.nn)+'</span>'+
+      '<span class="news-title">'+prefix+' · '+(ti ? p.zn : p.nn)+'</span>'+
     '</span>';
-
-  startTickerRotation();
 }
 
-function startTickerRotation(){
+function updNewsTicker(){
+  renderTickerItem();
+
   if(tickerTimer){
     clearInterval(tickerTimer);
   }
 
   tickerTimer = setInterval(function(){
+    var el = document.getElementById('news-track');
     var items = getTickerProducts();
-    if(!items.length)return;
 
-    tickerIndex = (tickerIndex + 1) % items.length;
-    updNewsTicker();
-  }, 4500);
+    if(!el || !items.length)return;
+
+    el.classList.add('ticker-fade-out');
+
+    setTimeout(function(){
+      tickerIndex = (tickerIndex + 1) % items.length;
+      renderTickerItem();
+      el.classList.remove('ticker-fade-out');
+    }, 360);
+
+  }, 5600);
 }
 
 (async function(){
