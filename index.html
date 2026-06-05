@@ -7008,6 +7008,141 @@ button,input,label{
 #pg-shop .discount-badge::after{
   content:none !important;
 }  
+
+/* =====================================================
+   SHOP CART ICON FINAL FIX
+   付费商品：购物车+向下箭头 icon
+   免费商品：保留“免费领取”文字按钮
+===================================================== */
+
+/* 付费商品：线条购物车 icon */
+#pg-shop .btn-cart.cart-icon-btn{
+  width:36px !important;
+  height:36px !important;
+  min-width:36px !important;
+  padding:0 !important;
+  border:none !important;
+  background:transparent !important;
+  color:#8F8F8F !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+  font-size:0 !important;
+  line-height:1 !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  cursor:pointer !important;
+  transform:none !important;
+}
+
+/* 购物车 + 向下箭头 SVG icon */
+#pg-shop .btn-cart.cart-icon-btn::before{
+  content:"" !important;
+  width:30px !important;
+  height:30px !important;
+  display:block !important;
+  background-color:currentColor !important;
+
+  mask-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='black' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 12h8l7 28h25l5-20H24'/%3E%3Cpath d='M25 40h25'/%3E%3Ccircle cx='27' cy='52' r='5'/%3E%3Ccircle cx='48' cy='52' r='5'/%3E%3Cpath d='M38 8v20'/%3E%3Cpath d='M30 21l8 8 8-8'/%3E%3C/g%3E%3C/svg%3E") !important;
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='black' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 12h8l7 28h25l5-20H24'/%3E%3Cpath d='M25 40h25'/%3E%3Ccircle cx='27' cy='52' r='5'/%3E%3Ccircle cx='48' cy='52' r='5'/%3E%3Cpath d='M38 8v20'/%3E%3Cpath d='M30 21l8 8 8-8'/%3E%3C/g%3E%3C/svg%3E") !important;
+
+  mask-size:contain !important;
+  -webkit-mask-size:contain !important;
+  mask-repeat:no-repeat !important;
+  -webkit-mask-repeat:no-repeat !important;
+  mask-position:center !important;
+  -webkit-mask-position:center !important;
+}
+
+/* hover：轻微变蓝即可，不要出现按钮块 */
+#pg-shop .btn-cart.cart-icon-btn:hover{
+  background:transparent !important;
+  border:none !important;
+  color:#0F5E8C !important;
+  transform:translateY(-1px) !important;
+  box-shadow:none !important;
+}
+
+/* 免费商品：保留“免费领取”文字按钮 */
+#pg-shop .btn-cart.free-claim{
+  width:auto !important;
+  height:34px !important;
+  min-width:auto !important;
+  padding:0 12px !important;
+  border:1.5px solid #E96F3C !important;
+  background:transparent !important;
+  color:#A84E28 !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+  font-size:13px !important;
+  line-height:1 !important;
+  font-weight:950 !important;
+  white-space:nowrap !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+
+/* 免费按钮不要有 icon */
+#pg-shop .btn-cart.free-claim::before{
+  content:none !important;
+  display:none !important;
+}
+
+/* 免费按钮 hover */
+#pg-shop .btn-cart.free-claim:hover{
+  background:#E96F3C !important;
+  border-color:#E96F3C !important;
+  color:#fff !important;
+  transform:translateY(-1px) !important;
+}
+
+/* 已购买状态：简洁文字 */
+#pg-shop .btn-cart.purchased{
+  width:auto !important;
+  height:34px !important;
+  padding:0 12px !important;
+  border:1.5px solid #476D5B !important;
+  background:#EEF5F0 !important;
+  color:#476D5B !important;
+  font-size:13px !important;
+  font-weight:950 !important;
+  border-radius:0 !important;
+  cursor:default !important;
+}
+
+#pg-shop .btn-cart.purchased::before{
+  content:none !important;
+  display:none !important;
+}
+
+#pg-shop .btn-cart.purchased:hover{
+  background:#EEF5F0 !important;
+  border-color:#476D5B !important;
+  color:#476D5B !important;
+  transform:none !important;
+}
+
+/* 手机端微调 */
+@media(max-width:700px){
+  #pg-shop .btn-cart.cart-icon-btn{
+    width:32px !important;
+    height:32px !important;
+    min-width:32px !important;
+  }
+
+  #pg-shop .btn-cart.cart-icon-btn::before{
+    width:27px !important;
+    height:27px !important;
+  }
+
+  #pg-shop .btn-cart.free-claim,
+  #pg-shop .btn-cart.purchased{
+    height:30px !important;
+    padding:0 9px !important;
+    font-size:11.5px !important;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -8557,9 +8692,13 @@ function rShop(){
             (oldFmt?'<span class="scard-old">'+oldFmt+'</span>':'')+
           '</div>'+
 
-       (isProductPurchased(p.id)
+    (isProductPurchased(p.id)
   ? '<button class="btn-cart purchased" onclick="event.stopPropagation();">'+(ti?'已购买':'Gekocht')+'</button>'
-  : '<button class="btn-cart '+(p.free?'free-claim':'')+'" onclick="event.stopPropagation();'+(p.free?'claimFreeProduct':'addToCart')+'(\''+p.id+'\')">'+(p.free?(ti?'免费领取':'Gratis'):(ti?'加入购物车':'In winkelwagen'))+'</button>'
+  : (
+      p.free
+        ? '<button class="btn-cart free-claim" onclick="event.stopPropagation();claimFreeProduct(\''+p.id+'\')">'+(ti?'免费领取':'Gratis')+'</button>'
+        : '<button class="btn-cart cart-icon-btn" aria-label="'+(ti?'加入购物车':'In winkelwagen')+'" onclick="event.stopPropagation();addToCart(\''+p.id+'\')"></button>'
+    )
 )+
         '</div>'+
       '</div>'+
