@@ -5012,6 +5012,223 @@ button,input,label{
     padding:0 12px !important;
   }
 }
+
+ /* === FINAL ACCOUNT + LANGUAGE TOOLBAR CLEANUP === */
+/* 顶部取消退出按钮，手机端语言和我的课程改成 icon 风格 */
+
+.dashboard-logout-btn{
+  margin-top:16px;
+  height:40px;
+  padding:0 18px;
+  border:1.5px solid #171717;
+  background:#171717;
+  color:#fff;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:900;
+  cursor:pointer;
+  border-radius:0;
+}
+
+.dashboard-logout-btn:hover{
+  background:#E96F3C;
+  border-color:#E96F3C;
+}
+
+/* 桌面端：顶部只保留 我的课程，不显示退出 */
+.account-link{
+  color:#171717 !important;
+  font-weight:900 !important;
+}
+
+/* 手机端：语言切换 + 我的课程图标化 */
+@media(max-width:700px){
+
+  /* 顶部第一行：Logo 和右侧工具保持一行 */
+  .tb{
+    min-height:72px !important;
+    padding:8px 14px 7px !important;
+    display:flex !important;
+    flex-wrap:wrap !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+  }
+
+  .logo-main{
+    order:1 !important;
+    height:38px !important;
+    flex:0 0 auto !important;
+  }
+
+  .nr{
+    order:2 !important;
+    margin-left:auto !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    gap:12px !important;
+    flex-wrap:nowrap !important;
+    max-width:none !important;
+  }
+
+  #auth-btns,
+  #user-btns{
+    display:inline-flex !important;
+    align-items:center !important;
+    gap:12px !important;
+    flex-wrap:nowrap !important;
+  }
+
+  /* 语言切换：做成 globe icon + 当前语言 */
+  .lang-select{
+    width:58px !important;
+    height:36px !important;
+    border:none !important;
+    background:transparent !important;
+    color:#171717 !important;
+    font-family:inherit !important;
+    font-size:0 !important;
+    font-weight:900 !important;
+    padding:0 !important;
+    cursor:pointer !important;
+    outline:none !important;
+    appearance:none !important;
+    -webkit-appearance:none !important;
+    position:relative !important;
+  }
+
+  .nr::before{
+    content:"🌐";
+    font-size:23px;
+    line-height:1;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    margin-right:-7px;
+  }
+
+  /* 当前语言文字：用 select 本身显示会受浏览器限制，所以用固定宽度保留点击区域 */
+  .lang-select option{
+    font-size:14px;
+  }
+
+  /* 我的课程：手机端变成圆形账号 icon */
+  #ulabel{
+    width:36px !important;
+    height:36px !important;
+    min-width:36px !important;
+    padding:0 !important;
+    border:1.8px solid #171717 !important;
+    border-radius:50% !important;
+    background:#fff !important;
+    color:#171717 !important;
+    font-size:0 !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    position:relative !important;
+  }
+
+  #ulabel::before{
+    content:"";
+    width:9px;
+    height:9px;
+    border:2px solid #171717;
+    border-radius:50%;
+    position:absolute;
+    top:7px;
+    left:50%;
+    transform:translateX(-50%);
+  }
+
+  #ulabel::after{
+    content:"";
+    width:17px;
+    height:8px;
+    border:2px solid #171717;
+    border-top:none;
+    border-radius:0 0 14px 14px;
+    position:absolute;
+    bottom:7px;
+    left:50%;
+    transform:translateX(-50%);
+  }
+
+  /* 登录/注册状态下：登录可以保留文字，注册压缩 */
+  #auth-btns .login-link{
+    font-size:13px !important;
+    padding:4px 0 !important;
+    color:#171717 !important;
+    font-weight:900 !important;
+  }
+
+  #auth-btns .register-btn{
+    height:34px !important;
+    padding:0 12px !important;
+    border-radius:7px !important;
+    font-size:13px !important;
+    background:#0F5E8C !important;
+    color:#fff !important;
+  }
+
+  /* 顶部导航第二行：只显示短中文，避免溢出 */
+  .nc{
+    order:3 !important;
+    width:100% !important;
+    margin-top:7px !important;
+    display:flex !important;
+    justify-content:space-between !important;
+    align-items:center !important;
+    overflow:hidden !important;
+    gap:0 !important;
+    padding:0 !important;
+  }
+
+  .nl{
+    font-size:0 !important;
+    padding:0 !important;
+    white-space:nowrap !important;
+  }
+
+  .nl::after{
+    display:none !important;
+  }
+
+  .nl[data-zh="主页 / Home"]::before{
+    content:"首页";
+    font-size:13px;
+    font-weight:900;
+  }
+
+  .nl[data-zh="课程 / Cursussen"]::before{
+    content:"课程";
+    font-size:13px;
+    font-weight:900;
+  }
+
+  .nl[data-zh="书店 / Winkel"]::before{
+    content:"书店";
+    font-size:13px;
+    font-weight:900;
+  }
+
+  .nl[data-zh="关于 / Over ons"]::before{
+    content:"关于";
+    font-size:13px;
+    font-weight:900;
+  }
+
+  .nl[data-zh="联系 / Contact"]::before{
+    content:"联系";
+    font-size:13px;
+    font-weight:900;
+  }
+
+  /* 上新条位置跟随顶部高度 */
+  .news-ticker{
+    top:72px !important;
+  }
+} 
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -5035,10 +5252,13 @@ button,input,label{
     <button class="nl" onclick="nav('contact')" data-zh="联系 / Contact" data-nl="联系 / Contact">联系 / Contact</button>
   </div>
 <div class="nr">
-  <select class="lang-select" id="lang-select" onchange="setLang(this.value,this)">
-    <option value="zh">中文</option>
-    <option value="nl">NL</option>
-  </select>
+  <div class="language-tool">
+    <span class="language-icon">🌐</span>
+    <select class="lang-select" id="lang-select" onchange="setLang(this.value,this)">
+      <option value="zh">中文</option>
+      <option value="nl">NL</option>
+    </select>
+  </div>
 
   <span id="auth-btns" class="auth-actions">
     <button class="login-link" onclick="nav('login')" data-zh="登录" data-nl="Inloggen">登录</button>
@@ -5046,9 +5266,11 @@ button,input,label{
   </span>
 
   <span id="user-btns" class="auth-actions" style="display:none">
-    <button class="login-link" onclick="nav('dashboard')" id="ulabel">我的课程</button>
-    <button class="register-btn" onclick="doLogout()" data-zh="退出" data-nl="Uitloggen">退出</button>
+    <button class="login-link account-link" onclick="nav('dashboard')" id="ulabel" aria-label="我的课程">
+      我的课程
+    </button>
   </span>
+</div>
 </div>
   
 </nav>
@@ -8033,9 +8255,12 @@ function rDash(){
   document.getElementById('dname').textContent=USER.nm;
 
   document.getElementById('acct').innerHTML=
-    'Email: '+USER.em+
-    '<br>WeChat: '+(USER.wc||'—')+
-    '<br>'+(ti?'已购课程':'Cursussen')+': '+(USER.cs||[]).length;
+  'Email: '+USER.em+
+  '<br>WeChat: '+(USER.wc||'—')+
+  '<br>'+(ti?'已购课程':'Cursussen')+': '+(USER.cs||[]).length+
+  '<br><button class="dashboard-logout-btn" onclick="doLogout()">'+
+    (ti?'退出登录':'Uitloggen')+
+  '</button>';
 
   var ow=USER.cs||[];
   var cl=document.getElementById('my-courses');
