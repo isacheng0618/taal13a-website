@@ -4801,6 +4801,121 @@ button,input,label{
     border-radius:7px !important;
   }
 }
+
+ /* === FINAL NEWS TICKER: centered premium product spotlight === */
+
+.news-ticker{
+  height:34px !important;
+  background:#FCF8D8 !important;
+  border-bottom:1px solid rgba(228,215,198,.85) !important;
+  overflow:hidden !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  position:sticky !important;
+  top:76px !important;
+  z-index:90 !important;
+}
+
+.news-track{
+  animation:none !important;
+  padding-left:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:0 !important;
+  width:100% !important;
+  height:100% !important;
+  white-space:nowrap !important;
+  transform:none !important;
+  font-size:13px !important;
+  font-weight:850 !important;
+  color:#4E4136 !important;
+}
+
+.news-track:hover{
+  animation-play-state:running !important;
+}
+
+.news-item.news-single{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+  padding:0 16px !important;
+  height:100% !important;
+  color:#4E4136 !important;
+  background:transparent !important;
+  border-radius:0 !important;
+  cursor:pointer !important;
+  max-width:100% !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+
+.news-item.news-single::after{
+  display:none !important;
+  content:none !important;
+}
+
+.news-item.news-single:hover{
+  color:#0B486D !important;
+  background:rgba(255,255,255,.22) !important;
+  text-decoration:none !important;
+}
+
+.news-dot{
+  display:none !important;
+}
+
+.news-label{
+  flex:0 0 auto;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.08em;
+  color:#0F5E8C;
+  padding:3px 8px;
+  border:1px solid rgba(15,94,140,.18);
+  background:rgba(255,255,255,.42);
+}
+
+.news-title{
+  display:inline-block;
+  max-width:70vw;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:13px;
+  font-weight:900;
+  color:#4E4136;
+}
+
+/* 手机端更干净 */
+@media(max-width:700px){
+  .news-ticker{
+    top:74px !important;
+    height:28px !important;
+  }
+
+  .news-track{
+    font-size:12px !important;
+  }
+
+  .news-item.news-single{
+    gap:7px !important;
+    padding:0 12px !important;
+  }
+
+  .news-label{
+    font-size:10px !important;
+    padding:2px 6px !important;
+  }
+
+  .news-title{
+    max-width:64vw !important;
+    font-size:12px !important;
+  }
+} 
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -4858,10 +4973,12 @@ button,input,label{
       <p class="hsub">
   从零基础到考试备考，用中文讲清重点，帮你高效备考，让荷兰语真正用起来
 </p>
-      <div class="hbtns">
-  <button class="hb1" onclick="showPage('courses')">查看适合我的课程 →</button>
-  <button class="hb2" onclick="showPage('shop')">📚 获取学习资料 →</button>
+      
+<div class="hbtns">
+  <button class="hb1" onclick="scrollToHomeCourses()">查看适合我的课程 →</button>
+  <button class="hb2" onclick="nav('shop')">📚 获取学习资料 →</button>
 </div>
+      
       <div class="hstats">
         <div><div class="hn">100+</div><div class="hl" data-zh="累计学员" data-nl="Studenten">累计学员</div></div>
         <div><div class="hn">95%</div><div class="hl" data-zh="平均通过率" data-nl="Slagingspercentage">平均通过率</div></div>
@@ -4917,9 +5034,10 @@ button,input,label{
   </div>
 </div>
   
-  <div class="bg-w"><div class="sec">
-    <div class="shead">
-      <div class="eye" data-zh="选择您的课程" data-nl="KIES UW CURSUS">选择您的课程</div>
+<div class="bg-w" id="home-course-section"><div class="sec">
+  <div class="shead">
+    <div class="eye" data-zh="选择您的课程" data-nl="KIES UW CURSUS">选择您的课程</div>
+      
       <h2 class="stit" data-zh="从 E-learning 到小班课，一站式学习" data-nl="Van e-learning tot groepsles">从 E-learning 到小班课，一站式学习</h2>
       <p class="ssub" data-zh="立即购买 E-learning，或加入定期小班获得互动体验" data-nl="Begin direct met e-learning of sluit aan bij een groepsles">立即购买 E-learning，或加入定期小班获得互动体验</p>
     </div>
@@ -7989,6 +8107,36 @@ function isPasswordRecoveryUrl(){
     hash.indexOf('refresh_token=') >= 0
   );
 } 
+
+function scrollToHomeCourses(){
+  var section = document.getElementById('home-course-section');
+
+  if(!section){
+    nav('overview');
+    return;
+  }
+
+  if(!document.getElementById('pg-home').classList.contains('on')){
+    nav('home', {push:false});
+
+    setTimeout(function(){
+      var target = document.getElementById('home-course-section');
+      if(target){
+        target.scrollIntoView({
+          behavior:'smooth',
+          block:'start'
+        });
+      }
+    }, 120);
+
+    return;
+  }
+
+  section.scrollIntoView({
+    behavior:'smooth',
+    block:'start'
+  });
+}
   
 function nav(id,opt){
   opt=opt||{};
@@ -8060,22 +8208,58 @@ function setLang(l,btn){
   
 function faqT(el){var a=el.nextElementSibling,ic=el.querySelector('.fic');a.classList.toggle('on');ic.textContent=a.classList.contains('on')?'−':'+';}
 
+var tickerIndex = 0;
+var tickerTimer = null;
+
+function getTickerProducts(){
+  return PRODUCTS.slice().filter(function(p){
+    return p.stock !== false;
+  });
+}
+
 function updNewsTicker(){
-  var el=document.getElementById('news-track');
+  var el = document.getElementById('news-track');
   if(!el)return;
 
-  var ti=t();
+  var ti = t();
+  var items = getTickerProducts();
 
-  el.innerHTML=PRODUCTS.map(function(p){
-    var prefix = p.free
-      ? (ti ? '🎁 免费 · ' : '🎁 Gratis · ')
-      : '';
+  if(!items.length){
+    el.innerHTML = '';
+    return;
+  }
 
-    return '<span class="news-item '+(p.free?'news-free':'')+'" onclick="oProduct(\''+p.id+'\')">'+
-      '<span class="news-dot"></span>'+
-      prefix+(ti?p.zn:p.nn)+
+  if(tickerIndex >= items.length){
+    tickerIndex = 0;
+  }
+
+  var p = items[tickerIndex];
+
+  var label = p.free
+    ? (ti ? '免费领取' : 'Gratis')
+    : (p.badge || (ti ? '新资料' : 'Nieuw'));
+
+  el.innerHTML =
+    '<span class="news-item news-single" onclick="oProduct(\''+p.id+'\')">'+
+      '<span class="news-label">'+label+'</span>'+
+      '<span class="news-title">'+(ti ? p.zn : p.nn)+'</span>'+
     '</span>';
-  }).join('');
+
+  startTickerRotation();
+}
+
+function startTickerRotation(){
+  if(tickerTimer){
+    clearInterval(tickerTimer);
+  }
+
+  tickerTimer = setInterval(function(){
+    var items = getTickerProducts();
+    if(!items.length)return;
+
+    tickerIndex = (tickerIndex + 1) % items.length;
+    updNewsTicker();
+  }, 4500);
 }
 
 (async function(){
