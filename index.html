@@ -7159,12 +7159,20 @@ button,input,label{
 
 .about-blue-blob{
   position:absolute;
-  width:520px;
-  height:430px;
-  right:8%;
-  bottom:0;
+  width:560px;
+  height:420px;
+  right:4%;
+  bottom:8px;
   background:linear-gradient(135deg,#EAF4F8 0%,#D7E8F2 100%);
-  border-radius:48% 52% 46% 54% / 52% 44% 56% 48%;
+  clip-path:polygon(
+    16% 18%,
+    82% 0%,
+    100% 42%,
+    82% 100%,
+    22% 92%,
+    0% 52%
+  );
+  border-radius:0;
   z-index:0;
 }
 
@@ -7182,12 +7190,12 @@ button,input,label{
 .about-portrait{
   position:relative;
   z-index:2;
-  width:min(430px,78%);
-  max-height:560px;
+  width:min(500px,86%);
+  max-height:540px;
   object-fit:contain;
   object-position:center bottom;
-  border-radius:0;
   filter:saturate(.96) contrast(1.04);
+  transform:translateX(-28px);
   box-shadow:none;
 }
 
@@ -7291,15 +7299,26 @@ button,input,label{
     align-items:flex-end;
   }
 
+ @media(max-width:700px){
   .about-blue-blob{
-    width:290px;
-    height:250px;
-    right:auto;
+    width:310px;
+    height:260px;
     left:50%;
+    right:auto;
     bottom:0;
     transform:translateX(-50%);
     background:linear-gradient(135deg,#EAF4F8 0%,#D7E8F2 100%);
+    clip-path:polygon(
+      14% 20%,
+      82% 0%,
+      100% 46%,
+      78% 100%,
+      20% 90%,
+      0% 50%
+    );
+    border-radius:0;
   }
+}
 
   .about-dot-grid{
     right:2px;
@@ -7309,11 +7328,13 @@ button,input,label{
     background-size:12px 12px;
   }
 
- .about-portrait{
-  width:82%;
-  max-height:335px;
-  object-fit:contain;
-  object-position:center bottom;
+  .about-portrait{
+    width:90%;
+    max-height:320px;
+    object-fit:contain;
+    object-position:center bottom;
+    transform:translateY(-8px);
+  }
 }
 
   .about-bio-section{
