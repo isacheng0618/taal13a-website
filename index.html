@@ -7362,6 +7362,142 @@ button,input,label{
     font-weight:600;
   }
 }
+
+
+ /* === ABOUT PAGE FINAL FIX 2026-06-06 === */
+/* 修复手机端蓝色块变方、多边形；调整人物位置；调整第一个引号位置 */
+
+/* 桌面端：第一个引号稍微往左 */
+.about-quote-mark{
+  transform:translateX(-24px) !important;
+}
+
+/* 桌面端：保持蓝色背景为不规则椭圆 */
+.about-blue-blob{
+  clip-path:none !important;
+  border-radius:48% 52% 46% 54% / 52% 44% 56% 48% !important;
+}
+
+/* 手机端最终覆盖 */
+@media(max-width:700px){
+
+  .about-editorial-hero{
+    position:relative !important;
+    display:block !important;
+    min-height:760px !important;
+    padding:46px 24px 0 !important;
+    background:#FFFDF8 !important;
+    overflow:hidden !important;
+  }
+
+  .about-quote{
+    position:relative !important;
+    z-index:4 !important;
+    width:86% !important;
+    max-width:86% !important;
+  }
+
+  .about-quote-mark{
+    font-size:66px !important;
+    margin-bottom:12px !important;
+    transform:translateX(-24px) !important;
+  }
+
+  .about-quote h1{
+    font-size:28px !important;
+    line-height:1.52 !important;
+    letter-spacing:-.035em !important;
+  }
+
+  .about-small-line{
+    width:32px !important;
+    height:2px !important;
+    margin:24px 0 16px !important;
+  }
+
+  .about-quote p{
+    font-size:14px !important;
+  }
+
+  .about-portrait-wrap{
+    position:absolute !important;
+    right:-34px !important;
+    top:355px !important;
+    width:68% !important;
+    min-height:390px !important;
+    margin:0 !important;
+    display:flex !important;
+    align-items:flex-end !important;
+    justify-content:center !important;
+    z-index:2 !important;
+  }
+
+  .about-blue-blob{
+    position:absolute !important;
+    width:370px !important;
+    height:285px !important;
+    left:auto !important;
+    right:-42px !important;
+    bottom:18px !important;
+    transform:none !important;
+    background:linear-gradient(135deg,#EAF4F8 0%,#D7E8F2 100%) !important;
+    clip-path:none !important;
+    border-radius:54% 46% 52% 48% / 48% 56% 44% 52% !important;
+    z-index:0 !important;
+  }
+
+  .about-dot-grid{
+    position:absolute !important;
+    right:2px !important;
+    bottom:46px !important;
+    width:88px !important;
+    height:96px !important;
+    background-size:12px 12px !important;
+    z-index:1 !important;
+  }
+
+  .about-portrait{
+    position:relative !important;
+    z-index:2 !important;
+    width:118% !important;
+    max-height:405px !important;
+    object-fit:contain !important;
+    object-position:center bottom !important;
+    transform:none !important;
+  }
+
+  .about-bio-section{
+    padding:48px 24px 70px !important;
+    background:#FFFFFF !important;
+  }
+
+  .about-bio-inner{
+    max-width:none !important;
+  }
+
+  .about-bio-label{
+    font-size:11px !important;
+    margin-bottom:14px !important;
+  }
+
+  .about-bio-inner h2{
+    font-size:28px !important;
+    line-height:1.25 !important;
+    margin-bottom:24px !important;
+  }
+
+  .about-bio-inner h2::after{
+    width:30px !important;
+    height:2px !important;
+    margin-top:14px !important;
+  }
+
+  .about-bio-text{
+    font-size:14.5px !important;
+    line-height:1.9 !important;
+    font-weight:600 !important;
+  }
+} 
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
