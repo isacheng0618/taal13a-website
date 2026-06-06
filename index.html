@@ -7498,6 +7498,155 @@ button,input,label{
     font-weight:600 !important;
   }
 } 
+
+/* === ABOUT MOBILE CENTER PORTRAIT FIX === */
+/* 手机端：人物恢复到 quote 下方居中，避免右下角被浏览器底栏挡住 */
+
+@media(max-width:700px){
+
+  .about-editorial-hero{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    min-height:auto !important;
+    padding:46px 24px 0 !important;
+    overflow:hidden !important;
+  }
+
+  .about-quote{
+    width:100% !important;
+    max-width:100% !important;
+    z-index:4 !important;
+  }
+
+  .about-portrait-wrap{
+    position:relative !important;
+    top:auto !important;
+    right:auto !important;
+    left:auto !important;
+    width:100% !important;
+    min-height:390px !important;
+    margin:18px auto 0 !important;
+    display:flex !important;
+    align-items:flex-end !important;
+    justify-content:center !important;
+    z-index:2 !important;
+  }
+
+  .about-blue-blob{
+    position:absolute !important;
+    width:360px !important;
+    height:275px !important;
+    left:50% !important;
+    right:auto !important;
+    bottom:26px !important;
+    transform:translateX(-50%) !important;
+    background:linear-gradient(135deg,#EAF4F8 0%,#D7E8F2 100%) !important;
+    clip-path:none !important;
+    border-radius:54% 46% 52% 48% / 48% 56% 44% 52% !important;
+    z-index:0 !important;
+  }
+
+  .about-dot-grid{
+    position:absolute !important;
+    right:18px !important;
+    bottom:50px !important;
+    width:88px !important;
+    height:96px !important;
+    background-size:12px 12px !important;
+    z-index:1 !important;
+  }
+
+  .about-portrait{
+    position:relative !important;
+    z-index:2 !important;
+    width:88% !important;
+    max-height:390px !important;
+    object-fit:contain !important;
+    object-position:center bottom !important;
+    transform:none !important;
+  }
+}
+  
+/* === ABOUT PAGE CONTACT CTA === */
+/* About 页面底部轻 CTA：希望和我们取得联系？联系我们 */
+
+.about-contact-cta{
+  background:#FFFFFF;
+  padding:0 7vw 90px;
+}
+
+.about-contact-inner{
+  max-width:760px;
+  margin:0 auto;
+  padding-top:34px;
+  border-top:1px solid #E6DED2;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  color:#686868;
+  font-size:16px;
+  line-height:1.6;
+  font-weight:650;
+}
+
+.about-contact-link{
+  border:none;
+  background:transparent;
+  color:#171717;
+  font-family:inherit;
+  font-size:16px;
+  font-weight:950;
+  padding:6px 2px 7px;
+  cursor:pointer;
+  position:relative;
+  white-space:nowrap;
+}
+
+.about-contact-link::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:3px;
+  background:#F5C443;
+  transition:width .18s ease, background .18s ease;
+}
+
+.about-contact-link:hover{
+  color:#0F5E8C;
+}
+
+.about-contact-link:hover::after{
+  width:118%;
+  background:#0F5E8C;
+}
+
+/* 手机端 */
+@media(max-width:700px){
+  .about-contact-cta{
+    padding:0 24px 70px;
+    background:#FFFFFF;
+  }
+
+  .about-contact-inner{
+    max-width:none;
+    padding-top:28px;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:flex-start;
+    gap:12px;
+    font-size:14.5px;
+    line-height:1.7;
+  }
+
+  .about-contact-link{
+    font-size:15px;
+    padding-left:0;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -8084,6 +8233,24 @@ Sinds 2022 deelt Isa online Nederlandse taallessen. Inmiddels heeft zij meer dan
 
     </div>
 
+    </section>
+
+  <section class="about-contact-cta">
+    <div class="about-contact-inner">
+      <span 
+        data-zh="希望和我们取得联系？"
+        data-nl="Wilt u contact met ons opnemen?">
+        希望和我们取得联系？
+      </span>
+
+      <button 
+        class="about-contact-link"
+        onclick="nav('contact')"
+        data-zh="联系我们"
+        data-nl="Neem contact op">
+        联系我们
+      </button>
+    </div>
   </section>
 
 </div>
