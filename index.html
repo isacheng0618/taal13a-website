@@ -7184,10 +7184,10 @@ button,input,label{
   z-index:2;
   width:min(430px,78%);
   max-height:560px;
-  object-fit:cover;
-  object-position:center 28%;
+  object-fit:contain;
+  object-position:center bottom;
   border-radius:0;
-  filter:saturate(.92) contrast(1.02);
+  filter:saturate(.96) contrast(1.04);
   box-shadow:none;
 }
 
@@ -7309,12 +7309,12 @@ button,input,label{
     background-size:12px 12px;
   }
 
-  .about-portrait{
-    width:78%;
-    max-height:335px;
-    object-fit:cover;
-    object-position:center 20%;
-  }
+ .about-portrait{
+  width:82%;
+  max-height:335px;
+  object-fit:contain;
+  object-position:center bottom;
+}
 
   .about-bio-section{
     padding:48px 24px 70px;
@@ -7887,7 +7887,7 @@ button,input,label{
     <div class="about-portrait-wrap">
       <div class="about-blue-blob"></div>
       <div class="about-dot-grid"></div>
-      <img src="./images/isa-about.jpg?v=1" alt="Isa 撒老师" class="about-portrait">
+      <img src="./images/isa-about-cutout.png?v=1" alt="Isa 撒老师" class="about-portrait">
     </div>
 
   </section>
