@@ -8850,7 +8850,7 @@ var PRODUCTS=[
   old:null,
   badge:'实体商品',
   stock:true
-}
+},
   
   {
   id:'spreken_sentences_300_pdf',
@@ -9896,10 +9896,12 @@ function cartCheckout(){
   closeCart();
   nav('checkout');
 }
-function rCheckout(){
+
+ function rCheckout(){
   var ti=t();
   var body=document.getElementById('checkout-body');
   var hasPhysical = cartHasPhysicalProduct();
+
   if(!body)return;
 
   if(!CART.length){
@@ -9947,6 +9949,49 @@ function rCheckout(){
 
   var saveTotal=oldTotal-total;
 
+  var shippingHtml = hasPhysical
+    ? '<div class="fc">'+
+        '<div class="fct">'+(ti?'收货信息':'Verzendgegevens')+'</div>'+
+        '<div class="form-hint">'+
+          (ti
+            ? '购物车中包含实体商品，请填写准确收货信息。我们会根据此信息安排发货。'
+            : 'Uw winkelwagen bevat een fysiek product. Vul uw verzendgegevens correct in.'
+          )+
+        '</div>'+
+
+        '<div class="fr">'+
+          '<label>'+(ti?'收件人姓名':'Naam ontvanger')+'</label>'+
+          '<input type="text" id="ship-name" placeholder="'+(ti?'收件人姓名':'Naam ontvanger')+'">'+
+        '</div>'+
+
+        '<div class="fr">'+
+          '<label>'+(ti?'街道和门牌号':'Straat en huisnummer')+'</label>'+
+          '<input type="text" id="ship-address" placeholder="'+(ti?'例如：Coolsingel 1':'Bijv. Coolsingel 1')+'">'+
+        '</div>'+
+
+        '<div class="fr2">'+
+          '<div>'+
+            '<label>'+(ti?'邮编':'Postcode')+'</label>'+
+            '<input type="text" id="ship-postcode" placeholder="3011 AA">'+
+          '</div>'+
+          '<div>'+
+            '<label>'+(ti?'城市':'Plaats')+'</label>'+
+            '<input type="text" id="ship-city" placeholder="Rotterdam">'+
+          '</div>'+
+        '</div>'+
+
+        '<div class="fr">'+
+          '<label>'+(ti?'国家':'Land')+'</label>'+
+          '<input type="text" id="ship-country" value="Nederland" placeholder="Nederland">'+
+        '</div>'+
+
+        '<div class="fr">'+
+          '<label>'+(ti?'电话 / 微信补充联系方式（选填）':'Telefoon / WeChat optioneel')+'</label>'+
+          '<input type="text" id="ship-contact" placeholder="'+(ti?'方便发货问题联系':'Voor vragen over verzending')+'">'+
+        '</div>'+
+      '</div>'
+    : '';
+
   body.innerHTML=
     '<div>'+
       '<div class="fc">'+
@@ -9957,44 +10002,6 @@ function rCheckout(){
             : 'Registreer of log eerst in voordat u koopt. Uw aankoopgeschiedenis en downloadtoegang voor digitale bestanden worden aan uw account gekoppeld en verschijnen in uw dashboard.'
           )+
         '</div>'+
-
-    var shippingHtml = hasPhysical
-  ? '<div class="fc">'+
-      '<div class="fct">'+(ti?'收货信息':'Verzendgegevens')+'</div>'+
-      '<div class="form-hint">'+
-        (ti
-          ? '购物车中包含实体商品，请填写准确收货信息。我们会根据此信息安排发货。'
-          : 'Uw winkelwagen bevat een fysiek product. Vul uw verzendgegevens correct in.'
-        )+
-      '</div>'+
-
-      '<div class="fr">'+
-        '<label>'+(ti?'收件人姓名':'Naam ontvanger')+'</label>'+
-        '<input type="text" id="ship-name" placeholder="'+(ti?'收件人姓名':'Naam ontvanger')+'">'+
-      '</div>'+
-
-      '<div class="fr">'+
-        '<label>'+(ti?'街道和门牌号':'Straat en huisnummer')+'</label>'+
-        '<input type="text" id="ship-address" placeholder="'+(ti?'例如：Coolsingel 1':'Bijv. Coolsingel 1')+'">'+
-      '</div>'+
-
-      '<div class="fr2">'+
-        '<div>'+
-          '<label>'+(ti?'邮编':'Postcode')+'</label>'+
-          '<input type="text" id="ship-postcode" placeholder="3011 AA">'+
-        '</div>'+
-        '<div>'+
-          '<label>'+(ti?'城市':'Plaats')+'</label>'+
-          '<input type="text" id="ship-city" placeholder="Rotterdam">'+
-        '</div>'+
-      '</div>'+
-
-      '<div class="fr">'+
-        '<label>'+(ti?'电话 / 微信补充联系方式（选填）':'Telefoon / WeChat optioneel')+'</label>'+
-        '<input type="text" id="ship-contact" placeholder="'+(ti?'方便发货问题联系':'Voor vragen over verzending')+'">'+
-      '</div>'+
-    '</div>'
-  : '';
 
         '<div class="fr2">'+
           '<div>'+
@@ -10016,13 +10023,19 @@ function rCheckout(){
           '<label>'+(ti?'发票/备注（选填）':'Factuur/opmerking optioneel')+'</label>'+
           '<input type="text" id="ck-note" placeholder="'+(ti?'例如：需要公司发票':'Bijv. factuur nodig')+'">'+
         '</div>'+
+      '</div>'+
+
+      shippingHtml+
+
+      '<div class="fc">'+
+        '<div class="fct">'+(ti?'确认条款':'Voorwaarden bevestigen')+'</div>'+
 
         '<div class="chkbox">'+
           '<input type="checkbox" id="ck-terms">'+
           '<span>'+
             (ti?'我同意 ':'Ik ga akkoord met de ')+
             '<span class="legal-link" onclick="nav(\'terms\')">Terms & Conditions</span>'+
-            (ti?'，并确认数字产品付款后可即时交付。':' en begrijp dat digitale producten direct geleverd kunnen worden.')+
+            (ti?'。':'')+
           '</span>'+
         '</div>'+
 
@@ -10038,9 +10051,15 @@ function rCheckout(){
         '<button class="bpay" onclick="startMollieCheckout()">🔒 '+(ti?'继续付款':'Verder naar betaling')+' — '+fmtPrice(total)+'</button>'+
 
         '<div class="legal-note">'+
-          (ti
-            ? '付款将通过 Mollie 安全完成。付款成功后，已购商品会显示在个人主页「我的商品 / 下载」中。'
-            : 'De betaling wordt veilig verwerkt via Mollie. Na succesvolle betaling verschijnen uw aankopen in uw dashboard onder “Mijn producten / downloads”.'
+          (hasPhysical
+            ? (ti
+                ? '付款将通过 Mollie 安全完成。付款成功后，实体商品会进入待发货状态。'
+                : 'De betaling wordt veilig verwerkt via Mollie. Na betaling wordt het fysieke product klaargemaakt voor verzending.'
+              )
+            : (ti
+                ? '付款将通过 Mollie 安全完成。付款成功后，已购商品会显示在个人主页「我的商品 / 下载」中。'
+                : 'De betaling wordt veilig verwerkt via Mollie. Na succesvolle betaling verschijnen uw aankopen in uw dashboard onder “Mijn producten / downloads”.'
+              )
           )+
         '</div>'+
       '</div>'+
@@ -10069,8 +10088,8 @@ function rCheckout(){
         '</span>'+
       '</div>'+
     '</div>';
-}
-
+} 
+  
 async function startMollieCheckout(){
   var ti=t();
 if(!USER){
