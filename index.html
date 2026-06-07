@@ -9231,6 +9231,284 @@ button,input,label{
     font-size:14px !important;
   }
 }
+
+/* =====================================================
+   MOBILE SHOP HOTFIX 2026-06-07
+   修复手机端被桌面筛选样式误伤的问题
+===================================================== */
+
+@media(max-width:700px){
+
+  /* 1. 防止整个页面横向溢出 */
+  html,
+  body{
+    width:100% !important;
+    max-width:100% !important;
+    overflow-x:hidden !important;
+  }
+
+  #pg-shop{
+    width:100% !important;
+    max-width:100% !important;
+    overflow-x:hidden !important;
+  }
+
+  /* 2. 手机端标题恢复合理大小 */
+  #pg-shop .shop-page-hero{
+    padding:36px 24px 24px !important;
+  }
+
+  #pg-shop .shop-page-hero h1{
+    font-family:"Noto Serif SC","Playfair Display",serif !important;
+    font-size:36px !important;
+    line-height:1.18 !important;
+    font-weight:800 !important;
+    letter-spacing:-.055em !important;
+    margin:0 0 28px !important;
+    white-space:normal !important;
+  }
+
+  #pg-shop .shop-page-hero h1::after{
+    width:58px !important;
+    height:3px !important;
+    bottom:-13px !important;
+  }
+
+  #pg-shop .shop-page-hero p{
+    white-space:normal !important;
+    max-width:320px !important;
+    font-size:14px !important;
+    line-height:1.7 !important;
+    font-weight:650 !important;
+  }
+
+  /* 3. 手机端顶部工具栏：只保留“筛选”和一个排序 */
+  #pg-shop .shop-top-row{
+    display:block !important;
+    margin:0 0 20px !important;
+    width:100% !important;
+    max-width:100% !important;
+  }
+
+  /* 隐藏电脑版筛选 */
+  #pg-shop .shop-filter-desktop{
+    display:none !important;
+  }
+
+  /* 手机端不要显示右侧那组“共10件产品 + 排序” */
+  #pg-shop .shop-count-sort{
+    display:none !important;
+  }
+
+  /* 只显示手机工具栏 */
+  #pg-shop .shop-mobile-tools{
+    display:flex !important;
+    width:100% !important;
+    max-width:100% !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:12px !important;
+    margin:0 0 18px !important;
+  }
+
+  /* 筛选按钮：扁平 */
+  #pg-shop .shop-mobile-filter-btn{
+    width:auto !important;
+    min-width:74px !important;
+    height:42px !important;
+    padding:0 16px !important;
+    border:1px solid #D8D8D5 !important;
+    background:#FAFAF8 !important;
+    color:#111 !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+    font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+    font-size:14px !important;
+    font-weight:900 !important;
+    cursor:pointer !important;
+  }
+
+  /* 手机端排序：只保留一个，不要太宽 */
+  #pg-shop .shop-mobile-tools .shop-sort-select{
+    display:block !important;
+    width:132px !important;
+    min-width:132px !important;
+    max-width:132px !important;
+    height:42px !important;
+    border:1px solid #D8D8D5 !important;
+    background:#FAFAF8 !important;
+    color:#111 !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+    outline:none !important;
+    padding:0 10px !important;
+    font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+    font-size:13px !important;
+    font-weight:900 !important;
+  }
+
+  /* 4. 手机端内容容器 */
+  #pg-shop .shop-page-content{
+    width:100% !important;
+    max-width:100% !important;
+    padding:0 16px 42px !important;
+    overflow:hidden !important;
+  }
+
+  /* 5. 商品网格恢复两列，不溢出 */
+  #pg-shop .shop-grid{
+    width:100% !important;
+    max-width:100% !important;
+    display:grid !important;
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+    gap:30px 16px !important;
+    overflow:visible !important;
+  }
+
+  #pg-shop .scard{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    overflow:visible !important;
+  }
+
+  #pg-shop .scard-img{
+    width:100% !important;
+    max-width:100% !important;
+    aspect-ratio:4 / 5 !important;
+    height:auto !important;
+    margin-bottom:9px !important;
+  }
+
+  #pg-shop .scard-img img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:contain !important;
+  }
+
+  #pg-shop .scard-name{
+    font-size:13.5px !important;
+    line-height:1.28 !important;
+    margin-bottom:8px !important;
+  }
+
+  #pg-shop .scard-price{
+    font-size:14.5px !important;
+  }
+
+  /* 6. 手机端筛选抽屉：底部弹出，不要右侧抽屉 */
+  #pg-shop .shop-filter-bar{
+    position:fixed !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:0 !important;
+    top:auto !important;
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    max-height:78vh !important;
+    z-index:260 !important;
+
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:14px !important;
+
+    background:#FFFDF8 !important;
+    border:none !important;
+    border-top:1px solid #E6DED2 !important;
+    box-shadow:none !important;
+
+    padding:20px 20px 24px !important;
+    margin:0 !important;
+
+    transform:translateY(105%) !important;
+    transition:transform .22s ease !important;
+    overflow-y:auto !important;
+  }
+
+  #pg-shop .shop-filter-bar.open{
+    transform:translateY(0) !important;
+  }
+
+  #pg-shop .mobile-filter-backdrop{
+    display:none !important;
+    position:fixed !important;
+    inset:0 !important;
+    z-index:250 !important;
+    background:rgba(0,0,0,.28) !important;
+  }
+
+  #pg-shop .mobile-filter-backdrop.open{
+    display:block !important;
+  }
+
+  /* 7. 筛选弹层内部也扁平 */
+  #pg-shop .mobile-filter-title{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    font-family:"Noto Serif SC","Playfair Display",serif !important;
+    font-size:24px !important;
+    font-weight:800 !important;
+    color:#111 !important;
+    margin:0 0 6px !important;
+  }
+
+  #pg-shop .mobile-filter-close{
+    border:none !important;
+    background:transparent !important;
+    box-shadow:none !important;
+    color:#111 !important;
+    font-size:28px !important;
+    line-height:1 !important;
+    padding:0 !important;
+  }
+
+  #pg-shop .shop-filter-group select,
+  #pg-shop .shop-filter-bar select{
+    width:100% !important;
+    height:46px !important;
+    border:1px solid #D8D8D5 !important;
+    background:#FAFAF8 !important;
+    color:#111 !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+    outline:none !important;
+    padding:0 12px !important;
+    font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+    font-size:14px !important;
+    font-weight:850 !important;
+  }
+
+  #pg-shop .mobile-filter-actions{
+    display:grid !important;
+    grid-template-columns:1fr 1.4fr !important;
+    gap:12px !important;
+    margin-top:6px !important;
+  }
+
+  #pg-shop .mobile-filter-reset,
+  #pg-shop .mobile-filter-done{
+    height:46px !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+    font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+    font-size:14px !important;
+    font-weight:950 !important;
+  }
+
+  #pg-shop .mobile-filter-reset{
+    background:#FFFDF8 !important;
+    color:#111 !important;
+    border:1px solid #111 !important;
+  }
+
+  #pg-shop .mobile-filter-done{
+    background:#111 !important;
+    color:#fff !important;
+    border:1px solid #111 !important;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
