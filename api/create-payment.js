@@ -93,11 +93,16 @@ export default async function handler(req, res) {
       });
     }
 
-    if (!acceptedDigitalDelivery) {
-      return res.status(400).json({
-        error: 'Please accept the digital delivery consent.'
-      });
-    }
+    const hasDigitalProduct = items.some(item => {
+  const product = PRODUCTS.find(p => p.id === item.productId);
+  return product && product.format === 'pdf';
+});
+
+if (hasDigitalProduct && !acceptedDigitalDelivery) {
+  return res.status(400).json({
+    error: 'Please accept the digital delivery consent.'
+  });
+}
 
     const cleanItems = items
       .map((item) => ({
