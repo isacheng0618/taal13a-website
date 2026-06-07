@@ -8118,7 +8118,7 @@ button,input,label{
       </svg>
     </div>
     <div class="st2" data-zh="付款成功！" data-nl="Betaling geslaagd!">付款成功！</div>
-    <div class="sd" data-zh="你购买的材料可以在个人主页「我的商品 / 下载」里查看并下载。" data-nl="Uw gekochte materialen staan in uw dashboard onder “Mijn producten / downloads”.">
+    <div class="sd" data-zh="你购买的商品可以在个人主页「我的商品 / 订单」里查看或下载。" data-nl="Uw gekochte materialen staan in uw dashboard onder “Mijn producten / downloads”.">
       你购买的材料可以在个人主页「我的商品 / 下载」里查看并下载。
     </div>
     <button class="bf" style="max-width:220px;margin:0 auto" onclick="nav('dashboard')" data-zh="返回个人主页" data-nl="Naar dashboard">
@@ -8415,7 +8415,7 @@ Sinds 2022 deelt Isa online Nederlandse taallessen. Inmiddels heeft zij meer dan
   <div class="db">
     <div class="dcols">
       <div class="dcard"><div class="dch" data-zh="我的课程" data-nl="Mijn cursussen">我的课程</div><div id="my-courses"></div></div>
-      <div class="dcard"><div class="dch" data-zh="我的商品 / 下载" data-nl="Mijn producten / downloads">我的商品 / 下载</div><div id="my-products"></div></div>
+      <div class="dcard"><div class="dch" data-zh="我的商品 / 订单" data-nl="Mijn producten / bestellingen">我的商品 / 订单</div><div id="my-products"></div></div>
       <div class="dcard"><div class="dch" data-zh="账号信息" data-nl="Account">账号信息</div><div id="acct" style="font-size:12.5px;color:var(--ink3);line-height:2;font-weight:600"></div></div>
     </div>
   </div>
@@ -8823,6 +8823,34 @@ var PRODUCTS=[
   stock:true,
   filePath:'ebooks/modal-particles-100.pdf'
 },
+
+{
+  id:'dutch_sticker_pack_physical',
+  cat:'merch',
+  type:'merch',
+  level:'all-level',
+  goal:'daily',
+  format:'physical',
+  emoji:'🎁',
+  free:false,
+  must:false,
+  shipping:true,
+  img:'./images/dutch-sticker-pack-cover.png?v=1',
+  infoImg:'./images/dutch-sticker-pack-info.png?v=1',
+  pay:'',
+  zn:'Taal13a原创荷兰语贴纸',
+  nn:'Nederlandse stickers',
+  zd:'适合贴在笔记本、学习计划表和单词本上的荷兰语学习贴纸，让日常复习更有仪式感。',
+  nd:'Nederlandse leerstickers voor notitieboeken, planners en woordenschriften. Leuk voor dagelijks leren en herhalen.',
+  longZh:'这是一款 Taal13A 荷兰语学习实体周边产品。内容包含适合荷兰语学习者使用的短句、鼓励语和生活表达贴纸。适合贴在笔记本、单词本、学习计划表或学习角落里。<br><br>注意：这是实体商品，不是 PDF。下单时请填写准确收货信息。付款成功后，我们会根据订单信息安排发货。<br><br>目前建议仅限荷兰境内寄送。如需寄往其他国家，请先联系 Taal13A 确认。',
+  longNl:'Dit is een fysiek Taal13A-product met Nederlandse leerstickers. Geschikt voor notitieboeken, planners en dagelijks leren. Let op: dit is geen PDF, maar een fysiek product. Vul tijdens het afrekenen uw verzendgegevens correct in.',
+  tagsZh:['实体商品','学习贴纸','荷兰语周边'],
+  tagsNl:['Fysiek product','Leerstickers','Merchandise'],
+  pr:599,
+  old:null,
+  badge:'实体商品',
+  stock:true
+}
   
   {
   id:'spreken_sentences_300_pdf',
@@ -9326,6 +9354,24 @@ function getCartItemData(id){
   return null;
 }
 
+function isPhysicalProduct(p){
+  return p && (
+    p.format === 'physical' ||
+    p.type === 'merch' ||
+    p.shipping === true
+  );
+}
+
+function cartHasPhysicalProduct(){
+  return CART.some(function(ci){
+    var p = PRODUCTS.find(function(x){
+      return x.id === ci.id;
+    });
+
+    return isPhysicalProduct(p);
+  });
+}
+  
 function getDiscountPercent(p){
   if(!p || !p.old || !p.pr || p.old <= p.pr)return null;
   return Math.round((1 - p.pr / p.old) * 100);
@@ -9534,6 +9580,7 @@ function oProduct(pid){PDT=pid;nav('product',{pid:pid});}
 function rProduct(){
   var ti=t();
   var p=PRODUCTS.find(function(x){return x.id===PDT;});
+  var physical = isPhysicalProduct(p);
   var el=document.getElementById('product-detail');
   if(!el||!p)return;
   var el=document.getElementById('product-detail');if(!el||!p)return;
@@ -9605,12 +9652,22 @@ function rProduct(){
     )
   )+
 '</div>'+
+    
         '<div class="pd-warning">'+
-  (ti
-    ? '提示：这是电子书 PDF，不是纸质书。购买前请确认邮箱正确！'
-    : 'Let op: dit is een digitaal PDF-bestand, geen fysiek boek. Controleer uw e-mailadres goed!'
+  (physical
+    ? (
+      ti
+        ? '提示：这是实体商品。请在结算页填写准确收货信息。'
+        : 'Let op: dit is een fysiek product, geen PDF. Vul uw verzendgegevens correct in tijdens het afrekenen.'
+    )
+    : (
+      ti
+        ? '提示：这是电子书 PDF，不是纸质书。购买前请确认邮箱正确！'
+        : 'Let op: dit is een digitaal PDF-bestand, geen fysiek boek. Controleer uw e-mailadres goed!'
+    )
   )+
 '</div>'+
+    
         '<div class="pd-policy">'+
           '<details class="pd-acc" open><summary>'+(ti?'商品描述':'Productomschrijving')+'</summary><div>'+
   (ti
@@ -9842,6 +9899,7 @@ function cartCheckout(){
 function rCheckout(){
   var ti=t();
   var body=document.getElementById('checkout-body');
+  var hasPhysical = cartHasPhysicalProduct();
   if(!body)return;
 
   if(!CART.length){
@@ -9899,6 +9957,44 @@ function rCheckout(){
             : 'Registreer of log eerst in voordat u koopt. Uw aankoopgeschiedenis en downloadtoegang voor digitale bestanden worden aan uw account gekoppeld en verschijnen in uw dashboard.'
           )+
         '</div>'+
+
+    var shippingHtml = hasPhysical
+  ? '<div class="fc">'+
+      '<div class="fct">'+(ti?'收货信息':'Verzendgegevens')+'</div>'+
+      '<div class="form-hint">'+
+        (ti
+          ? '购物车中包含实体商品，请填写准确收货信息。我们会根据此信息安排发货。'
+          : 'Uw winkelwagen bevat een fysiek product. Vul uw verzendgegevens correct in.'
+        )+
+      '</div>'+
+
+      '<div class="fr">'+
+        '<label>'+(ti?'收件人姓名':'Naam ontvanger')+'</label>'+
+        '<input type="text" id="ship-name" placeholder="'+(ti?'收件人姓名':'Naam ontvanger')+'">'+
+      '</div>'+
+
+      '<div class="fr">'+
+        '<label>'+(ti?'街道和门牌号':'Straat en huisnummer')+'</label>'+
+        '<input type="text" id="ship-address" placeholder="'+(ti?'例如：Coolsingel 1':'Bijv. Coolsingel 1')+'">'+
+      '</div>'+
+
+      '<div class="fr2">'+
+        '<div>'+
+          '<label>'+(ti?'邮编':'Postcode')+'</label>'+
+          '<input type="text" id="ship-postcode" placeholder="3011 AA">'+
+        '</div>'+
+        '<div>'+
+          '<label>'+(ti?'城市':'Plaats')+'</label>'+
+          '<input type="text" id="ship-city" placeholder="Rotterdam">'+
+        '</div>'+
+      '</div>'+
+
+      '<div class="fr">'+
+        '<label>'+(ti?'电话 / 微信补充联系方式（选填）':'Telefoon / WeChat optioneel')+'</label>'+
+        '<input type="text" id="ship-contact" placeholder="'+(ti?'方便发货问题联系':'Voor vragen over verzending')+'">'+
+      '</div>'+
+    '</div>'
+  : '';
 
         '<div class="fr2">'+
           '<div>'+
@@ -9997,6 +10093,32 @@ if(!USER){
     return;
   }
 
+var hasPhysical = cartHasPhysicalProduct();
+var shipping = null;
+
+if(hasPhysical){
+  var shipName = document.getElementById('ship-name') ? document.getElementById('ship-name').value.trim() : '';
+  var shipAddress = document.getElementById('ship-address') ? document.getElementById('ship-address').value.trim() : '';
+  var shipPostcode = document.getElementById('ship-postcode') ? document.getElementById('ship-postcode').value.trim() : '';
+  var shipCity = document.getElementById('ship-city') ? document.getElementById('ship-city').value.trim() : '';
+  var shipCountry = document.getElementById('ship-country') ? document.getElementById('ship-country').value.trim() : '';
+  var shipContact = document.getElementById('ship-contact') ? document.getElementById('ship-contact').value.trim() : '';
+
+  if(!shipName || !shipAddress || !shipPostcode || !shipCity || !shipCountry){
+    alert(ti?'请填写完整收货信息。':'Vul alle verzendgegevens in.');
+    return;
+  }
+
+  shipping = {
+    name: shipName,
+    address: shipAddress,
+    postcode: shipPostcode,
+    city: shipCity,
+    country: shipCountry,
+    contact: shipContact
+  };
+}
+  
   if(!CART.length){
     alert(ti?'购物车为空。':'Uw winkelwagen is leeg.');
     return;
@@ -10015,14 +10137,16 @@ var items=CART.map(function(ci){
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        username:name,
-        email:email,
-        wechat:wechat,
-        note:note,
-        items:items,
-        acceptedTerms:true,
-        acceptedDigitalDelivery:true
-      })
+  username:name,
+  email:email,
+  wechat:wechat,
+  note:note,
+  items:items,
+  shipping:shipping,
+  hasPhysicalProduct:hasPhysical,
+  acceptedTerms:true,
+  acceptedDigitalDelivery:!hasPhysical
+})
     });
 
     var data=await response.json();
@@ -10858,17 +10982,34 @@ async function loadPurchases(){
     pl.innerHTML=
   ownedIds.map(function(pid){
     var p=PRODUCTS.find(function(x){return x.id===pid;});
+    var physical = isPhysicalProduct(p);
     var title=p ? (ti?p.zn:p.nn) : pid;
 
-    return '<div class="cai">'+
-      '<div class="cad"></div>'+
-      '<div class="cain">'+
-        '<div class="cal">'+title+'</div>'+
-        '<div class="cat2">'+(ti?'PDF 电子资料':'PDF digitaal product')+'</div>'+
-      '</div>'+
-      '<span class="cab">'+(ti?'已购':'Actief')+'</span>'+
-      '<span class="caw" onclick="downloadProduct(\''+pid+'\')">'+(ti?'下载':'Download')+'</span>'+
-    '</div>';
+    var physical = isPhysicalProduct(p);
+
+return '<div class="cai">'+
+  '<div class="cad"></div>'+
+  '<div class="cain">'+
+    '<div class="cal">'+title+'</div>'+
+    '<div class="cat2">'+
+      (physical
+        ? (ti?'实体商品':'Fysiek product')
+        : (ti?'PDF 电子资料':'PDF digitaal product')
+      )+
+    '</div>'+
+  '</div>'+
+  '<span class="cab">'+
+    (physical
+      ? (ti?'已购买':'Gekocht')
+      : (ti?'已购':'Actief')
+    )+
+  '</span>'+
+  (
+    physical
+      ? '<span class="caw" style="cursor:default;color:#686868">'+(ti?'等待发货':'Wordt verzonden')+'</span>'
+      : '<span class="caw" onclick="downloadProduct(\''+pid+'\')">'+(ti?'下载':'Download')+'</span>'
+  )+
+'</div>';
 
   }).join('')+
 
