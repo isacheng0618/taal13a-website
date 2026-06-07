@@ -8624,6 +8624,285 @@ button,input,label{
     margin:0 0 16px !important;
   }
 } 
+
+/* === SHOP HERO TITLE FINAL === */
+
+#pg-shop .shop-page-hero{
+  padding-top:64px !important;
+  padding-bottom:34px !important;
+}
+
+#pg-shop .shop-page-hero h1{
+  display:inline-block !important;
+  position:relative !important;
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+  font-size:48px !important;
+  line-height:1.08 !important;
+  font-weight:950 !important;
+  letter-spacing:-.055em !important;
+  color:#111 !important;
+  margin:0 0 28px !important;
+}
+
+#pg-shop .shop-page-hero h1::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-14px;
+  width:72px;
+  height:4px;
+  background:#F5C443;
+}
+
+#pg-shop .shop-page-hero p{
+  max-width:none !important;
+  width:100% !important;
+  white-space:nowrap !important;
+  font-size:17px !important;
+  line-height:1.6 !important;
+  color:#333 !important;
+  font-weight:650 !important;
+  margin:0 !important;
+}
+
+@media(max-width:700px){
+  #pg-shop .shop-page-hero{
+    padding:36px 18px 24px !important;
+  }
+
+  #pg-shop .shop-page-hero h1{
+    font-size:30px !important;
+    margin-bottom:24px !important;
+  }
+
+  #pg-shop .shop-page-hero h1::after{
+    bottom:-12px;
+    width:52px;
+    height:3px;
+  }
+
+  #pg-shop .shop-page-hero p{
+    white-space:normal !important;
+    max-width:320px !important;
+    font-size:13.5px !important;
+    line-height:1.65 !important;
+  }
+}
+
+ /* === SHOP FILTER: one filter button on desktop and mobile === */
+
+/* 隐藏电脑版四个下拉筛选 */
+#pg-shop .shop-filter-desktop{
+  display:none !important;
+}
+
+/* 顶部区域：左边筛选按钮，右边数量+排序 */
+#pg-shop .shop-top-row{
+  display:grid !important;
+  grid-template-columns:auto 1fr !important;
+  align-items:center !important;
+  gap:24px !important;
+  margin:0 0 34px !important;
+}
+
+/* 原 mobile tools 改成全端可见 */
+#pg-shop .shop-mobile-tools{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:12px !important;
+  margin:0 !important;
+}
+
+/* 电脑端 mobile tools 里面的排序隐藏，避免重复 */
+#pg-shop .shop-mobile-tools .shop-sort-select{
+  display:none !important;
+}
+
+/* 筛选按钮：扁平高级 */
+#pg-shop .shop-mobile-filter-btn{
+  height:44px !important;
+  border:1px solid #D8D8D5 !important;
+  background:#FAFAF8 !important;
+  color:#111 !important;
+  padding:0 18px !important;
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+  font-size:14px !important;
+  font-weight:850 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  cursor:pointer !important;
+}
+
+#pg-shop .shop-mobile-filter-btn:hover{
+  border-color:#111 !important;
+  background:#fff !important;
+}
+
+/* 右侧数量 + 排序靠右 */
+#pg-shop .shop-count-sort{
+  justify-self:end !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:22px !important;
+  color:#666 !important;
+  font-size:13px !important;
+  font-weight:750 !important;
+  white-space:nowrap !important;
+}
+
+/* 排序框保持扁平 */
+#pg-shop .shop-count-sort .shop-sort-select{
+  width:128px !important;
+  min-width:128px !important;
+  height:42px !important;
+  border:1px solid #D8D8D5 !important;
+  background:#FAFAF8 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  color:#222 !important;
+  font-size:13px !important;
+  font-weight:800 !important;
+}
+
+/* 桌面端筛选弹层：不要底部弹出，改右侧抽屉更高级 */
+@media(min-width:701px){
+  #pg-shop .shop-filter-bar{
+    position:fixed !important;
+    top:0 !important;
+    right:0 !important;
+    bottom:0 !important;
+    left:auto !important;
+    z-index:260 !important;
+    width:360px !important;
+    max-width:88vw !important;
+    height:100vh !important;
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    align-content:start !important;
+    gap:16px !important;
+    background:#FFFDF8 !important;
+    border-left:1px solid #E6DED2 !important;
+    border-top:none !important;
+    box-shadow:none !important;
+    padding:28px 26px !important;
+    margin:0 !important;
+    transform:translateX(105%) !important;
+    transition:transform .22s ease !important;
+    overflow-y:auto !important;
+  }
+
+  #pg-shop .shop-filter-bar.open{
+    transform:translateX(0) !important;
+  }
+
+  #pg-shop .mobile-filter-backdrop{
+    display:none !important;
+    position:fixed !important;
+    inset:0 !important;
+    z-index:250 !important;
+    background:rgba(0,0,0,.28) !important;
+  }
+
+  #pg-shop .mobile-filter-backdrop.open{
+    display:block !important;
+  }
+
+  #pg-shop .mobile-filter-title{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    font-size:20px !important;
+    font-weight:950 !important;
+    color:#171717 !important;
+    margin-bottom:8px !important;
+  }
+
+  #pg-shop .mobile-filter-close{
+    border:none !important;
+    background:transparent !important;
+    font-size:28px !important;
+    line-height:1 !important;
+    color:#171717 !important;
+    cursor:pointer !important;
+  }
+
+  #pg-shop .shop-filter-group select{
+    width:100% !important;
+    height:46px !important;
+    border:1px solid #D8D8D5 !important;
+    background:#FAFAF8 !important;
+    color:#222 !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+    outline:none !important;
+    padding:0 12px !important;
+    font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+    font-size:14px !important;
+    font-weight:800 !important;
+  }
+
+  #pg-shop .mobile-filter-actions{
+    display:grid !important;
+    grid-template-columns:1fr 1.4fr !important;
+    gap:12px !important;
+    margin-top:10px !important;
+  }
+
+  #pg-shop .mobile-filter-reset,
+  #pg-shop .mobile-filter-done{
+    height:46px !important;
+    border-radius:0 !important;
+    font-family:inherit !important;
+    font-size:14px !important;
+    font-weight:950 !important;
+    cursor:pointer !important;
+    box-shadow:none !important;
+  }
+
+  #pg-shop .mobile-filter-reset{
+    background:#fff !important;
+    color:#171717 !important;
+    border:1.5px solid #171717 !important;
+  }
+
+  #pg-shop .mobile-filter-done{
+    background:#E96F3C !important;
+    color:#fff !important;
+    border:1.5px solid #E96F3C !important;
+  }
+}
+
+/* 手机端保持现在的底部弹层 */
+@media(max-width:700px){
+  #pg-shop .shop-top-row{
+    display:block !important;
+    margin-bottom:18px !important;
+  }
+
+  #pg-shop .shop-mobile-tools{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:12px !important;
+    margin:0 0 16px !important;
+  }
+
+  #pg-shop .shop-mobile-tools .shop-sort-select{
+    display:block !important;
+  }
+
+  #pg-shop .shop-count-sort{
+    display:none !important;
+  }
+
+  #pg-shop .shop-mobile-filter-btn{
+    height:40px !important;
+    border-radius:0 !important;
+    padding:0 14px !important;
+    font-size:13px !important;
+  }
+} 
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -8995,7 +9274,7 @@ button,input,label{
   <section class="shop-page-hero">
     <div class="shop-page-inner">
       <div>
-        <h1 data-zh="荷兰语书店" data-nl="Nederlandse boekwinkel">荷兰语书店</h1>
+        <h1 data-zh="📚 Taal13A 书店" data-nl="📚 Taal13A Bookstore">📚 Taal13A 书店</h1>
         <p data-zh="学习资料、电子书与周边商品，适合日常学习、考试备考和课后复习。"
            data-nl="Leermateriaal, e-books en merchandise voor dagelijks leren, examenvoorbereiding en herhaling.">
           学习资料、电子书与周边商品，适合日常学习、考试备考和课后复习。
