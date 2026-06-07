@@ -8465,6 +8465,165 @@ button,input,label{
     font-size:11px !important;
   }
 }
+
+/* === FINAL FIX: desktop hide mobile filter drawer === */
+
+/* 电脑端：彻底隐藏手机筛选弹层 */
+@media(min-width:701px){
+  #pg-shop .shop-filter-bar,
+  #pg-shop .mobile-filter-backdrop,
+  #pg-shop .mobile-filter-title,
+  #pg-shop .mobile-filter-actions{
+    display:none !important;
+  }
+}
+
+/* 手机端：隐藏桌面筛选栏，只保留手机筛选按钮 */
+@media(max-width:700px){
+  #pg-shop .shop-filter-desktop{
+    display:none !important;
+  }
+
+  #pg-shop .shop-filter-bar{
+    display:grid !important;
+  }
+}
+
+/* === SHOP CLEAN FIX: hide bottom service bar === */
+
+#pg-shop .shop-bottom-service,
+#pg-shop .shop-footnote{
+  display:none !important;
+}
+
+ /* === SHOP FILTER FINAL: flat premium style === */
+
+#pg-shop .shop-top-row{
+  display:grid !important;
+  grid-template-columns:1fr auto !important;
+  align-items:center !important;
+  gap:28px !important;
+  margin:0 0 34px !important;
+}
+
+/* 桌面筛选栏：扁平，无卡片感 */
+#pg-shop .shop-filter-desktop{
+  display:grid !important;
+  grid-template-columns:repeat(4, minmax(150px, 1fr)) auto !important;
+  gap:14px !important;
+  align-items:center !important;
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+
+/* 下拉框：细边框、浅背景、无阴影 */
+#pg-shop .shop-filter-desktop select,
+#pg-shop .shop-sort-select{
+  height:44px !important;
+  border:1px solid #DAD8D2 !important;
+  background:#FAFAF8 !important;
+  color:#222 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  outline:none !important;
+  padding:0 14px !important;
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+  font-size:13px !important;
+  font-weight:800 !important;
+}
+
+/* focus 状态：只变深边框，不要发光 */
+#pg-shop .shop-filter-desktop select:focus,
+#pg-shop .shop-sort-select:focus{
+  border-color:#111 !important;
+  background:#fff !important;
+  box-shadow:none !important;
+}
+
+/* 重置筛选：文字按钮，不做实心按钮 */
+#pg-shop .shop-reset-text{
+  height:44px !important;
+  border:none !important;
+  background:transparent !important;
+  color:#777 !important;
+  box-shadow:none !important;
+  padding:0 4px !important;
+  font-family:inherit !important;
+  font-size:13px !important;
+  font-weight:850 !important;
+  cursor:pointer !important;
+  white-space:nowrap !important;
+}
+
+#pg-shop .shop-reset-text:hover{
+  color:#111 !important;
+  text-decoration:underline !important;
+}
+
+/* 商品数量和排序：轻一点 */
+#pg-shop .shop-count-sort{
+  display:flex !important;
+  align-items:center !important;
+  gap:22px !important;
+  color:#666 !important;
+  font-size:13px !important;
+  font-weight:750 !important;
+  white-space:nowrap !important;
+}
+
+#pg-shop .shop-count-sort label{
+  display:flex !important;
+  align-items:center !important;
+  gap:8px !important;
+  margin:0 !important;
+  color:#666 !important;
+  font-size:13px !important;
+  font-weight:750 !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+}
+
+/* 排序框稍微短一点 */
+#pg-shop .shop-count-sort .shop-sort-select{
+  width:128px !important;
+  min-width:128px !important;
+  height:42px !important;
+  background:#FAFAF8 !important;
+}
+
+/* 电脑端：彻底隐藏手机筛选弹层，避免重复出现 */
+@media(min-width:701px){
+  #pg-shop .shop-filter-bar,
+  #pg-shop .mobile-filter-backdrop,
+  #pg-shop .mobile-filter-title,
+  #pg-shop .mobile-filter-actions{
+    display:none !important;
+  }
+}
+
+/* 手机端：桌面筛选隐藏，只留手机筛选按钮 */
+@media(max-width:700px){
+  #pg-shop .shop-top-row{
+    display:block !important;
+    margin-bottom:18px !important;
+  }
+
+  #pg-shop .shop-filter-desktop,
+  #pg-shop .shop-count-sort{
+    display:none !important;
+  }
+
+  #pg-shop .shop-mobile-tools{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:12px !important;
+    margin:0 0 16px !important;
+  }
+} 
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
