@@ -9505,6 +9505,16 @@ function cartHasPhysicalProduct(){
     return isPhysicalProduct(p);
   });
 }
+
+function cartHasDigitalProduct(){
+  return CART.some(function(ci){
+    var p = PRODUCTS.find(function(x){
+      return x.id === ci.id;
+    });
+
+    return p && !isPhysicalProduct(p);
+  });
+}  
   
 function getDiscountPercent(p){
   if(!p || !p.old || !p.pr || p.old <= p.pr)return null;
@@ -10335,7 +10345,7 @@ var items=CART.map(function(ci){
   shipping:shipping,
   hasPhysicalProduct:hasPhysical,
   acceptedTerms:true,
-  acceptedDigitalDelivery:!hasPhysical
+  acceptedDigitalDelivery: cartHasDigitalProduct()
 })
     });
 
