@@ -7749,6 +7749,31 @@ button,input,label{
     transform:scale(1.05) !important;
   }
 }
+
+ /* Desktop / Mobile product gallery switch */
+.mobile-product-gallery{
+  display:none !important;
+}
+
+@media(max-width:850px){
+  #pg-product .desktop-book-gallery{
+    display:none !important;
+  }
+
+  #pg-product .mobile-product-gallery{
+    display:block !important;
+  }
+}
+
+@media(min-width:851px){
+  #pg-product .desktop-book-gallery{
+    display:block !important;
+  }
+
+  #pg-product .mobile-product-gallery{
+    display:none !important;
+  }
+} 
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -9739,7 +9764,7 @@ function rProduct(){
 
 var galleryHtml =
   '<div class="pd-gallery-wrap desktop-book-gallery">'+
-    '<div class="pd-main-book-shot" onclick="openProductGallery(0)">'+
+    '<div class="pd-main-book-shot" onclick="openProductGallery(productGalleryIndex)">'+
       '<img id="pd-main-gallery-img" src="'+galleryImages[0]+'" alt="'+(ti?p.zn:p.nn)+'">'+
       '<button class="pd-zoom-icon" type="button" onclick="event.stopPropagation();openProductGallery(productGalleryIndex)">⌕</button>'+
     '</div>'+
@@ -9751,52 +9776,31 @@ var galleryHtml =
         '</button>';
       }).join('')+
     '</div>'+
+  '</div>'+
+
+  '<div class="pd-gallery-wrap mobile-product-gallery">'+
+    '<div class="pd-gallery" id="product-gallery">'+
+      galleryImages.map(function(src,i){
+        return '<div class="pd-shot" onclick="openProductGallery('+i+')">'+
+          '<img src="'+src+'" alt="'+(ti?p.zn:p.nn)+'">'+
+        '</div>';
+      }).join('')+
+    '</div>'+
+
+    '<div class="pd-gallery-dots" id="product-gallery-dots">'+
+      galleryImages.map(function(src,i){
+        return '<button class="pd-gallery-dot '+(i===0?'active':'')+'" onclick="goProductGallerySlide('+i+')"></button>';
+      }).join('')+
+    '</div>'+
   '</div>';
   
   el.className='pd-wrap fashion';
   el.innerHTML='<button class="back-link" onclick="nav(\'shop\')">← '+(ti?'返回商店':'Terug naar winkel')+'</button>'+ 
-    '<div class="pd-card fashion">'+
-'<div class="pd-gallery-wrap">'+
-  '<div class="pd-gallery" id="product-gallery">'+
 
-    '<div class="pd-shot" onclick="openProductGallery(0)">'+
-      '<img src="'+p.img+'" alt="'+(ti?p.zn:p.nn)+'">'+
-    '</div>'+
-
-    '<div class="pd-shot" onclick="openProductGallery(1)">'+
-      '<img src="'+p.infoImg+'" alt="'+(ti?p.zn:p.nn)+' info">'+
-    '</div>'+
-
-    '<div class="pd-shot alt" onclick="openProductGallery(2)">'+
-      '<div class="pd-shot-card lightbox-card-content">'+
-        '<div>'+
-          '<div class="pd-shot-kicker">Delivery</div>'+
-          '<div class="pd-shot-title">'+(ti?'即时交付':'Direct geleverd')+'</div>'+
-        '</div>'+
-        '<div class="pd-shot-list">'+delivery+'</div>'+
-      '</div>'+
-    '</div>'+
-
-    '<div class="pd-shot alt" onclick="openProductGallery(3)">'+
-      '<div class="pd-shot-card lightbox-card-content">'+
-        '<div>'+
-          '<div class="pd-shot-kicker">Access</div>'+
-          '<div class="pd-shot-title">'+(ti?'个人主页下载':'Download in account')+'</div>'+
-        '</div>'+
-        '<div class="pd-shot-list">'+access+'</div>'+
-      '</div>'+
-    '</div>'+
-
-  '</div>'+
-
-  '<div class="pd-gallery-dots" id="product-gallery-dots">'+
-    '<button class="pd-gallery-dot active" onclick="goProductGallerySlide(0)"></button>'+
-    '<button class="pd-gallery-dot" onclick="goProductGallerySlide(1)"></button>'+
-    '<button class="pd-gallery-dot" onclick="goProductGallerySlide(2)"></button>'+
-    '<button class="pd-gallery-dot" onclick="goProductGallerySlide(3)"></button>'+
-  '</div>'+
-'</div>'+
-      '<div class="pd-info">'+
+'<div class="pd-card fashion">'+
+  galleryHtml+
+  '<div class="pd-info">'+
+    
         '<div class="pd-brand">Taal13A</div>'+ 
         '<h1>'+(ti?p.zn:p.nn)+'</h1>'+ 
         '<div class="pd-price">'+
@@ -9807,7 +9811,7 @@ var galleryHtml =
 '</div>'+
 
         '<div class="pd-desc">'+(ti?p.zd:p.nd)+'</div>'+ 
-  '<div class="pd-actions">'+
+
 '<div class="pd-actions">'+
   (isProductPurchased(p.id)
     ? '<button class="bpay" style="background:var(--grn);cursor:default">'+(ti?'已购买':'Gekocht')+'</button>'
