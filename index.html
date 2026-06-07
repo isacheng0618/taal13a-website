@@ -8903,6 +8903,334 @@ button,input,label{
     font-size:13px !important;
   }
 } 
+
+  /* =====================================================
+   SHOP FINAL POLISH 2026-06-07
+   修复：
+   1. 书店标题字体参考 About 页面
+   2. 筛选抽屉内部 select 去阴影、扁平化
+   3. 排序按钮和筛选按钮统一
+===================================================== */
+
+
+/* 1. 书店标题：改成 About 页同款中文衬线字体 */
+#pg-shop .shop-page-hero h1{
+  display:inline-block !important;
+  position:relative !important;
+  font-family:"Noto Serif SC","Playfair Display",serif !important;
+  font-size:clamp(42px, 5.4vw, 68px) !important;
+  line-height:1.12 !important;
+  font-weight:800 !important;
+  letter-spacing:-.06em !important;
+  color:#111 !important;
+  margin:0 0 30px !important;
+}
+
+/* 黄色下划线：和 About 页面关联 */
+#pg-shop .shop-page-hero h1::after{
+  content:"" !important;
+  position:absolute !important;
+  left:0 !important;
+  bottom:-16px !important;
+  width:76px !important;
+  height:4px !important;
+  background:#F5C443 !important;
+}
+
+/* 副标题：电脑端不换行 */
+#pg-shop .shop-page-hero p{
+  max-width:none !important;
+  width:100% !important;
+  white-space:nowrap !important;
+  font-size:17px !important;
+  line-height:1.6 !important;
+  color:#333 !important;
+  font-weight:650 !important;
+  margin:0 !important;
+}
+
+
+/* 2. 外部筛选按钮：保持扁平高级 */
+#pg-shop .shop-mobile-filter-btn{
+  height:44px !important;
+  border:1px solid #D8D8D5 !important;
+  background:#FAFAF8 !important;
+  color:#111 !important;
+  padding:0 20px !important;
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+  font-size:14px !important;
+  font-weight:850 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  outline:none !important;
+  cursor:pointer !important;
+}
+
+#pg-shop .shop-mobile-filter-btn:hover{
+  border-color:#111 !important;
+  background:#fff !important;
+}
+
+
+/* 3. 排序 select：和筛选按钮统一，不要阴影 */
+#pg-shop .shop-sort-select,
+#pg-shop .shop-count-sort .shop-sort-select,
+#pg-shop .shop-mobile-tools .shop-sort-select{
+  height:44px !important;
+  min-width:128px !important;
+  border:1px solid #D8D8D5 !important;
+  background:#FAFAF8 !important;
+  color:#111 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  outline:none !important;
+  padding:0 36px 0 14px !important;
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+  font-size:14px !important;
+  font-weight:850 !important;
+  cursor:pointer !important;
+  appearance:auto !important;
+  -webkit-appearance:menulist !important;
+}
+
+#pg-shop .shop-sort-select:hover,
+#pg-shop .shop-sort-select:focus{
+  border-color:#111 !important;
+  background:#fff !important;
+  box-shadow:none !important;
+}
+
+
+/* 4. 右侧筛选抽屉：整体扁平化 */
+@media(min-width:701px){
+  #pg-shop .shop-filter-bar{
+    position:fixed !important;
+    top:0 !important;
+    right:0 !important;
+    bottom:0 !important;
+    left:auto !important;
+    z-index:260 !important;
+    width:360px !important;
+    max-width:88vw !important;
+    height:100vh !important;
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    align-content:start !important;
+    gap:18px !important;
+    background:#FFFDF8 !important;
+    border-left:1px solid #E6DED2 !important;
+    border-top:none !important;
+    border-right:none !important;
+    border-bottom:none !important;
+    box-shadow:none !important;
+    padding:30px 26px !important;
+    margin:0 !important;
+    transform:translateX(105%) !important;
+    transition:transform .22s ease !important;
+    overflow-y:auto !important;
+  }
+
+  #pg-shop .shop-filter-bar.open{
+    transform:translateX(0) !important;
+  }
+
+  #pg-shop .mobile-filter-backdrop{
+    display:none !important;
+    position:fixed !important;
+    inset:0 !important;
+    z-index:250 !important;
+    background:rgba(0,0,0,.26) !important;
+  }
+
+  #pg-shop .mobile-filter-backdrop.open{
+    display:block !important;
+  }
+}
+
+
+/* 5. 筛选抽屉标题：更像 About 页的干净标题 */
+#pg-shop .mobile-filter-title{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  font-family:"Noto Serif SC","Playfair Display",serif !important;
+  font-size:28px !important;
+  line-height:1.15 !important;
+  font-weight:800 !important;
+  letter-spacing:-.045em !important;
+  color:#111 !important;
+  margin:0 0 12px !important;
+}
+
+#pg-shop .mobile-filter-close{
+  width:34px !important;
+  height:34px !important;
+  border:none !important;
+  background:transparent !important;
+  color:#111 !important;
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+  font-size:30px !important;
+  line-height:1 !important;
+  font-weight:500 !important;
+  cursor:pointer !important;
+  box-shadow:none !important;
+  padding:0 !important;
+}
+
+#pg-shop .mobile-filter-close:hover{
+  color:#E96F3C !important;
+}
+
+
+/* 6. 抽屉里的 select：重点去掉浏览器默认阴影 */
+#pg-shop .shop-filter-bar select,
+#pg-shop .shop-filter-group select{
+  width:100% !important;
+  height:48px !important;
+  border:1px solid #D8D8D5 !important;
+  background:#FAFAF8 !important;
+  color:#111 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  outline:none !important;
+  padding:0 14px !important;
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+  font-size:14px !important;
+  font-weight:850 !important;
+  cursor:pointer !important;
+  appearance:auto !important;
+  -webkit-appearance:menulist !important;
+}
+
+#pg-shop .shop-filter-bar select:hover,
+#pg-shop .shop-filter-bar select:focus,
+#pg-shop .shop-filter-group select:hover,
+#pg-shop .shop-filter-group select:focus{
+  border-color:#111 !important;
+  background:#fff !important;
+  box-shadow:none !important;
+}
+
+
+/* 7. 抽屉底部两个按钮：和筛选按钮统一 */
+#pg-shop .mobile-filter-actions{
+  display:grid !important;
+  grid-template-columns:1fr 1.4fr !important;
+  gap:12px !important;
+  margin-top:8px !important;
+}
+
+#pg-shop .mobile-filter-reset,
+#pg-shop .mobile-filter-done{
+  height:46px !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  outline:none !important;
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+  font-size:14px !important;
+  font-weight:950 !important;
+  cursor:pointer !important;
+}
+
+#pg-shop .mobile-filter-reset{
+  background:#FAFAF8 !important;
+  color:#111 !important;
+  border:1px solid #111 !important;
+}
+
+#pg-shop .mobile-filter-reset:hover{
+  background:#fff !important;
+}
+
+#pg-shop .mobile-filter-done{
+  background:#111 !important;
+  color:#fff !important;
+  border:1px solid #111 !important;
+}
+
+#pg-shop .mobile-filter-done:hover{
+  background:#E96F3C !important;
+  border-color:#E96F3C !important;
+}
+
+
+/* 8. 商品顶部筛选/排序行：更干净 */
+#pg-shop .shop-top-row{
+  display:grid !important;
+  grid-template-columns:auto 1fr !important;
+  align-items:center !important;
+  gap:24px !important;
+  margin:0 0 34px !important;
+}
+
+#pg-shop .shop-count-sort{
+  justify-self:end !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:22px !important;
+  color:#666 !important;
+  font-size:13px !important;
+  font-weight:750 !important;
+  white-space:nowrap !important;
+}
+
+#pg-shop .shop-count-sort label{
+  display:flex !important;
+  align-items:center !important;
+  gap:10px !important;
+  margin:0 !important;
+  color:#666 !important;
+  font-size:13px !important;
+  font-weight:750 !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+}
+
+
+/* 9. 手机端适配 */
+@media(max-width:700px){
+  #pg-shop .shop-page-hero h1{
+    font-size:34px !important;
+    line-height:1.16 !important;
+    margin-bottom:26px !important;
+  }
+
+  #pg-shop .shop-page-hero h1::after{
+    bottom:-13px !important;
+    width:54px !important;
+    height:3px !important;
+  }
+
+  #pg-shop .shop-page-hero p{
+    white-space:normal !important;
+    max-width:330px !important;
+    font-size:13.5px !important;
+    line-height:1.65 !important;
+  }
+
+  #pg-shop .shop-mobile-filter-btn{
+    height:40px !important;
+    padding:0 14px !important;
+    font-size:13px !important;
+  }
+
+  #pg-shop .shop-mobile-tools .shop-sort-select{
+    display:block !important;
+    height:40px !important;
+    min-width:118px !important;
+    font-size:12.5px !important;
+  }
+
+  #pg-shop .mobile-filter-title{
+    font-size:24px !important;
+  }
+
+  #pg-shop .shop-filter-bar select,
+  #pg-shop .shop-filter-group select{
+    height:46px !important;
+    font-size:14px !important;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
