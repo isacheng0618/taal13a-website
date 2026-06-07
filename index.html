@@ -7647,6 +7647,108 @@ button,input,label{
     padding-left:0;
   }
 }
+
+/* === DESKTOP PRODUCT DETAIL GALLERY：大图 + 缩略图 === */
+/* 只影响电脑端商品详情页，手机端继续使用原来的滑动样式 */
+
+@media(min-width:851px){
+
+  #pg-product .pd-card.fashion{
+    grid-template-columns:minmax(0,1.12fr) minmax(360px,.88fr) !important;
+    gap:2.8rem !important;
+    align-items:start !important;
+  }
+
+  #pg-product .desktop-book-gallery{
+    width:100% !important;
+    min-width:0 !important;
+  }
+
+  #pg-product .pd-main-book-shot{
+    position:relative !important;
+    width:100% !important;
+    aspect-ratio:1 / 1 !important;
+    background:#fff !important;
+    border:1px solid #E6DED2 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    overflow:hidden !important;
+    cursor:zoom-in !important;
+  }
+
+  #pg-product .pd-main-book-shot img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:contain !important;
+    padding:18px !important;
+    background:#fff !important;
+    display:block !important;
+  }
+
+  #pg-product .pd-thumb-row{
+    display:flex !important;
+    gap:22px !important;
+    margin-top:28px !important;
+    overflow-x:auto !important;
+    padding-bottom:6px !important;
+    scrollbar-width:none !important;
+  }
+
+  #pg-product .pd-thumb-row::-webkit-scrollbar{
+    display:none !important;
+  }
+
+  #pg-product .pd-book-thumb{
+    flex:0 0 112px !important;
+    width:112px !important;
+    height:112px !important;
+    border:1px solid #D8D0C5 !important;
+    background:#fff !important;
+    padding:0 !important;
+    cursor:pointer !important;
+    opacity:.72 !important;
+    transition:opacity .16s ease, border-color .16s ease, box-shadow .16s ease !important;
+  }
+
+  #pg-product .pd-book-thumb img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:contain !important;
+    padding:8px !important;
+    background:#fff !important;
+    display:block !important;
+  }
+
+  #pg-product .pd-book-thumb:hover{
+    opacity:1 !important;
+    border-color:#E96F3C !important;
+  }
+
+  #pg-product .pd-book-thumb.active{
+    opacity:1 !important;
+    border:3px solid #F66BC3 !important;
+  }
+
+  #pg-product .pd-zoom-icon{
+    position:absolute !important;
+    right:24px !important;
+    bottom:24px !important;
+    width:46px !important;
+    height:46px !important;
+    border:none !important;
+    background:transparent !important;
+    color:#F66BC3 !important;
+    font-size:42px !important;
+    line-height:1 !important;
+    font-weight:400 !important;
+    cursor:pointer !important;
+  }
+
+  #pg-product .pd-zoom-icon:hover{
+    transform:scale(1.05) !important;
+  }
+}
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -8837,6 +8939,12 @@ var PRODUCTS=[
   shipping:true,
   img:'./images/dutch-sticker-pack-cover.png?v=1',
   infoImg:'./images/dutch-sticker-pack-info.png?v=1',
+  gallery:[
+  './images/dutch-sticker-pack-cover.png?v=1',
+  './images/dutch-sticker-pack-info.png?v=1',
+  './images/dutch-sticker-pack-detail-1.png?v=1',
+  './images/dutch-sticker-pack-detail-2.png?v=1'
+],
   pay:'',
   zn:'Taal13a原创荷兰语贴纸',
   nn:'Nederlandse stickers',
@@ -9415,6 +9523,22 @@ var productLightboxIndex = 0;
 
 function getCurrentProductGalleryItems(){
   var items = [];
+
+  var desktopThumbs = document.querySelectorAll('.pd-book-thumb img');
+
+  if(desktopThumbs.length){
+    desktopThumbs.forEach(function(img, index){
+      items.push({
+        type:'image',
+        src:img.getAttribute('src'),
+        html:'',
+        index:index
+      });
+    });
+
+    return items;
+  }
+
   var gallery = document.getElementById('product-gallery');
 
   if(!gallery) return items;
@@ -9484,6 +9608,28 @@ function goProductGallerySlide(index){
   updateProductGalleryDots();
 }
 
+function setDesktopProductImage(index){
+  var mainImg = document.getElementById('pd-main-gallery-img');
+  var thumbs = document.querySelectorAll('.pd-book-thumb');
+
+  if(!mainImg || !thumbs.length)return;
+
+  if(index < 0) index = 0;
+  if(index > thumbs.length - 1) index = thumbs.length - 1;
+
+  var thumbImg = thumbs[index].querySelector('img');
+  if(!thumbImg)return;
+
+  mainImg.src = thumbImg.src;
+  productGalleryIndex = index;
+
+  thumbs.forEach(function(btn){
+    btn.classList.remove('active');
+  });
+
+  thumbs[index].classList.add('active');
+}
+  
 function initProductGallery(){
   var gallery = document.getElementById('product-gallery');
 
@@ -9587,6 +9733,26 @@ function rProduct(){
   var delivery=ti?'付款成功后可即时下载 PDF；如系统邮件延迟，可凭订单邮箱联系 Taal13A 手动补发。':'Na succesvolle betaling is de PDF direct te downloaden. Bij vertraging kan Taal13A het bestand handmatig nasturen op basis van het bestel-e-mailadres.';
   var access=ti?'注册/登录购买后，商品会出现在个人主页「我的商品 / 下载」中。游客购买则通过订单邮箱获取下载信息。':'Bij aankoop met account verschijnt het product in “Mijn producten / downloads”. Gastbestellingen ontvangen downloadinformatie via e-mail.';
   var refund=ti?'电子书属于即时交付的数字内容。结算时确认即时交付并放弃冷静期后，付款完成即不支持退款。':'Een e-book is digitale inhoud die direct wordt geleverd. Na toestemming voor directe levering en afstand van herroeping is terugbetaling na betaling niet mogelijk.';
+  var galleryImages = Array.isArray(p.gallery) && p.gallery.length
+  ? p.gallery
+  : [p.img, p.infoImg].filter(Boolean);
+
+var galleryHtml =
+  '<div class="pd-gallery-wrap desktop-book-gallery">'+
+    '<div class="pd-main-book-shot" onclick="openProductGallery(0)">'+
+      '<img id="pd-main-gallery-img" src="'+galleryImages[0]+'" alt="'+(ti?p.zn:p.nn)+'">'+
+      '<button class="pd-zoom-icon" type="button" onclick="event.stopPropagation();openProductGallery(productGalleryIndex)">⌕</button>'+
+    '</div>'+
+
+    '<div class="pd-thumb-row">'+
+      galleryImages.map(function(src,i){
+        return '<button class="pd-book-thumb '+(i===0?'active':'')+'" onclick="setDesktopProductImage('+i+')" type="button">'+
+          '<img src="'+src+'" alt="">'+
+        '</button>';
+      }).join('')+
+    '</div>'+
+  '</div>';
+  
   el.className='pd-wrap fashion';
   el.innerHTML='<button class="back-link" onclick="nav(\'shop\')">← '+(ti?'返回商店':'Terug naar winkel')+'</button>'+ 
     '<div class="pd-card fashion">'+
