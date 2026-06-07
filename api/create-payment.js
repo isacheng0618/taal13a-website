@@ -93,16 +93,6 @@ export default async function handler(req, res) {
       });
     }
 
-    const hasDigitalProduct = items.some(item => {
-  const product = PRODUCTS.find(p => p.id === item.productId);
-  return product && product.format === 'pdf';
-});
-
-if (hasDigitalProduct && !acceptedDigitalDelivery) {
-  return res.status(400).json({
-    error: 'Please accept the digital delivery consent.'
-  });
-}
 
     const cleanItems = items
       .map((item) => ({
@@ -167,6 +157,16 @@ if (hasDigitalProduct && !acceptedDigitalDelivery) {
     const finalHasPhysicalProduct =
       hasPhysicalFromProducts || hasPhysicalProduct === true;
 
+    const hasDigitalProduct = products.some((product) =>
+  !isPhysicalProductFromDb(product)
+);
+
+if (hasDigitalProduct && !acceptedDigitalDelivery) {
+  return res.status(400).json({
+    error: 'Please accept the digital delivery consent.'
+  });
+}
+    
     const normalizedShipping = normalizeShipping(shipping);
 
     if (finalHasPhysicalProduct && !isShippingComplete(normalizedShipping)) {
