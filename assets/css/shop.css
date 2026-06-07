@@ -1733,3 +1733,56 @@
     border:1px solid #111 !important;
   }
 }
+
+/* === SHOP SORT REMOVE FINAL === */
+/* 删除所有端排序按钮后，重新整理书店顶部工具栏 */
+
+#pg-shop .shop-top-row{
+  display:grid !important;
+  grid-template-columns:auto 1fr !important;
+  align-items:center !important;
+  gap:24px !important;
+  margin:0 0 34px !important;
+}
+
+#pg-shop .shop-mobile-tools{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:12px !important;
+  margin:0 !important;
+}
+
+#pg-shop .shop-count-sort{
+  justify-self:end !important;
+  display:flex !important;
+  align-items:center !important;
+  color:#666 !important;
+  font-size:13px !important;
+  font-weight:750 !important;
+  white-space:nowrap !important;
+}
+
+/* 防止旧排序样式残留 */
+#pg-shop .shop-sort-select,
+#pg-shop .shop-count-sort label{
+  display:none !important;
+}
+
+/* 手机端：只保留筛选按钮，不显示产品数量 */
+@media(max-width:700px){
+  #pg-shop .shop-top-row{
+    display:block !important;
+    margin:0 0 20px !important;
+  }
+
+  #pg-shop .shop-mobile-tools{
+    display:flex !important;
+    justify-content:flex-start !important;
+    margin:0 0 18px !important;
+  }
+
+  #pg-shop .shop-count-sort{
+    display:none !important;
+  }
+}
