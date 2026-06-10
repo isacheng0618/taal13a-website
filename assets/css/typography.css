@@ -491,3 +491,80 @@ label{
     font-size:30px !important;
   }
 }
+
+/* =====================================================
+   FIX HEADER + TICKER BORDER + MOBILE STICKY V1
+===================================================== */
+
+
+/* 1. 桌面端：去掉双线，只保留轮动条自己的上下 1px 线 */
+@media(min-width:701px){
+
+  .tb{
+    border-bottom:0 !important;
+  }
+
+  .news-ticker{
+    height:52px !important;
+    border-top:1px solid #171717 !important;
+    border-bottom:1px solid #171717 !important;
+  }
+
+}
+
+
+/* 2. 手机端：顶部导航固定 */
+@media(max-width:700px){
+
+  .tb{
+    position:fixed !important;
+    top:0 !important;
+    left:0 !important;
+    right:0 !important;
+    z-index:9999 !important;
+    background:#FFFDF8 !important;
+    border-bottom:1px solid #171717 !important;
+    box-shadow:none !important;
+  }
+
+  /* 3. 手机端：轮动条固定在导航下面 */
+  .news-ticker{
+    position:fixed !important;
+    top:92px !important;
+    left:0 !important;
+    right:0 !important;
+    z-index:9998 !important;
+    height:36px !important;
+    background:#F4DF7A !important;
+    border-top:0 !important;
+    border-bottom:1px solid #171717 !important;
+    box-shadow:none !important;
+  }
+
+  .news-title{
+    font-size:13px !important;
+    letter-spacing:.18em !important;
+  }
+
+  /* 4. 防止页面内容被固定导航遮住 */
+  body{
+    padding-top:128px !important;
+  }
+
+  /* 5. 手机端注册按钮：强制改成方形，不要椭圆 */
+  .register-btn,
+  .cta,
+  .mobile-register,
+  .m-register,
+  .drawer .register-btn,
+  .drawer .cta,
+  .mobile-menu .register-btn,
+  .mobile-menu .cta{
+    border-radius:0 !important;
+    background:#0F5E8C !important;
+    color:#fff !important;
+    border:2px solid #0F5E8C !important;
+    box-shadow:none !important;
+  }
+
+}
