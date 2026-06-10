@@ -11556,9 +11556,10 @@ function renderTickerItem(){
     : (ti ? '上新' : 'Nieuw');
 
   el.innerHTML =
-    '<span class="news-item news-single" onclick="oProduct(\''+p.id+'\')">'+
-      '<span class="news-title">'+prefix+' · '+(ti ? p.zn : p.nn)+'</span>'+
-    '</span>';
+  '<span class="news-item news-single" onclick="oProduct(\''+p.id+'\')">'+
+    '<span class="news-title">'+prefix+' · '+(ti ? p.zn : p.nn)+'</span>'+
+    '<span class="news-arrow">↗</span>'+
+  '</span>';
 }
 
 function updNewsTicker(){
