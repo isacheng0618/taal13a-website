@@ -6,7 +6,7 @@
 */
 
 :root{
-  --font-display: "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Noto Serif SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
   --font-number: "Electrolize", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Inter", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
 }
@@ -195,7 +195,7 @@ label{
   #pg-home .bg-sky .fcard:nth-child(3) .ficon::before,
   #pg-home .bg-sky .fcard:nth-child(4) .ficon::before{
     font-family: var(--font-number) !important;
-    font-size: 42px !important;
+    font-size: 34px !important;
     font-weight: 400 !important;
     letter-spacing: -0.02em !important;
   }
