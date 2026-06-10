@@ -1382,3 +1382,270 @@ label{
     letter-spacing:.28em !important;
   }
 }
+
+/* =====================================================
+   FINAL RESPONSIVE MENU
+   1. 隐藏中荷切换
+   2. 宽度不够时，把导航和登录注册收进 menu
+   ===================================================== */
+
+
+/* 先隐藏中荷切换功能 */
+.lang-icon-btn,
+.language-tool,
+.lang-text{
+  display:none !important;
+}
+
+
+/* menu 按钮默认隐藏，大屏不显示 */
+.menu-toggle-btn{
+  display:none;
+  border:none;
+  background:transparent;
+  color:#171717;
+  padding:0;
+  width:42px;
+  height:42px;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  flex-shrink:0;
+}
+
+.menu-toggle-btn .material-symbols-outlined{
+  font-family:"Material Symbols Outlined";
+  font-size:32px;
+  font-weight:400;
+  line-height:1;
+}
+
+
+/* 菜单遮罩 */
+.site-menu-backdrop{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.28);
+  z-index:99998;
+}
+
+.site-menu-backdrop.open{
+  display:block;
+}
+
+
+/* 右侧菜单面板 */
+.site-menu-panel{
+  position:fixed;
+  top:0;
+  right:0;
+  width:min(380px, 86vw);
+  height:100vh;
+  background:#FFFDF8;
+  z-index:99999;
+  transform:translateX(105%);
+  transition:transform .22s ease;
+  border-left:1px solid #E6DED2;
+  padding:26px 28px 32px;
+  display:flex;
+  flex-direction:column;
+}
+
+.site-menu-panel.open{
+  transform:translateX(0);
+}
+
+.site-menu-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding-bottom:24px;
+  border-bottom:1px solid #E6DED2;
+}
+
+.site-menu-title{
+  font-size:24px;
+  font-weight:950;
+  color:#171717;
+  letter-spacing:-.03em;
+}
+
+.site-menu-close{
+  border:none;
+  background:transparent;
+  color:#171717;
+  font-size:34px;
+  line-height:1;
+  cursor:pointer;
+  padding:0;
+}
+
+.site-menu-links{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  padding-top:22px;
+}
+
+.site-menu-links button{
+  border:none;
+  background:transparent;
+  padding:18px 0;
+  text-align:left;
+  display:flex;
+  align-items:baseline;
+  gap:14px;
+  cursor:pointer;
+  border-bottom:1px solid rgba(230,222,210,.72);
+}
+
+.site-menu-links button span{
+  font-family:var(--font-display, "Noto Serif SC", serif);
+  font-size:30px;
+  line-height:1.1;
+  font-weight:900;
+  color:#171717;
+  letter-spacing:-.06em;
+}
+
+.site-menu-links button em{
+  font-family:var(--font-number, "Electrolize", sans-serif);
+  font-style:normal;
+  font-size:14px;
+  font-weight:400;
+  color:#8f8f8a;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+}
+
+.site-menu-links button:hover span{
+  color:#0F5E8C;
+}
+
+.site-menu-actions{
+  margin-top:auto;
+  padding-top:24px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.site-menu-actions button{
+  height:46px;
+  border:1.5px solid #171717;
+  background:transparent;
+  color:#171717;
+  font-size:15px;
+  font-weight:950;
+  cursor:pointer;
+}
+
+.site-menu-actions .site-menu-register{
+  background:#0F5E8C;
+  border-color:#0F5E8C;
+  color:#fff;
+}
+
+
+/* 屏幕开始挤的时候：隐藏导航和登录注册，只显示 menu */
+@media(max-width:1180px){
+
+  .tb{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    height:68px !important;
+    padding:0 18px !important;
+  }
+
+  .logo-main{
+    height:42px !important;
+    flex-shrink:0 !important;
+  }
+
+  .nc,
+  #auth-btns,
+  #user-btns{
+    display:none !important;
+  }
+
+  .nr{
+    margin-left:auto !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    gap:0 !important;
+  }
+
+  .menu-toggle-btn{
+    display:inline-flex !important;
+  }
+
+  .news-ticker{
+    top:68px !important;
+  }
+}
+
+
+/* 手机端也使用同一个 menu */
+@media(max-width:700px){
+
+  body{
+    padding-top:104px !important;
+  }
+
+  .tb{
+    position:fixed !important;
+    top:0 !important;
+    left:0 !important;
+    right:0 !important;
+    z-index:9999 !important;
+    height:68px !important;
+    min-height:68px !important;
+    padding:0 18px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    background:#FFFDF8 !important;
+    border-bottom:1px solid #171717 !important;
+  }
+
+  .logo-main{
+    height:40px !important;
+  }
+
+  .nc,
+  #auth-btns,
+  #user-btns,
+  .lang-icon-btn,
+  .language-tool,
+  .lang-text{
+    display:none !important;
+  }
+
+  .menu-toggle-btn{
+    display:inline-flex !important;
+  }
+
+  .news-ticker{
+    position:fixed !important;
+    top:68px !important;
+    height:36px !important;
+    z-index:9998 !important;
+  }
+
+  .site-menu-panel{
+    width:86vw;
+    padding:24px 24px 30px;
+  }
+
+  .site-menu-links button span{
+    font-size:28px;
+  }
+
+  .site-menu-links button em{
+    font-size:13px;
+    letter-spacing:.24em;
+  }
+}
