@@ -753,3 +753,28 @@ label{
 .magazine-hero-actions {
   justify-content: flex-start !important;
 }
+
+/* ================================
+   HERO LEFT ALIGN WITH SECTIONS
+   ================================ */
+
+.hero .hc {
+  max-width: 980px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  text-align: left !important;
+}
+
+/* Hero 顶部小灰字：和下面栏目统一 */
+.hero-kicker,
+.hero-kicker span,
+.magazine-kicker,
+.section-kicker {
+  font-family: 'Electrolize', 'Helvetica Neue', Arial, sans-serif !important;
+  color: rgba(20, 20, 20, 0.48) !important;
+  letter-spacing: 0.18em !important;
+  font-weight: 400 !important;
+  text-transform: uppercase !important;
+}
