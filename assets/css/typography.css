@@ -1162,3 +1162,193 @@ label{
     font-size:18px !important;
   }
 }
+/* =====================================================
+   FINAL HOME SIZE + CTA ALIGN FIX
+   1. 顶部工具栏文字缩小，避免挤
+   2. 首页大标题稍微缩小
+   3. “了解我们的老师”左对齐
+   4. “咨询我们...”样式统一成下划线文字按钮
+   ===================================================== */
+
+
+/* 1. 顶部导航整体缩小一点 */
+@media (min-width: 769px){
+
+  .tb{
+    height:70px !important;
+    padding:0 18px !important;
+  }
+
+  .logo-main{
+    height:42px !important;
+  }
+
+  .nc{
+    gap:22px !important;
+  }
+
+  .nl{
+    font-size:21px !important;
+    font-weight:900 !important;
+    letter-spacing:0 !important;
+    padding:20px 0 !important;
+  }
+
+  .nl::before{
+    font-size:13px !important;
+    letter-spacing:.38em !important;
+    margin-left:8px !important;
+  }
+
+  .nr{
+    gap:10px !important;
+  }
+
+  .lang-icon-btn svg{
+    width:20px !important;
+    height:20px !important;
+  }
+
+  .lang-text,
+  #auth-btns .login-link,
+  #auth-btns .register-btn{
+    font-size:13px !important;
+  }
+
+  #auth-btns .register-btn{
+    height:38px !important;
+    padding:0 14px !important;
+  }
+
+  .news-ticker{
+    top:70px !important;
+  }
+}
+
+
+/* 2. 首页 hero 大标题稍微缩小，避免压迫 */
+@media (min-width: 769px){
+
+  .hero #hero-h1,
+  .hero .magazine-hero-title{
+    font-size:clamp(70px, 7vw, 128px) !important;
+    line-height:.98 !important;
+    letter-spacing:-.08em !important;
+  }
+
+  .hero-subtitle-main{
+    font-size:28px !important;
+  }
+
+  .hero-subtitle-muted{
+    font-size:22px !important;
+    line-height:1.7 !important;
+  }
+}
+
+
+/* 3. 手机端 hero 标题也稍微压小 */
+@media (max-width: 768px){
+
+  .hero #hero-h1,
+  .hero .magazine-hero-title{
+    font-size:clamp(54px, 17vw, 82px) !important;
+    line-height:.98 !important;
+  }
+
+  .hero-subtitle-main{
+    font-size:22px !important;
+  }
+
+  .hero-subtitle-muted{
+    font-size:17px !important;
+    line-height:1.7 !important;
+  }
+}
+
+
+/* 4. “了解我们的老师”左对齐 */
+.why-teacher-cta{
+  justify-content:flex-start !important;
+  max-width:1180px !important;
+  margin:42px auto 0 !important;
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+
+.why-teacher-btn{
+  text-align:left !important;
+}
+
+
+/* 手机端：跟标题左边距一致 */
+@media (max-width:700px){
+
+  .why-teacher-cta{
+    justify-content:flex-start !important;
+    margin-top:28px !important;
+    padding-left:24px !important;
+    padding-right:24px !important;
+  }
+}
+
+
+/* 5. 首页课程区底部“咨询我们...”改成和了解老师一样 */
+.home-course-cta{
+  margin-top:42px !important;
+  display:flex !important;
+  justify-content:flex-start !important;
+  align-items:center !important;
+}
+
+.home-course-cta-link{
+  border:none !important;
+  background:transparent !important;
+  color:#171717 !important;
+  font-family:inherit !important;
+  font-size:16px !important;
+  font-weight:950 !important;
+  padding:10px 4px 9px !important;
+  cursor:pointer !important;
+  position:relative !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+  text-align:left !important;
+}
+
+.home-course-cta-link::after{
+  content:"" !important;
+  position:absolute !important;
+  left:0 !important;
+  bottom:2px !important;
+  width:100% !important;
+  height:3px !important;
+  background:var(--brand-orange, #E96F3C) !important;
+  transition:width .18s ease, background .18s ease !important;
+}
+
+.home-course-cta-link:hover{
+  color:var(--brand-blue-dark, #0B486D) !important;
+}
+
+.home-course-cta-link:hover::after{
+  width:112% !important;
+  background:var(--brand-blue, #0F5E8C) !important;
+}
+
+
+/* 手机端课程咨询按钮 */
+@media (max-width:700px){
+
+  .home-course-cta{
+    margin-top:32px !important;
+    justify-content:flex-start !important;
+  }
+
+  .home-course-cta-link{
+    font-size:14.5px !important;
+    line-height:1.55 !important;
+    padding-left:0 !important;
+    max-width:92% !important;
+  }
+}
