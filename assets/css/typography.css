@@ -168,3 +168,35 @@ label{
     letter-spacing: .18em !important;
   }
 }
+
+/* === Why Taal13A 编号：01 / 02 / 03 / 04 === */
+
+.fcard .ficon::before{
+  font-family: var(--font-number) !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* 桌面端编号 */
+.fcard:nth-child(1) .ficon::before,
+.fcard:nth-child(2) .ficon::before,
+.fcard:nth-child(3) .ficon::before,
+.fcard:nth-child(4) .ficon::before{
+  font-family: var(--font-number) !important;
+  font-size: 42px !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* 手机端编号 */
+@media(max-width:700px){
+  #pg-home .bg-sky .fcard:nth-child(1) .ficon::before,
+  #pg-home .bg-sky .fcard:nth-child(2) .ficon::before,
+  #pg-home .bg-sky .fcard:nth-child(3) .ficon::before,
+  #pg-home .bg-sky .fcard:nth-child(4) .ficon::before{
+    font-family: var(--font-number) !important;
+    font-size: 42px !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02em !important;
+  }
+}
