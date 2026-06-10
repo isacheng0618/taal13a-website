@@ -924,3 +924,187 @@ label{
     font-size: 52px !important;
   }
 }
+
+/* =====================================================
+   FIX: HERO MOBILE ALIGNMENT + BUTTONS + STATS OVERLAP
+   Add this at the very bottom of typography.css
+   ===================================================== */
+
+
+/* ---------- Desktop stats fix ---------- */
+
+.hero .hstats {
+  width: 100% !important;
+  max-width: 980px !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 0 34px !important;
+  align-items: start !important;
+  margin-top: 44px !important;
+}
+
+.hero .hstats > div {
+  min-width: 0 !important;
+  width: auto !important;
+  padding: 0 !important;
+  text-align: left !important;
+  overflow: visible !important;
+}
+
+.hero .hstats .hn {
+  font-family: 'Electrolize', Helvetica Neue, Arial, sans-serif !important;
+  font-size: clamp(52px, 4.6vw, 74px) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.04em !important;
+  white-space: nowrap !important;
+  display: block !important;
+}
+
+.hero .hstats .hl {
+  font-size: 15px !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+}
+
+.hero .hstats .hl::after {
+  font-size: 15px !important;
+  letter-spacing: 0.28em !important;
+  white-space: nowrap !important;
+}
+
+
+/* ---------- Mobile fix ---------- */
+
+@media (max-width: 768px) {
+
+  /* 手机端整体左边界 */
+  .hero .hc {
+    width: auto !important;
+    max-width: none !important;
+    margin-left: 42px !important;
+    margin-right: 28px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+
+  .hero .hero-kicker,
+  .hero .magazine-kicker,
+  .hero .section-kicker {
+    text-align: left !important;
+    margin-left: 0 !important;
+  }
+
+  .hero #hero-h1 {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-bottom: 38px !important;
+  }
+
+  .hero .hero-lead,
+  .hero .hsub {
+    text-align: left !important;
+    margin-left: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* 手机按钮：靠左、不要太肥、文字居中 */
+  .hero .hbtns {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 16px !important;
+    margin-top: 42px !important;
+    margin-bottom: 120px !important;
+  }
+
+  .hero .hbtns button,
+  .hero .hbtns .hb1,
+  .hero .hbtns .hb2 {
+    width: 245px !important;
+    height: 54px !important;
+    min-height: 54px !important;
+    padding: 0 18px !important;
+    border-radius: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    text-align: center !important;
+    font-size: 17px !important;
+    line-height: 1 !important;
+    font-weight: 800 !important;
+  }
+
+  /* 手机端数据先不要出现在首屏，并避免挤压 */
+  .hero .hstats {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 36px 28px !important;
+    margin-top: 120px !important;
+    padding-bottom: 40px !important;
+  }
+
+  .hero .hstats > div {
+    min-width: 0 !important;
+    width: auto !important;
+    padding: 0 !important;
+    text-align: left !important;
+    overflow: visible !important;
+  }
+
+  .hero .hstats .hn {
+    font-size: 42px !important;
+    line-height: 1 !important;
+    letter-spacing: -0.04em !important;
+    white-space: nowrap !important;
+  }
+
+  .hero .hstats .hl {
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+  }
+
+  .hero .hstats .hl::after {
+    font-size: 12px !important;
+    letter-spacing: 0.22em !important;
+    white-space: nowrap !important;
+  }
+}
+
+
+/* ---------- Extra small mobile ---------- */
+
+@media (max-width: 430px) {
+
+  .hero .hc {
+    margin-left: 36px !important;
+    margin-right: 24px !important;
+  }
+
+  .hero .hbtns button,
+  .hero .hbtns .hb1,
+  .hero .hbtns .hb2 {
+    width: 230px !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    font-size: 16px !important;
+  }
+
+  .hero .hstats {
+    margin-top: 130px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 34px 22px !important;
+  }
+
+  .hero .hstats .hn {
+    font-size: 38px !important;
+  }
+}
