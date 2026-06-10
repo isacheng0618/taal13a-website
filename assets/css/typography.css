@@ -1352,3 +1352,84 @@ label{
     max-width:92% !important;
   }
 }
+
+/* =====================================================
+   NAV CLEAN FINAL
+   只保留原始 HTML 文字，不再用 ::before 重复生成
+   ===================================================== */
+
+@media (min-width:769px){
+
+  .tb{
+    height:68px !important;
+    padding:0 28px !important;
+    overflow:hidden !important;
+  }
+
+  .logo-main{
+    height:42px !important;
+    max-width:190px !important;
+  }
+
+  .nc{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:42px !important;
+    flex:1 !important;
+    min-width:0 !important;
+    overflow:hidden !important;
+  }
+
+  .nl{
+    font-size:22px !important;
+    color:#171717 !important;
+    padding:0 !important;
+    margin:0 !important;
+    font-weight:950 !important;
+    letter-spacing:-.02em !important;
+    white-space:nowrap !important;
+    background:transparent !important;
+    border:none !important;
+  }
+
+  .nl::before,
+  .nl::after{
+    display:none !important;
+    content:none !important;
+  }
+
+  .nl:hover,
+  .nl.on{
+    color:#0F5E8C !important;
+  }
+
+  .nr{
+    flex:0 0 auto !important;
+    gap:12px !important;
+  }
+
+  .news-ticker{
+    top:68px !important;
+  }
+}
+
+@media (min-width:769px) and (max-width:1180px){
+
+  .tb{
+    padding:0 18px !important;
+  }
+
+  .nc{
+    gap:26px !important;
+  }
+
+  .nl{
+    font-size:19px !important;
+  }
+
+  .logo-main{
+    height:38px !important;
+    max-width:170px !important;
+  }
+}
