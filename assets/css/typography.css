@@ -1251,3 +1251,134 @@ label{
     max-width:92% !important;
   }
 }
+
+/* =====================================================
+   NAV MUSEUM STYLE RESTORE
+   中文黑字 + 小号灰色荷兰语，无斜杠
+===================================================== */
+
+@media(min-width:769px){
+
+  .nc{
+    gap:48px !important;
+  }
+
+  .nl{
+    font-size:0 !important;
+    padding:0 !important;
+    margin:0 !important;
+    border:none !important;
+    background:transparent !important;
+    white-space:nowrap !important;
+
+    display:inline-flex !important;
+    align-items:baseline !important;
+    gap:14px !important;
+
+    color:#171717 !important;
+    font-family:var(--font-body) !important;
+    font-weight:900 !important;
+    letter-spacing:0 !important;
+  }
+
+  .nl::before{
+    display:inline-block !important;
+    font-family:"Noto Serif SC","Noto Sans SC",serif !important;
+    font-size:22px !important;
+    line-height:1 !important;
+    font-weight:900 !important;
+    letter-spacing:-.04em !important;
+    color:#171717 !important;
+  }
+
+  .nl::after{
+    display:inline-block !important;
+    position:static !important;
+    width:auto !important;
+    height:auto !important;
+    background:none !important;
+    transform:none !important;
+
+    font-family:var(--font-number) !important;
+    font-size:14px !important;
+    line-height:1 !important;
+    font-weight:400 !important;
+    letter-spacing:.34em !important;
+    color:#8f8f8a !important;
+    text-transform:uppercase !important;
+  }
+
+  .nl[data-zh="主页 / Home"]::before{
+    content:"主页" !important;
+  }
+
+  .nl[data-zh="主页 / Home"]::after{
+    content:"HOME" !important;
+  }
+
+  .nl[data-zh="课程 / Cursussen"]::before{
+    content:"课程" !important;
+  }
+
+  .nl[data-zh="课程 / Cursussen"]::after{
+    content:"CURSUSSEN" !important;
+  }
+
+  .nl[data-zh="书店 / Winkel"]::before{
+    content:"书店" !important;
+  }
+
+  .nl[data-zh="书店 / Winkel"]::after{
+    content:"WINKEL" !important;
+  }
+
+  .nl[data-zh="关于 / Over ons"]::before{
+    content:"关于" !important;
+  }
+
+  .nl[data-zh="关于 / Over ons"]::after{
+    content:"OVER ONS" !important;
+  }
+
+  .nl[data-zh="联系 / Contact"]::before{
+    content:"联系" !important;
+  }
+
+  .nl[data-zh="联系 / Contact"]::after{
+    content:"CONTACT" !important;
+  }
+
+  .nl:hover::before,
+  .nl.on::before{
+    color:#171717 !important;
+  }
+
+  .nl:hover::after,
+  .nl.on::after{
+    color:#8f8f8a !important;
+    background:none !important;
+    width:auto !important;
+  }
+}
+
+
+/* 窄一点的电脑屏幕：防止导航挤爆 */
+@media(min-width:769px) and (max-width:1280px){
+
+  .nc{
+    gap:30px !important;
+  }
+
+  .nl{
+    gap:10px !important;
+  }
+
+  .nl::before{
+    font-size:19px !important;
+  }
+
+  .nl::after{
+    font-size:12px !important;
+    letter-spacing:.28em !important;
+  }
+}
