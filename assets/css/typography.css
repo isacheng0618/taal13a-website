@@ -1,0 +1,169 @@
+/* === Taal13A Typography System === */
+/* 目标：接近参考图的字体感觉
+   - 大标题：超粗黑体 / 海报感
+   - 数字：Archivo Black
+   - 正文：Inter
+*/
+
+:root{
+  --font-display: "Archivo Black", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 全站正文 */
+body{
+  font-family: var(--font-body) !important;
+}
+
+/* 按钮、输入框、表单也统一 */
+button,
+input,
+select,
+textarea,
+label{
+  font-family: var(--font-body) !important;
+}
+
+/* 大标题：Hero、Section、页面标题 */
+.hero h1,
+.stit,
+.co-hero h1,
+.shop-hero h1,
+.shop-page-hero h1,
+.ep-hero h1,
+.ph2 h1,
+.about-quote h1,
+.about-bio-inner h2,
+.contact-title,
+#pg-contact .contact-title{
+  font-family: var(--font-display) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.055em !important;
+}
+
+/* 首页 Hero 大字 */
+.hero h1{
+  font-size: clamp(54px, 7.5vw, 108px) !important;
+  line-height: .98 !important;
+}
+
+/* 首页 Hero 橙色强调 */
+.hero h1 em{
+  font-family: var(--font-display) !important;
+  font-style: normal !important;
+  font-weight: 900 !important;
+}
+
+/* 首页 Section 大标题 */
+.stit{
+  font-size: clamp(42px, 5vw, 72px) !important;
+  line-height: 1.08 !important;
+}
+
+/* 统计数字 */
+.hn{
+  font-family: var(--font-display) !important;
+  font-size: clamp(34px, 4vw, 64px) !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.055em !important;
+}
+
+/* 统计数字下方中文 */
+.hl{
+  font-family: var(--font-body) !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+  font-weight: 800 !important;
+  color: #171717 !important;
+}
+
+/* 统计数字下方荷兰语 */
+.hl::after{
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: .28em;
+  color: #756F66;
+}
+
+/* 四个统计项对应荷兰语 */
+.hstats > div:nth-child(1) .hl::after{
+  content: "STUDENTEN";
+}
+
+.hstats > div:nth-child(2) .hl::after{
+  content: "SLAGINGSPERCENTAGE";
+}
+
+.hstats > div:nth-child(3) .hl::after{
+  content: "WEERGAVEN";
+}
+
+.hstats > div:nth-child(4) .hl::after{
+  content: "TEVREDENHEID";
+}
+
+/* 副标题：黑色中文 */
+.hero .hsub{
+  font-family: var(--font-body) !important;
+  font-size: 17px !important;
+  line-height: 1.8 !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+}
+
+/* 小标签 */
+.eye,
+.course-label,
+.course-type,
+.scard-cat,
+.pd-brand,
+.about-bio-label,
+.testimonial-person em{
+  font-family: var(--font-body) !important;
+  font-weight: 800 !important;
+  letter-spacing: .16em !important;
+}
+
+/* 正文描述文字 */
+.ssub,
+.fd,
+.cdesc,
+.scard-desc,
+.pd-desc,
+.about-bio-text,
+.fa,
+.tbio,
+.legal-card p,
+.legal-card li{
+  font-family: var(--font-body) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+}
+
+/* 手机端适配 */
+@media(max-width:700px){
+  .hero h1{
+    font-size: 46px !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.045em !important;
+  }
+
+  .stit{
+    font-size: 38px !important;
+    line-height: 1.14 !important;
+  }
+
+  .hn{
+    font-size: 34px !important;
+  }
+
+  .hl::after{
+    font-size: 9px !important;
+    letter-spacing: .18em !important;
+  }
+}
