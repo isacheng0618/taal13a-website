@@ -568,3 +568,149 @@ label{
   }
 
 }
+
+/* ================================
+   HERO MAGAZINE STYLE
+   ================================ */
+
+.hero .hc {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 120px 40px 70px;
+  text-align: right;
+}
+
+.hero-kicker {
+  font-family: "Electrolize", "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  color: #666;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.magazine-hero-title {
+  font-family: "Noto Serif SC", "Noto Serif Simplified Chinese", serif;
+  font-size: clamp(72px, 10vw, 150px);
+  line-height: 0.92;
+  font-weight: 900;
+  color: #17130f;
+  letter-spacing: -0.08em;
+  margin: 0 0 28px;
+  text-align: right;
+}
+
+.title-blue-square {
+  display: inline-block;
+  width: 0.28em;
+  height: 0.28em;
+  background: #a9d7ec;
+  vertical-align: middle;
+  margin: 0 0.06em;
+}
+
+.hero-subtitle-main {
+  font-family: "Noto Serif SC", "Noto Serif Simplified Chinese", serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: #17130f;
+  margin: 0 0 14px;
+  text-align: right;
+}
+
+.hero-subtitle-muted {
+  font-family: "Noto Serif SC", "Noto Serif Simplified Chinese", serif;
+  font-size: 21px;
+  line-height: 1.65;
+  font-weight: 500;
+  color: #666;
+  margin: 0 0 34px auto;
+  max-width: 920px;
+  text-align: right;
+}
+
+.magazine-hero-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.magazine-hero-actions button,
+.hbtns button,
+.hb1,
+.hb2 {
+  border-radius: 0 !important;
+  min-width: 230px;
+  height: 68px;
+  font-family: "Noto Serif SC", "Noto Serif Simplified Chinese", serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0;
+  box-shadow: none !important;
+}
+
+.hb1 {
+  background: #12699a !important;
+  color: #fff !important;
+  border: 1.5px solid #12699a !important;
+}
+
+.hb2 {
+  background: rgba(255,255,255,0.82) !important;
+  color: #17130f !important;
+  border: 1.5px solid #17130f !important;
+}
+
+
+/* mobile */
+@media (max-width: 768px) {
+  .hero .hc {
+    padding: 72px 24px 46px;
+    text-align: left;
+  }
+
+  .hero-kicker {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-align: left;
+  }
+
+  .magazine-hero-title {
+    font-size: clamp(56px, 18vw, 88px);
+    line-height: 0.95;
+    letter-spacing: -0.08em;
+    text-align: left;
+  }
+
+  .hero-subtitle-main,
+  .hero-subtitle-muted {
+    text-align: left;
+  }
+
+  .hero-subtitle-main {
+    font-size: 19px;
+  }
+
+  .hero-subtitle-muted {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .magazine-hero-actions {
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .magazine-hero-actions button,
+  .hbtns button,
+  .hb1,
+  .hb2 {
+    width: 100%;
+    min-width: 0;
+    height: 58px;
+    font-size: 17px;
+    border-radius: 0 !important;
+  }
+}
