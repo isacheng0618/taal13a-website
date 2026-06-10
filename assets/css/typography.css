@@ -778,3 +778,149 @@ label{
   font-weight: 400 !important;
   text-transform: uppercase !important;
 }
+
+/* =====================================================
+   HERO ALIGNMENT + MOBILE BUTTONS + STATS FIX
+   ===================================================== */
+
+/* 1. 统一首页 Hero 和下面栏目左边界 */
+.hero .hc {
+  width: min(1120px, calc(100% - 48px)) !important;
+  max-width: 1120px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  text-align: left !important;
+}
+
+/* 2. 拉开主标题和副标题之间的距离 */
+.hero #hero-h1 {
+  margin-bottom: 34px !important;
+}
+
+.hero .hero-lead,
+.hero .hsub {
+  margin-top: 0 !important;
+  margin-bottom: 22px !important;
+}
+
+/* 3. 按钮改成更清楚的方形系统 */
+.hero .hbtns {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 22px !important;
+  margin-top: 34px !important;
+  margin-bottom: 54px !important;
+}
+
+.hero .hbtns button,
+.hero .hbtns .hb1,
+.hero .hbtns .hb2 {
+  width: 230px !important;
+  height: 58px !important;
+  border-radius: 0 !important;
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+}
+
+/* 4. 网页版数据区：四列均分 */
+.hero .hstats {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  column-gap: 0 !important;
+  margin-top: 10px !important;
+}
+
+.hero .hstats > div {
+  min-width: 0 !important;
+  text-align: left !important;
+  padding-right: 34px !important;
+}
+
+.hero .hstats .hn {
+  font-size: clamp(56px, 5.8vw, 92px) !important;
+  line-height: 0.95 !important;
+  white-space: nowrap !important;
+}
+
+/* 5. Hero 顶部小灰字颜色统一 */
+.hero .hero-kicker,
+.hero .magazine-kicker,
+.hero .section-kicker {
+  color: rgba(20, 20, 20, 0.46) !important;
+}
+
+
+/* =====================================================
+   MOBILE FIX
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+  /* 手机端 Hero 左右边距统一 */
+  .hero .hc {
+    width: calc(100% - 48px) !important;
+    max-width: none !important;
+    margin-left: 24px !important;
+    margin-right: 24px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-align: left !important;
+  }
+
+  /* 手机端标题和副标题拉开 */
+  .hero #hero-h1 {
+    margin-bottom: 34px !important;
+  }
+
+  .hero .hero-lead,
+  .hero .hsub {
+    margin-bottom: 0 !important;
+  }
+
+  /* 手机端按钮：靠左、等宽、上下间距更舒服 */
+  .hero .hbtns {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 18px !important;
+    margin-top: 48px !important;
+    margin-bottom: 90px !important;
+  }
+
+  .hero .hbtns button,
+  .hero .hbtns .hb1,
+  .hero .hbtns .hb2 {
+    width: 260px !important;
+    max-width: 100% !important;
+    height: 64px !important;
+    border-radius: 0 !important;
+    text-align: center !important;
+  }
+
+  /* 手机端首屏尽量不要露出数据 */
+  .hero .hstats {
+    margin-top: 80px !important;
+  }
+
+  /* 手机端数据两列排，避免挤爆 */
+  .hero .hstats {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 34px 18px !important;
+  }
+
+  .hero .hstats > div {
+    padding-right: 0 !important;
+  }
+
+  .hero .hstats .hn {
+    font-size: 52px !important;
+  }
+}
