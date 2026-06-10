@@ -714,3 +714,42 @@ label{
     border-radius: 0 !important;
   }
 }
+
+
+
+/* ================================
+   HERO ALIGN LEFT FIX
+   ================================ */
+
+.hero .hc {
+  text-align: left !important;
+  padding-left: 48px !important;
+  padding-right: 48px !important;
+}
+
+.hero-kicker {
+  text-align: left !important;
+}
+
+.magazine-hero-title {
+  text-align: left !important;
+  max-width: 900px;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+.hero-subtitle-main {
+  text-align: left !important;
+  max-width: 760px;
+}
+
+.hero-subtitle-muted {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  max-width: 980px;
+}
+
+.magazine-hero-actions {
+  justify-content: flex-start !important;
+}
