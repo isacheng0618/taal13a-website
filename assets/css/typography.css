@@ -1130,3 +1130,35 @@ label{
     padding-right:0;
   }
 }
+/* === NEWS BAR ARROW ICON === */
+
+.news-item.news-single{
+  gap:14px !important;
+}
+
+.news-arrow{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-size:24px !important;
+  line-height:1 !important;
+  font-weight:500 !important;
+  color:#171717 !important;
+  transform:translateY(-1px) !important;
+  transition:transform .18s ease, color .18s ease;
+}
+
+.news-item.news-single:hover .news-arrow{
+  transform:translate(3px,-4px) !important;
+  color:#0F5E8C !important;
+}
+
+@media(max-width:700px){
+  .news-item.news-single{
+    gap:9px !important;
+  }
+
+  .news-arrow{
+    font-size:18px !important;
+  }
+}
