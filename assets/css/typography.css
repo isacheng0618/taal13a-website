@@ -1,22 +1,44 @@
-/* === Taal13A Typography System === */
-/* 目标：接近参考图的字体感觉
-   - 大标题：超粗黑体 / 海报感
-   - 数字：Archivo Black
-   - 正文：Inter
-*/
+/* =====================================================
+   Taal13A Clean Typography CSS
+   版本：无补丁整合版
+   用途：字体系统 / 顶部导航 / 轮动条 / 首页 Hero / 数据区 / 栏目编号
+===================================================== */
+
+
+/* =====================================================
+   0. Font Import
+===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Inter:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;700;800;900&display=swap');
+
+
+/* =====================================================
+   1. Variables
+===================================================== */
 
 :root{
   --font-display: "Noto Serif SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
   --font-number: "Electrolize", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Inter", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+
+  --black: #17130f;
+  --gray: #6f7069;
+  --gray-light: #8f8f8a;
+  --blue: #0F5E8C;
+  --blue-light: #A9D7EC;
+  --yellow: #F4DF7A;
+  --cream: #FFFDF8;
 }
 
-/* 全站正文 */
+
+/* =====================================================
+   2. Global Typography
+===================================================== */
+
 body{
   font-family: var(--font-body) !important;
 }
 
-/* 按钮、输入框、表单也统一 */
 button,
 input,
 select,
@@ -25,7 +47,6 @@ label{
   font-family: var(--font-body) !important;
 }
 
-/* 大标题：Hero、Section、页面标题 */
 .hero h1,
 .stit,
 .co-hero h1,
@@ -42,56 +63,419 @@ label{
   letter-spacing: -0.055em !important;
 }
 
-/* 首页 Hero 大字 */
-.hero h1{
-  font-size: clamp(54px, 7.5vw, 108px) !important;
-  line-height: .98 !important;
-}
-
-/* 首页 Hero 橙色强调 */
-.hero h1 em{
-  font-family: var(--font-display) !important;
-  font-style: normal !important;
-  font-weight: 900 !important;
-}
-
-/* 首页 Section 大标题 */
 .stit{
   font-size: clamp(42px, 5vw, 72px) !important;
   line-height: 1.08 !important;
 }
 
-/* 统计数字 */
-.hn{
-  font-family: var(--font-number) !important;
-  font-size: clamp(42px, 4.6vw, 72px) !important;
-  line-height: 1 !important;
-  font-weight: 400 !important;
-  letter-spacing: -0.03em !important;
+.ssub,
+.fd,
+.cdesc,
+.scard-desc,
+.pd-desc,
+.about-bio-text,
+.fa,
+.tbio,
+.legal-card p,
+.legal-card li{
+  font-family: var(--font-body) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
 }
 
-/* 统计数字下方中文 */
-.hl{
+
+/* =====================================================
+   3. Header / Toolbar
+===================================================== */
+
+.register-btn,
+.cta{
+  border-radius: 0 !important;
+  background: var(--blue) !important;
+  color: #fff !important;
+  border: 2px solid var(--blue) !important;
+  height: 48px !important;
+  padding: 0 22px !important;
   font-family: var(--font-body) !important;
-  font-size: 13px !important;
+  font-size: 15px !important;
+  font-weight: 900 !important;
+  box-shadow: none !important;
+}
+
+.register-btn:hover,
+.cta:hover{
+  background: #0B486D !important;
+  border-color: #0B486D !important;
+  transform: none !important;
+}
+
+@media(min-width:701px){
+
+  .tb{
+    height: 72px !important;
+    background: var(--cream) !important;
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .nc{
+    gap: 34px !important;
+  }
+
+  .nl{
+    font-size: 0 !important;
+    padding: 0 !important;
+    color: var(--black) !important;
+    font-family: var(--font-body) !important;
+    font-weight: 900 !important;
+    letter-spacing: 0 !important;
+    display: inline-flex !important;
+    align-items: baseline !important;
+    gap: 8px !important;
+  }
+
+  .nl::before{
+    font-size: 20px !important;
+    font-weight: 900 !important;
+    color: var(--black) !important;
+    letter-spacing: 0 !important;
+  }
+
+  .nl::after{
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    background: none !important;
+    font-family: var(--font-number) !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: var(--gray-light) !important;
+    letter-spacing: .28em !important;
+    text-transform: uppercase !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .nl[data-zh="主页 / Home"]::before{
+    content: "主页";
+  }
+
+  .nl[data-zh="主页 / Home"]::after{
+    content: "HOME";
+  }
+
+  .nl[data-zh="课程 / Cursussen"]::before{
+    content: "课程";
+  }
+
+  .nl[data-zh="课程 / Cursussen"]::after{
+    content: "CURSUSSEN";
+  }
+
+  .nl[data-zh="书店 / Winkel"]::before{
+    content: "书店";
+  }
+
+  .nl[data-zh="书店 / Winkel"]::after{
+    content: "WINKEL";
+  }
+
+  .nl[data-zh="关于 / Over ons"]::before{
+    content: "关于";
+  }
+
+  .nl[data-zh="关于 / Over ons"]::after{
+    content: "OVER ONS";
+  }
+
+  .nl[data-zh="联系 / Contact"]::before{
+    content: "联系";
+  }
+
+  .nl[data-zh="联系 / Contact"]::after{
+    content: "CONTACT";
+  }
+
+  .nl:hover::after,
+  .nl.on::after{
+    width: auto !important;
+    background: none !important;
+  }
+
+  .nl:hover::before,
+  .nl.on::before{
+    color: var(--black) !important;
+  }
+
+  .language-tool,
+  .lang-icon-btn,
+  .lang-text{
+    font-family: var(--font-body) !important;
+    font-weight: 900 !important;
+    color: var(--black) !important;
+  }
+
+  .lang-text{
+    font-size: 18px !important;
+  }
+}
+
+
+/* =====================================================
+   4. News Ticker
+===================================================== */
+
+.news-ticker{
+  height: 52px !important;
+  background: var(--yellow) !important;
+  border-top: 1px solid var(--black) !important;
+  border-bottom: 1px solid var(--black) !important;
+  box-shadow: none !important;
+}
+
+.news-title{
+  font-family: var(--font-number) !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  letter-spacing: .22em !important;
+  color: var(--black) !important;
+}
+
+.news-item.news-single{
+  padding: 0 28px !important;
+}
+
+
+/* =====================================================
+   5. Mobile Fixed Header
+===================================================== */
+
+@media(max-width:700px){
+
+  .tb{
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9999 !important;
+    background: var(--cream) !important;
+    border-bottom: 1px solid var(--black) !important;
+    box-shadow: none !important;
+  }
+
+  .news-ticker{
+    position: fixed !important;
+    top: 92px !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9998 !important;
+    height: 36px !important;
+    background: var(--yellow) !important;
+    border-top: 0 !important;
+    border-bottom: 1px solid var(--black) !important;
+    box-shadow: none !important;
+  }
+
+  .news-title{
+    font-size: 13px !important;
+    letter-spacing: .18em !important;
+  }
+
+  body{
+    padding-top: 128px !important;
+  }
+
+  .register-btn,
+  .cta,
+  .mobile-register,
+  .m-register,
+  .drawer .register-btn,
+  .drawer .cta,
+  .mobile-menu .register-btn,
+  .mobile-menu .cta{
+    border-radius: 0 !important;
+    background: var(--blue) !important;
+    color: #fff !important;
+    border: 2px solid var(--blue) !important;
+    box-shadow: none !important;
+  }
+}
+
+
+/* =====================================================
+   6. Home Hero
+===================================================== */
+
+.hero .hc{
+  width: min(1120px, calc(100% - 64px)) !important;
+  max-width: 1120px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 120px 0 70px !important;
+  text-align: left !important;
+}
+
+.hero-kicker,
+.hero .hero-kicker,
+.hero .magazine-kicker,
+.hero .section-kicker{
+  font-family: var(--font-number) !important;
+  font-size: 17px !important;
+  line-height: 1.2 !important;
+  font-weight: 400 !important;
+  letter-spacing: .18em !important;
+  text-transform: uppercase !important;
+  color: rgba(20,20,20,.48) !important;
+  margin: 0 0 14px 0 !important;
+  text-align: left !important;
+}
+
+.magazine-hero-title,
+.hero #hero-h1,
+.hero h1{
+  font-family: var(--font-display) !important;
+  font-size: clamp(72px, 9vw, 142px) !important;
+  line-height: .92 !important;
+  font-weight: 900 !important;
+  color: var(--black) !important;
+  letter-spacing: -0.08em !important;
+  margin: 0 0 44px 0 !important;
+  text-align: left !important;
+  max-width: 980px !important;
+}
+
+.title-blue-square{
+  display: inline-block !important;
+  width: .28em !important;
+  height: .28em !important;
+  background: var(--blue-light) !important;
+  vertical-align: middle !important;
+  margin: 0 .08em !important;
+}
+
+.hero-subtitle-main,
+.hero .hero-lead{
+  font-family: var(--font-display) !important;
+  font-size: 26px !important;
   line-height: 1.35 !important;
   font-weight: 800 !important;
-  color: #171717 !important;
+  color: var(--black) !important;
+  margin: 0 0 24px 0 !important;
+  text-align: left !important;
+  max-width: 900px !important;
 }
 
-/* 统计数字下方荷兰语 */
-.hl::after{
-  display: block;
-  margin-top: 8px;
+.hero-subtitle-muted,
+.hero .hsub{
+  font-family: var(--font-display) !important;
+  font-size: 21px !important;
+  line-height: 1.7 !important;
+  font-weight: 500 !important;
+  color: #666 !important;
+  margin: 0 0 0 0 !important;
+  text-align: left !important;
+  max-width: 1050px !important;
+}
+
+.hero .hbtns,
+.magazine-hero-actions{
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 22px !important;
+  margin-top: 46px !important;
+  margin-bottom: 58px !important;
+}
+
+.hero .hbtns button,
+.hero .hbtns .hb1,
+.hero .hbtns .hb2,
+.magazine-hero-actions button{
+  width: 230px !important;
+  height: 58px !important;
+  min-width: 230px !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: var(--font-display) !important;
+  font-size: 17px !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0 !important;
+  text-align: center !important;
+}
+
+.hero .hb1,
+.hb1{
+  background: var(--blue) !important;
+  color: #fff !important;
+  border: 1.5px solid var(--blue) !important;
+}
+
+.hero .hb2,
+.hb2{
+  background: rgba(255,255,255,.82) !important;
+  color: var(--black) !important;
+  border: 1.5px solid var(--black) !important;
+}
+
+
+/* =====================================================
+   7. Home Stats
+===================================================== */
+
+.hero .hstats{
+  width: 100% !important;
+  max-width: 1040px !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 0 34px !important;
+  align-items: start !important;
+  margin-top: 44px !important;
+}
+
+.hero .hstats > div{
+  min-width: 0 !important;
+  width: auto !important;
+  padding: 0 !important;
+  text-align: left !important;
+  overflow: visible !important;
+}
+
+.hn,
+.hero .hstats .hn{
   font-family: var(--font-number) !important;
-  font-size: 13px;
-  line-height: 1.2;
-  font-weight: 400;
-  letter-spacing: .24em;
-  color: #6F7069;
+  font-size: clamp(52px, 4.8vw, 74px) !important;
+  line-height: 1 !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.04em !important;
+  white-space: nowrap !important;
+  display: block !important;
+  color: var(--black) !important;
 }
 
-/* 四个统计项对应荷兰语 */
+.hl,
+.hero .hstats .hl{
+  font-family: var(--font-body) !important;
+  font-size: 15px !important;
+  line-height: 1.2 !important;
+  font-weight: 800 !important;
+  color: var(--black) !important;
+  white-space: nowrap !important;
+}
+
+.hl::after,
+.hero .hstats .hl::after{
+  display: block !important;
+  margin-top: 8px !important;
+  font-family: var(--font-number) !important;
+  font-size: 15px !important;
+  line-height: 1.2 !important;
+  font-weight: 400 !important;
+  letter-spacing: .28em !important;
+  color: var(--gray) !important;
+  white-space: nowrap !important;
+}
+
 .hstats > div:nth-child(1) .hl::after{
   content: "STUDENTEN";
 }
@@ -108,50 +492,242 @@ label{
   content: "TEVREDENHEID";
 }
 
-/* 副标题：黑色中文 */
-.hero .hsub{
-  font-family: var(--font-body) !important;
-  font-size: 17px !important;
-  line-height: 1.8 !important;
-  font-weight: 500 !important;
-  letter-spacing: 0 !important;
+
+/* =====================================================
+   8. Section Labels
+===================================================== */
+
+.eye{
+  font-family: var(--font-number) !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  color: #7A7A74 !important;
+  letter-spacing: .28em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 1.2rem !important;
 }
 
-/* 小标签 */
-.eye,
-.course-label,
-.course-type,
-.scard-cat,
-.pd-brand,
-.about-bio-label,
-.testimonial-person em{
-  font-family: var(--font-body) !important;
-  font-weight: 800 !important;
-  letter-spacing: .16em !important;
+#pg-home .bg-sky .eye{
+  font-size: 0 !important;
 }
 
-/* 正文描述文字 */
-.ssub,
-.fd,
-.cdesc,
-.scard-desc,
-.pd-desc,
-.about-bio-text,
-.fa,
-.tbio,
-.legal-card p,
-.legal-card li{
-  font-family: var(--font-body) !important;
-  font-weight: 500 !important;
-  letter-spacing: 0 !important;
+#pg-home .bg-sky .eye::before{
+  content: "Nº 002 · WAAROM TAAL13A";
+  font-family: var(--font-number) !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  color: #7A7A74 !important;
+  letter-spacing: .28em !important;
 }
 
-/* 手机端适配 */
-@media(max-width:700px){
+#home-course-section .eye{
+  font-size: 0 !important;
+}
+
+#home-course-section .eye::before{
+  content: "Nº 003 · CURSUSSEN";
+  font-family: var(--font-number) !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  color: #7A7A74 !important;
+  letter-spacing: .28em !important;
+}
+
+#pg-home > .bg-sand .eye{
+  font-size: 0 !important;
+}
+
+#pg-home > .bg-sand .eye::before{
+  content: "Nº 004 · ERVARINGEN";
+  font-family: var(--font-number) !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  color: #FCF8D8 !important;
+  letter-spacing: .28em !important;
+}
+
+
+/* =====================================================
+   9. Why Taal13A Cards
+===================================================== */
+
+.fcard .ficon::before,
+.fcard:nth-child(1) .ficon::before,
+.fcard:nth-child(2) .ficon::before,
+.fcard:nth-child(3) .ficon::before,
+.fcard:nth-child(4) .ficon::before{
+  font-family: var(--font-number) !important;
+  font-size: 30px !important;
+  font-weight: 400 !important;
+  letter-spacing: -.02em !important;
+}
+
+#pg-home .bg-sky .ft{
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+}
+
+#pg-home .bg-sky .ft::after{
+  content: attr(data-nl);
+  font-family: var(--font-number) !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: #9A9A94 !important;
+  letter-spacing: .28em !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+
+
+/* =====================================================
+   10. Mobile Hero Only
+===================================================== */
+
+@media(max-width:768px){
+
+  .hero .hc{
+    width: calc(100% - 52px) !important;
+    max-width: none !important;
+    margin-left: 26px !important;
+    margin-right: 26px !important;
+    padding: 78px 0 48px !important;
+    text-align: left !important;
+  }
+
+  .hero-kicker,
+  .hero .hero-kicker,
+  .hero .magazine-kicker,
+  .hero .section-kicker{
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+    letter-spacing: .18em !important;
+    margin: 0 0 18px 0 !important;
+    text-align: left !important;
+  }
+
+  .magazine-hero-title,
+  .hero #hero-h1,
   .hero h1{
-    font-size: 46px !important;
-    line-height: 1.08 !important;
-    letter-spacing: -0.045em !important;
+    font-size: clamp(54px, 16.5vw, 78px) !important;
+    line-height: .98 !important;
+    letter-spacing: -0.075em !important;
+    margin: 0 0 48px 0 !important;
+    text-align: left !important;
+    max-width: 100% !important;
+  }
+
+  .hero-subtitle-main,
+  .hero .hero-lead{
+    font-size: 22px !important;
+    line-height: 1.45 !important;
+    margin: 0 0 24px 0 !important;
+    text-align: left !important;
+    max-width: 100% !important;
+  }
+
+  .hero-subtitle-muted,
+  .hero .hsub{
+    font-size: 18px !important;
+    line-height: 1.9 !important;
+    margin: 0 !important;
+    text-align: left !important;
+    max-width: 100% !important;
+  }
+
+  .hero .hbtns,
+  .magazine-hero-actions{
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 14px !important;
+    margin-top: 54px !important;
+    margin-bottom: 132px !important;
+  }
+
+  .hero .hbtns button,
+  .hero .hbtns .hb1,
+  .hero .hbtns .hb2,
+  .magazine-hero-actions button{
+    width: 235px !important;
+    min-width: 235px !important;
+    height: 50px !important;
+    min-height: 50px !important;
+    padding: 0 18px !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    display: grid !important;
+    grid-template-columns: 1fr 22px !important;
+    column-gap: 12px !important;
+    align-items: center !important;
+    justify-items: stretch !important;
+
+    font-family: var(--font-display) !important;
+    font-size: 0 !important;
+    line-height: 1 !important;
+    font-weight: 800 !important;
+    text-align: left !important;
+  }
+
+  .hero .hbtns .hb1::before{
+    content: "查看适合我的课程" !important;
+    font-size: 16px !important;
+    justify-self: start !important;
+  }
+
+  .hero .hbtns .hb2::before{
+    content: "获取学习资料" !important;
+    font-size: 16px !important;
+    justify-self: start !important;
+  }
+
+  .hero .hbtns .hb1::after,
+  .hero .hbtns .hb2::after{
+    content: "→" !important;
+    font-size: 18px !important;
+    justify-self: end !important;
+    line-height: 1 !important;
+  }
+
+  .hero .hstats{
+    width: 100% !important;
+    max-width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 38px 26px !important;
+    margin-top: 124px !important;
+    padding-bottom: 46px !important;
+  }
+
+  .hero .hstats > div{
+    min-width: 0 !important;
+    width: auto !important;
+    padding: 0 !important;
+    text-align: left !important;
+    overflow: visible !important;
+  }
+
+  .hero .hstats .hn{
+    font-size: 42px !important;
+    line-height: 1 !important;
+    letter-spacing: -0.04em !important;
+    white-space: nowrap !important;
+  }
+
+  .hero .hstats .hl{
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+  }
+
+  .hero .hstats .hl::after{
+    font-size: 12px !important;
+    letter-spacing: .20em !important;
+    white-space: nowrap !important;
   }
 
   .stit{
@@ -159,745 +735,69 @@ label{
     line-height: 1.14 !important;
   }
 
-  .hn{
-    font-size: 34px !important;
-  }
-
-  .hl::after{
-    font-size: 9px !important;
-    letter-spacing: .18em !important;
-  }
-}
-
-/* === Why Taal13A 编号：01 / 02 / 03 / 04 === */
-
-.fcard .ficon::before{
-  font-family: var(--font-number) !important;
-  font-weight: 400 !important;
-  letter-spacing: -0.02em !important;
-}
-
-/* 桌面端编号 */
-.fcard:nth-child(1) .ficon::before,
-.fcard:nth-child(2) .ficon::before,
-.fcard:nth-child(3) .ficon::before,
-.fcard:nth-child(4) .ficon::before{
-  font-family: var(--font-number) !important;
-  font-size: 42px !important;
-  font-weight: 400 !important;
-  letter-spacing: -0.02em !important;
-}
-
-/* 手机端编号 */
-@media(max-width:700px){
-  #pg-home .bg-sky .fcard:nth-child(1) .ficon::before,
-  #pg-home .bg-sky .fcard:nth-child(2) .ficon::before,
-  #pg-home .bg-sky .fcard:nth-child(3) .ficon::before,
-  #pg-home .bg-sky .fcard:nth-child(4) .ficon::before{
-    font-family: var(--font-number) !important;
-    font-size: 34px !important;
-    font-weight: 400 !important;
-    letter-spacing: -0.02em !important;
-  }
-}
-
-/* =====================================================
-   EDITORIAL TOOLBAR + SECTION LABELS V1
-   参考图风格：顶部栏、轮动条、栏目编号、荷兰语灰色小字
-===================================================== */
-
-
-/* 1. 顶部轮动条：加高 + 参考图淡黄色 */
-.news-ticker{
-  height:52px !important;
-  background:#F4DF7A !important;
-  border-top:2px solid #171717 !important;
-  border-bottom:2px solid #171717 !important;
-  box-shadow:none !important;
-}
-
-.news-title{
-  font-family:var(--font-number) !important;
-  font-size:20px !important;
-  font-weight:400 !important;
-  letter-spacing:.22em !important;
-  color:#171717 !important;
-}
-
-.news-item.news-single{
-  padding:0 28px !important;
-}
-
-
-/* 2. 注册按钮：改成参考图那种扁平方框，但保留蓝色 */
-.register-btn,
-.cta{
-  border-radius:0 !important;
-  background:#0F5E8C !important;
-  color:#fff !important;
-  border:2px solid #0F5E8C !important;
-  height:48px !important;
-  padding:0 22px !important;
-  font-family:var(--font-body) !important;
-  font-size:15px !important;
-  font-weight:900 !important;
-  box-shadow:none !important;
-}
-
-.register-btn:hover,
-.cta:hover{
-  background:#0B486D !important;
-  border-color:#0B486D !important;
-  transform:none !important;
-}
-
-
-/* 3. 顶部工具栏：中文黑色，荷兰语灰色小字 */
-@media(min-width:701px){
-
-  .tb{
-    height:72px !important;
-    background:#FFFDF8 !important;
-    border-bottom:2px solid #171717 !important;
-    box-shadow:none !important;
-  }
-
-  .nc{
-    gap:34px !important;
-  }
-
-  .nl{
-    font-size:0 !important;
-    padding:0 !important;
-    color:#171717 !important;
-    font-family:var(--font-body) !important;
-    font-weight:900 !important;
-    letter-spacing:0 !important;
-    display:inline-flex !important;
-    align-items:baseline !important;
-    gap:8px !important;
-  }
-
-  .nl::before{
-    font-size:20px !important;
-    font-weight:900 !important;
-    color:#171717 !important;
-    letter-spacing:0 !important;
-  }
-
-  .nl::after{
-    position:static !important;
-    width:auto !important;
-    height:auto !important;
-    background:none !important;
-    font-family:var(--font-number) !important;
-    font-size:14px !important;
-    font-weight:400 !important;
-    color:#8F8F8A !important;
-    letter-spacing:.28em !important;
-    text-transform:uppercase !important;
-    transform:none !important;
-    transition:none !important;
-  }
-
-  .nl[data-zh="主页 / Home"]::before{
-    content:"主页";
-  }
-
-  .nl[data-zh="主页 / Home"]::after{
-    content:"HOME";
-  }
-
-  .nl[data-zh="课程 / Cursussen"]::before{
-    content:"课程";
-  }
-
-  .nl[data-zh="课程 / Cursussen"]::after{
-    content:"CURSUSSEN";
-  }
-
-  .nl[data-zh="书店 / Winkel"]::before{
-    content:"书店";
-  }
-
-  .nl[data-zh="书店 / Winkel"]::after{
-    content:"WINKEL";
-  }
-
-  .nl[data-zh="关于 / Over ons"]::before{
-    content:"关于";
-  }
-
-  .nl[data-zh="关于 / Over ons"]::after{
-    content:"OVER ONS";
-  }
-
-  .nl[data-zh="联系 / Contact"]::before{
-    content:"联系";
-  }
-
-  .nl[data-zh="联系 / Contact"]::after{
-    content:"CONTACT";
-  }
-
-  .nl:hover::after,
-  .nl.on::after{
-    width:auto !important;
-    background:none !important;
-  }
-
-  .nl:hover::before,
-  .nl.on::before{
-    color:#171717 !important;
-  }
-
-  .language-tool,
-  .lang-icon-btn{
-    font-family:var(--font-body) !important;
-    font-weight:900 !important;
-    color:#171717 !important;
-  }
-
-  .lang-text{
-    font-family:var(--font-body) !important;
-    font-size:18px !important;
-    font-weight:900 !important;
-    color:#171717 !important;
-  }
-}
-
-
-/* 4. 栏目 eye 改成参考图的编号装饰感 */
-.eye{
-  font-family:var(--font-number) !important;
-  font-size:15px !important;
-  font-weight:400 !important;
-  color:#7A7A74 !important;
-  letter-spacing:.28em !important;
-  text-transform:uppercase !important;
-  margin-bottom:1.2rem !important;
-}
-
-/* 首页：为什么选择 Taal13A */
-#pg-home .bg-sky .eye{
-  font-size:0 !important;
-}
-
-#pg-home .bg-sky .eye::before{
-  content:"Nº 002 · WAAROM TAAL13A";
-  font-family:var(--font-number) !important;
-  font-size:15px !important;
-  font-weight:400 !important;
-  color:#7A7A74 !important;
-  letter-spacing:.28em !important;
-}
-
-/* 首页：选择您的课程 */
-#home-course-section .eye{
-  font-size:0 !important;
-}
-
-#home-course-section .eye::before{
-  content:"Nº 003 · CURSUSSEN";
-  font-family:var(--font-number) !important;
-  font-size:15px !important;
-  font-weight:400 !important;
-  color:#7A7A74 !important;
-  letter-spacing:.28em !important;
-}
-
-/* 首页：学员反馈 */
-#pg-home > .bg-sand .eye{
-  font-size:0 !important;
-}
-
-#pg-home > .bg-sand .eye::before{
-  content:"Nº 004 · ERVARINGEN";
-  font-family:var(--font-number) !important;
-  font-size:15px !important;
-  font-weight:400 !important;
-  color:#FCF8D8 !important;
-  letter-spacing:.28em !important;
-}
-
-
-/* 5. Why Taal13A 四个主题：中文旁边加灰色荷兰语 */
-#pg-home .bg-sky .ft{
-  display:flex !important;
-  align-items:baseline !important;
-  gap:12px !important;
-  flex-wrap:wrap !important;
-}
-
-#pg-home .bg-sky .ft::after{
-  content:attr(data-nl);
-  font-family:var(--font-number) !important;
-  font-size:13px !important;
-  font-weight:400 !important;
-  color:#9A9A94 !important;
-  letter-spacing:.28em !important;
-  text-transform:uppercase !important;
-  white-space:nowrap !important;
-}
-
-
-/* 6. 01 / 02 / 03 / 04 再缩小一点 */
-.fcard:nth-child(1) .ficon::before,
-.fcard:nth-child(2) .ficon::before,
-.fcard:nth-child(3) .ficon::before,
-.fcard:nth-child(4) .ficon::before{
-  font-family:var(--font-number) !important;
-  font-size:30px !important;
-  font-weight:400 !important;
-  letter-spacing:-.02em !important;
-}
-
-
-/* 手机端：避免顶部太高，轮动条稍微压缩 */
-@media(max-width:700px){
-
-  .news-ticker{
-    height:34px !important;
-    top:92px !important;
-  }
-
-  .news-title{
-    font-size:13px !important;
-    letter-spacing:.18em !important;
-  }
-
   #pg-home .bg-sky .eye::before,
   #home-course-section .eye::before,
   #pg-home > .bg-sand .eye::before{
-    font-size:12px !important;
-    letter-spacing:.22em !important;
+    font-size: 12px !important;
+    letter-spacing: .22em !important;
   }
 
   #pg-home .bg-sky .ft{
-    display:block !important;
+    display: block !important;
   }
 
   #pg-home .bg-sky .ft::after{
-    display:block !important;
-    margin-top:7px !important;
-    font-size:11px !important;
-    letter-spacing:.24em !important;
+    display: block !important;
+    margin-top: 7px !important;
+    font-size: 11px !important;
+    letter-spacing: .24em !important;
   }
 
   #pg-home .bg-sky .fcard:nth-child(1) .ficon::before,
   #pg-home .bg-sky .fcard:nth-child(2) .ficon::before,
   #pg-home .bg-sky .fcard:nth-child(3) .ficon::before,
   #pg-home .bg-sky .fcard:nth-child(4) .ficon::before{
-    font-size:30px !important;
+    font-size: 30px !important;
   }
 }
 
+
 /* =====================================================
-   FIX HEADER + TICKER BORDER + MOBILE STICKY V1
+   11. Extra Small Mobile
 ===================================================== */
 
+@media(max-width:430px){
 
-/* 1. 桌面端：去掉双线，只保留轮动条自己的上下 1px 线 */
-@media(min-width:701px){
-
-  .tb{
-    border-bottom:0 !important;
+  .hero .hc{
+    width: calc(100% - 50px) !important;
+    margin-left: 25px !important;
+    margin-right: 25px !important;
   }
 
-  .news-ticker{
-    height:52px !important;
-    border-top:1px solid #171717 !important;
-    border-bottom:1px solid #171717 !important;
-  }
-
-}
-
-
-/* 2. 手机端：顶部导航固定 */
-@media(max-width:700px){
-
-  .tb{
-    position:fixed !important;
-    top:0 !important;
-    left:0 !important;
-    right:0 !important;
-    z-index:9999 !important;
-    background:#FFFDF8 !important;
-    border-bottom:1px solid #171717 !important;
-    box-shadow:none !important;
-  }
-
-  /* 3. 手机端：轮动条固定在导航下面 */
-  .news-ticker{
-    position:fixed !important;
-    top:92px !important;
-    left:0 !important;
-    right:0 !important;
-    z-index:9998 !important;
-    height:36px !important;
-    background:#F4DF7A !important;
-    border-top:0 !important;
-    border-bottom:1px solid #171717 !important;
-    box-shadow:none !important;
-  }
-
-  .news-title{
-    font-size:13px !important;
-    letter-spacing:.18em !important;
-  }
-
-  /* 4. 防止页面内容被固定导航遮住 */
-  body{
-    padding-top:128px !important;
-  }
-
-  /* 5. 手机端注册按钮：强制改成方形，不要椭圆 */
-  .register-btn,
-  .cta,
-  .mobile-register,
-  .m-register,
-  .drawer .register-btn,
-  .drawer .cta,
-  .mobile-menu .register-btn,
-  .mobile-menu .cta{
-    border-radius:0 !important;
-    background:#0F5E8C !important;
-    color:#fff !important;
-    border:2px solid #0F5E8C !important;
-    box-shadow:none !important;
-  }
-
-}
-
-
-
-
-/* =====================================================
-   FIX: HERO MOBILE ALIGNMENT + BUTTONS + STATS OVERLAP
-   Add this at the very bottom of typography.css
-   ===================================================== */
-
-
-/* ---------- Desktop stats fix ---------- */
-
-.hero .hstats {
-  width: 100% !important;
-  max-width: 980px !important;
-  display: grid !important;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  gap: 0 34px !important;
-  align-items: start !important;
-  margin-top: 44px !important;
-}
-
-.hero .hstats > div {
-  min-width: 0 !important;
-  width: auto !important;
-  padding: 0 !important;
-  text-align: left !important;
-  overflow: visible !important;
-}
-
-.hero .hstats .hn {
-  font-family: 'Electrolize', Helvetica Neue, Arial, sans-serif !important;
-  font-size: clamp(52px, 4.6vw, 74px) !important;
-  line-height: 1 !important;
-  letter-spacing: -0.04em !important;
-  white-space: nowrap !important;
-  display: block !important;
-}
-
-.hero .hstats .hl {
-  font-size: 15px !important;
-  line-height: 1.2 !important;
-  white-space: nowrap !important;
-}
-
-.hero .hstats .hl::after {
-  font-size: 15px !important;
-  letter-spacing: 0.28em !important;
-  white-space: nowrap !important;
-}
-
-
-/* ---------- Mobile fix ---------- */
-
-@media (max-width: 768px) {
-
-  /* 手机端整体左边界 */
-  .hero .hc {
-    width: auto !important;
-    max-width: none !important;
-    margin-left: 42px !important;
-    margin-right: 28px !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    text-align: left !important;
-    align-items: flex-start !important;
-  }
-
-  .hero .hero-kicker,
-  .hero .magazine-kicker,
-  .hero .section-kicker {
-    text-align: left !important;
-    margin-left: 0 !important;
-  }
-
-  .hero #hero-h1 {
-    text-align: left !important;
-    margin-left: 0 !important;
-    margin-bottom: 38px !important;
-  }
-
-  .hero .hero-lead,
-  .hero .hsub {
-    text-align: left !important;
-    margin-left: 0 !important;
-    max-width: 100% !important;
-  }
-
-  /* 手机按钮：靠左、不要太肥、文字居中 */
-  .hero .hbtns {
-    width: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
-    gap: 16px !important;
-    margin-top: 42px !important;
-    margin-bottom: 120px !important;
+  .magazine-hero-title,
+  .hero #hero-h1,
+  .hero h1{
+    font-size: clamp(52px, 16vw, 72px) !important;
   }
 
   .hero .hbtns button,
   .hero .hbtns .hb1,
-  .hero .hbtns .hb2 {
-    width: 245px !important;
-    height: 54px !important;
-    min-height: 54px !important;
-    padding: 0 18px !important;
-    border-radius: 0 !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    text-align: center !important;
-    font-size: 17px !important;
-    line-height: 1 !important;
-    font-weight: 800 !important;
+  .hero .hbtns .hb2{
+    width: 235px !important;
+    min-width: 235px !important;
+    height: 50px !important;
   }
 
-  /* 手机端数据先不要出现在首屏，并避免挤压 */
-  .hero .hstats {
-    width: 100% !important;
-    max-width: 100% !important;
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 36px 28px !important;
-    margin-top: 120px !important;
-    padding-bottom: 40px !important;
+  .hero .hstats{
+    gap: 36px 22px !important;
   }
 
-  .hero .hstats > div {
-    min-width: 0 !important;
-    width: auto !important;
-    padding: 0 !important;
-    text-align: left !important;
-    overflow: visible !important;
-  }
-
-  .hero .hstats .hn {
-    font-size: 42px !important;
-    line-height: 1 !important;
-    letter-spacing: -0.04em !important;
-    white-space: nowrap !important;
-  }
-
-  .hero .hstats .hl {
-    font-size: 13px !important;
-    line-height: 1.2 !important;
-    white-space: nowrap !important;
-  }
-
-  .hero .hstats .hl::after {
-    font-size: 12px !important;
-    letter-spacing: 0.22em !important;
-    white-space: nowrap !important;
-  }
-}
-
-
-/* ---------- Extra small mobile ---------- */
-
-@media (max-width: 430px) {
-
-  .hero .hc {
-    margin-left: 36px !important;
-    margin-right: 24px !important;
-  }
-
-  .hero .hbtns button,
-  .hero .hbtns .hb1,
-  .hero .hbtns .hb2 {
-    width: 230px !important;
-    height: 52px !important;
-    min-height: 52px !important;
-    font-size: 16px !important;
-  }
-
-  .hero .hstats {
-    margin-top: 130px !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 34px 22px !important;
-  }
-
-  .hero .hstats .hn {
+  .hero .hstats .hn{
     font-size: 38px !important;
   }
-}
 
-/* =====================================================
-   MOBILE ONLY FINAL FIX
-   只影响手机端：Hero 左对齐、按钮正常、数据正常
-===================================================== */
-
-@media (max-width: 768px) {
-
-  /* 1. 手机端 Hero 整体左边界 */
-  .hero .hc {
-    width: auto !important;
-    max-width: none !important;
-
-    margin-left: 24px !important;
-    margin-right: 24px !important;
-
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-
-    text-align: left !important;
-    align-items: flex-start !important;
-  }
-
-  /* 2. Hero 内所有文字强制左对齐 */
-  .hero .hero-kicker,
-  .hero .magazine-kicker,
-  .hero .section-kicker,
-  .hero #hero-h1,
-  .hero .hero-lead,
-  .hero .hsub {
-    text-align: left !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  /* 3. 按钮区域左对齐 */
-  .hero .hbtns {
-    width: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
-
-    gap: 14px !important;
-    margin-top: 44px !important;
-    margin-bottom: 120px !important;
-  }
-
-  /* 4. 按钮恢复正常，不再用伪元素造箭头 */
-  .hero .hbtns button,
-  .hero .hbtns .hb1,
-  .hero .hbtns .hb2 {
-    width: 240px !important;
-    height: 52px !important;
-    min-height: 52px !important;
-
-    padding: 0 18px !important;
-    border-radius: 0 !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-
-    text-align: left !important;
-    font-size: 16px !important;
-    line-height: 1 !important;
-    font-weight: 800 !important;
-    white-space: nowrap !important;
-  }
-
-  /* 5. 禁掉之前错误补丁制造出来的文字和箭头 */
-  .hero .hbtns .hb1::before,
-  .hero .hbtns .hb1::after,
-  .hero .hbtns .hb2::before,
-  .hero .hbtns .hb2::after {
-    content: none !important;
-    display: none !important;
-  }
-
-  /* 6. 数据区：手机端两列，防止挤压 */
-  .hero .hstats {
-    width: 100% !important;
-    max-width: 100% !important;
-
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 34px 22px !important;
-
-    margin-top: 120px !important;
-    padding-bottom: 42px !important;
-  }
-
-  .hero .hstats > div {
-    min-width: 0 !important;
-    width: auto !important;
-    padding: 0 !important;
-    text-align: left !important;
-    overflow: visible !important;
-  }
-
-  .hero .hstats .hn {
-    font-size: 42px !important;
-    line-height: 1 !important;
-    letter-spacing: -0.04em !important;
-    white-space: nowrap !important;
-  }
-
-  .hero .hstats .hl {
-    font-size: 13px !important;
-    line-height: 1.2 !important;
-    white-space: nowrap !important;
-  }
-
-  .hero .hstats .hl::after {
+  .hero .hstats .hl::after{
     font-size: 11px !important;
-    letter-spacing: 0.2em !important;
-    white-space: nowrap !important;
-  }
-}
-
-
-@media (max-width: 430px) {
-
-  .hero .hc {
-    margin-left: 24px !important;
-    margin-right: 20px !important;
-  }
-
-  .hero .hbtns button,
-  .hero .hbtns .hb1,
-  .hero .hbtns .hb2 {
-    width: 235px !important;
-    height: 50px !important;
-    min-height: 50px !important;
-    font-size: 16px !important;
-  }
-
-  .hero .hstats .hn {
-    font-size: 39px !important;
-  }
-
-  .hero .hstats .hl::after {
-    font-size: 10px !important;
-    letter-spacing: 0.18em !important;
+    letter-spacing: .18em !important;
   }
 }
