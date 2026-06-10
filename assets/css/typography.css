@@ -200,3 +200,294 @@ label{
     letter-spacing: -0.02em !important;
   }
 }
+
+/* =====================================================
+   EDITORIAL TOOLBAR + SECTION LABELS V1
+   参考图风格：顶部栏、轮动条、栏目编号、荷兰语灰色小字
+===================================================== */
+
+
+/* 1. 顶部轮动条：加高 + 参考图淡黄色 */
+.news-ticker{
+  height:52px !important;
+  background:#F4DF7A !important;
+  border-top:2px solid #171717 !important;
+  border-bottom:2px solid #171717 !important;
+  box-shadow:none !important;
+}
+
+.news-title{
+  font-family:var(--font-number) !important;
+  font-size:20px !important;
+  font-weight:400 !important;
+  letter-spacing:.22em !important;
+  color:#171717 !important;
+}
+
+.news-item.news-single{
+  padding:0 28px !important;
+}
+
+
+/* 2. 注册按钮：改成参考图那种扁平方框，但保留蓝色 */
+.register-btn,
+.cta{
+  border-radius:0 !important;
+  background:#0F5E8C !important;
+  color:#fff !important;
+  border:2px solid #0F5E8C !important;
+  height:48px !important;
+  padding:0 22px !important;
+  font-family:var(--font-body) !important;
+  font-size:15px !important;
+  font-weight:900 !important;
+  box-shadow:none !important;
+}
+
+.register-btn:hover,
+.cta:hover{
+  background:#0B486D !important;
+  border-color:#0B486D !important;
+  transform:none !important;
+}
+
+
+/* 3. 顶部工具栏：中文黑色，荷兰语灰色小字 */
+@media(min-width:701px){
+
+  .tb{
+    height:72px !important;
+    background:#FFFDF8 !important;
+    border-bottom:2px solid #171717 !important;
+    box-shadow:none !important;
+  }
+
+  .nc{
+    gap:34px !important;
+  }
+
+  .nl{
+    font-size:0 !important;
+    padding:0 !important;
+    color:#171717 !important;
+    font-family:var(--font-body) !important;
+    font-weight:900 !important;
+    letter-spacing:0 !important;
+    display:inline-flex !important;
+    align-items:baseline !important;
+    gap:8px !important;
+  }
+
+  .nl::before{
+    font-size:20px !important;
+    font-weight:900 !important;
+    color:#171717 !important;
+    letter-spacing:0 !important;
+  }
+
+  .nl::after{
+    position:static !important;
+    width:auto !important;
+    height:auto !important;
+    background:none !important;
+    font-family:var(--font-number) !important;
+    font-size:14px !important;
+    font-weight:400 !important;
+    color:#8F8F8A !important;
+    letter-spacing:.28em !important;
+    text-transform:uppercase !important;
+    transform:none !important;
+    transition:none !important;
+  }
+
+  .nl[data-zh="主页 / Home"]::before{
+    content:"主页";
+  }
+
+  .nl[data-zh="主页 / Home"]::after{
+    content:"HOME";
+  }
+
+  .nl[data-zh="课程 / Cursussen"]::before{
+    content:"课程";
+  }
+
+  .nl[data-zh="课程 / Cursussen"]::after{
+    content:"CURSUSSEN";
+  }
+
+  .nl[data-zh="书店 / Winkel"]::before{
+    content:"书店";
+  }
+
+  .nl[data-zh="书店 / Winkel"]::after{
+    content:"WINKEL";
+  }
+
+  .nl[data-zh="关于 / Over ons"]::before{
+    content:"关于";
+  }
+
+  .nl[data-zh="关于 / Over ons"]::after{
+    content:"OVER ONS";
+  }
+
+  .nl[data-zh="联系 / Contact"]::before{
+    content:"联系";
+  }
+
+  .nl[data-zh="联系 / Contact"]::after{
+    content:"CONTACT";
+  }
+
+  .nl:hover::after,
+  .nl.on::after{
+    width:auto !important;
+    background:none !important;
+  }
+
+  .nl:hover::before,
+  .nl.on::before{
+    color:#171717 !important;
+  }
+
+  .language-tool,
+  .lang-icon-btn{
+    font-family:var(--font-body) !important;
+    font-weight:900 !important;
+    color:#171717 !important;
+  }
+
+  .lang-text{
+    font-family:var(--font-body) !important;
+    font-size:18px !important;
+    font-weight:900 !important;
+    color:#171717 !important;
+  }
+}
+
+
+/* 4. 栏目 eye 改成参考图的编号装饰感 */
+.eye{
+  font-family:var(--font-number) !important;
+  font-size:15px !important;
+  font-weight:400 !important;
+  color:#7A7A74 !important;
+  letter-spacing:.28em !important;
+  text-transform:uppercase !important;
+  margin-bottom:1.2rem !important;
+}
+
+/* 首页：为什么选择 Taal13A */
+#pg-home .bg-sky .eye{
+  font-size:0 !important;
+}
+
+#pg-home .bg-sky .eye::before{
+  content:"Nº 002 · WAAROM TAAL13A";
+  font-family:var(--font-number) !important;
+  font-size:15px !important;
+  font-weight:400 !important;
+  color:#7A7A74 !important;
+  letter-spacing:.28em !important;
+}
+
+/* 首页：选择您的课程 */
+#home-course-section .eye{
+  font-size:0 !important;
+}
+
+#home-course-section .eye::before{
+  content:"Nº 003 · CURSUSSEN";
+  font-family:var(--font-number) !important;
+  font-size:15px !important;
+  font-weight:400 !important;
+  color:#7A7A74 !important;
+  letter-spacing:.28em !important;
+}
+
+/* 首页：学员反馈 */
+#pg-home > .bg-sand .eye{
+  font-size:0 !important;
+}
+
+#pg-home > .bg-sand .eye::before{
+  content:"Nº 004 · ERVARINGEN";
+  font-family:var(--font-number) !important;
+  font-size:15px !important;
+  font-weight:400 !important;
+  color:#FCF8D8 !important;
+  letter-spacing:.28em !important;
+}
+
+
+/* 5. Why Taal13A 四个主题：中文旁边加灰色荷兰语 */
+#pg-home .bg-sky .ft{
+  display:flex !important;
+  align-items:baseline !important;
+  gap:12px !important;
+  flex-wrap:wrap !important;
+}
+
+#pg-home .bg-sky .ft::after{
+  content:attr(data-nl);
+  font-family:var(--font-number) !important;
+  font-size:13px !important;
+  font-weight:400 !important;
+  color:#9A9A94 !important;
+  letter-spacing:.28em !important;
+  text-transform:uppercase !important;
+  white-space:nowrap !important;
+}
+
+
+/* 6. 01 / 02 / 03 / 04 再缩小一点 */
+.fcard:nth-child(1) .ficon::before,
+.fcard:nth-child(2) .ficon::before,
+.fcard:nth-child(3) .ficon::before,
+.fcard:nth-child(4) .ficon::before{
+  font-family:var(--font-number) !important;
+  font-size:30px !important;
+  font-weight:400 !important;
+  letter-spacing:-.02em !important;
+}
+
+
+/* 手机端：避免顶部太高，轮动条稍微压缩 */
+@media(max-width:700px){
+
+  .news-ticker{
+    height:34px !important;
+    top:92px !important;
+  }
+
+  .news-title{
+    font-size:13px !important;
+    letter-spacing:.18em !important;
+  }
+
+  #pg-home .bg-sky .eye::before,
+  #home-course-section .eye::before,
+  #pg-home > .bg-sand .eye::before{
+    font-size:12px !important;
+    letter-spacing:.22em !important;
+  }
+
+  #pg-home .bg-sky .ft{
+    display:block !important;
+  }
+
+  #pg-home .bg-sky .ft::after{
+    display:block !important;
+    margin-top:7px !important;
+    font-size:11px !important;
+    letter-spacing:.24em !important;
+  }
+
+  #pg-home .bg-sky .fcard:nth-child(1) .ficon::before,
+  #pg-home .bg-sky .fcard:nth-child(2) .ficon::before,
+  #pg-home .bg-sky .fcard:nth-child(3) .ficon::before,
+  #pg-home .bg-sky .fcard:nth-child(4) .ficon::before{
+    font-size:30px !important;
+  }
+}
