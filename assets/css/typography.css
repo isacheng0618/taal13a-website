@@ -1108,3 +1108,107 @@ label{
     font-size: 38px !important;
   }
 }
+
+/* =====================================================
+   MOBILE ONLY FIX: hero left alignment + button text/arrow
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+  /* 只调整手机端 Hero 内容左边界：再往左拉 */
+  .hero .hc {
+    margin-left: 28px !important;
+    margin-right: 24px !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  .hero .hero-kicker,
+  .hero .magazine-kicker,
+  .hero .section-kicker,
+  .hero #hero-h1,
+  .hero .hero-lead,
+  .hero .hsub,
+  .hero .hbtns {
+    margin-left: 0 !important;
+    text-align: left !important;
+  }
+
+  /* 手机端两个按钮：整体左对齐，尺寸稍微收紧 */
+  .hero .hbtns {
+    align-items: flex-start !important;
+    width: 100% !important;
+    gap: 14px !important;
+  }
+
+  .hero .hbtns button,
+  .hero .hbtns .hb1,
+  .hero .hbtns .hb2 {
+    width: 240px !important;
+    height: 50px !important;
+    min-height: 50px !important;
+    padding: 0 20px !important;
+
+    display: grid !important;
+    grid-template-columns: 1fr 18px !important;
+    column-gap: 12px !important;
+    align-items: center !important;
+
+    text-align: left !important;
+    justify-content: unset !important;
+    justify-items: stretch !important;
+
+    border-radius: 0 !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+  }
+
+  /* 把按钮里的文字靠左，箭头固定到同一条竖线 */
+  .hero .hbtns button {
+    position: relative !important;
+  }
+
+  .hero .hbtns .hb1::after,
+  .hero .hbtns .hb2::after {
+    content: "→" !important;
+    justify-self: end !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+  }
+
+  /* 隐藏原本写在文字里的箭头，避免出现两个箭头 */
+  .hero .hbtns .hb1,
+  .hero .hbtns .hb2 {
+    font-size: 0 !important;
+  }
+
+  .hero .hbtns .hb1::before {
+    content: "查看适合我的课程" !important;
+    font-size: 16px !important;
+    justify-self: start !important;
+  }
+
+  .hero .hbtns .hb2::before {
+    content: "获取学习资料" !important;
+    font-size: 16px !important;
+    justify-self: start !important;
+  }
+}
+
+
+@media (max-width: 430px) {
+
+  /* iPhone 宽度下再微调左边距 */
+  .hero .hc {
+    margin-left: 26px !important;
+    margin-right: 22px !important;
+  }
+
+  .hero .hbtns button,
+  .hero .hbtns .hb1,
+  .hero .hbtns .hb2 {
+    width: 235px !important;
+    height: 50px !important;
+    min-height: 50px !important;
+  }
+}
