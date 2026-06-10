@@ -569,361 +569,8 @@ label{
 
 }
 
-/* ================================
-   HERO MAGAZINE STYLE
-   ================================ */
-
-.hero .hc {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 120px 40px 70px;
-  text-align: right;
-}
-
-.hero-kicker {
-  font-family: "Electrolize", "Helvetica Neue", Arial, sans-serif;
-  font-size: 18px;
-  letter-spacing: 0.08em;
-  color: #666;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.magazine-hero-title {
-  font-family: "Noto Serif SC", "Noto Serif Simplified Chinese", serif;
-  font-size: clamp(72px, 10vw, 150px);
-  line-height: 0.92;
-  font-weight: 900;
-  color: #17130f;
-  letter-spacing: -0.08em;
-  margin: 0 0 28px;
-  text-align: right;
-}
-
-.title-blue-square {
-  display: inline-block;
-  width: 0.28em;
-  height: 0.28em;
-  background: #a9d7ec;
-  vertical-align: middle;
-  margin: 0 0.06em;
-}
-
-.hero-subtitle-main {
-  font-family: "Noto Serif SC", "Noto Serif Simplified Chinese", serif;
-  font-size: 26px;
-  font-weight: 800;
-  color: #17130f;
-  margin: 0 0 14px;
-  text-align: right;
-}
-
-.hero-subtitle-muted {
-  font-family: "Noto Serif SC", "Noto Serif Simplified Chinese", serif;
-  font-size: 21px;
-  line-height: 1.65;
-  font-weight: 500;
-  color: #666;
-  margin: 0 0 34px auto;
-  max-width: 920px;
-  text-align: right;
-}
-
-.magazine-hero-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 18px;
-  margin-top: 22px;
-}
-
-.magazine-hero-actions button,
-.hbtns button,
-.hb1,
-.hb2 {
-  border-radius: 0 !important;
-  min-width: 230px;
-  height: 68px;
-  font-family: "Noto Serif SC", "Noto Serif Simplified Chinese", serif;
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: 0;
-  box-shadow: none !important;
-}
-
-.hb1 {
-  background: #12699a !important;
-  color: #fff !important;
-  border: 1.5px solid #12699a !important;
-}
-
-.hb2 {
-  background: rgba(255,255,255,0.82) !important;
-  color: #17130f !important;
-  border: 1.5px solid #17130f !important;
-}
 
 
-/* mobile */
-@media (max-width: 768px) {
-  .hero .hc {
-    padding: 72px 24px 46px;
-    text-align: left;
-  }
-
-  .hero-kicker {
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    text-align: left;
-  }
-
-  .magazine-hero-title {
-    font-size: clamp(56px, 18vw, 88px);
-    line-height: 0.95;
-    letter-spacing: -0.08em;
-    text-align: left;
-  }
-
-  .hero-subtitle-main,
-  .hero-subtitle-muted {
-    text-align: left;
-  }
-
-  .hero-subtitle-main {
-    font-size: 19px;
-  }
-
-  .hero-subtitle-muted {
-    font-size: 16px;
-    line-height: 1.75;
-  }
-
-  .magazine-hero-actions {
-    justify-content: flex-start;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .magazine-hero-actions button,
-  .hbtns button,
-  .hb1,
-  .hb2 {
-    width: 100%;
-    min-width: 0;
-    height: 58px;
-    font-size: 17px;
-    border-radius: 0 !important;
-  }
-}
-
-
-
-/* ================================
-   HERO ALIGN LEFT FIX
-   ================================ */
-
-.hero .hc {
-  text-align: left !important;
-  padding-left: 48px !important;
-  padding-right: 48px !important;
-}
-
-.hero-kicker {
-  text-align: left !important;
-}
-
-.magazine-hero-title {
-  text-align: left !important;
-  max-width: 900px;
-  margin-left: 0 !important;
-  margin-right: auto !important;
-}
-
-.hero-subtitle-main {
-  text-align: left !important;
-  max-width: 760px;
-}
-
-.hero-subtitle-muted {
-  text-align: left !important;
-  margin-left: 0 !important;
-  margin-right: auto !important;
-  max-width: 980px;
-}
-
-.magazine-hero-actions {
-  justify-content: flex-start !important;
-}
-
-/* ================================
-   HERO LEFT ALIGN WITH SECTIONS
-   ================================ */
-
-.hero .hc {
-  max-width: 980px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  text-align: left !important;
-}
-
-/* Hero 顶部小灰字：和下面栏目统一 */
-.hero-kicker,
-.hero-kicker span,
-.magazine-kicker,
-.section-kicker {
-  font-family: 'Electrolize', 'Helvetica Neue', Arial, sans-serif !important;
-  color: rgba(20, 20, 20, 0.48) !important;
-  letter-spacing: 0.18em !important;
-  font-weight: 400 !important;
-  text-transform: uppercase !important;
-}
-
-/* =====================================================
-   HERO ALIGNMENT + MOBILE BUTTONS + STATS FIX
-   ===================================================== */
-
-/* 1. 统一首页 Hero 和下面栏目左边界 */
-.hero .hc {
-  width: min(1120px, calc(100% - 48px)) !important;
-  max-width: 1120px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  text-align: left !important;
-}
-
-/* 2. 拉开主标题和副标题之间的距离 */
-.hero #hero-h1 {
-  margin-bottom: 34px !important;
-}
-
-.hero .hero-lead,
-.hero .hsub {
-  margin-top: 0 !important;
-  margin-bottom: 22px !important;
-}
-
-/* 3. 按钮改成更清楚的方形系统 */
-.hero .hbtns {
-  display: flex !important;
-  justify-content: flex-start !important;
-  align-items: center !important;
-  gap: 22px !important;
-  margin-top: 34px !important;
-  margin-bottom: 54px !important;
-}
-
-.hero .hbtns button,
-.hero .hbtns .hb1,
-.hero .hbtns .hb2 {
-  width: 230px !important;
-  height: 58px !important;
-  border-radius: 0 !important;
-  font-size: 17px !important;
-  font-weight: 800 !important;
-  text-align: center !important;
-}
-
-/* 4. 网页版数据区：四列均分 */
-.hero .hstats {
-  width: 100% !important;
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  column-gap: 0 !important;
-  margin-top: 10px !important;
-}
-
-.hero .hstats > div {
-  min-width: 0 !important;
-  text-align: left !important;
-  padding-right: 34px !important;
-}
-
-.hero .hstats .hn {
-  font-size: clamp(56px, 5.8vw, 92px) !important;
-  line-height: 0.95 !important;
-  white-space: nowrap !important;
-}
-
-/* 5. Hero 顶部小灰字颜色统一 */
-.hero .hero-kicker,
-.hero .magazine-kicker,
-.hero .section-kicker {
-  color: rgba(20, 20, 20, 0.46) !important;
-}
-
-
-/* =====================================================
-   MOBILE FIX
-   ===================================================== */
-
-@media (max-width: 768px) {
-
-  /* 手机端 Hero 左右边距统一 */
-  .hero .hc {
-    width: calc(100% - 48px) !important;
-    max-width: none !important;
-    margin-left: 24px !important;
-    margin-right: 24px !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    text-align: left !important;
-  }
-
-  /* 手机端标题和副标题拉开 */
-  .hero #hero-h1 {
-    margin-bottom: 34px !important;
-  }
-
-  .hero .hero-lead,
-  .hero .hsub {
-    margin-bottom: 0 !important;
-  }
-
-  /* 手机端按钮：靠左、等宽、上下间距更舒服 */
-  .hero .hbtns {
-    width: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
-    gap: 18px !important;
-    margin-top: 48px !important;
-    margin-bottom: 90px !important;
-  }
-
-  .hero .hbtns button,
-  .hero .hbtns .hb1,
-  .hero .hbtns .hb2 {
-    width: 260px !important;
-    max-width: 100% !important;
-    height: 64px !important;
-    border-radius: 0 !important;
-    text-align: center !important;
-  }
-
-  /* 手机端首屏尽量不要露出数据 */
-  .hero .hstats {
-    margin-top: 80px !important;
-  }
-
-  /* 手机端数据两列排，避免挤爆 */
-  .hero .hstats {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 34px 18px !important;
-  }
-
-  .hero .hstats > div {
-    padding-right: 0 !important;
-  }
-
-  .hero .hstats .hn {
-    font-size: 52px !important;
-  }
-}
 
 /* =====================================================
    FIX: HERO MOBILE ALIGNMENT + BUTTONS + STATS OVERLAP
@@ -1110,98 +757,130 @@ label{
 }
 
 /* =====================================================
-   MOBILE ONLY FIX: hero left alignment + button text/arrow
-   ===================================================== */
+   MOBILE ONLY FINAL FIX
+   只影响手机端：Hero 左对齐、按钮正常、数据正常
+===================================================== */
 
 @media (max-width: 768px) {
 
-  /* 只调整手机端 Hero 内容左边界：再往左拉 */
+  /* 1. 手机端 Hero 整体左边界 */
   .hero .hc {
-    margin-left: 28px !important;
+    width: auto !important;
+    max-width: none !important;
+
+    margin-left: 24px !important;
     margin-right: 24px !important;
-    align-items: flex-start !important;
+
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
     text-align: left !important;
+    align-items: flex-start !important;
   }
 
+  /* 2. Hero 内所有文字强制左对齐 */
   .hero .hero-kicker,
   .hero .magazine-kicker,
   .hero .section-kicker,
   .hero #hero-h1,
   .hero .hero-lead,
-  .hero .hsub,
-  .hero .hbtns {
-    margin-left: 0 !important;
+  .hero .hsub {
     text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 
-  /* 手机端两个按钮：整体左对齐，尺寸稍微收紧 */
+  /* 3. 按钮区域左对齐 */
   .hero .hbtns {
-    align-items: flex-start !important;
     width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+
     gap: 14px !important;
+    margin-top: 44px !important;
+    margin-bottom: 120px !important;
   }
 
+  /* 4. 按钮恢复正常，不再用伪元素造箭头 */
   .hero .hbtns button,
   .hero .hbtns .hb1,
   .hero .hbtns .hb2 {
     width: 240px !important;
-    height: 50px !important;
-    min-height: 50px !important;
-    padding: 0 20px !important;
+    height: 52px !important;
+    min-height: 52px !important;
 
-    display: grid !important;
-    grid-template-columns: 1fr 18px !important;
-    column-gap: 12px !important;
+    padding: 0 18px !important;
+    border-radius: 0 !important;
+
+    display: flex !important;
     align-items: center !important;
+    justify-content: flex-start !important;
 
     text-align: left !important;
-    justify-content: unset !important;
-    justify-items: stretch !important;
-
-    border-radius: 0 !important;
     font-size: 16px !important;
     line-height: 1 !important;
+    font-weight: 800 !important;
+    white-space: nowrap !important;
   }
 
-  /* 把按钮里的文字靠左，箭头固定到同一条竖线 */
-  .hero .hbtns button {
-    position: relative !important;
-  }
-
+  /* 5. 禁掉之前错误补丁制造出来的文字和箭头 */
+  .hero .hbtns .hb1::before,
   .hero .hbtns .hb1::after,
+  .hero .hbtns .hb2::before,
   .hero .hbtns .hb2::after {
-    content: "→" !important;
-    justify-self: end !important;
-    font-size: 18px !important;
+    content: none !important;
+    display: none !important;
+  }
+
+  /* 6. 数据区：手机端两列，防止挤压 */
+  .hero .hstats {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 34px 22px !important;
+
+    margin-top: 120px !important;
+    padding-bottom: 42px !important;
+  }
+
+  .hero .hstats > div {
+    min-width: 0 !important;
+    width: auto !important;
+    padding: 0 !important;
+    text-align: left !important;
+    overflow: visible !important;
+  }
+
+  .hero .hstats .hn {
+    font-size: 42px !important;
     line-height: 1 !important;
+    letter-spacing: -0.04em !important;
+    white-space: nowrap !important;
   }
 
-  /* 隐藏原本写在文字里的箭头，避免出现两个箭头 */
-  .hero .hbtns .hb1,
-  .hero .hbtns .hb2 {
-    font-size: 0 !important;
+  .hero .hstats .hl {
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
   }
 
-  .hero .hbtns .hb1::before {
-    content: "查看适合我的课程" !important;
-    font-size: 16px !important;
-    justify-self: start !important;
-  }
-
-  .hero .hbtns .hb2::before {
-    content: "获取学习资料" !important;
-    font-size: 16px !important;
-    justify-self: start !important;
+  .hero .hstats .hl::after {
+    font-size: 11px !important;
+    letter-spacing: 0.2em !important;
+    white-space: nowrap !important;
   }
 }
 
 
 @media (max-width: 430px) {
 
-  /* iPhone 宽度下再微调左边距 */
   .hero .hc {
-    margin-left: 26px !important;
-    margin-right: 22px !important;
+    margin-left: 24px !important;
+    margin-right: 20px !important;
   }
 
   .hero .hbtns button,
@@ -1210,5 +889,15 @@ label{
     width: 235px !important;
     height: 50px !important;
     min-height: 50px !important;
+    font-size: 16px !important;
+  }
+
+  .hero .hstats .hn {
+    font-size: 39px !important;
+  }
+
+  .hero .hstats .hl::after {
+    font-size: 10px !important;
+    letter-spacing: 0.18em !important;
   }
 }
