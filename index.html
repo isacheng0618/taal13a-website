@@ -7784,6 +7784,7 @@ button,input,label{
   
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@500;600;700;800;900&family=Noto+Serif+SC:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./assets/css/shop.css">
 <link rel="stylesheet" href="./assets/css/typography.css">
 </head>
@@ -7832,9 +7833,55 @@ button,input,label{
     </button>
   </span>
 
+<button class="menu-toggle-btn" onclick="openSiteMenu()" aria-label="打开菜单">
+  <span class="material-symbols-outlined">menu</span>
+</button>
+    
 </div>
   
 </nav>
+
+<div class="site-menu-backdrop" id="site-menu-backdrop" onclick="closeSiteMenu()"></div>
+
+<div class="site-menu-panel" id="site-menu-panel">
+  <div class="site-menu-head">
+    <div class="site-menu-title">Taal13A</div>
+    <button class="site-menu-close" onclick="closeSiteMenu()">×</button>
+  </div>
+
+  <div class="site-menu-links">
+    <button onclick="nav('home');closeSiteMenu();">
+      <span>主页</span>
+      <em>HOME</em>
+    </button>
+
+    <button onclick="nav('overview');closeSiteMenu();">
+      <span>课程</span>
+      <em>CURSUSSEN</em>
+    </button>
+
+    <button onclick="nav('shop');closeSiteMenu();">
+      <span>书店</span>
+      <em>WINKEL</em>
+    </button>
+
+    <button onclick="nav('about');closeSiteMenu();">
+      <span>关于</span>
+      <em>OVER ONS</em>
+    </button>
+
+    <button onclick="nav('contact');closeSiteMenu();">
+      <span>联系</span>
+      <em>CONTACT</em>
+    </button>
+  </div>
+
+  <div class="site-menu-actions">
+    <button onclick="nav('login');closeSiteMenu();">登录</button>
+    <button onclick="nav('register');closeSiteMenu();" class="site-menu-register">注册</button>
+  </div>
+</div>
+
 <div class="news-ticker"><div class="news-track" id="news-track"></div></div>
 
 <!-- HOME -->
@@ -11433,6 +11480,36 @@ function scrollToHomeCourses(){
     behavior:'smooth',
     block:'start'
   });
+}
+
+function openSiteMenu(){
+  var panel = document.getElementById('site-menu-panel');
+  var backdrop = document.getElementById('site-menu-backdrop');
+
+  if(panel){
+    panel.classList.add('open');
+  }
+
+  if(backdrop){
+    backdrop.classList.add('open');
+  }
+
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSiteMenu(){
+  var panel = document.getElementById('site-menu-panel');
+  var backdrop = document.getElementById('site-menu-backdrop');
+
+  if(panel){
+    panel.classList.remove('open');
+  }
+
+  if(backdrop){
+    backdrop.classList.remove('open');
+  }
+
+  document.body.style.overflow = '';
 }
   
 function nav(id,opt){
