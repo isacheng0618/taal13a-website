@@ -314,56 +314,74 @@
 
 /* =====================================================
    BREADCRUMB
-   商品详情页面包屑导航
+   商品详情页面包屑导航：极简灰色文字版
 ===================================================== */
 
 #pg-product .breadcrumb{
   max-width:1180px;
-  margin:0 auto 1.3rem;
+  margin:0 auto 1.2rem;
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:7px;
   font-family:"Archivo","Noto Sans SC",system-ui,sans-serif;
   font-size:13px;
   line-height:1.4;
-  color:#9B968E;
-  font-weight:750;
+  color:#8C8C86;
+  font-weight:700;
+  letter-spacing:.02em;
 }
 
 #pg-product .breadcrumb button{
-  border:none;
-  background:transparent;
-  padding:0;
-  color:#343434;
+  appearance:none;
+  -webkit-appearance:none;
+  border:none !important;
+  outline:none !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  padding:0 !important;
+  margin:0 !important;
+  color:#8C8C86 !important;
   font-family:inherit;
   font-size:13px;
-  font-weight:850;
+  line-height:1.4;
+  font-weight:700;
+  letter-spacing:.02em;
   cursor:pointer;
 }
 
 #pg-product .breadcrumb button:hover{
-  color:#0F5E8C;
-  text-decoration:underline;
+  color:#171717 !important;
+  text-decoration:none !important;
 }
 
 #pg-product .breadcrumb span{
-  color:#9B968E;
+  color:#B8B0A4;
+  font-size:13px;
+  font-weight:600;
 }
 
 #pg-product .breadcrumb .breadcrumb-current{
-  color:#171717;
-  font-weight:900;
+  color:#686868;
+  font-size:13px;
+  font-weight:750;
   max-width:560px;
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
 }
 
+/* 分隔符更轻一点 */
+#pg-product .breadcrumb span:not(.breadcrumb-current){
+  color:#B8B0A4;
+}
+
+/* 手机端 */
 @media(max-width:700px){
   #pg-product .breadcrumb{
-    margin-bottom:1rem;
-    font-size:12px;
+    margin:0 auto .9rem;
+    padding:0 2px;
     gap:6px;
+    font-size:12px;
     overflow-x:auto;
     white-space:nowrap;
     scrollbar-width:none;
@@ -374,6 +392,7 @@
   }
 
   #pg-product .breadcrumb button,
+  #pg-product .breadcrumb span,
   #pg-product .breadcrumb .breadcrumb-current{
     font-size:12px;
   }
