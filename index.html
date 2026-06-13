@@ -9033,7 +9033,7 @@ var PRODUCTS=[
   format:'pdf',
   emoji:'🎁',
   free:true,
-  shareUrl:'/p/het-words-list.html',
+  shareUrl:'https://www.taal13a.nl/p/het-words-list.html',
   must:false,
   img:'./images/het-words-list-cover.png?v=1',
   infoImg:'./images/het-words-list-info.png?v=1',
@@ -9123,6 +9123,7 @@ var PRODUCTS=[
   format:'pdf',
   emoji:'🗣️',
   must:false,
+  shareUrl:'https://www.taal13a.nl/p/spreken-sentences-300.html',
   img:'./images/spreken-sentences-300-cover.png?v=1',
   infoImg:'./images/spreken-sentences-300-info.png?v=1',
   pay:'',
@@ -9265,6 +9266,7 @@ level:['zero','all-level'],
 goal:'daily',
 format:'pdf',
   emoji:'📖',
+  shareUrl:'https://www.taal13a.nl/p/emotion-sentences-100.html',
   img:'./images/emotion-sentences-100-cover.png?v=1',
   infoImg:'./images/emotion-sentences-100-info.png?v=1',
   pay:'',
@@ -10094,19 +10096,21 @@ async function shareProduct(){
     ? (ti ? p.zd : p.nd)
     : (ti ? '看看这个 Taal13A 商品。' : 'Bekijk dit Taal13A product.');
 
-  var url = p && p.shareUrl
-    ? window.location.origin + p.shareUrl
-    : window.location.origin + window.location.pathname + '#product-' + PDT;
+  var url = '';
+
+  if(p && p.shareUrl){
+    if(p.shareUrl.indexOf('http') === 0){
+      url = p.shareUrl;
+    }else{
+      url = window.location.origin + p.shareUrl;
+    }
+  }else{
+    url = window.location.origin + window.location.pathname + '#product-' + PDT;
+  }
 
   var oldTitle = document.title;
 
   try{
-    /*
-      关键修复：
-      iPhone / Safari / 部分聊天软件有时会忽略 navigator.share 里的 title，
-      直接读取当前页面 document.title。
-      所以分享前临时把网页标题改成商品标题。
-    */
     document.title = title;
 
     if(navigator.share){
