@@ -10086,7 +10086,7 @@ async function shareProduct(){
     return x.id === PDT;
   });
 
-  var title = p ? 'Taal13A｜' + (ti ? p.zn : p.nn) : document.title;
+  var title = p ? 'Taal13A｜' + (ti ? p.zn : p.nn) : 'Taal13A';
 
   var text = p
     ? (ti ? p.zd : p.nd)
@@ -10096,20 +10096,43 @@ async function shareProduct(){
     ? window.location.origin + p.shareUrl
     : window.location.origin + window.location.pathname + '#product-' + PDT;
 
+  var oldTitle = document.title;
+
   try{
+    /*
+      关键修复：
+      iPhone / Safari / 部分聊天软件有时会忽略 navigator.share 里的 title，
+      直接读取当前页面 document.title。
+      所以分享前临时把网页标题改成商品标题。
+    */
+    document.title = title;
+
     if(navigator.share){
       await navigator.share({
-        title:title,
-        text:text,
-        url:url
+        title: title,
+        text: text,
+        url: url
       });
+
+      setTimeout(function(){
+        document.title = oldTitle;
+      }, 800);
+
       return;
     }
 
     await navigator.clipboard.writeText(url);
+
+    setTimeout(function(){
+      document.title = oldTitle;
+    }, 800);
+
     alert(ti ? '商品链接已复制。' : 'Productlink gekopieerd.');
+
   }catch(err){
     console.error('Share failed:', err);
+
+    document.title = oldTitle;
 
     try{
       await navigator.clipboard.writeText(url);
