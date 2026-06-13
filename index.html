@@ -10077,6 +10077,44 @@ el.innerHTML=
     alert(ti?'领取失败，请稍后再试。':'Ophalen mislukt. Probeer later opnieuw.');
   }
 } 
+
+async function shareProduct(){
+  var ti = t();
+
+  var p = PRODUCTS.find(function(x){
+    return x.id === PDT;
+  });
+
+  var title = p ? (ti ? p.zn : p.nn) : document.title;
+  var text = ti
+    ? '看看这个 Taal13A 商品：'
+    : 'Bekijk dit Taal13A product:';
+
+  var url = window.location.origin + window.location.pathname + '#product-' + PDT;
+
+  try{
+    if(navigator.share){
+      await navigator.share({
+        title:title,
+        text:text,
+        url:url
+      });
+      return;
+    }
+
+    await navigator.clipboard.writeText(url);
+    alert(ti ? '商品链接已复制。' : 'Productlink gekopieerd.');
+  }catch(err){
+    console.error('Share failed:', err);
+
+    try{
+      await navigator.clipboard.writeText(url);
+      alert(ti ? '商品链接已复制。' : 'Productlink gekopieerd.');
+    }catch(e){
+      alert(url);
+    }
+  }
+}
   
 function addToCart(pid){
   var ti=t();
