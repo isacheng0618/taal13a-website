@@ -1,1 +1,313 @@
+/* =====================================================
+   PRODUCT DETAIL PAGE
+   商品详情页专用样式
+   说明：
+   1. 控制单个商品详情页 #pg-product
+   2. 不影响书店列表页 #pg-shop
+   3. 商品主图统一为 4:5 长方形
+===================================================== */
 
+
+/* 商品详情页整体 */
+#pg-product .pd-wrap.fashion{
+  max-width:1180px;
+  padding:1.4rem 20px 3rem;
+}
+
+
+/* 商品详情页左右布局 */
+#pg-product .pd-card.fashion{
+  display:grid;
+  grid-template-columns:minmax(0,1.12fr) minmax(340px,.88fr);
+  gap:2rem;
+  background:transparent;
+  border:none;
+  padding:0;
+  align-items:start;
+}
+
+
+/* 左侧图库区域 */
+#pg-product .pd-card.fashion .pd-gallery{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:.75rem;
+}
+
+
+/* 商品图容器：统一改成 4:5 */
+#pg-product .pd-shot{
+  aspect-ratio:4 / 5;
+  min-height:auto !important;
+  background:#F7F3EA !important;
+  border:none !important;
+  border-radius:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+  cursor:zoom-in !important;
+}
+
+
+/* 商品图本身：铺满容器，去掉左右空隙 */
+#pg-product .pd-shot img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  padding:0 !important;
+  background:transparent !important;
+  display:block !important;
+}
+
+
+/* 说明卡片保持 4:5 */
+#pg-product .pd-shot.alt{
+  aspect-ratio:4 / 5;
+  min-height:auto !important;
+  padding:0 !important;
+  background:#FFFDF8 !important;
+  border:1px solid #E6DED2 !important;
+}
+
+
+/* 说明卡片内部 */
+#pg-product .pd-shot-card{
+  width:100%;
+  height:100%;
+  padding:1.3rem;
+  border-radius:0;
+  background:linear-gradient(135deg,#EAF4F8,#FFFDF8);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:1rem;
+  color:#171717;
+}
+
+
+/* 右侧商品信息卡片 */
+#pg-product .pd-card.fashion .pd-info{
+  background:#fff;
+  border:1px solid #E6DED2;
+  border-radius:0;
+  padding:1.6rem;
+  position:sticky;
+  top:108px;
+}
+
+
+/* 品牌小字 */
+#pg-product .pd-brand{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-weight:900;
+  color:#686868;
+  margin-bottom:.45rem;
+}
+
+
+/* 商品标题 */
+#pg-product .pd-card.fashion .pd-info h1{
+  font-family:"Noto Serif SC","Archivo",serif;
+  font-size:1.45rem;
+  line-height:1.25;
+  margin-bottom:.7rem;
+  color:#171717;
+}
+
+
+/* 商品价格 */
+#pg-product .pd-price{
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif;
+  font-size:1.9rem;
+  font-weight:900;
+  margin:.6rem 0;
+  color:#171717;
+}
+
+
+/* 商品简介 */
+#pg-product .pd-card.fashion .pd-desc{
+  font-size:13.5px;
+  color:#343434;
+  line-height:1.7;
+  margin:.8rem 0 1rem;
+  font-weight:600;
+}
+
+
+/* 价格下方气泡暂时隐藏，页面更干净 */
+#pg-product .pd-meta-row,
+#pg-product .pd-chip{
+  display:none !important;
+}
+
+
+/* 操作按钮区域 */
+#pg-product .pd-actions{
+  display:block !important;
+  margin-top:1rem;
+}
+
+
+/* 加入购物车按钮占满 */
+#pg-product .pd-actions .bpay{
+  width:100% !important;
+  height:46px;
+  background:#171717 !important;
+  color:#fff !important;
+  border:none !important;
+  border-radius:0 !important;
+  font-family:inherit;
+  font-size:14px;
+  font-weight:950;
+  cursor:pointer;
+}
+
+
+/* 隐藏立即结算按钮，如果还存在的话 */
+#pg-product .pd-actions .btn-secondary{
+  display:none !important;
+}
+
+
+/* 商品分享按钮 */
+#pg-product .product-share-btn{
+  width:100%;
+  height:42px;
+  margin-top:10px;
+  border:1px solid #E6DED2;
+  background:#FFFDF8;
+  color:#171717;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:900;
+  cursor:pointer;
+  border-radius:0;
+}
+
+
+#pg-product .product-share-btn:hover{
+  border-color:#0F5E8C;
+  color:#0F5E8C;
+  background:#fff;
+}
+
+
+/* 商品说明折叠区 */
+#pg-product .pd-policy{
+  border-top:1px solid #E6DED2;
+  margin-top:1.2rem;
+}
+
+
+#pg-product .pd-acc{
+  border-bottom:1px solid #E6DED2;
+  padding:.95rem 0;
+}
+
+
+#pg-product .pd-acc summary{
+  cursor:pointer;
+  list-style:none;
+  font-size:13px;
+  font-weight:900;
+  color:#171717;
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+}
+
+
+#pg-product .pd-acc summary::-webkit-details-marker{
+  display:none;
+}
+
+
+#pg-product .pd-acc summary:after{
+  content:"+";
+  font-weight:900;
+  color:#E96F3C;
+}
+
+
+#pg-product .pd-acc[open] summary:after{
+  content:"−";
+}
+
+
+#pg-product .pd-acc div{
+  font-size:12.5px;
+  color:#686868;
+  line-height:1.7;
+  margin-top:.65rem;
+  font-weight:600;
+}
+
+
+/* 手机端：商品图在上，信息在下 */
+@media(max-width:850px){
+
+  #pg-product .pd-card.fashion{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:1rem !important;
+    overflow:hidden !important;
+  }
+
+  #pg-product .pd-card.fashion .pd-gallery-wrap{
+    order:1 !important;
+    width:100% !important;
+    overflow:hidden !important;
+  }
+
+  #pg-product .pd-card.fashion .pd-info{
+    order:2 !important;
+    width:100% !important;
+    position:static !important;
+    padding:1.2rem !important;
+  }
+
+  #pg-product .pd-card.fashion .pd-gallery{
+    display:flex !important;
+    grid-template-columns:none !important;
+    gap:0 !important;
+    width:100% !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    scroll-snap-type:x mandatory !important;
+    -webkit-overflow-scrolling:touch !important;
+    scrollbar-width:none !important;
+    padding:0 !important;
+  }
+
+  #pg-product .pd-card.fashion .pd-gallery::-webkit-scrollbar{
+    display:none !important;
+  }
+
+  #pg-product .pd-shot{
+    flex:0 0 100% !important;
+    width:100% !important;
+    min-width:100% !important;
+    max-width:100% !important;
+    aspect-ratio:4 / 5 !important;
+    min-height:auto !important;
+    scroll-snap-align:start !important;
+  }
+
+  #pg-product .pd-shot.alt{
+    aspect-ratio:4 / 5 !important;
+    min-height:auto !important;
+  }
+
+  #pg-product .pd-card.fashion .pd-info h1{
+    font-size:1.45rem !important;
+    line-height:1.25 !important;
+  }
+
+  #pg-product .pd-price{
+    font-size:1.85rem !important;
+  }
+}
