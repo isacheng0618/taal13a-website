@@ -401,3 +401,57 @@
     max-width:58vw;
   }
 }
+
+/* =====================================================
+   PRODUCT DESKTOP GALLERY RATIO FIX
+   商品详情页电脑端主图改为 4:5，不裁切封面
+===================================================== */
+
+@media(min-width:851px){
+
+  #pg-product .desktop-book-gallery{
+    width:100% !important;
+    max-width:640px !important;
+  }
+
+  #pg-product .pd-main-book-shot{
+    aspect-ratio:4 / 5 !important;
+    height:auto !important;
+    min-height:0 !important;
+    background:#FFFDF8 !important;
+    border:none !important;
+    overflow:hidden !important;
+  }
+
+  #pg-product .pd-main-book-shot img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:contain !important;
+    padding:0 !important;
+    background:transparent !important;
+    display:block !important;
+  }
+
+  #pg-product .pd-book-thumb{
+    flex:0 0 86px !important;
+    width:86px !important;
+    height:auto !important;
+    aspect-ratio:4 / 5 !important;
+    border:1px solid #D8D0C5 !important;
+    background:#FFFDF8 !important;
+    overflow:hidden !important;
+  }
+
+  #pg-product .pd-book-thumb img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:contain !important;
+    padding:0 !important;
+    background:transparent !important;
+    display:block !important;
+  }
+
+  #pg-product .pd-book-thumb.active{
+    border:3px solid #F66BC3 !important;
+  }
+}
