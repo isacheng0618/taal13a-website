@@ -9033,6 +9033,7 @@ var PRODUCTS=[
   format:'pdf',
   emoji:'🎁',
   free:true,
+  shareUrl:'/p/het-words-list.html',
   must:false,
   img:'./images/het-words-list-cover.png?v=1',
   infoImg:'./images/het-words-list-info.png?v=1',
@@ -10085,12 +10086,15 @@ async function shareProduct(){
     return x.id === PDT;
   });
 
-  var title = p ? (ti ? p.zn : p.nn) : document.title;
-  var text = ti
-    ? '看看这个 Taal13A 商品：'
-    : 'Bekijk dit Taal13A product:';
+  var title = p ? 'Taal13A｜' + (ti ? p.zn : p.nn) : document.title;
 
-  var url = window.location.origin + window.location.pathname + '#product-' + PDT;
+  var text = p
+    ? (ti ? p.zd : p.nd)
+    : (ti ? '看看这个 Taal13A 商品。' : 'Bekijk dit Taal13A product.');
+
+  var url = p && p.shareUrl
+    ? window.location.origin + p.shareUrl
+    : window.location.origin + window.location.pathname + '#product-' + PDT;
 
   try{
     if(navigator.share){
