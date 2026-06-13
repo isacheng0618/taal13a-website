@@ -311,3 +311,74 @@
     font-size:1.85rem !important;
   }
 }
+
+/* =====================================================
+   BREADCRUMB
+   商品详情页面包屑导航
+===================================================== */
+
+#pg-product .breadcrumb{
+  max-width:1180px;
+  margin:0 auto 1.3rem;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif;
+  font-size:13px;
+  line-height:1.4;
+  color:#9B968E;
+  font-weight:750;
+}
+
+#pg-product .breadcrumb button{
+  border:none;
+  background:transparent;
+  padding:0;
+  color:#343434;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:850;
+  cursor:pointer;
+}
+
+#pg-product .breadcrumb button:hover{
+  color:#0F5E8C;
+  text-decoration:underline;
+}
+
+#pg-product .breadcrumb span{
+  color:#9B968E;
+}
+
+#pg-product .breadcrumb .breadcrumb-current{
+  color:#171717;
+  font-weight:900;
+  max-width:560px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+@media(max-width:700px){
+  #pg-product .breadcrumb{
+    margin-bottom:1rem;
+    font-size:12px;
+    gap:6px;
+    overflow-x:auto;
+    white-space:nowrap;
+    scrollbar-width:none;
+  }
+
+  #pg-product .breadcrumb::-webkit-scrollbar{
+    display:none;
+  }
+
+  #pg-product .breadcrumb button,
+  #pg-product .breadcrumb .breadcrumb-current{
+    font-size:12px;
+  }
+
+  #pg-product .breadcrumb .breadcrumb-current{
+    max-width:58vw;
+  }
+}
