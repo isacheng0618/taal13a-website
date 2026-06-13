@@ -518,3 +518,65 @@
     margin:12px auto 4px !important;
   }
 }
+
+/* =====================================================
+   PRODUCT SHARE LINK
+   商品详情页极简分享按钮
+===================================================== */
+
+#pg-product .product-share-link{
+  margin-top:14px !important;
+  padding:0 0 3px !important;
+  border:none !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  color:#686868 !important;
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+  font-size:13px !important;
+  line-height:1.4 !important;
+  font-weight:850 !important;
+  letter-spacing:.02em !important;
+  cursor:pointer !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:6px !important;
+  width:auto !important;
+  position:relative !important;
+}
+
+#pg-product .product-share-link::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:1.5px;
+  background:#D8D0C5;
+  transition:background .16s ease, width .16s ease;
+}
+
+#pg-product .product-share-link span{
+  font-size:14px;
+  line-height:1;
+  transform:translateY(-1px);
+}
+
+#pg-product .product-share-link:hover{
+  color:#171717 !important;
+}
+
+#pg-product .product-share-link:hover::after{
+  background:#E96F3C;
+  width:112%;
+}
+
+@media(max-width:700px){
+  #pg-product .product-share-link{
+    margin-top:12px !important;
+    font-size:12.5px !important;
+  }
+
+  #pg-product .product-share-link span{
+    font-size:13.5px;
+  }
+}
