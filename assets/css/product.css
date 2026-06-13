@@ -455,3 +455,66 @@
     border:3px solid #F66BC3 !important;
   }
 }
+
+/* =====================================================
+   PRODUCT MOBILE GALLERY FIX
+   手机端商品详情图完整显示，不裁切
+===================================================== */
+
+@media(max-width:850px){
+
+  #pg-product .mobile-product-gallery{
+    width:100% !important;
+    overflow:hidden !important;
+  }
+
+  #pg-product .mobile-product-gallery .pd-gallery{
+    display:flex !important;
+    width:100% !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    scroll-snap-type:x mandatory !important;
+    -webkit-overflow-scrolling:touch !important;
+    scrollbar-width:none !important;
+    gap:0 !important;
+    padding:0 !important;
+  }
+
+  #pg-product .mobile-product-gallery .pd-gallery::-webkit-scrollbar{
+    display:none !important;
+  }
+
+  #pg-product .mobile-product-gallery .pd-shot{
+    flex:0 0 100% !important;
+    width:100% !important;
+    min-width:100% !important;
+    max-width:100% !important;
+    aspect-ratio:4 / 5 !important;
+    min-height:auto !important;
+    height:auto !important;
+    background:#FFFDF8 !important;
+    border:none !important;
+    overflow:hidden !important;
+    scroll-snap-align:start !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+  }
+
+  #pg-product .mobile-product-gallery .pd-shot img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:contain !important;
+    padding:0 !important;
+    background:transparent !important;
+    display:block !important;
+  }
+
+  #pg-product .pd-gallery-dots{
+    display:flex !important;
+    justify-content:center !important;
+    align-items:center !important;
+    gap:8px !important;
+    margin:12px auto 4px !important;
+  }
+}
