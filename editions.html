@@ -781,6 +781,79 @@
       .future-grid .edition-top{grid-template-columns:108px minmax(0,1fr);}
       .future-grid .edition-no{font-size:42px;}
     }
+
+/* === EDITIONS HERO：删除右侧 WHY EDITIONS + 加背景图 === */
+
+/* 1. 开屏区域加背景图 */
+.editions-hero,
+.hero,
+.ed-hero{
+  position:relative;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.72) 0%,
+      rgba(0,0,0,.58) 44%,
+      rgba(0,0,0,.36) 100%
+    ),
+    url("./images/editions-hero-bg.jpg") center center / cover no-repeat !important;
+  overflow:hidden;
+}
+
+/* 2. 如果你之前有黑色底色，这里会用图片替代 */
+.editions-hero::before,
+.hero::before,
+.ed-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 42% 42%, rgba(255,255,255,.08), transparent 34%),
+    linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.26));
+  pointer-events:none;
+  z-index:0;
+}
+
+/* 3. 确保文字在蒙版上方 */
+.editions-hero > *,
+.hero > *,
+.ed-hero > *{
+  position:relative;
+  z-index:1;
+}
+
+/* 4. 隐藏右侧 WHY EDITIONS 信息栏 */
+.hero-side,
+.editions-hero-side,
+.hero-right,
+.edition-side-panel,
+.why-editions-panel{
+  display:none !important;
+}
+
+/* 5. 右边删掉后，左边内容允许占更宽 */
+.hero-main,
+.editions-hero-main,
+.hero-left,
+.edition-hero-left{
+  width:100% !important;
+  max-width:980px !important;
+}
+
+/* 6. 如果原来 hero 是左右两列，改成单列 */
+.editions-hero-inner,
+.hero-inner,
+.ed-hero-inner{
+  grid-template-columns:1fr !important;
+}
+
+/* 7. 如果原来右边有竖线，也一起隐藏 */
+.hero-divider,
+.editions-divider,
+.side-divider{
+  display:none !important;
+}
+    
   </style>
 </head>
 <body>
