@@ -8206,7 +8206,195 @@ button,input,label{
     color:#171717 !important;
   }
 }
-  
+
+/* === FINAL DESKTOP NAV SYSTEM === */
+/* 电脑端只保留两种状态：
+   1. 宽屏完整导航
+   2. 收缩版只显示三条线
+   手机端 700px 以下保持原样
+*/
+
+/* 1001px 以上：完整电脑版导航 */
+@media(min-width:1001px){
+
+  .tb{
+    display:flex !important;
+    height:76px !important;
+    min-height:76px !important;
+    padding:0 24px !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    overflow:visible !important;
+  }
+
+  .logo-main{
+    height:50px !important;
+    flex-shrink:0 !important;
+  }
+
+  .nc{
+    display:flex !important;
+    flex:1 !important;
+    justify-content:center !important;
+    align-items:center !important;
+    gap:28px !important;
+    order:initial !important;
+    width:auto !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+
+  .nl{
+    display:inline-flex !important;
+    font-size:14px !important;
+    padding:24px 0 !important;
+    color:#2F2A25 !important;
+  }
+
+  .nl::before{
+    display:none !important;
+    content:none !important;
+  }
+
+  .nr{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    gap:14px !important;
+    flex-shrink:0 !important;
+    order:initial !important;
+    margin-left:0 !important;
+  }
+
+  .menu-toggle-btn{
+    display:none !important;
+  }
+
+  .news-ticker{
+    top:76px !important;
+  }
+}
+
+
+/* 701px–1000px：电脑版收缩版，只显示三条线，不显示“目录” */
+@media(min-width:701px) and (max-width:1000px){
+
+  .tb{
+    display:flex !important;
+    height:76px !important;
+    min-height:76px !important;
+    padding:0 24px !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    overflow:visible !important;
+  }
+
+  .logo-main{
+    height:50px !important;
+    flex-shrink:0 !important;
+  }
+
+  /* 收缩电脑版：隐藏完整导航 */
+  .nc{
+    display:none !important;
+  }
+
+  .nr{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    gap:14px !important;
+    flex-shrink:0 !important;
+    margin-left:auto !important;
+  }
+
+  /* 语言 / 登录 / 注册 保持电脑版样式 */
+  .lang-text{
+    display:inline-block !important;
+    font-size:14px !important;
+    font-weight:900 !important;
+  }
+
+  #auth-btns:not(.is-hidden),
+  #user-btns:not(.is-hidden){
+    display:inline-flex !important;
+    align-items:center !important;
+    gap:14px !important;
+  }
+
+  #auth-btns .login-link{
+    font-size:13px !important;
+    font-weight:850 !important;
+    color:#2F2A25 !important;
+  }
+
+  #auth-btns .register-btn{
+    height:38px !important;
+    padding:0 16px !important;
+    border-radius:6px !important;
+    background:#0F5E8C !important;
+    color:#fff !important;
+    font-size:13px !important;
+    font-weight:900 !important;
+  }
+
+  /* 收缩电脑版：只显示三条线 */
+  .menu-toggle-btn{
+    display:inline-flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:38px !important;
+    height:38px !important;
+    padding:0 !important;
+    margin:0 !important;
+    border:none !important;
+    background:transparent !important;
+    color:#171717 !important;
+    cursor:pointer !important;
+    flex-shrink:0 !important;
+  }
+
+  .menu-lines{
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    gap:5px !important;
+    width:26px !important;
+    height:22px !important;
+  }
+
+  .menu-lines i{
+    display:block !important;
+    width:26px !important;
+    height:2.4px !important;
+    background:#171717 !important;
+    border-radius:999px !important;
+  }
+
+  /* 关键：电脑版收缩时隐藏“目录”两个字 */
+  .menu-word{
+    display:none !important;
+  }
+
+  .news-ticker{
+    top:76px !important;
+  }
+}
+
+
+/* 700px 以下：手机版保持原有状态 */
+@media(max-width:700px){
+
+  /* 不在这里重写你的手机端结构，只确保菜单按钮仍然可用 */
+  .menu-toggle-btn{
+    display:inline-flex !important;
+  }
+
+  .menu-word{
+    display:block !important;
+  }
+}  
 </style>
 <link rel="stylesheet" href="./assets/css/typography.css">
 <link rel="stylesheet" href="./assets/css/shop.css">
