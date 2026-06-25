@@ -8086,61 +8086,65 @@ button,input,label{
   }
 }
 
- /* === MOBILE MENU BUTTON：三条线改成“目录”按钮 === */
+/* === MOBILE MENU BUTTON：三条线 + 小字菜单 === */
 
 .menu-toggle-btn{
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:6px !important;
-  height:38px !important;
-  padding:0 10px 0 12px !important;
-  border:none !important;
-  background:transparent !important;
-  color:#171717 !important;
-  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
-  font-size:14px !important;
-  font-weight:900 !important;
-  cursor:pointer !important;
-  line-height:1 !important;
+  display:none;
 }
 
-.menu-toggle-btn .menu-label{
-  display:inline-block !important;
-  font-size:14px !important;
-  font-weight:900 !important;
-  letter-spacing:.02em !important;
-}
-
-.menu-toggle-btn .menu-icon{
-  font-size:30px !important;
-  line-height:1 !important;
-  font-weight:500 !important;
-}
-
-/* 桌面端如果不想显示目录按钮，可以隐藏 */
-@media(min-width:701px){
-  .menu-toggle-btn{
-    display:none !important;
-  }
-}
-
-/* 手机端保持简洁 */
 @media(max-width:700px){
   .menu-toggle-btn{
-    height:36px !important;
-    padding:0 0 0 4px !important;
-    gap:5px !important;
+    display:inline-flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:38px !important;
+    height:38px !important;
+    padding:0 !important;
+    margin:0 !important;
+    border:none !important;
+    background:transparent !important;
+    color:#171717 !important;
+    cursor:pointer !important;
+    flex-shrink:0 !important;
   }
 
-  .menu-toggle-btn .menu-label{
-    font-size:14px !important;
+  .menu-lines{
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    gap:4px !important;
+    width:24px !important;
+    height:18px !important;
   }
 
-  .menu-toggle-btn .menu-icon{
-    font-size:30px !important;
+  .menu-lines i{
+    display:block !important;
+    width:24px !important;
+    height:2.4px !important;
+    background:#171717 !important;
+    border-radius:999px !important;
   }
-} 
+
+  .menu-word{
+    display:block !important;
+    margin-top:2px !important;
+    font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+    font-size:9.5px !important;
+    line-height:1 !important;
+    font-weight:750 !important;
+    letter-spacing:.08em !important;
+    color:#171717 !important;
+  }
+
+  .menu-toggle-btn:hover .menu-lines i{
+    background:#0F5E8C !important;
+  }
+
+  .menu-toggle-btn:hover .menu-word{
+    color:#0F5E8C !important;
+  }
+}
   
 </style>
 <link rel="stylesheet" href="./assets/css/typography.css">
@@ -8187,8 +8191,12 @@ button,input,label{
   </span>
 
 <button class="menu-toggle-btn" onclick="openSiteMenu()" aria-label="打开目录">
-  <span class="menu-label">目录</span>
-  <span class="material-symbols-outlined menu-icon">menu</span>
+  <span class="menu-lines">
+    <i></i>
+    <i></i>
+    <i></i>
+  </span>
+  <span class="menu-word">目录</span>
 </button>
     
 </div>
