@@ -8085,6 +8085,62 @@ button,input,label{
     transition:none !important;
   }
 }
+
+ /* === MOBILE MENU BUTTON：三条线改成“目录”按钮 === */
+
+.menu-toggle-btn{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:6px !important;
+  height:38px !important;
+  padding:0 10px 0 12px !important;
+  border:none !important;
+  background:transparent !important;
+  color:#171717 !important;
+  font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+  font-size:14px !important;
+  font-weight:900 !important;
+  cursor:pointer !important;
+  line-height:1 !important;
+}
+
+.menu-toggle-btn .menu-label{
+  display:inline-block !important;
+  font-size:14px !important;
+  font-weight:900 !important;
+  letter-spacing:.02em !important;
+}
+
+.menu-toggle-btn .menu-icon{
+  font-size:30px !important;
+  line-height:1 !important;
+  font-weight:500 !important;
+}
+
+/* 桌面端如果不想显示目录按钮，可以隐藏 */
+@media(min-width:701px){
+  .menu-toggle-btn{
+    display:none !important;
+  }
+}
+
+/* 手机端保持简洁 */
+@media(max-width:700px){
+  .menu-toggle-btn{
+    height:36px !important;
+    padding:0 0 0 4px !important;
+    gap:5px !important;
+  }
+
+  .menu-toggle-btn .menu-label{
+    font-size:14px !important;
+  }
+
+  .menu-toggle-btn .menu-icon{
+    font-size:30px !important;
+  }
+} 
   
 </style>
 <link rel="stylesheet" href="./assets/css/typography.css">
@@ -8130,8 +8186,9 @@ button,input,label{
     </button>
   </span>
 
-<button class="menu-toggle-btn" onclick="openSiteMenu()" aria-label="打开菜单">
-  <span class="material-symbols-outlined">menu</span>
+<button class="menu-toggle-btn" onclick="openSiteMenu()" aria-label="打开目录">
+  <span class="menu-label">目录</span>
+  <span class="material-symbols-outlined menu-icon">menu</span>
 </button>
     
 </div>
@@ -8142,7 +8199,7 @@ button,input,label{
 
 <div class="site-menu-panel" id="site-menu-panel">
   <div class="site-menu-head">
-    <div class="site-menu-title">Taal13A</div>
+    <div class="site-menu-title">目录</div>
     <button class="site-menu-close" onclick="closeSiteMenu()">×</button>
   </div>
 
