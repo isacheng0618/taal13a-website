@@ -8145,6 +8145,67 @@ button,input,label{
     color:#0F5E8C !important;
   }
 }
+
+/* === FINAL MENU BUTTON RESPONSIVE FIX === */
+/* 电脑端：不显示菜单按钮；手机/窄屏：显示三条线 + 菜单 */
+
+.menu-toggle-btn{
+  display:none !important;
+}
+
+/* 901px 以上：强制隐藏菜单按钮，避免只露出“目录/菜单”两个字 */
+@media(min-width:901px){
+  .menu-toggle-btn{
+    display:none !important;
+  }
+}
+
+/* 900px 以下：显示菜单按钮 */
+@media(max-width:900px){
+  .menu-toggle-btn{
+    display:inline-flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:38px !important;
+    height:38px !important;
+    padding:0 !important;
+    margin:0 !important;
+    border:none !important;
+    background:transparent !important;
+    color:#171717 !important;
+    cursor:pointer !important;
+    flex-shrink:0 !important;
+  }
+
+  .menu-lines{
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    gap:4px !important;
+    width:24px !important;
+    height:18px !important;
+  }
+
+  .menu-lines i{
+    display:block !important;
+    width:24px !important;
+    height:2.4px !important;
+    background:#171717 !important;
+    border-radius:999px !important;
+  }
+
+  .menu-word{
+    display:block !important;
+    margin-top:2px !important;
+    font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+    font-size:9.5px !important;
+    line-height:1 !important;
+    font-weight:750 !important;
+    letter-spacing:.08em !important;
+    color:#171717 !important;
+  }
+}
   
 </style>
 <link rel="stylesheet" href="./assets/css/typography.css">
