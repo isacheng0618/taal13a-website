@@ -596,33 +596,55 @@
     }
 
     .origin-section{
-      min-height:82vh;
-      position:relative;
-      color:#fff;
-      padding:90px 24px;
-      display:grid;
-      grid-template-columns:minmax(0,1fr) minmax(320px,.45fr);
-      align-items:end;
-      gap:40px;
-      overflow:hidden;
-      background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);
-      border-bottom:2px solid var(--ink);
-    }
+  min-height:82vh;
+  position:relative;
+  color:#fff;
+  padding:90px 24px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(320px,.45fr);
+  align-items:end;
+  gap:40px;
+  overflow:hidden;
+  background:#083f9b;
+  border-bottom:2px solid var(--ink);
+}
 
-    .origin-section::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 30% 40%,rgba(255,255,255,.16),rgba(255,255,255,0) 42%),
-        linear-gradient(90deg,rgba(12,88,184,.45),rgba(12,88,184,.20)),
-        url("./images/from-china-bg.jpg") center / cover no-repeat;
-      opacity:.72;
-      mix-blend-mode:screen;
-      filter:saturate(1.12) contrast(1.08);
-    }
+/* 中国照片层 */
+.origin-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      120deg,
+      rgba(5,55,150,.86) 0%,
+      rgba(12,88,184,.68) 44%,
+      rgba(4,35,105,.82) 100%
+    ),
+    url("./images/from-china-bg.jpg") center center / cover no-repeat;
+  filter:saturate(.95) contrast(1.08) brightness(.86);
+  transform:scale(1.025);
+  z-index:0;
+}
 
-    .origin-section > *{position:relative;z-index:1;}
+/* 胶片感 / 记忆感 */
+.origin-section::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 22% 30%, rgba(255,255,255,.16), transparent 28%),
+    radial-gradient(circle at 76% 24%, rgba(255,75,31,.15), transparent 24%),
+    linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.26));
+  opacity:.92;
+  z-index:1;
+  pointer-events:none;
+}
+
+.origin-section > *{
+  position:relative;
+  z-index:2;
+}
 
     .origin-title{
       font-size:clamp(54px,7.4vw,108px);
