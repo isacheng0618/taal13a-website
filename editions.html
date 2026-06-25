@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taal13A Editions｜荷兰语学习物件｜v3</title>
+  <meta name="description" content="Taal13A Editions 是围绕荷兰语、纸品与日常生活持续发布的学习物件系列。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --paper:#f4f2ec;
+      --paper2:#fffdf8;
+      --ink:#111;
+      --muted:#4f4d48;
+      --line:#151515;
+      --orange:#ff4b1f;
+      --blue:#0c58b8;
+      --blue2:#062f78;
+      --soft:#efece3;
+      --display-weight:760;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+
+    body{
+      font-family:"Archivo","Noto Sans SC",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--paper);
+      color:var(--ink);
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:geometricPrecision;
+    }
+
+    button,a{font:inherit;color:inherit;}
+    button{cursor:pointer;}
+
+    .ed-header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:50;
+      height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 24px;
+      background:rgba(244,242,236,.90);
+      border-bottom:2px solid var(--ink);
+      backdrop-filter:blur(12px);
+    }
+
+    .ed-logo{
+      position:relative;
+      display:inline-grid;
+      gap:1px;
+      font-size:24px;
+      line-height:.82;
+      letter-spacing:-.075em;
+      font-weight:850;
+      text-transform:uppercase;
+      text-decoration:none;
+      padding-right:18px;
+    }
+
+    .ed-logo > span:not(.ed-logo-wave){display:block;position:relative;z-index:2;}
+
+    .ed-logo-wave{
+      position:absolute;
+      right:-18px;
+      bottom:2px;
+      width:48px;
+      height:34px;
+      display:flex !important;
+      flex-direction:row !important;
+      align-items:center;
+      justify-content:center;
+      gap:5px;
+      transform:translateY(2px);
+      mix-blend-mode:normal;
+      pointer-events:none;
+      z-index:3;
+    }
+
+    .ed-logo-wave i{
+      display:block;
+      width:6px;
+      flex:0 0 auto;
+      border-radius:999px;
+      background:var(--orange);
+    }
+
+    .ed-logo-wave i:nth-child(1),
+    .ed-logo-wave i:nth-child(5){height:13px;}
+    .ed-logo-wave i:nth-child(2),
+    .ed-logo-wave i:nth-child(4){height:22px;}
+    .ed-logo-wave i:nth-child(3){height:34px;width:8px;}
+
+    .ed-nav{
+      display:flex;
+      align-items:center;
+      gap:34px;
+      font-size:14px;
+      font-weight:800;
+      text-transform:uppercase;
+    }
+
+    .ed-nav a{
+      text-decoration:none;
+      position:relative;
+      white-space:nowrap;
+    }
+
+    .ed-nav a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-5px;
+      width:0;
+      height:2px;
+      background:var(--orange);
+      transition:width .18s ease;
+    }
+
+    .ed-nav a:hover::after{width:100%;}
+
+    .ed-menu-btn{
+      display:none;
+      width:36px;
+      height:32px;
+      border:0;
+      background:transparent;
+      position:relative;
+    }
+
+    .ed-menu-btn span{
+      display:block;
+      height:3px;
+      background:var(--ink);
+      margin:6px 0;
+    }
+
+    .ed-mobile-panel{
+      display:none;
+      position:fixed;
+      inset:76px 0 auto 0;
+      z-index:49;
+      background:var(--paper2);
+      border-bottom:2px solid var(--ink);
+      padding:18px 24px 24px;
+    }
+
+    .ed-mobile-panel.open{display:block;}
+
+    .ed-mobile-panel a{
+      display:flex;
+      justify-content:space-between;
+      padding:16px 0;
+      border-bottom:1px solid rgba(17,17,17,.18);
+      font-size:22px;
+      font-weight:800;
+      text-decoration:none;
+      text-transform:uppercase;
+    }
+
+    .ed-hero{
+      min-height:100vh;
+      padding:112px 24px 32px;
+      position:relative;
+      display:grid;
+      grid-template-columns:minmax(0,1.42fr) minmax(270px,.52fr);
+      align-items:stretch;
+      gap:30px;
+      color:#fff;
+      background:#111;
+      overflow:hidden;
+    }
+
+    .ed-hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 42% 54%,rgba(255,255,255,.09),rgba(0,0,0,0) 39%),
+        linear-gradient(90deg,rgba(0,0,0,.70),rgba(0,0,0,.35),rgba(0,0,0,.58)),
+        url("./images/editions-hero.jpg") center / cover no-repeat;
+      filter:saturate(.74) contrast(1.08) brightness(.76);
+      transform:scale(1.02);
+    }
+
+    .ed-hero::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height:18px;
+      background:linear-gradient(90deg,var(--blue),#0b77df,var(--blue2));
+      opacity:.95;
+    }
+
+    .hero-left,.hero-side{position:relative;z-index:1;}
+
+    .hero-left{
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-height:calc(100vh - 144px);
+    }
+
+    .hero-kicker{
+      max-width:390px;
+      font-size:16px;
+      line-height:1.38;
+      font-weight:800;
+      letter-spacing:-.025em;
+      text-transform:uppercase;
+    }
+
+    .hero-kicker span{
+      display:block;
+      margin-top:5px;
+      font-size:14px;
+      font-weight:600;
+      text-transform:none;
+      letter-spacing:0;
+    }
+
+    .hero-bottom{margin-top:48px;}
+
+    .hero-title{
+      max-width:980px;
+      font-size:clamp(46px,7.2vw,108px);
+      line-height:.98;
+      letter-spacing:-.062em;
+      font-weight:var(--display-weight);
+      text-transform:uppercase;
+      text-wrap:balance;
+    }
+
+    .hero-caption{
+      margin-top:24px;
+      max-width:680px;
+      font-size:17px;
+      font-weight:600;
+      line-height:1.62;
+      color:rgba(255,255,255,.90);
+    }
+
+    .hero-editions-word{
+      margin-top:42px;
+      font-size:clamp(72px,12.8vw,198px);
+      line-height:.80;
+      letter-spacing:-.082em;
+      font-weight:820;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+
+    .hero-bottom-line{
+      margin-top:20px;
+      font-size:16px;
+      font-weight:700;
+      line-height:1.45;
+      color:rgba(255,255,255,.92);
+    }
+
+    .hero-side{
+      border-left:1.5px solid rgba(255,255,255,.55);
+      padding-left:34px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      gap:32px;
+    }
+
+    .hero-mini-logo{
+      position:relative;
+      max-width:300px;
+      font-size:clamp(44px,4.6vw,74px);
+      line-height:.83;
+      letter-spacing:-.08em;
+      font-weight:820;
+      text-transform:uppercase;
+    }
+
+    .hero-mini-logo .hero-wave{
+      display:inline-flex;
+      align-items:center;
+      gap:.055em;
+      height:.72em;
+      margin-left:-.05em;
+      transform:translateY(.10em);
+      vertical-align:baseline;
+    }
+
+    .hero-mini-logo .hero-wave i{
+      display:block;
+      width:.08em;
+      border-radius:999px;
+      background:var(--orange);
+    }
+
+    .hero-mini-logo .hero-wave i:nth-child(1),
+    .hero-mini-logo .hero-wave i:nth-child(5){height:.34em;}
+    .hero-mini-logo .hero-wave i:nth-child(2),
+    .hero-mini-logo .hero-wave i:nth-child(4){height:.52em;}
+    .hero-mini-logo .hero-wave i:nth-child(3){height:.72em;width:.105em;}
+
+    .hero-side-tag{
+      margin-top:26px;
+      font-size:12px;
+      line-height:1.25;
+      color:var(--orange);
+      font-weight:800;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+
+    .hero-side-number{
+      margin-top:8px;
+      font-size:72px;
+      line-height:.86;
+      color:var(--orange);
+      font-weight:500;
+      letter-spacing:-.07em;
+    }
+
+    .hero-side-note{
+      max-width:310px;
+      font-size:14px;
+      line-height:1.72;
+      font-weight:500;
+      color:rgba(255,255,255,.82);
+    }
+
+    .hero-btn{
+      width:100%;
+      min-height:58px;
+      border:0;
+      background:#fff;
+      color:#111;
+      font-size:13px;
+      font-weight:800;
+      text-transform:uppercase;
+      transition:background .18s ease,color .18s ease,transform .18s ease;
+    }
+
+    .hero-btn:hover{
+      background:var(--orange);
+      color:#fff;
+      transform:translateY(-1px);
+    }
+
+    .section{
+      padding:76px 24px;
+      border-bottom:2px solid var(--ink);
+    }
+
+    .section-head{
+      display:grid;
+      grid-template-columns:minmax(0,.9fr) minmax(300px,.56fr);
+      gap:32px;
+      margin-bottom:28px;
+      align-items:end;
+    }
+
+    .small-label{
+      color:var(--orange);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      margin-bottom:12px;
+    }
+
+    .section-title{
+      font-size:clamp(42px,5.8vw,82px);
+      line-height:.98;
+      letter-spacing:-.06em;
+      font-weight:var(--display-weight);
+      text-transform:uppercase;
+      text-wrap:balance;
+    }
+
+    .section-text{
+      max-width:460px;
+      font-size:15px;
+      line-height:1.72;
+      font-weight:600;
+      color:#24231f;
+    }
+
+    .drops-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+    }
+
+    .edition-card{
+      min-height:610px;
+      border:2px solid var(--ink);
+      background:var(--paper2);
+      display:grid;
+      grid-template-rows:116px minmax(430px,1fr) 50px;
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .edition-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 68% 13%,rgba(255,75,31,.18),rgba(255,75,31,0) 27%);
+      z-index:-1;
+    }
+
+    .edition-top{
+      min-height:116px;
+      border-bottom:2px solid var(--ink);
+      display:grid;
+      grid-template-columns:170px minmax(0,1fr);
+      align-items:stretch;
+    }
+
+    .edition-no{
+      color:var(--orange);
+      font-size:58px;
+      line-height:.82;
+      letter-spacing:-.075em;
+      font-weight:500;
+      padding:20px 18px;
+      border-right:2px solid var(--ink);
+    }
+
+    .edition-meta{
+      padding:18px 20px;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:18px;
+      align-items:start;
+    }
+
+    .edition-title{
+      font-size:clamp(24px,2.7vw,42px);
+      line-height:.96;
+      letter-spacing:-.06em;
+      font-weight:var(--display-weight);
+      text-transform:uppercase;
+      max-width:560px;
+    }
+
+    .edition-status{
+      max-width:130px;
+      font-size:10px;
+      line-height:1.15;
+      text-align:right;
+      text-transform:uppercase;
+      font-weight:800;
+    }
+
+    .edition-image{
+      position:relative;
+      min-height:430px;
+      padding:30px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        radial-gradient(circle at 68% 18%,rgba(255,75,31,.18),rgba(255,75,31,0) 36%),
+        linear-gradient(135deg,#fffdf8,#f5f1e9);
+      overflow:hidden;
+    }
+
+    .edition-image img{
+      width:min(78%,560px);
+      max-height:390px;
+      object-fit:contain;
+      filter:drop-shadow(0 24px 32px rgba(0,0,0,.18));
+      position:relative;
+      z-index:1;
+    }
+
+    .placeholder-product{
+      width:min(68%,390px);
+      aspect-ratio:4/5;
+      border:2px dashed rgba(17,17,17,.35);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:13px;
+      font-weight:800;
+      color:rgba(17,17,17,.48);
+      text-transform:uppercase;
+      position:relative;
+      z-index:1;
+      background:rgba(255,255,255,.20);
+    }
+
+    .edition-copy-overlay{
+      position:absolute;
+      left:18px;
+      bottom:16px;
+      z-index:2;
+      max-width:min(470px,calc(100% - 36px));
+      padding:11px 12px;
+      background:rgba(255,253,248,.72);
+      backdrop-filter:blur(8px);
+      border:1px solid rgba(17,17,17,.16);
+      font-size:12.5px;
+      line-height:1.55;
+      font-weight:600;
+      color:#151515;
+    }
+
+    .edition-foot{
+      min-height:50px;
+      border-top:2px solid var(--ink);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:0 18px;
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+    }
+
+    .edition-link{
+      border:0;
+      background:transparent;
+      text-transform:uppercase;
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .edition-link:hover{color:var(--orange);}
+
+    .why-section{
+      background:#111;
+      color:#fff;
+      padding:86px 24px;
+      border-bottom:2px solid var(--ink);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .why-section::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height:18px;
+      background:linear-gradient(90deg,var(--blue),#0b77df,var(--blue2));
+    }
+
+    .why-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(320px,.72fr);
+      gap:52px;
+      align-items:start;
+    }
+
+    .why-title{
+      font-size:clamp(56px,7.5vw,118px);
+      line-height:.92;
+      letter-spacing:-.062em;
+      font-weight:var(--display-weight);
+      text-transform:uppercase;
+      position:relative;
+      z-index:1;
+    }
+
+    .why-title .orange-dot{
+      display:inline-block;
+      width:.60em;
+      height:.60em;
+      border-radius:50%;
+      background:var(--orange);
+      margin-left:-.08em;
+      transform:translateY(.04em);
+    }
+
+    .why-text{
+      padding-top:14px;
+      display:grid;
+      gap:26px;
+      font-size:17px;
+      line-height:1.68;
+      font-weight:500;
+      color:rgba(255,255,255,.86);
+      position:relative;
+      z-index:1;
+    }
+
+    .origin-section{
+      min-height:82vh;
+      position:relative;
+      color:#fff;
+      padding:90px 24px;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(320px,.45fr);
+      align-items:end;
+      gap:40px;
+      overflow:hidden;
+      background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);
+      border-bottom:2px solid var(--ink);
+    }
+
+    .origin-section::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 30% 40%,rgba(255,255,255,.16),rgba(255,255,255,0) 42%),
+        linear-gradient(90deg,rgba(12,88,184,.45),rgba(12,88,184,.20)),
+        url("./images/from-china-bg.jpg") center / cover no-repeat;
+      opacity:.72;
+      mix-blend-mode:screen;
+      filter:saturate(1.12) contrast(1.08);
+    }
+
+    .origin-section > *{position:relative;z-index:1;}
+
+    .origin-title{
+      font-size:clamp(54px,7.4vw,108px);
+      line-height:.96;
+      letter-spacing:-.062em;
+      font-weight:var(--display-weight);
+      text-transform:uppercase;
+      max-width:900px;
+    }
+
+    .origin-copy{
+      max-width:410px;
+      font-size:16px;
+      line-height:1.76;
+      font-weight:500;
+      color:rgba(255,255,255,.90);
+    }
+
+    .future-section{background:var(--paper2);}
+
+    .future-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px;
+    }
+
+    .future-grid .edition-card{
+      min-height:520px;
+      grid-template-rows:108px minmax(350px,1fr) 50px;
+    }
+
+    .future-grid .edition-top{
+      min-height:108px;
+      grid-template-columns:140px minmax(0,1fr);
+    }
+
+    .future-grid .edition-no{font-size:50px;}
+    .future-grid .edition-title{font-size:clamp(22px,2.1vw,34px);}
+    .future-grid .edition-image{min-height:350px;}
+    .future-grid .placeholder-product{width:min(72%,300px);}
+
+    .follow-section{
+      background:#111;
+      color:#fff;
+      padding:72px 24px 58px;
+      position:relative;
+    }
+
+    .follow-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(320px,.4fr);
+      gap:48px;
+      align-items:end;
+    }
+
+    .follow-title{
+      font-size:clamp(56px,7.8vw,128px);
+      line-height:.90;
+      letter-spacing:-.065em;
+      font-weight:var(--display-weight);
+      text-transform:uppercase;
+    }
+
+    .follow-actions{
+      display:grid;
+      gap:12px;
+    }
+
+    .follow-actions a{
+      min-height:56px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 18px;
+      border:2px solid rgba(255,255,255,.72);
+      color:#fff;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:800;
+      text-transform:uppercase;
+      transition:background .18s ease,color .18s ease;
+    }
+
+    .follow-actions a:hover{
+      background:#fff;
+      color:#111;
+    }
+
+    .mini-disclaimer{
+      margin-top:54px;
+      padding-top:20px;
+      border-top:1px solid rgba(255,255,255,.22);
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:12px;
+      color:rgba(255,255,255,.62);
+      font-size:12px;
+      line-height:1.5;
+      font-weight:500;
+    }
+
+    @media(max-width:980px){
+      .ed-nav{display:none;}
+      .ed-menu-btn{display:block;}
+
+      .ed-hero{
+        grid-template-columns:1fr;
+        padding-top:102px;
+      }
+
+      .hero-left{min-height:auto;}
+      .hero-side{
+        border-left:0;
+        border-top:1.5px solid rgba(255,255,255,.58);
+        padding:28px 0 0;
+      }
+      .hero-editions-word{white-space:normal;}
+
+      .section-head,.why-grid,.origin-section,.follow-grid{grid-template-columns:1fr;}
+      .drops-grid,.future-grid{grid-template-columns:1fr;}
+      .future-grid .edition-card{min-height:560px;}
+    }
+
+    @media(max-width:620px){
+      .ed-header{height:72px;padding:0 16px;}
+      .ed-logo{font-size:21px;}
+      .ed-logo{padding-right:14px;}
+      .ed-logo-wave{width:40px;height:28px;right:-15px;bottom:2px;display:flex !important;flex-direction:row !important;}
+      .ed-logo-wave i{width:5px;}
+      .ed-logo-wave i:nth-child(1),.ed-logo-wave i:nth-child(5){height:11px;}
+      .ed-logo-wave i:nth-child(2),.ed-logo-wave i:nth-child(4){height:19px;}
+      .ed-logo-wave i:nth-child(3){height:28px;width:7px;}
+      .ed-mobile-panel{inset:72px 0 auto 0;}
+
+      .ed-hero{padding:92px 16px 26px;}
+      .hero-title{font-size:42px;}
+      .hero-editions-word{font-size:68px;}
+      .hero-kicker{font-size:13px;}
+      .hero-caption,.hero-bottom-line{font-size:14px;}
+      .hero-mini-logo{font-size:48px;}
+
+      .section,.why-section,.origin-section,.follow-section{padding:54px 16px;}
+      .section-title,.why-title,.origin-title,.follow-title{font-size:46px;}
+      .section-head{gap:18px;}
+
+      .edition-card{min-height:560px;grid-template-rows:118px minmax(390px,1fr) 50px;}
+      .edition-top{grid-template-columns:108px minmax(0,1fr);}
+      .edition-no{font-size:42px;padding:20px 14px;}
+      .edition-meta{padding:17px 14px;grid-template-columns:1fr;gap:8px;}
+      .edition-status{text-align:left;max-width:none;}
+      .edition-title{font-size:26px;}
+      .edition-image{min-height:390px;padding:20px;}
+      .edition-copy-overlay{font-size:12px;}
+
+      .future-grid .edition-top{grid-template-columns:108px minmax(0,1fr);}
+      .future-grid .edition-no{font-size:42px;}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="ed-header">
+    <a class="ed-logo" href="#top" aria-label="Taal13A Editions home">
+      <span>TAAL13A</span>
+      <span>EDITIONS</span>
+      <span class="ed-logo-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    </a>
+    <nav class="ed-nav" aria-label="Main navigation">
+      <a href="#drops">Shop</a>
+      <a href="#future">Archive</a>
+      <a href="/">Taal13A School ↗</a>
+      <a href="#drops">Cart (0)</a>
+    </nav>
+    <button class="ed-menu-btn" onclick="toggleMenu()" aria-label="打开菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="ed-mobile-panel" id="mobilePanel">
+    <a href="#drops" onclick="toggleMenu(false)"><span>Shop</span><em>↗</em></a>
+    <a href="#future" onclick="toggleMenu(false)"><span>Archive</span><em>↗</em></a>
+    <a href="/" onclick="toggleMenu(false)"><span>Taal13A School</span><em>↗</em></a>
+    <a href="#drops" onclick="toggleMenu(false)"><span>Cart (0)</span><em>↗</em></a>
+  </div>
+
+  <main>
+    <section class="ed-hero" id="top">
+      <div class="hero-left">
+        <div class="hero-kicker">
+          MADE BETWEEN LANGUAGES.
+          <span>在两种语言之间产生的设计。</span>
+        </div>
+
+        <div class="hero-bottom">
+          <h1 class="hero-title">Dutch is not only something we study. It is something we live in.</h1>
+          <p class="hero-caption">荷兰语不只是我们学习的语言，也是我们正在生活其中的语言。</p>
+          <div class="hero-editions-word">EDITIONS</div>
+          <p class="hero-bottom-line">Language, paper & everyday objects. / 语言、纸品与日常物件</p>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div>
+          <div class="hero-mini-logo">Why<br>Editions<span class="hero-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
+          <div class="hero-side-tag">Current drops</div>
+          <div class="hero-side-number">001–005</div>
+        </div>
+        <p class="hero-side-note">A small series of language objects made for real Dutch life, memory and everyday use.</p>
+        <button class="hero-btn" onclick="document.getElementById('drops').scrollIntoView()">View editions →</button>
+      </aside>
+    </section>
+
+    <section class="section" id="drops">
+      <div class="section-head">
+        <div>
+          <div class="small-label">Current drops</div>
+          <h2 class="section-title">Small objects for real Dutch life.</h2>
+        </div>
+        <p class="section-text">商品区以图片为主。编号负责建立系列感，商品名放在第一行右侧；说明文字缩小后叠在图片左下角，页面会更像一个可持续更新的 Editions archive。</p>
+      </div>
+
+      <div class="drops-grid">
+        <article class="edition-card">
+          <div class="edition-top">
+            <div class="edition-no">001</div>
+            <div class="edition-meta">
+              <h3 class="edition-title">Dutch Stickers</h3>
+              <div class="edition-status">Current edition<br>In stock</div>
+            </div>
+          </div>
+          <div class="edition-image">
+            <img src="./images/dutch-sticker-pack-cover.png" alt="Dutch stickers product image" />
+            <p class="edition-copy-overlay">荷兰语学习贴纸。Small words for real conversations. 把真实荷兰语贴进日常生活。</p>
+          </div>
+          <div class="edition-foot">
+            <span>€5,99</span>
+            <button class="edition-link" onclick="location.href='/'">View edition →</button>
+          </div>
+        </article>
+
+        <article class="edition-card">
+          <div class="edition-top">
+            <div class="edition-no">002</div>
+            <div class="edition-meta">
+              <h3 class="edition-title">“Wees gewoon jezelf.”</h3>
+              <div class="edition-status">Second edition<br>Coming soon</div>
+            </div>
+          </div>
+          <div class="edition-image">
+            <div class="placeholder-product">Product image</div>
+            <p class="edition-copy-overlay">每日金句小卡。Words for ordinary days. 用很短的荷兰语句子，陪学习者记住语气、文化和表达。</p>
+          </div>
+          <div class="edition-foot">
+            <span>Preview</span>
+            <button class="edition-link" onclick="location.href='#future'">View edition →</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="why-section">
+      <div class="why-grid">
+        <h2 class="why-title">Why editions<span class="orange-dot"></span></h2>
+        <div class="why-text">
+          <p>We do not want Dutch learning materials to feel like disposable worksheets. Taal13A Editions turns useful language into objects you can keep, use and live with.</p>
+          <p>我们不想让荷兰语学习资料只像一张张用完就丢的练习纸。Taal13A Editions 把有用的语言做成可以保存、可以使用、可以进入生活的物件。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="origin-section">
+      <h2 class="origin-title">From China. Living in the Netherlands.</h2>
+      <div class="origin-copy">
+        <p>We look at Dutch language and culture through the eyes of a young Chinese generation making a life in the Netherlands.</p>
+        <br>
+        <p>我们关注的不只是“这句话是什么意思”，而是荷兰人为什么这样说、什么时候这样说，以及一句普通的话如何透露幽默、距离感和生活态度。</p>
+      </div>
+    </section>
+
+    <section class="section future-section" id="future">
+      <div class="section-head">
+        <div>
+          <div class="small-label">Next drops</div>
+          <h2 class="section-title">More language objects are coming.</h2>
+        </div>
+        <p class="section-text">003、004、005 继续沿用上方的商品框逻辑：第一行放编号和名称，第二行完整留给产品图。现在先保留占位图，后面直接替换图片路径即可。</p>
+      </div>
+
+      <div class="future-grid">
+        <article class="edition-card">
+          <div class="edition-top">
+            <div class="edition-no">003</div>
+            <div class="edition-meta">
+              <h3 class="edition-title">Dutch phrase cards</h3>
+              <div class="edition-status">Next drop<br>Coming soon</div>
+            </div>
+          </div>
+          <div class="edition-image">
+            <div class="placeholder-product">Product image</div>
+            <p class="edition-copy-overlay">为真实生活准备的荷兰语短句卡。Small cards for ordinary Dutch situations.</p>
+          </div>
+          <div class="edition-foot"><span>Preview</span><span>View edition →</span></div>
+        </article>
+
+        <article class="edition-card">
+          <div class="edition-top">
+            <div class="edition-no">004</div>
+            <div class="edition-meta">
+              <h3 class="edition-title">A2 speaking mini zine</h3>
+              <div class="edition-status">In development<br>2026</div>
+            </div>
+          </div>
+          <div class="edition-image">
+            <div class="placeholder-product">Product image</div>
+            <p class="edition-copy-overlay">一本更像小杂志的 A2 口语复习册，适合考前翻看和跟读。</p>
+          </div>
+          <div class="edition-foot"><span>Preview</span><span>View edition →</span></div>
+        </article>
+
+        <article class="edition-card">
+          <div class="edition-top">
+            <div class="edition-no">005</div>
+            <div class="edition-meta">
+              <h3 class="edition-title">Taal13A notebook</h3>
+              <div class="edition-status">Archive item<br>Planned</div>
+            </div>
+          </div>
+          <div class="edition-image">
+            <div class="placeholder-product">Product image</div>
+            <p class="edition-copy-overlay">给荷兰语学习者使用的笔记本。For words, mistakes and small progress.</p>
+          </div>
+          <div class="edition-foot"><span>Planned</span><span>View edition →</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="follow-section">
+      <div class="follow-grid">
+        <h2 class="follow-title">Follow the next edition.</h2>
+        <div class="follow-actions">
+          <a href="#drops"><span>Shop all editions</span><span>↗</span></a>
+          <a href="/"><span>Back to Taal13A School</span><span>↗</span></a>
+          <a href="mailto:taal13a@gmail.com"><span>Contact us</span><span>↗</span></a>
+        </div>
+      </div>
+
+      <div class="mini-disclaimer">
+        <span>@taal13a · Taal13A Editions</span>
+        <span>Made between languages. Designed for Dutch learners living in the Netherlands.</span>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function toggleMenu(force){
+      var panel = document.getElementById('mobilePanel');
+      if(force === false){
+        panel.classList.remove('open');
+        return;
+      }
+      panel.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
