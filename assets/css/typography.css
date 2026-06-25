@@ -20,7 +20,7 @@
   --font-display: "Noto Serif SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
   --font-number: "Electrolize", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Inter", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
-
+   --font-logo: "Inter", "Helvetica Neue", Arial, sans-serif;
   --black: #17130f;
   --gray: #6f7069;
   --gray-light: #8f8f8a;
@@ -1465,10 +1465,12 @@ label{
 }
 
 .site-menu-title{
-  font-size:24px;
-  font-weight:950;
-  color:#171717;
-  letter-spacing:-.03em;
+  font-family:var(--font-logo) !important;
+  font-size:27px !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+  color:#171717 !important;
+  letter-spacing:-.055em !important;
 }
 
 .site-menu-close{
