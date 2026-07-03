@@ -8541,6 +8541,70 @@ button,input,label{
 .site-footer-sub{
   margin-top:0 !important;
 }
+
+/* === COURSE DETAIL BACK BUTTON CLEANUP === */
+
+/* 顶部返回：轻量文字链接 */
+.course-back-link{
+  border:none !important;
+  background:transparent !important;
+  color:#0F5E8C !important;
+  font-family:inherit !important;
+  font-size:15px !important;
+  font-weight:900 !important;
+  padding:0 !important;
+  margin:0 0 22px !important;
+  cursor:pointer !important;
+  text-decoration:none !important;
+}
+
+.course-back-link:hover{
+  color:#E96F3C !important;
+  text-decoration:underline !important;
+  text-underline-offset:5px !important;
+}
+
+/* 底部查看更多课程：轻按钮，不要胶囊 */
+.course-more-link{
+  width:100% !important;
+  height:54px !important;
+  border:1.5px solid #171717 !important;
+  background:#fff !important;
+  color:#171717 !important;
+  font-family:inherit !important;
+  font-size:15px !important;
+  font-weight:950 !important;
+  cursor:pointer !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+
+.course-more-link:hover{
+  background:#171717 !important;
+  color:#fff !important;
+}
+
+/* 课程详情页按钮区域更干净 */
+#pg-course-detail .pd-actions{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:12px !important;
+  margin-top:1.2rem !important;
+}
+
+#pg-course-detail .pd-actions .bpay{
+  width:100% !important;
+  height:58px !important;
+  border-radius:0 !important;
+  background:#171717 !important;
+  color:#fff !important;
+  font-size:16px !important;
+  font-weight:950 !important;
+}
+
+#pg-course-detail .pd-actions .bpay:hover{
+  background:#E96F3C !important;
+}
   
 </style>
 <link rel="stylesheet" href="./assets/css/typography.css">
@@ -11815,7 +11879,9 @@ if(s.id === 'speaking_club_20260825'){
   }
 
   el.innerHTML =
-    '<button class="btn-secondary" onclick="scrollToHomeCourses()">'+(ti?'返回课程列表':'Terug naar cursussen')+'</button>'+
+    '<button class="course-back-link" onclick="scrollToHomeCourses()">'+
+  (ti?'← 返回':'← Terug')+
+'</button>'+
 
     '<div class="pd-card fashion">'+
 
@@ -11935,7 +12001,9 @@ if(s.id === 'speaking_club_20260825'){
 
 '<div class="pd-actions">'+
           '<button class="bpay" onclick="oEnroll(\''+s.id+'\')">'+(ti?'报名并付款':'Inschrijven en betalen')+'</button>'+
-          '<button class="btn-secondary" onclick="scrollToHomeCourses()">'+(ti?'返回课程列表':'Terug naar cursussen')+'</button>'+
+          '<button class="course-more-link" onclick="scrollToHomeCourses()">'+
+  (ti?'查看更多课程 →':'Bekijk meer cursussen →')+
+'</button>'+
         '</div>'+
       '</div>'+
 
