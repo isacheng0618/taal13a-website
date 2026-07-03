@@ -12600,27 +12600,48 @@ function rCourseDetail(){
         '</section>'+
 
         '<section class="course-info-section">'+
-          '<div class="course-section-kicker">FAQ</div>'+
-          '<details class="course-faq" open>'+
-            '<summary>'+(ti?'报名后会收到什么？':'Wat gebeurt er na inschrijving?')+'</summary>'+
-            '<p>'+
-              (ti
-                ? '付款成功后，课程会显示在个人主页「我的课程」里。老师会根据你填写的微信号联系你，并拉你进入课程微信群。'
-                : 'Na betaling verschijnt de cursus in uw dashboard. De docent neemt contact op via WeChat en voegt u toe aan de cursusgroep.'
-              )+
-            '</p>'+
-          '</details>'+
+  '<div class="course-section-kicker">FAQ</div>'+
 
-          '<details class="course-faq">'+
-            '<summary>'+(ti?'可以分期付款吗？':'Kan ik in termijnen betalen?')+'</summary>'+
-            '<p>'+
-              (ti
-                ? '本课程支持分期付款。如需分期，请联系我们：taal13a@gmail.com，或私信撒老师的小红书 / 抖音。'
-                : 'Betaling in termijnen is mogelijk. Neem hiervoor contact op via taal13a@gmail.com of stuur Isa een privébericht.'
-              )+
-            '</p>'+
-          '</details>'+
-        '</section>'+
+  '<details class="course-faq" open>'+
+    '<summary>'+(ti?'临时有事缺课怎么办？':'Wat als ik een les moet missen?')+'</summary>'+
+    '<p>'+
+      (ti
+        ? '每节课的重点知识点都会提供录屏回放，方便课后复习。每位学员可以有且仅有一次 30 分钟的缺课后1对1的补课机会，由老师带你快速补上重点。'
+        : 'Van elke les worden de belangrijkste onderdelen opgenomen, zodat u de les later kunt terugkijken. Elke cursist krijgt één keer de mogelijkheid voor een 1-op-1 inhaalles van 30 minuten om de belangrijkste punten bij te werken.'
+      )+
+    '</p>'+
+  '</details>'+
+
+  '<details class="course-faq">'+
+    '<summary>'+(ti?'报名后会收到什么？':'Wat gebeurt er na inschrijving?')+'</summary>'+
+    '<p>'+
+      (ti
+        ? '付款成功后，课程会显示在个人主页「我的课程」里。老师会根据你填写的微信号联系你，并拉你进入课程微信群。'
+        : 'Na betaling verschijnt de cursus in uw dashboard. De docent neemt contact op via WeChat en voegt u toe aan de cursusgroep.'
+      )+
+    '</p>'+
+  '</details>'+
+
+  '<details class="course-faq">'+
+    '<summary>'+(ti?'可以分期付款吗？':'Kan ik in termijnen betalen?')+'</summary>'+
+    '<p>'+
+      (ti
+        ? '可以。本课程支持分期付款。如需分期，请联系我们：taal13a@gmail.com，或私信撒老师的小红书 / 抖音。'
+        : 'Ja, betaling in termijnen is mogelijk. Neem hiervoor contact op via taal13a@gmail.com of stuur Isa een privébericht.'
+      )+
+    '</p>'+
+  '</details>'+
+
+  '<details class="course-faq">'+
+    '<summary>'+(ti?'可以开发票吗？':'Kan ik een factuur krijgen?')+'</summary>'+
+    '<p>'+
+      (ti
+        ? '可以。请联系我们，或在报名 / 结算时备注需要发票。我们会根据你提供的信息开具发票。'
+        : 'Ja, dat kan. Neem contact met ons op of vermeld bij inschrijving / betaling dat u een factuur nodig heeft. Wij maken dan een factuur op basis van de door u verstrekte gegevens.'
+      )+
+    '</p>'+
+  '</details>'+
+'</section>'+
 
       '</main>'+
 
