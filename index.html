@@ -8782,16 +8782,16 @@ button,input,label{
 <div class="pg" id="pg-overview">
   <div class="co-hero">
     <h1 data-zh="课程 / Cursussen" data-nl="Cursussen">课程 / Cursussen</h1>
-    <p data-zh="E-learning 随时可购 · 线上小班按日期报名" data-nl="E-learning direct · Groepslessen met startdatum">E-learning 随时可购 · 线上小班按日期报名</p>
+    <p data-zh="E-learning 制作中 · 线上小班按日期报名" data-nl="E-learning direct · Groepslessen met startdatum">E-learning 随时可购 · 线上小班按日期报名</p>
   </div>
   <div class="co-tabs-wrap">
     <div class="co-tabs">
-      <button class="cotab on" onclick="coTab('all',this)" data-zh="全部" data-nl="Alle">全部</button>
-      <button class="cotab" onclick="coTab('elearn',this)" data-zh="网课 E-learning" data-nl="E-learning">网课 E-learning</button>
-      <button class="cotab" onclick="coTab('a0a1',this)" data-zh="线上入门 A0–A1" data-nl="Online beginner A0–A1">线上入门 A0–A1</button>
-      <button class="cotab" onclick="coTab('a1a2',this)" data-zh="线上进阶 A1–A2" data-nl="Online vervolg A1–A2">线上进阶 A1–A2</button>
-      <button class="cotab" onclick="coTab('a2b1',this)" data-zh="A2应试冲刺班" data-nl="A2 examen sprint">A2应试冲刺班</button>
-    </div>
+  <button class="cotab on" onclick="coTab('all',this)" data-zh="全部" data-nl="Alle">全部</button>
+  <button class="cotab" onclick="coTab('elearn',this)" data-zh="E-learning 自学课" data-nl="E-learning">E-learning 自学课</button>
+  <button class="cotab" onclick="coTab('a0a1',this)" data-zh="0→A1 入门班" data-nl="0→A1 beginners">0→A1 入门班</button>
+  <button class="cotab" onclick="coTab('a1a2',this)" data-zh="0→A2 / A2应试 / 口语" data-nl="0→A2 / A2 examen / spreken">0→A2 / A2应试 / 口语</button>
+  <button class="cotab" onclick="coTab('a2b1',this)" data-zh="A2→B1 进阶班" data-nl="A2→B1 vervolg">A2→B1 进阶班</button>
+</div>
   </div>
   <div class="bg-sand">
     <div class="co-body">
@@ -8806,11 +8806,11 @@ button,input,label{
           </div>
         </div>
         <div class="fpg">
-          <div class="fpg-l" data-zh="级别" data-nl="Niveau">级别</div>
-          <label class="fpck"><input type="checkbox" checked onchange="rList()"> A0–A1</label>
-          <label class="fpck"><input type="checkbox" checked onchange="rList()"> A1–A2</label>
-          <label class="fpck"><input type="checkbox" checked onchange="rList()"> <span data-zh="A2应试冲刺班" data-nl="A2 examen sprint">A2应试冲刺班</span></label>
-        </div>
+  <div class="fpg-l" data-zh="课程阶段" data-nl="Niveau">课程阶段</div>
+  <label class="fpck"><input type="checkbox" checked onchange="rList()"> 0→A1</label>
+  <label class="fpck"><input type="checkbox" checked onchange="rList()"> 0→A2 / A2</label>
+  <label class="fpck"><input type="checkbox" checked onchange="rList()"> A2→B1</label>
+</div>
       </div>
       <div class="co-res">
         <div class="co-cnt" id="co-cnt"></div>
@@ -9357,6 +9357,30 @@ var L='zh',USER=null,ET=null,PDT=null,USERS={},CF='all',SCARF='all';
 var CART=[],GUEST_ORDERS=[];
 
 var PIL=[
+
+  {
+    id:'elearn',
+    l:'elearn',
+    zl:'网课 E-learning',
+    nl_:'E-learning',
+    zs:'火热制作中，敬请期待',
+    ns:'In ontwikkeling',
+    zt:'网课 E-learning',
+    nt:'E-learning',
+    courseTypeZh:'E-learning 自学课',
+    courseTypeNl:'E-learning',
+    weeksZh:'永久访问',
+    weeksNl:'Altijd toegang',
+    zp:['录播课程正在制作中','上线后可自主安排时间学习','适合想系统自学的同学'],
+    np:['Videolessen in ontwikkeling','Leer op eigen tempo','Voor zelfstudie'],
+    tz:['敬请期待','制作中'],
+    tn:['Binnenkort','In ontwikkeling'],
+    pr:'敬请期待',
+    nz:'暂无价格',
+    nn:'Binnenkort',
+    soon:true
+  }
+  
   {
     id:'zero_a1_beginner_20260818',
     l:'a0a1',
@@ -9522,31 +9546,35 @@ var PIL=[
     soon:false
   },
 
-  {
-    id:'elearn',
-    l:'elearn',
-    zl:'网课 E-learning',
-    nl_:'E-learning',
-    zs:'火热制作中，敬请期待',
-    ns:'In ontwikkeling',
-    zt:'网课 E-learning',
-    nt:'E-learning',
-    courseTypeZh:'E-learning 自学课',
-    courseTypeNl:'E-learning',
-    weeksZh:'永久访问',
-    weeksNl:'Altijd toegang',
-    zp:['录播课程正在制作中','上线后可自主安排时间学习','适合想系统自学的同学'],
-    np:['Videolessen in ontwikkeling','Leer op eigen tempo','Voor zelfstudie'],
-    tz:['敬请期待','制作中'],
-    tn:['Binnenkort','In ontwikkeling'],
-    pr:'敬请期待',
-    nz:'暂无价格',
-    nn:'Binnenkort',
-    soon:true
-  }
+
 ];
 
 var SES=[
+
+
+  {
+    id:'elearn',
+    tp:'elearn',
+    lv:'elearn',
+    zt:'网课 E-learning',
+    nt:'E-learning',
+    zd:'火热制作中，敬请期待。录播课程上线后，可按自己的时间反复学习。',
+    nd:'In ontwikkeling. Videolessen volgen binnenkort.',
+    sd:'',
+    nd2:'',
+    dur:'',
+    dun:'',
+    lz:'在线',
+    ln:'Online',
+    pr:'敬请期待',
+    pn:'暂无价格',
+    nn:'Binnenkort',
+    zp:['火热制作中，敬请期待','适合想系统自学的同学'],
+    np:['In ontwikkeling','Voor zelfstudie'],
+    soon:true
+  }
+
+  
   {
     id:'zero_a1_beginner_20260818',
     pid:'course_zero_a1_beginner_20260818',
@@ -9772,27 +9800,6 @@ var SES=[
     soon:false
   },
 
-  {
-    id:'elearn',
-    tp:'elearn',
-    lv:'elearn',
-    zt:'网课 E-learning',
-    nt:'E-learning',
-    zd:'火热制作中，敬请期待。录播课程上线后，可按自己的时间反复学习。',
-    nd:'In ontwikkeling. Videolessen volgen binnenkort.',
-    sd:'',
-    nd2:'',
-    dur:'',
-    dun:'',
-    lz:'在线',
-    ln:'Online',
-    pr:'敬请期待',
-    pn:'暂无价格',
-    nn:'Binnenkort',
-    zp:['火热制作中，敬请期待','适合想系统自学的同学'],
-    np:['In ontwikkeling','Voor zelfstudie'],
-    soon:true
-  }
 ];
 
 
@@ -10150,29 +10157,23 @@ function rPil(id){
     return '—';
   }
 
+function getWeeks(c){
+  if(ti && c.weeksZh) return c.weeksZh;
+  if(!ti && c.weeksNl) return c.weeksNl;
+
+  if(c.id === 'elearn'){
+    return ti ? '永久访问' : 'Altijd toegang';
+  }
+
+  return '—';
+}
+
 function getType(c){
-  var title = ti ? (c.zt || '') : (c.nt || '');
-  var level = c.l || '';
-  var id = c.id || '';
+  if(ti && c.courseTypeZh) return c.courseTypeZh;
+  if(!ti && c.courseTypeNl) return c.courseTypeNl;
 
-  if(id === 'elearn'){
+  if(c.id === 'elearn'){
     return ti ? 'E-learning 自学课' : 'E-learning';
-  }
-
-  if(title.indexOf('A0–A1 零基础') >= 0 || title.indexOf('A0-A1 零基础') >= 0){
-    return ti ? '线上小班：零基础' : 'Online groep: beginner';
-  }
-
-  if(title.indexOf('A0–A1+ 基础重建') >= 0 || title.indexOf('A0-A1+ 基础重建') >= 0){
-    return ti ? '线上小班：A1备考' : 'Online groep: A1 examen';
-  }
-
-  if(title.indexOf('A1–A2') >= 0 || title.indexOf('A1-A2') >= 0 || title.indexOf('应试冲刺') >= 0){
-    return ti ? '线上小班：A2备考' : 'Online groep: A2 examen';
-  }
-
-  if(level === 'a2b1' || id.indexOf('exam') >= 0){
-    return ti ? '线上小班：A2备考' : 'Online groep: A2 examen';
   }
 
   return ti ? '线上小班' : 'Online groep';
@@ -11488,8 +11489,22 @@ function rList(){
   if(cnt)cnt.innerHTML=(ti?'找到':'Gevonden')+': <strong>'+ses.length+'</strong> '+(ti?'门课程':'cursussen');
   var listEl=document.getElementById('co-list');if(!listEl)return;
   var el2=ses.filter(function(s){return s.tp==='elearn';}),li2=ses.filter(function(s){return s.tp==='live';});
-  var bcls={elearn:'cb-a0a1',a0a1:'cb-a0a1',a1a2:'cb-a1a2',a2b1:'cb-a2b1'};
-  var llbl={elearn:'E-learning',a0a1:'A0–A1',a1a2:'A1–A2',a2b1:ti?'A2冲刺':'A2 sprint'};
+  var bcls={
+  elearn:'cb-a0a1',
+  a0a1:'cb-a0a1',
+  a1a2:'cb-a1a2',
+  a2b1:'cb-a2b1'
+};
+
+function getCourseBadgeLabel(s){
+  if(s.id === 'elearn') return 'E-learning';
+  if(s.id === 'zero_a1_beginner_20260818') return '0→A1';
+  if(s.id === 'zero_a2_system_20260822') return '0→A2';
+  if(s.id === 'a2_exam_20260820') return ti ? 'A2应试' : 'A2 examen';
+  if(s.id === 'a2_b1_advanced_20260820') return 'A2→B1';
+  if(s.id === 'speaking_club_20260825') return ti ? '口语' : 'Spreken';
+  return s.lv || '';
+}
   var html='';
   if(el2.length){
     if(li2.length)html+='<div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--ora);margin-bottom:.55rem">📱 '+(ti?'网课 E-learning':'E-learning')+'</div>';
@@ -11504,7 +11519,7 @@ function rList(){
     if(el2.length)html+='<div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:.55rem;margin-top:1.3rem">👥 '+(ti?'线上课程':'Online cursussen')+'</div>';
     html+=li2.map(function(s){
       return '<div class="crow" onclick="oCourseDetail(\''+s.id+'\')">'+
-        '<div class="cbadge '+(bcls[s.lv]||'cb-a0a1')+'"><div class="cb-lbl">'+(llbl[s.lv]||s.lv)+'</div><div class="cb-sub">'+(ti?'小班':'Groep')+'</div></div>'+
+        '<div class="cbadge '+(bcls[s.lv]||'cb-a0a1')+'"><div class="cb-lbl">'+getCourseBadgeLabel(s)+'</div><div class="cb-sub">'+(s.tp==='elearn' ? 'Online' : (ti?'小班':'Groep'))+'</div></div>'+
         '<div class="cinfo"><div class="ctit">'+(ti?s.zt:s.nt)+'</div><div class="cdesc">'+(ti?s.zd:s.nd)+'</div>'+
         '<div class="cmeta">'+
 (s.soon
