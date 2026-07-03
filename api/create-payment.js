@@ -57,6 +57,16 @@ function isPhysicalProductFromDb(product) {
   );
 }
 
+function isCourseProductFromDb(product) {
+  if (!product) return false;
+
+  return (
+    product.product_type === 'course' ||
+    product.type === 'course' ||
+    String(product.id || '').startsWith('course_')
+  );
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -157,8 +167,8 @@ export default async function handler(req, res) {
     const finalHasPhysicalProduct =
       hasPhysicalFromProducts || hasPhysicalProduct === true;
 
-    const hasDigitalProduct = products.some((product) =>
-  !isPhysicalProductFromDb(product)
+   const hasDigitalProduct = products.some((product) =>
+  !isPhysicalProductFromDb(product) && !isCourseProductFromDb(product)
 );
 
 if (hasDigitalProduct && !acceptedDigitalDelivery) {
