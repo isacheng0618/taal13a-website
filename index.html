@@ -8605,6 +8605,504 @@ button,input,label{
 #pg-course-detail .pd-actions .bpay:hover{
   background:#E96F3C !important;
 }
+
+/* === COURSE DETAIL EDITORIAL LAYOUT === */
+
+.course-detail-editorial{
+  max-width:1180px !important;
+  padding:2rem 20px 4rem !important;
+}
+
+.course-back-link{
+  border:none;
+  background:transparent;
+  color:#0F5E8C;
+  font-family:inherit;
+  font-size:15px;
+  font-weight:950;
+  cursor:pointer;
+  margin-bottom:1.8rem;
+  padding:0;
+}
+
+.course-back-link:hover{
+  color:#E96F3C;
+}
+
+.course-detail-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.45fr) minmax(340px,.8fr);
+  gap:3rem;
+  align-items:start;
+}
+
+.course-detail-main{
+  background:#FFFDF8;
+  border:1px solid #E6DED2;
+  padding:3rem 3.2rem;
+}
+
+.course-hero-text{
+  padding-bottom:2.6rem;
+  border-bottom:1px solid #E6DED2;
+  margin-bottom:2.4rem;
+}
+
+.course-section-kicker{
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#E96F3C;
+  margin-bottom:.9rem;
+}
+
+.course-hero-text h1{
+  font-family:"Noto Serif SC","Archivo",serif;
+  font-size:clamp(2.4rem,4.8vw,4.6rem);
+  line-height:1.12;
+  font-weight:800;
+  letter-spacing:-.06em;
+  color:#171717;
+  margin-bottom:1.2rem;
+}
+
+.course-hero-text p{
+  max-width:680px;
+  font-size:18px;
+  line-height:1.85;
+  color:#343434;
+  font-weight:650;
+}
+
+.course-info-section{
+  padding:2.2rem 0;
+  border-bottom:1px solid #E6DED2;
+}
+
+.course-info-section:last-child{
+  border-bottom:none;
+  padding-bottom:0;
+}
+
+.course-info-section h2{
+  font-family:"Noto Serif SC","Archivo",serif;
+  font-size:2rem;
+  line-height:1.25;
+  font-weight:800;
+  letter-spacing:-.04em;
+  color:#171717;
+  margin-bottom:1rem;
+}
+
+.course-info-section p{
+  font-size:16px;
+  line-height:1.9;
+  color:#343434;
+  font-weight:600;
+  max-width:680px;
+}
+
+.course-point-list{
+  list-style:none;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px 22px;
+  margin-top:1.4rem;
+}
+
+.course-point-list li{
+  position:relative;
+  padding-left:22px;
+  font-size:15px;
+  line-height:1.55;
+  color:#343434;
+  font-weight:750;
+}
+
+.course-point-list li::before{
+  content:"✓";
+  position:absolute;
+  left:0;
+  top:0;
+  color:#0F5E8C;
+  font-weight:950;
+}
+
+.course-info-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+  margin-top:1.4rem;
+}
+
+.course-info-grid div{
+  background:#F3F8FA;
+  border:1px solid #D9E6EA;
+  padding:1.2rem;
+}
+
+.course-info-grid span{
+  display:block;
+  font-size:12px;
+  color:#686868;
+  font-weight:900;
+  margin-bottom:.45rem;
+}
+
+.course-info-grid strong{
+  display:block;
+  font-size:16px;
+  line-height:1.45;
+  color:#171717;
+  font-weight:950;
+}
+
+.course-faq{
+  border-top:1px solid #E6DED2;
+  padding:1rem 0;
+}
+
+.course-faq:last-child{
+  border-bottom:1px solid #E6DED2;
+}
+
+.course-faq summary{
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  font-size:16px;
+  font-weight:950;
+  color:#171717;
+}
+
+.course-faq summary::-webkit-details-marker{
+  display:none;
+}
+
+.course-faq summary::after{
+  content:"+";
+  color:#E96F3C;
+  font-weight:950;
+}
+
+.course-faq[open] summary::after{
+  content:"−";
+}
+
+.course-faq p{
+  margin-top:1rem;
+  font-size:15px;
+  line-height:1.8;
+  color:#686868;
+  font-weight:650;
+}
+
+.course-side-card{
+  position:sticky;
+  top:112px;
+  background:#fff;
+  border:1px solid #E6DED2;
+  padding:2rem;
+}
+
+.course-side-card h2{
+  font-family:"Noto Serif SC","Archivo",serif;
+  font-size:2rem;
+  line-height:1.2;
+  font-weight:800;
+  letter-spacing:-.045em;
+  color:#171717;
+  margin:.6rem 0 1rem;
+}
+
+.course-side-price{
+  font-family:"Noto Serif SC","Archivo",serif;
+  font-size:2.8rem;
+  line-height:1;
+  color:#171717;
+  margin-bottom:1.2rem;
+}
+
+.course-side-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:1.4rem;
+}
+
+.course-side-tags span{
+  border:1px solid #E6DED2;
+  background:#FFFDF8;
+  padding:7px 11px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+  color:#343434;
+}
+
+.course-side-desc{
+  font-size:14.5px;
+  line-height:1.75;
+  color:#343434;
+  font-weight:600;
+  margin-bottom:1.4rem;
+}
+
+.course-side-warning{
+  background:#FFF3E8;
+  border:1px solid #FFD0B7;
+  color:#9A4816;
+  padding:1rem;
+  font-size:13.5px;
+  line-height:1.65;
+  font-weight:850;
+  margin:1.2rem 0;
+}
+
+.course-pay-btn{
+  width:100%;
+  height:56px;
+  border:none;
+  background:#171717;
+  color:#fff;
+  font-family:inherit;
+  font-size:17px;
+  font-weight:950;
+  cursor:pointer;
+  margin-bottom:12px;
+}
+
+.course-pay-btn:hover{
+  background:#E96F3C;
+}
+
+.course-more-btn{
+  width:100%;
+  height:52px;
+  border:1.5px solid #171717;
+  background:#fff;
+  color:#171717;
+  font-family:inherit;
+  font-size:15px;
+  font-weight:950;
+  cursor:pointer;
+}
+
+.course-more-btn:hover{
+  background:#171717;
+  color:#fff;
+}
+
+.course-side-qty{
+  border:1px solid #E6DED2;
+  background:#FFFDF8;
+  padding:1rem;
+  margin:1.2rem 0;
+}
+
+.course-side-qty-title{
+  font-size:14px;
+  font-weight:950;
+  color:#171717;
+  margin-bottom:.45rem;
+}
+
+.course-side-qty-note{
+  font-size:13px;
+  line-height:1.55;
+  color:#686868;
+  font-weight:700;
+  margin-bottom:.9rem;
+}
+
+.course-side-qty-control{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.course-side-qty-control button{
+  width:34px;
+  height:34px;
+  border:1.5px solid #171717;
+  background:#fff;
+  color:#171717;
+  font-size:20px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.course-side-qty-control input{
+  width:52px;
+  height:34px;
+  text-align:center;
+  border:1.5px solid #171717;
+  background:#fff;
+  color:#171717;
+  font-size:15px;
+  font-weight:950;
+}
+
+.course-side-qty-control span{
+  font-size:13px;
+  font-weight:850;
+  color:#686868;
+}
+
+.course-side-total{
+  margin-top:.9rem;
+  font-size:15px;
+  font-weight:900;
+  color:#171717;
+}
+
+.course-side-total strong{
+  color:#0F5E8C;
+}
+
+.related-courses-section{
+  margin-top:4rem;
+  padding-top:2.2rem;
+  border-top:1px solid #E6DED2;
+}
+
+.related-courses-head{
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  align-items:flex-end;
+  margin-bottom:1.4rem;
+}
+
+.related-courses-head h2{
+  font-family:"Noto Serif SC","Archivo",serif;
+  font-size:2rem;
+  line-height:1.25;
+  font-weight:800;
+  letter-spacing:-.04em;
+  color:#171717;
+}
+
+.related-courses-head button{
+  border:none;
+  background:transparent;
+  color:#171717;
+  font-family:inherit;
+  font-size:15px;
+  font-weight:950;
+  cursor:pointer;
+  padding:0 0 4px;
+  border-bottom:3px solid #E96F3C;
+  white-space:nowrap;
+}
+
+.related-courses-track{
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding-bottom:10px;
+  scrollbar-width:none;
+}
+
+.related-courses-track::-webkit-scrollbar{
+  display:none;
+}
+
+.related-course-card{
+  flex:0 0 260px;
+  scroll-snap-align:start;
+  background:#FFFDF8;
+  border:1px solid #E6DED2;
+  padding:1.4rem;
+  cursor:pointer;
+}
+
+.related-course-card:hover{
+  border-color:#E96F3C;
+}
+
+.related-course-level{
+  font-size:12px;
+  font-weight:950;
+  color:#E96F3C;
+  margin-bottom:.8rem;
+}
+
+.related-course-card h3{
+  font-size:18px;
+  line-height:1.35;
+  font-weight:950;
+  color:#171717;
+  margin-bottom:1rem;
+}
+
+.related-course-card p{
+  font-size:13px;
+  line-height:1.55;
+  color:#686868;
+  font-weight:700;
+  margin-bottom:1rem;
+}
+
+.related-course-card strong{
+  display:block;
+  font-size:19px;
+  color:#171717;
+  font-weight:950;
+}
+
+@media(max-width:900px){
+  .course-detail-editorial{
+    padding:1.4rem 16px 3rem !important;
+  }
+
+  .course-detail-layout{
+    grid-template-columns:1fr;
+    gap:1.4rem;
+  }
+
+  .course-detail-main{
+    padding:2rem 1.4rem;
+  }
+
+  .course-side-card{
+    position:static;
+    padding:1.5rem;
+  }
+
+  .course-hero-text h1{
+    font-size:2.5rem;
+  }
+
+  .course-hero-text p{
+    font-size:15.5px;
+  }
+
+  .course-info-section h2{
+    font-size:1.65rem;
+  }
+
+  .course-point-list{
+    grid-template-columns:1fr;
+  }
+
+  .course-info-grid{
+    grid-template-columns:1fr;
+  }
+
+  .related-courses-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .related-course-card{
+    flex-basis:78vw;
+  }
+}
   
 </style>
 <link rel="stylesheet" href="./assets/css/typography.css">
@@ -11815,26 +12313,18 @@ function rCourseDetail(){
   var el=document.getElementById('course-detail');
   if(!el || !s)return;
 
- if(s.soon){
-  el.innerHTML =
-    '<button class="back-link" onclick="scrollToHomeCourses()">← '+
-      (ti?'返回课程':'Terug naar cursussen')+
-    '</button>'+
+  if(s.soon){
+    el.innerHTML =
+      '<button class="course-back-link" onclick="scrollToHomeCourses()">← '+(ti?'返回':'Terug')+'</button>'+
+      '<div class="sw">'+
+        '<div class="si">⏳</div>'+
+        '<div class="st2">'+(ti?'敬请期待':'Binnenkort')+'</div>'+
+        '<div class="sd">'+(ti?(s.zd||'课程安排即将更新。'):(s.nd||'Details volgen binnenkort.'))+'</div>'+
+        '<button class="bf" style="max-width:220px;margin:0 auto" onclick="scrollToHomeCourses()">'+(ti?'查看更多课程':'Meer cursussen')+'</button>'+
+      '</div>';
+    return;
+  }
 
-    '<div class="sw">'+
-      '<div class="si">⏳</div>'+
-      '<div class="st2">'+(ti?'敬请期待':'Binnenkort')+'</div>'+
-      '<div class="sd">'+
-        (ti?(s.zd||'课程安排即将更新。'):(s.nd||'Details volgen binnenkort.'))+
-      '</div>'+
-      '<button class="bf" style="max-width:220px;margin:0 auto" onclick="scrollToHomeCourses()">'+
-        (ti?'返回课程':'Terug')+
-      '</button>'+
-    '</div>';
-
-  return;
-}
-  
   var title = ti ? s.zt : s.nt;
   var desc = ti ? s.zd : s.nd;
   var date = ti ? s.sd : s.nd2;
@@ -11843,240 +12333,183 @@ function rCourseDetail(){
   var note = ti ? s.pn : s.nn;
   var points = ti ? (s.zp||[]) : (s.np||[]);
 
-var qtyBox = '';
-
-if(s.id === 'speaking_club_20260825'){
-  var minQty = s.minQty || 8;
-  var unitLabel = ti ? (s.qtyLabelZh || '次') : (s.qtyLabelNl || 'keer');
-
-  qtyBox =
-    '<div class="pd-warning" style="background:#fff;border-color:#E6DED2;color:#171717">'+
-      '<div style="font-weight:950;margin-bottom:10px">'+
-        (ti ? '选择课次数量' : 'Aantal lessen kiezen')+
-      '</div>'+
-
-      '<div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap">'+
-        '<div style="font-size:13px;line-height:1.6;color:#686868;font-weight:750">'+
-          (ti
-            ? '本课程 8 次起订，单价 €30/次。'
-            : 'Deze cursus start vanaf 8 lessen, €30 per les.'
-          )+
-        '</div>'+
-
-        '<div style="display:flex;align-items:center;gap:10px">'+
-          '<button type="button" onclick="changeCourseQty(-1)" style="width:34px;height:34px;border:1.5px solid #171717;background:#fff;font-size:20px;font-weight:900;cursor:pointer">−</button>'+
-          '<input id="course-qty" data-min="'+minQty+'" value="'+minQty+'" readonly style="width:54px;height:34px;text-align:center;border:1.5px solid #171717;background:#fff;font-size:15px;font-weight:950">'+
-          '<button type="button" onclick="changeCourseQty(1)" style="width:34px;height:34px;border:1.5px solid #171717;background:#fff;font-size:20px;font-weight:900;cursor:pointer">+</button>'+
-          '<span style="font-size:13px;font-weight:850;color:#686868">'+unitLabel+'</span>'+
-        '</div>'+
-      '</div>'+
-
-      '<div style="margin-top:12px;font-size:15px;font-weight:950">'+
-        (ti ? '合计：' : 'Totaal: ')+
-        '<span id="course-qty-total">'+fmtPrice((s.priceCents || 3000) * minQty)+'</span>'+
-      '</div>'+
-    '</div>';
-}
-  
   var levelLabel = 'A0–A1';
   if(s.lv === 'a1a2') levelLabel = 'A1–A2';
   if(s.lv === 'a2b1') levelLabel = 'A2–B1';
 
   var weekText = ti ? (s.weekZh || '每周上课') : (s.weekNl || 'Wekelijks les');
 
-  var goalTitle = ti ? '从零开始，能读、能说、能开口' : 'Vanaf nul leren lezen en spreken';
-  var goalText = ti
-    ? '这门课适合完全零基础的同学。课程重点不是背很多单词，而是先把发音、拼读和最基础的日常表达打牢。'
-    : 'Deze cursus is bedoeld voor absolute beginners. De focus ligt op uitspraak, lezen en eenvoudige dagelijkse communicatie.';
-
   var targetText = ti
-    ? '适合荷兰语零基础、想从发音和简单句子开始系统学习的同学。'
-    : 'Voor cursisten zonder voorkennis die vanaf uitspraak en eenvoudige zinnen willen beginnen.';
+    ? (s.targetZh || '适合希望系统学习荷兰语，并希望有人带着一步一步练习的学习者。')
+    : (s.targetNl || 'Voor cursisten die systematisch Nederlands willen leren met duidelijke begeleiding.');
 
-  if(s.id === 'a1a2_exam_sprint'){
-    goalTitle = ti ? '以应试为目的精准备考' : 'Gerichte examenvoorbereiding';
-    goalText = ti
-      ? '以应试为目的精准备考；能说句子，能开口表达；强化语法、听力与口语训练。'
-      : 'Gerichte voorbereiding op het A2-examen; zinnen leren spreken; grammatica, luisteren en spreken versterken.';
+  var goalText = ti
+    ? (s.goalZh || '建立清晰的学习路径，提升实际使用能力。')
+    : (s.goalNl || 'Een duidelijke leerroute opbouwen en praktisch taalgebruik versterken.');
 
-    targetText = ti
-      ? '近期准备A2考试的同学，希望以应试为目的精准备考，训练能说句子、能开口表达，并强化语法、听力与口语。'
-      : 'Voor cursisten die binnenkort het A2-examen doen en gericht willen oefenen met spreken, luisteren en grammatica.';
+  var qtyBox = '';
+
+  if(s.id === 'speaking_club_20260825'){
+    var minQty = s.minQty || 8;
+    var unitLabel = ti ? (s.qtyLabelZh || '次') : (s.qtyLabelNl || 'keer');
+
+    qtyBox =
+      '<div class="course-side-qty">'+
+        '<div class="course-side-qty-title">'+
+          (ti ? '选择课次数量' : 'Aantal lessen kiezen')+
+        '</div>'+
+
+        '<div class="course-side-qty-note">'+
+          (ti
+            ? '本课程 8 次起订，单价 €30/次。'
+            : 'Deze cursus start vanaf 8 lessen, €30 per les.'
+          )+
+        '</div>'+
+
+        '<div class="course-side-qty-control">'+
+          '<button type="button" onclick="changeCourseQty(-1)">−</button>'+
+          '<input id="course-qty" data-min="'+minQty+'" value="'+minQty+'" readonly>'+
+          '<button type="button" onclick="changeCourseQty(1)">+</button>'+
+          '<span>'+unitLabel+'</span>'+
+        '</div>'+
+
+        '<div class="course-side-total">'+
+          (ti ? '合计：' : 'Totaal: ')+
+          '<strong id="course-qty-total">'+fmtPrice((s.priceCents || 3000) * minQty)+'</strong>'+
+        '</div>'+
+      '</div>';
   }
 
-  el.innerHTML =
-    '<button class="course-back-link" onclick="scrollToHomeCourses()">'+
-  (ti?'← 返回':'← Terug')+
-'</button>'+
+  var related = SES.filter(function(item){
+    return item.id !== s.id && item.tp === 'live' && !item.soon;
+  }).slice(0,4);
 
-    '<div class="pd-card fashion">'+
-
-      '<div class="pd-gallery">'+
-
-        '<div class="pd-shot alt" style="min-height:360px">'+
-          '<div class="pd-shot-card">'+
-            '<div>'+
-              '<div class="pd-shot-kicker">Taal13A Live Course</div>'+
-              '<div class="pd-shot-title">'+title+'</div>'+
-            '</div>'+
-            '<div class="pd-shot-list">'+desc+'</div>'+
-          '</div>'+
+  var relatedHtml =
+    '<section class="related-courses-section">'+
+      '<div class="related-courses-head">'+
+        '<div>'+
+          '<div class="course-section-kicker">'+(ti?'更多课程':'Meer cursussen')+'</div>'+
+          '<h2>'+(ti?'你可能也适合这些课程':'Misschien passen deze cursussen ook bij u')+'</h2>'+
         '</div>'+
-
-        '<div class="pd-shot alt" style="min-height:360px">'+
-          '<div class="pd-shot-card">'+
-            '<div>'+
-              '<div class="pd-shot-kicker">'+(ti?'课程目标':'Leerdoelen')+'</div>'+
-              '<div class="pd-shot-title">'+goalTitle+'</div>'+
-            '</div>'+
-            '<div class="pd-shot-list">'+goalText+'</div>'+
-          '</div>'+
-        '</div>'+
-
-        '<div class="pd-shot alt">'+
-          '<div class="pd-shot-card">'+
-            '<div>'+
-              '<div class="pd-shot-kicker">'+(ti?'课程安排':'Planning')+'</div>'+
-              '<div class="pd-shot-title">'+date+'</div>'+
-            '</div>'+
-            '<div class="pd-shot-list">'+
-              duration+'<br>'+
-              location+'<br>'+
-              note+'<br>'+
-              weekText+
-            '</div>'+
-          '</div>'+
-        '</div>'+
-
-        '<div class="pd-shot alt">'+
-          '<div class="pd-shot-card">'+
-            '<div>'+
-              '<div class="pd-shot-kicker">'+(ti?'适合人群':'Voor wie')+'</div>'+
-              '<div class="pd-shot-title">'+levelLabel+'</div>'+
-            '</div>'+
-            '<div class="pd-shot-list">'+targetText+'</div>'+
-          '</div>'+
-        '</div>'+
-
+        '<button onclick="scrollToHomeCourses()">'+(ti?'查看全部课程 →':'Alle cursussen →')+'</button>'+
       '</div>'+
 
-      '<div class="pd-info">'+
-        '<div class="pd-brand">Taal13A</div>'+
-        '<h1>'+title+'</h1>'+
-        '<div class="pd-price">'+s.pr+'</div>'+
-
-        '<div class="pd-meta-row">'+
-          '<span class="pd-chip">'+levelLabel+'</span>'+
-          '<span class="pd-chip">'+(ti?'线上小班':'Online groep')+'</span>'+
-          '<span class="pd-chip">Teams</span>'+
-          '<span class="pd-chip">'+(ti?'含录屏回放':'Met opname')+'</span>'+
-        '</div>'+
-
-        '<div class="pd-desc">'+desc+'</div>'+
-
-        '<div class="pd-policy">'+
-          '<details class="pd-acc" open>'+
-            '<summary>'+(ti?'课程包含':'Inbegrepen')+'</summary>'+
-            '<div>'+points.map(function(p){return '✓ '+p;}).join('<br>')+'</div>'+
-          '</details>'+
-
-          '<details class="pd-acc" open>'+
-            '<summary>'+(ti?'具体时间':'Planning')+'</summary>'+
-            '<div>'+
-              (ti
-                ? '开课日期：'+date+
-                  '<br>上课频率：'+weekText+
-                  '<br>总课时：'+duration+
-                  '<br>人数：最多8人'+
-                  '<br>授课方式：'+location
-                : 'Startdatum: '+date+
-                  '<br>Frequentie: '+weekText+
-                  '<br>Duur: '+duration+
-                  '<br>Groepsgrootte: max. 8 cursisten'+
-                  '<br>Lesvorm: '+location
-                )+
+      '<div class="related-courses-track">'+
+        related.map(function(item){
+          return '<div class="related-course-card" onclick="oCourseDetail(\''+item.id+'\')">'+
+            '<div class="related-course-level">'+
+              (item.lv === 'a0a1' ? 'A0–A1' : item.lv === 'a2b1' ? 'A2–B1' : 'A1–A2')+
             '</div>'+
-          '</details>'+
+            '<h3>'+(ti?item.zt:item.nt)+'</h3>'+
+            '<p>'+(ti?item.sd:item.nd2)+'</p>'+
+            '<strong>'+item.pr+'</strong>'+
+          '</div>';
+        }).join('')+
+      '</div>'+
+    '</section>';
 
-          '<details class="pd-acc">'+
+  el.className='pd-wrap course-detail-editorial';
+
+  el.innerHTML =
+    '<button class="course-back-link" onclick="scrollToHomeCourses()">← '+(ti?'返回':'Terug')+'</button>'+
+
+    '<div class="course-detail-layout">'+
+
+      '<main class="course-detail-main">'+
+
+        '<section class="course-hero-text">'+
+          '<div class="course-section-kicker">Taal13A Live Course</div>'+
+          '<h1>'+title+'</h1>'+
+          '<p>'+desc+'</p>'+
+        '</section>'+
+
+        '<section class="course-info-section">'+
+          '<div class="course-section-kicker">'+(ti?'适合人群':'Voor wie')+'</div>'+
+          '<h2>'+(ti?'这门课适合谁？':'Voor wie is deze cursus?')+'</h2>'+
+          '<p>'+targetText+'</p>'+
+        '</section>'+
+
+        '<section class="course-info-section">'+
+          '<div class="course-section-kicker">'+(ti?'课程目标':'Leerdoel')+'</div>'+
+          '<h2>'+(ti?'你会获得什么？':'Wat leert u?')+'</h2>'+
+          '<p>'+goalText+'</p>'+
+          '<ul class="course-point-list">'+
+            points.map(function(p){return '<li>'+p+'</li>';}).join('')+
+          '</ul>'+
+        '</section>'+
+
+        '<section class="course-info-section">'+
+          '<div class="course-section-kicker">'+(ti?'课程安排':'Planning')+'</div>'+
+          '<h2>'+(ti?'上课安排':'Planning')+'</h2>'+
+          '<div class="course-info-grid">'+
+            '<div><span>'+(ti?'开课时间':'Start')+'</span><strong>'+date+'</strong></div>'+
+            '<div><span>'+(ti?'上课频率':'Frequentie')+'</span><strong>'+weekText+'</strong></div>'+
+            '<div><span>'+(ti?'总课时':'Duur')+'</span><strong>'+duration+'</strong></div>'+
+            '<div><span>'+(ti?'授课方式':'Lesvorm')+'</span><strong>'+location+'</strong></div>'+
+          '</div>'+
+        '</section>'+
+
+        '<section class="course-info-section">'+
+          '<div class="course-section-kicker">FAQ</div>'+
+          '<details class="course-faq" open>'+
             '<summary>'+(ti?'报名后会收到什么？':'Wat gebeurt er na inschrijving?')+'</summary>'+
-            '<div>'+
+            '<p>'+
               (ti
                 ? '付款成功后，课程会显示在个人主页「我的课程」里。老师会根据你填写的微信号联系你，并拉你进入课程微信群。'
                 : 'Na betaling verschijnt de cursus in uw dashboard. De docent neemt contact op via WeChat en voegt u toe aan de cursusgroep.'
               )+
-            '</div>'+
+            '</p>'+
           '</details>'+
+
+          '<details class="course-faq">'+
+            '<summary>'+(ti?'可以分期付款吗？':'Kan ik in termijnen betalen?')+'</summary>'+
+            '<p>'+
+              (ti
+                ? '本课程支持分期付款。如需分期，请联系我们：taal13a@gmail.com，或私信撒老师的小红书 / 抖音。'
+                : 'Betaling in termijnen is mogelijk. Neem hiervoor contact op via taal13a@gmail.com of stuur Isa een privébericht.'
+              )+
+            '</p>'+
+          '</details>'+
+        '</section>'+
+
+      '</main>'+
+
+      '<aside class="course-side-card">'+
+        '<div class="pd-brand">Taal13A</div>'+
+        '<h2>'+title+'</h2>'+
+        '<div class="course-side-price">'+s.pr+'</div>'+
+
+        '<div class="course-side-tags">'+
+          '<span>'+levelLabel+'</span>'+
+          '<span>'+(ti?'线上小班':'Online groep')+'</span>'+
+          '<span>Teams</span>'+
+          '<span>'+(ti?'含录屏回放':'Met opname')+'</span>'+
         '</div>'+
 
-        '<div class="pd-warning">'+
-          (ti
-            ? '请务必填写正确的微信号。线上课通知、学习群和课后回放都会通过微信沟通。'
-            : 'Vul uw WeChat-ID correct in. De cursusgroep, mededelingen en opnames worden via WeChat gedeeld.'
-          )+
-        '</div>'+
-
-        '<div class="pd-warning" style="background:var(--blue-l);border-color:var(--blue-m);color:var(--blue-d)">'+
-          (ti
-            ? '本课程支持分期付款。如需分期，请联系我们：taal13a@gmail.com，或私信撒老师的小红书 / 抖音。'
-            : 'Betaling in termijnen is mogelijk. Neem hiervoor contact op via taal13a@gmail.com of stuur Isa een privébericht via Xiaohongshu / Douyin.'
-          )+
-        '</div>'+
+        '<p class="course-side-desc">'+desc+'</p>'+
 
         qtyBox+
 
-'<div class="pd-actions">'+
-          '<button class="bpay" onclick="startCourseCheckoutFromDetail(\''+s.id+'\')">'+(ti?'报名并付款':'Inschrijven en betalen')+'</button>'+
-          '<button class="course-more-link" onclick="scrollToHomeCourses()">'+
-  (ti?'查看更多课程 →':'Bekijk meer cursussen →')+
-'</button>'+
+        '<div class="course-side-warning">'+
+          (ti
+            ? '小班课报名时微信号为必填。线上课通知、学习群和课后回放都会通过微信沟通。'
+            : 'Voor groepslessen is WeChat verplicht. Mededelingen, de leergroep en opnames worden via WeChat gedeeld.'
+          )+
         '</div>'+
-      '</div>'+
 
-    '</div>';
-}
+        '<button class="course-pay-btn" onclick="oEnroll(\''+s.id+'\')">'+
+          (ti?'报名并付款':'Inschrijven en betalen')+
+        '</button>'+
 
-function startCourseCheckoutFromDetail(id){
-  var ti = t();
+        '<button class="course-more-btn" onclick="scrollToHomeCourses()">'+
+          (ti?'查看更多课程 →':'Meer cursussen →')+
+        '</button>'+
 
-  if(!USER){
-    alert(ti?'请先注册/登录后报名课程。':'Log eerst in of registreer om u in te schrijven.');
-    nav('login');
-    return;
-  }
+      '</aside>'+
 
-  var item = SES.find(function(s){return s.id === id;}) || PIL.find(function(p){return p.id === id;});
+    '</div>'+
 
-  if(!item){
-    alert(ti?'课程信息缺失，请联系 Taal13A。':'Cursusinformatie ontbreekt. Neem contact op met Taal13A.');
-    return;
-  }
-
-  if(item.soon){
-    alert(ti?'课程正在准备中，暂时不能付款。':'Deze cursus is nog niet beschikbaar.');
-    return;
-  }
-
-  if(!item.pid){
-    alert(ti?'课程付款信息缺失，请联系 Taal13A。':'Betaalinformatie ontbreekt. Neem contact op met Taal13A.');
-    return;
-  }
-
-  ET = item;
-
-  var courseQty = 1;
-
-  if(item.id === 'speaking_club_20260825'){
-    courseQty = getCourseQty();
-  }
-
-  CART = [{
-    id: item.pid,
-    qty: courseQty,
-    kind: 'course'
-  }];
-
-  nav('checkout');
+    relatedHtml;
 }
   
 function oEnroll(id){
