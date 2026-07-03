@@ -9105,49 +9105,7 @@ button,input,label{
 }
 
 
-/* === MOBILE COURSE DETAIL: side card first + sticky pay bar === */
-
-.mobile-course-sticky{
-  display:none;
-}
-
-@media(max-width:900px){
-
-  #pg-course-detail{
-    padding-bottom:88px !important;
-  }
-
-  .course-detail-layout{
-    display:flex !important;
-    flex-direction:column !important;
-    gap:1.2rem !important;
-  }
-
-  /* 右边报名框手机端放到最上面 */
-  .course-side-card{
-    order:1 !important;
-    position:relative !important;
-    top:auto !important;
-    padding:1.5rem !important;
-  }
-
-  /* 左边详细信息放下面 */
-  .course-detail-main{
-    order:2 !important;
-    padding:2rem 1.4rem !important;
-  }
-
-  /* 手机端报名框里的按钮仍然保留，但不是唯一入口 */
-  .course-side-card .course-pay-btn{
-    display:none !important;
-  }
-
-  .course-side-card .course-more-btn{
-    display:none !important;
-  }
-
-  /* 底部固定报名条 */
-/* === MOBILE COURSE STICKY BAR: show only after scroll + softer brand style === */
+/* === MOBILE COURSE STICKY BAR: black button, paper style === */
 
 .mobile-course-sticky{
   display:none;
@@ -9163,12 +9121,12 @@ button,input,label{
     bottom:0 !important;
     z-index:180 !important;
 
-    height:76px !important;
+    min-height:78px !important;
     padding:10px 18px max(10px, env(safe-area-inset-bottom)) !important;
 
     background:rgba(255,253,248,.97) !important;
     border-top:1px solid #E6DED2 !important;
-    box-shadow:0 -10px 28px rgba(15,94,140,.10) !important;
+    box-shadow:0 -10px 26px rgba(0,0,0,.08) !important;
     backdrop-filter:blur(16px) !important;
 
     align-items:center !important;
@@ -9194,7 +9152,7 @@ button,input,label{
     display:flex !important;
     flex-direction:column !important;
     gap:3px !important;
-    min-width:76px !important;
+    width:86px !important;
     flex-shrink:0 !important;
   }
 
@@ -9202,40 +9160,42 @@ button,input,label{
     font-size:12px !important;
     line-height:1.1 !important;
     font-weight:900 !important;
-    color:#686868 !important;
+    color:#666 !important;
   }
 
   .mobile-course-sticky-info strong{
     font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
-    font-size:27px !important;
+    font-size:28px !important;
     line-height:1 !important;
     font-weight:950 !important;
     letter-spacing:-.04em !important;
-    color:#0F5E8C !important;
+    color:#111 !important;
   }
 
   .mobile-course-sticky button{
     flex:1 !important;
-    height:50px !important;
-    border:none !important;
-    background:#0F5E8C !important;
+    height:52px !important;
+
+    border:1px solid #111 !important;
+    border-radius:0 !important;
+    background:#111 !important;
     color:#fff !important;
 
     font-family:inherit !important;
-    font-size:17px !important;
+    font-size:18px !important;
     font-weight:950 !important;
+    letter-spacing:.02em !important;
 
     cursor:pointer !important;
-    border-radius:6px !important;
-    box-shadow:0 8px 18px rgba(15,94,140,.16) !important;
+    box-shadow:none !important;
   }
 
-  .mobile-course-sticky button:hover{
-    background:#0B486D !important;
+  .mobile-course-sticky button:active{
+    transform:translateY(1px) !important;
   }
 
   #pg-course-detail{
-    padding-bottom:90px !important;
+    padding-bottom:96px !important;
   }
 }
 
@@ -9243,6 +9203,49 @@ button,input,label{
 .course-side-warning{
   display:none !important;
 }
+
+/* === MOBILE COURSE DETAIL: hide side purchase card === */
+@media(max-width:900px){
+  #pg-course-detail .course-side,
+  #pg-course-detail .course-detail-side,
+  #pg-course-detail .course-summary-card{
+    display:none !important;
+  }
+}
+
+/* === MOBILE COURSE TAGS IN MAIN CONTENT === */
+@media(max-width:900px){
+
+  #pg-course-detail .course-main-tags,
+  #pg-course-detail .course-tags,
+  #pg-course-detail .course-detail-tags{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:10px !important;
+    margin:26px 0 30px !important;
+  }
+
+  #pg-course-detail .course-main-tags span,
+  #pg-course-detail .course-tags span,
+  #pg-course-detail .course-detail-tags span{
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+
+    min-height:38px !important;
+    padding:0 17px !important;
+
+    border:1px solid #E2D9CC !important;
+    border-radius:999px !important;
+    background:#FFFEFA !important;
+
+    font-size:15px !important;
+    font-weight:900 !important;
+    color:#262626 !important;
+    line-height:1 !important;
+  }
+}
+  
   
 </style>
 <link rel="stylesheet" href="./assets/css/typography.css">
