@@ -11726,16 +11726,16 @@ function rCourseDetail(){
   if(!el || !s)return;
 
   if(s.soon){
-    el.innerHTML =
-      '<button class="back-link" onclick="scrollToHomeCourses()">← '+(ti?'返回课程':'Terug naar cursussen')+'</button>+
-      '<div class="sw">'+
-        '<div class="si">⏳</div>'+
-        '<div class="st2">'+(ti?'敬请期待':'Binnenkort')+'</div>'+
-        '<div class="sd">'+(ti?(s.zd||'课程安排即将更新。'):(s.nd||'Details volgen binnenkort.'))+'</div>'+
-        '<button class="bf" style="max-width:220px;margin:0 auto" onclick="scrollToHomeCourses()">'+(ti?'返回课程':'Terug')+'</button>+
-      '</div>';
-    return;
-  }
+  el.innerHTML =
+    '<button class="back-link" onclick="scrollToHomeCourses()">← '+(ti?'返回课程':'Terug naar cursussen')+'</button>'+
+    '<div class="sw">'+
+      '<div class="si">⏳</div>'+
+      '<div class="st2">'+(ti?'敬请期待':'Binnenkort')+'</div>'+
+      '<div class="sd">'+(ti?(s.zd||'课程安排即将更新。'):(s.nd||'Details volgen binnenkort.'))+'</div>'+
+      '<button class="bf" style="max-width:220px;margin:0 auto" onclick="scrollToHomeCourses()">'+(ti?'返回课程':'Terug')+'</button>'+
+    '</div>';
+  return;
+}
 
   var title = ti ? s.zt : s.nt;
   var desc = ti ? s.zd : s.nd;
@@ -11927,7 +11927,7 @@ if(s.id === 'speaking_club_20260825'){
 
 '<div class="pd-actions">'+
           '<button class="bpay" onclick="oEnroll(\''+s.id+'\')">'+(ti?'报名并付款':'Inschrijven en betalen')+'</button>'+
-          '<button class="btn-secondary" onclick="nav(\'overview\')">'+(ti?'返回课程列表':'Terug naar cursussen')+'</button>'+
+          '<button class="btn-secondary" onclick="scrollToHomeCourses()">'+(ti?'返回课程列表':'Terug naar cursussen')+'</button>'+
         '</div>'+
       '</div>'+
 
