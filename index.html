@@ -12640,9 +12640,9 @@ function rCourseDetail(){
           )+
         '</div>'+
 
-        '<button class="course-pay-btn" onclick="oEnroll(\''+s.id+'\')">'+
-          (ti?'报名并付款':'Inschrijven en betalen')+
-        '</button>'+
+        '<button class="course-pay-btn" onclick="courseCheckoutDirect(\''+s.id+'\')">'+
+  (ti?'报名并付款':'Inschrijven en betalen')+
+'</button>'+
 
         '<button class="course-more-btn" onclick="scrollToHomeCourses()">'+
           (ti?'查看更多课程 →':'Meer cursussen →')+
@@ -12659,10 +12659,58 @@ function rCourseDetail(){
         '<span>'+(ti?'报名课程':'Cursus')+'</span>'+
         '<strong>'+s.pr+'</strong>'+
       '</div>'+
-      '<button onclick="oEnroll(\''+s.id+'\')">'+
-        (ti?'报名并付款':'Inschrijven en betalen')+
-      '</button>'+
+     '<button onclick="courseCheckoutDirect(\''+s.id+'\')">'+
+  (ti?'报名并付款':'Inschrijven en betalen')+
+'</button>'+
     '</div>';
+}
+
+function courseCheckoutDirect(id){
+  var ti = t();
+
+  var item = SES.find(function(s){
+    return s.id === id;
+  }) || PIL.find(function(p){
+    return p.id === id;
+  });
+
+  if(!item){
+    alert(ti ? '没有找到课程信息。' : 'Cursus niet gevonden.');
+    return;
+  }
+
+  ET = item;
+
+  if(item.soon){
+    alert(ti ? '这门课程暂未开放报名。' : 'Deze cursus is nog niet beschikbaar.');
+    return;
+  }
+
+  if(!item.pid){
+    alert(ti ? '课程付款信息缺失，请联系 Taal13A。' : 'Betaalinformatie ontbreekt. Neem contact op met Taal13A.');
+    return;
+  }
+
+  var qty = 1;
+
+  if(item.id === 'speaking_club_20260825'){
+    var input = document.getElementById('course-qty');
+
+    if(input){
+      qty = getCourseQty();
+    }else{
+      qty = item.minQty || 8;
+    }
+  }
+
+  CART = [{
+    id: item.pid,
+    qty: qty,
+    kind: 'course'
+  }];
+
+  updCart();
+  nav('checkout');
 }
   
 function oEnroll(id){
