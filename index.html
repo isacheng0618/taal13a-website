@@ -9147,6 +9147,14 @@ button,input,label{
   }
 
   /* 底部固定报名条 */
+/* === MOBILE COURSE STICKY BAR: show only after scroll + softer brand style === */
+
+.mobile-course-sticky{
+  display:none;
+}
+
+@media(max-width:900px){
+
   .mobile-course-sticky{
     display:flex !important;
     position:fixed !important;
@@ -9154,55 +9162,86 @@ button,input,label{
     right:0 !important;
     bottom:0 !important;
     z-index:180 !important;
-    height:72px !important;
-    padding:10px 14px max(10px, env(safe-area-inset-bottom)) !important;
-    background:rgba(255,253,248,.96) !important;
+
+    height:76px !important;
+    padding:10px 18px max(10px, env(safe-area-inset-bottom)) !important;
+
+    background:rgba(255,253,248,.97) !important;
     border-top:1px solid #E6DED2 !important;
-    box-shadow:0 -8px 24px rgba(0,0,0,.08) !important;
+    box-shadow:0 -10px 28px rgba(15,94,140,.10) !important;
+    backdrop-filter:blur(16px) !important;
+
     align-items:center !important;
     justify-content:space-between !important;
-    gap:14px !important;
-    backdrop-filter:blur(14px) !important;
+    gap:16px !important;
+
+    transform:translateY(110%) !important;
+    opacity:0 !important;
+    pointer-events:none !important;
+
+    transition:
+      transform .24s ease,
+      opacity .24s ease !important;
+  }
+
+  .mobile-course-sticky.is-visible{
+    transform:translateY(0) !important;
+    opacity:1 !important;
+    pointer-events:auto !important;
   }
 
   .mobile-course-sticky-info{
     display:flex !important;
     flex-direction:column !important;
-    gap:2px !important;
-    min-width:0 !important;
+    gap:3px !important;
+    min-width:76px !important;
+    flex-shrink:0 !important;
   }
 
   .mobile-course-sticky-info span{
-    font-size:11px !important;
-    font-weight:850 !important;
+    font-size:12px !important;
+    line-height:1.1 !important;
+    font-weight:900 !important;
     color:#686868 !important;
-    white-space:nowrap !important;
   }
 
   .mobile-course-sticky-info strong{
-    font-size:22px !important;
+    font-family:"Archivo","Noto Sans SC",system-ui,sans-serif !important;
+    font-size:27px !important;
     line-height:1 !important;
     font-weight:950 !important;
-    color:#171717 !important;
-    white-space:nowrap !important;
+    letter-spacing:-.04em !important;
+    color:#0F5E8C !important;
   }
 
   .mobile-course-sticky button{
     flex:1 !important;
-    height:48px !important;
+    height:50px !important;
     border:none !important;
-    background:#171717 !important;
+    background:#0F5E8C !important;
     color:#fff !important;
+
     font-family:inherit !important;
-    font-size:16px !important;
+    font-size:17px !important;
     font-weight:950 !important;
+
     cursor:pointer !important;
-    border-radius:0 !important;
+    border-radius:6px !important;
+    box-shadow:0 8px 18px rgba(15,94,140,.16) !important;
   }
 
   .mobile-course-sticky button:hover{
-    background:#E96F3C !important;
+    background:#0B486D !important;
   }
+
+  #pg-course-detail{
+    padding-bottom:90px !important;
+  }
+}
+
+/* === COURSE DETAIL: remove repeated WeChat warning box === */
+.course-side-warning{
+  display:none !important;
 }
   
 </style>
@@ -13464,7 +13503,10 @@ function nav(id,opt){
   setTimeout(initProductGallery, 100);
 }
   if(id==='checkout')rCheckout();
-  if(id==='course-detail')rCourseDetail();
+ if(id==='course-detail'){
+  rCourseDetail();
+  setTimeout(updateMobileCourseSticky, 80);
+}
   if(id==='privacy'||id==='terms')rLegal();
   rPil('home-pillars');
   closeCart();
@@ -13823,6 +13865,39 @@ function initWhySlider(){
 
 window.addEventListener('load', initWhySlider);
 window.addEventListener('resize', updateWhyDots);
+
+function updateMobileCourseSticky(){
+  var sticky = document.querySelector('.mobile-course-sticky');
+  var detailPage = document.getElementById('pg-course-detail');
+
+  if(!sticky || !detailPage || !detailPage.classList.contains('on')){
+    return;
+  }
+
+  if(window.innerWidth > 900){
+    sticky.classList.remove('is-visible');
+    return;
+  }
+
+  var trigger = document.querySelector('.course-detail-main');
+
+  if(!trigger){
+    sticky.classList.remove('is-visible');
+    return;
+  }
+
+  var rect = trigger.getBoundingClientRect();
+
+  // 当用户开始看到左侧详细信息时，底部报名条出现
+  if(rect.top < window.innerHeight * 0.72){
+    sticky.classList.add('is-visible');
+  }else{
+    sticky.classList.remove('is-visible');
+  }
+}
+
+window.addEventListener('scroll', updateMobileCourseSticky);
+window.addEventListener('resize', updateMobileCourseSticky);
   
 </script>
 
