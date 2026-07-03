@@ -12446,8 +12446,15 @@ function getCourseBadgeLabel(s){
 
 function oCourseDetail(id){
   ET = SES.find(function(s){return s.id===id;}) || PIL.find(function(p){return p.id===id;});
-  if(!ET)return;
-  nav('course-detail');
+
+  if(!ET){
+    nav('home');
+    return;
+  }
+
+  nav('course-detail', {
+    cid: id
+  });
 }
 
 function rCourseDetail(){
@@ -13532,7 +13539,16 @@ function closeSiteMenu(){
   
 function nav(id,opt){
   opt=opt||{};
-  if(opt.pid)PDT=opt.pid;
+
+  if(opt.pid) PDT = opt.pid;
+
+  if(opt.cid){
+    ET = SES.find(function(s){
+      return s.id === opt.cid;
+    }) || PIL.find(function(p){
+      return p.id === opt.cid;
+    });
+  }
   document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');});
   var pg=document.getElementById('pg-'+id);if(pg)pg.classList.add('on');
   document.querySelectorAll('.nl').forEach(function(b){b.classList.remove('on');});
@@ -13561,7 +13577,27 @@ function nav(id,opt){
   if(id==='privacy'||id==='terms')rLegal();
   rPil('home-pillars');
   closeCart();
-  if(opt.push!==false){history.pushState({page:id,pid:PDT},'', '#'+id+(PDT&&id==='product'?'-'+PDT:''));}
+  if(opt.push !== false){
+  var hash = '#' + id;
+
+  if(id === 'product' && PDT){
+    hash = '#product-' + PDT;
+  }
+
+  if(id === 'course-detail' && ET && ET.id){
+    hash = '#course-' + ET.id;
+  }
+
+  history.pushState(
+    {
+      page: id,
+      pid: PDT,
+      cid: ET && ET.id ? ET.id : null
+    },
+    '',
+    hash
+  );
+}
   window.scrollTo({top:0,behavior:'smooth'});
 }
 window.addEventListener('popstate',function(e){var st=e.state||{page:'home'};nav(st.page||'home',{push:false,pid:st.pid});});
@@ -13728,15 +13764,57 @@ if(isPasswordRecoveryUrl()){
 var initialHash = location.hash ? location.hash.replace('#','') : 'home';
 
   if(initialHash.indexOf('product-') === 0){
-    var pid = initialHash.replace('product-','');
-    PDT = pid;
+  var pid = initialHash.replace('product-','');
+  PDT = pid;
+
+  history.replaceState(
+    {page:'product', pid:pid},
+    '',
+    location.pathname + location.search + '#product-' + pid
+  );
+
+  nav('product', {
+    push:false,
+    pid:pid
+  });
+
+}else if(initialHash.indexOf('course-') === 0){
+  var cid = initialHash.replace('course-','');
+
+  ET = SES.find(function(s){
+    return s.id === cid;
+  }) || PIL.find(function(p){
+    return p.id === cid;
+  });
+
+  if(!ET){
     history.replaceState(
-      {page:'product', pid:pid},
+      {page:'home'},
       '',
-      location.pathname + location.search + '#product-' + pid
+      location.pathname + location.search + '#home'
     );
-    nav('product', {push:false, pid:pid});
+
+    nav('home', {
+      push:false
+    });
+
   }else{
+    history.replaceState(
+      {
+        page:'course-detail',
+        cid:cid
+      },
+      '',
+      location.pathname + location.search + '#course-' + cid
+    );
+
+    nav('course-detail', {
+      push:false,
+      cid:cid
+    });
+  }
+
+}else{
     var validPages = [
       'home',
       'overview',
