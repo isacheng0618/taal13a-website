@@ -11725,26 +11725,26 @@ function rCourseDetail(){
   var el=document.getElementById('course-detail');
   if(!el || !s)return;
 
-  if(s.soon){
+ if(s.soon){
   el.innerHTML =
     '<button class="back-link" onclick="scrollToHomeCourses()">← '+
-      (ti ? '返回课程' : 'Terug naar cursussen')+
+      (ti?'返回课程':'Terug naar cursussen')+
     '</button>'+
 
     '<div class="sw">'+
       '<div class="si">⏳</div>'+
-      '<div class="st2">'+(ti ? '敬请期待' : 'Binnenkort')+'</div>'+
+      '<div class="st2">'+(ti?'敬请期待':'Binnenkort')+'</div>'+
       '<div class="sd">'+
-        (ti ? (s.zd || '课程安排即将更新。') : (s.nd || 'Details volgen binnenkort.'))+
+        (ti?(s.zd||'课程安排即将更新。'):(s.nd||'Details volgen binnenkort.'))+
       '</div>'+
       '<button class="bf" style="max-width:220px;margin:0 auto" onclick="scrollToHomeCourses()">'+
-        (ti ? '返回课程' : 'Terug')+
+        (ti?'返回课程':'Terug')+
       '</button>'+
     '</div>';
 
   return;
 }
-
+  
   var title = ti ? s.zt : s.nt;
   var desc = ti ? s.zd : s.nd;
   var date = ti ? s.sd : s.nd2;
