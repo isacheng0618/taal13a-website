@@ -9421,7 +9421,7 @@ var PIL=[
     nl_:'0-A2 systematische cursus',
     zs:'8月22日开课｜周六下午 13:30–15:30',
     ns:'Start 22 augustus｜zaterdagmiddag 13:30–15:30',
-    zt:'一步一个脚印｜从零基础走到A2',
+    zt:'从0开始｜从零基础走到A2',
     nt:'Van nul naar A2, stap voor stap',
     courseTypeZh:'线上小班：0→A2',
     courseTypeNl:'Online groep: 0→A2',
@@ -10123,28 +10123,32 @@ function rPil(id){
   var ti=t();
 
   function splitNote(note){
-    note = note || '';
+  note = note || '';
 
-    var date = '—';
-    var time = '—';
+  var date = '—';
+  var time = '—';
 
-    if(note.indexOf('｜') >= 0){
-      var parts = note.split('｜');
-      date = parts[0] || '—';
-      time = parts[1] || '—';
-    }else if(note.indexOf('|') >= 0){
-      var parts2 = note.split('|');
-      date = parts2[0] || '—';
-      time = parts2[1] || '—';
-    }else{
-      date = note || '—';
-    }
-
-    return {
-      date: date.replace('开课','').replace('Start ',''),
-      time: time
-    };
+  if(note.indexOf('｜') >= 0){
+    var parts = note.split('｜');
+    date = parts[0] || '—';
+    time = parts[1] || '—';
+  }else if(note.indexOf('|') >= 0){
+    var parts2 = note.split('|');
+    date = parts2[0] || '—';
+    time = parts2[1] || '—';
+  }else{
+    date = note || '—';
   }
+
+  // 手机端更好看：把 “每周二上午 8:45–10:45”
+  // 变成 “每周二上午<br>8:45–10:45”
+  time = time.replace(/\s+(\d{1,2}:\d{2}[–-]\d{1,2}:\d{2})/, '<br>$1');
+
+  return {
+    date: date.replace('开课','').replace('Start ',''),
+    time: time
+  };
+}
 
   function getWeeks(c){
     var pts = ti ? c.zp : c.np;
