@@ -8613,10 +8613,10 @@ button,input,label{
       <em>HOME</em>
     </button>
 
-    <button onclick="nav('overview');closeSiteMenu();">
-      <span>课程</span>
-      <em>CURSUSSEN</em>
-    </button>
+    <button onclick="closeSiteMenu(); scrollToHomeCourses();">
+  <span>课程</span>
+  <em>CURSUSSEN</em>
+</button>
 
     <button onclick="nav('shop');closeSiteMenu();">
       <span>书店</span>
@@ -12682,26 +12682,46 @@ function scrollToHomeCourses(){
     return;
   }
 
+  // 顶部导航高亮到“课程”
+  document.querySelectorAll('.nl').forEach(function(b){
+    b.classList.remove('on');
+  });
+
+  var courseBtn = document.querySelector('.nl[data-zh="课程 / Cursussen"]');
+  if(courseBtn){
+    courseBtn.classList.add('on');
+  }
+
+  function doScroll(){
+    var target = document.getElementById('home-course-section');
+    if(target){
+      target.scrollIntoView({
+        behavior:'smooth',
+        block:'start'
+      });
+    }
+  }
+
   if(!document.getElementById('pg-home').classList.contains('on')){
     nav('home', {push:false});
 
     setTimeout(function(){
-      var target = document.getElementById('home-course-section');
-      if(target){
-        target.scrollIntoView({
-          behavior:'smooth',
-          block:'start'
-        });
+      doScroll();
+
+      document.querySelectorAll('.nl').forEach(function(b){
+        b.classList.remove('on');
+      });
+
+      var courseBtn = document.querySelector('.nl[data-zh="课程 / Cursussen"]');
+      if(courseBtn){
+        courseBtn.classList.add('on');
       }
-    }, 120);
+    }, 160);
 
     return;
   }
 
-  section.scrollIntoView({
-    behavior:'smooth',
-    block:'start'
-  });
+  doScroll();
 }
 
 function openSiteMenu(){
