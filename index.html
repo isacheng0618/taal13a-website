@@ -9103,6 +9103,107 @@ button,input,label{
     flex-basis:78vw;
   }
 }
+
+
+/* === MOBILE COURSE DETAIL: side card first + sticky pay bar === */
+
+.mobile-course-sticky{
+  display:none;
+}
+
+@media(max-width:900px){
+
+  #pg-course-detail{
+    padding-bottom:88px !important;
+  }
+
+  .course-detail-layout{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:1.2rem !important;
+  }
+
+  /* 右边报名框手机端放到最上面 */
+  .course-side-card{
+    order:1 !important;
+    position:relative !important;
+    top:auto !important;
+    padding:1.5rem !important;
+  }
+
+  /* 左边详细信息放下面 */
+  .course-detail-main{
+    order:2 !important;
+    padding:2rem 1.4rem !important;
+  }
+
+  /* 手机端报名框里的按钮仍然保留，但不是唯一入口 */
+  .course-side-card .course-pay-btn{
+    display:none !important;
+  }
+
+  .course-side-card .course-more-btn{
+    display:none !important;
+  }
+
+  /* 底部固定报名条 */
+  .mobile-course-sticky{
+    display:flex !important;
+    position:fixed !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:0 !important;
+    z-index:180 !important;
+    height:72px !important;
+    padding:10px 14px max(10px, env(safe-area-inset-bottom)) !important;
+    background:rgba(255,253,248,.96) !important;
+    border-top:1px solid #E6DED2 !important;
+    box-shadow:0 -8px 24px rgba(0,0,0,.08) !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:14px !important;
+    backdrop-filter:blur(14px) !important;
+  }
+
+  .mobile-course-sticky-info{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:2px !important;
+    min-width:0 !important;
+  }
+
+  .mobile-course-sticky-info span{
+    font-size:11px !important;
+    font-weight:850 !important;
+    color:#686868 !important;
+    white-space:nowrap !important;
+  }
+
+  .mobile-course-sticky-info strong{
+    font-size:22px !important;
+    line-height:1 !important;
+    font-weight:950 !important;
+    color:#171717 !important;
+    white-space:nowrap !important;
+  }
+
+  .mobile-course-sticky button{
+    flex:1 !important;
+    height:48px !important;
+    border:none !important;
+    background:#171717 !important;
+    color:#fff !important;
+    font-family:inherit !important;
+    font-size:16px !important;
+    font-weight:950 !important;
+    cursor:pointer !important;
+    border-radius:0 !important;
+  }
+
+  .mobile-course-sticky button:hover{
+    background:#E96F3C !important;
+  }
+}
   
 </style>
 <link rel="stylesheet" href="./assets/css/typography.css">
@@ -12507,9 +12608,19 @@ function rCourseDetail(){
 
       '</aside>'+
 
-    '</div>'+
+        '</div>'+
 
-    relatedHtml;
+    relatedHtml+
+
+    '<div class="mobile-course-sticky">'+
+      '<div class="mobile-course-sticky-info">'+
+        '<span>'+(ti?'报名课程':'Cursus')+'</span>'+
+        '<strong>'+s.pr+'</strong>'+
+      '</div>'+
+      '<button onclick="oEnroll(\''+s.id+'\')">'+
+        (ti?'报名并付款':'Inschrijven en betalen')+
+      '</button>'+
+    '</div>';
 }
   
 function oEnroll(id){
