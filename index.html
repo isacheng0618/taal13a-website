@@ -11421,6 +11421,12 @@ function cartCheckout(){
   nav('checkout');
 }
 
+function cartHasCourse(){
+  return CART.some(function(ci){
+    return ci.kind === 'course' || String(ci.id || '').indexOf('course_') === 0;
+  });
+}
+  
  function rCheckout(){
   var ti=t();
   var body=document.getElementById('checkout-body');
@@ -11539,9 +11545,29 @@ function cartCheckout(){
         '</div>'+
 
         '<div class="fr">'+
-          '<label>WeChat '+(ti?'（选填）':'(optioneel)')+'</label>'+
-          '<input type="text" id="ck-wc" value="'+(USER?(USER.wc||''):'')+'">'+
-        '</div>'+
+  '<label>'+
+    'WeChat '+
+    (cartHasCourse()
+      ? (ti?'（小班课必填）':'(verplicht voor groepslessen)')
+      : (ti?'（选填）':'(optioneel)')
+    )+
+  '</label>'+
+  '<input type="text" id="ck-wc" value="'+(USER?(USER.wc||''):'')+'" placeholder="'+
+    (cartHasCourse()
+      ? (ti?'用于拉你进课程群，请填写准确微信号':'Voor de cursusgroep, vul uw WeChat-ID correct in')
+      : (ti?'选填':'Optioneel')
+    )+
+  '">'+
+  (cartHasCourse()
+    ? '<div class="form-hint">'+
+        (ti
+          ? '小班课需要通过微信发送课程通知、学习群信息和课后回放，所以微信号为必填。'
+          : 'Voor groepslessen gebruiken wij WeChat voor mededelingen, de cursusgroep en opnames. Daarom is WeChat verplicht.'
+        )+
+      '</div>'
+    : ''
+  )+
+'</div>'+
 
         '<div class="fr">'+
           '<label>'+(ti?'发票/备注（选填）':'Factuur/opmerking optioneel')+'</label>'+
@@ -11558,7 +11584,7 @@ function cartCheckout(){
           '<input type="checkbox" id="ck-terms">'+
           '<span>'+
             (ti?'我同意 ':'Ik ga akkoord met de ')+
-            '<span class="legal-link" onclick="nav(\'terms\')">Terms & Conditions</span>'+
+            '<span class="legal-link" onclick="nav(\'terms\')">'+(ti?'服务条款':'Terms & Conditions')+'</span>'+
             (ti?'。':'')+
           '</span>'+
         '</div>'+
@@ -11567,7 +11593,7 @@ function cartCheckout(){
           '<input type="checkbox" id="ck-privacy">'+
           '<span>'+
             (ti?'我已阅读 ':'Ik heb de ')+
-            '<span class="legal-link" onclick="nav(\'privacy\')">Privacy Policy</span>'+
+            '<span class="legal-link" onclick="nav(\'privacy\')">'+(ti?'隐私政策':'Privacy Policy')+'</span>'+
             (ti?'，同意为处理订单、交付产品和售后服务收集必要信息。':' gelezen en begrijp dat noodzakelijke gegevens worden verwerkt voor bestelling, levering en service.')+
           '</span>'+
         '</div>'+
@@ -11626,10 +11652,10 @@ if(!USER){
   var wechat=document.getElementById('ck-wc') ? document.getElementById('ck-wc').value.trim() : '';
   var note=document.getElementById('ck-note') ? document.getElementById('ck-note').value.trim() : '';
 
-  if(!name || !email){
-    alert(ti?'请填写用户名和邮箱。':'Vul gebruikersnaam en e-mail in.');
-    return;
-  }
+  if(cartHasCourse() && !wechat){
+  alert(ti?'请填写微信号。小班课将通过微信发送课程通知、学习群信息和课后回放。':'Vul uw WeChat-ID in. Voor groepslessen gebruiken wij WeChat voor mededelingen, de cursusgroep en opnames.');
+  return;
+}
 
   if(!document.getElementById('ck-terms').checked || !document.getElementById('ck-privacy').checked){
     alert(ti?'请先勾选条款和隐私确认。':'Accepteer eerst de voorwaarden en privacybevestiging.');
@@ -12000,7 +12026,7 @@ if(s.id === 'speaking_club_20260825'){
         qtyBox+
 
 '<div class="pd-actions">'+
-          '<button class="bpay" onclick="oEnroll(\''+s.id+'\')">'+(ti?'报名并付款':'Inschrijven en betalen')+'</button>'+
+          '<button class="bpay" onclick="startCourseCheckoutFromDetail(\''+s.id+'\')">'+(ti?'报名并付款':'Inschrijven en betalen')+'</button>'+
           '<button class="course-more-link" onclick="scrollToHomeCourses()">'+
   (ti?'查看更多课程 →':'Bekijk meer cursussen →')+
 '</button>'+
@@ -12008,6 +12034,49 @@ if(s.id === 'speaking_club_20260825'){
       '</div>'+
 
     '</div>';
+}
+
+function startCourseCheckoutFromDetail(id){
+  var ti = t();
+
+  if(!USER){
+    alert(ti?'请先注册/登录后报名课程。':'Log eerst in of registreer om u in te schrijven.');
+    nav('login');
+    return;
+  }
+
+  var item = SES.find(function(s){return s.id === id;}) || PIL.find(function(p){return p.id === id;});
+
+  if(!item){
+    alert(ti?'课程信息缺失，请联系 Taal13A。':'Cursusinformatie ontbreekt. Neem contact op met Taal13A.');
+    return;
+  }
+
+  if(item.soon){
+    alert(ti?'课程正在准备中，暂时不能付款。':'Deze cursus is nog niet beschikbaar.');
+    return;
+  }
+
+  if(!item.pid){
+    alert(ti?'课程付款信息缺失，请联系 Taal13A。':'Betaalinformatie ontbreekt. Neem contact op met Taal13A.');
+    return;
+  }
+
+  ET = item;
+
+  var courseQty = 1;
+
+  if(item.id === 'speaking_club_20260825'){
+    courseQty = getCourseQty();
+  }
+
+  CART = [{
+    id: item.pid,
+    qty: courseQty,
+    kind: 'course'
+  }];
+
+  nav('checkout');
 }
   
 function oEnroll(id){
