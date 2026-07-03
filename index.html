@@ -10366,11 +10366,8 @@ function getType(c){
   }
 
   function getAction(c){
-    if(c.id === 'elearn' || c.soon){
-      return ti ? '查看详情' : 'Bekijk';
-    }
-    return ti ? '查看报名' : 'Bekijk';
-  }
+  return ti ? '查看详情' : 'Bekijk details';
+}
 
   el.classList.add('course-table');
 
