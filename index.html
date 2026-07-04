@@ -11961,10 +11961,14 @@ function updCart(){
         '<div class="ci-qty">'+
   (
     isPhysicalProduct(p)
-      ? '<button class="qty-btn" onclick="changeQty(\''+ci.id+'\',-1)">−</button>'+
-        '<span class="qty-n">'+ci.qty+'</span>'+
-        '<button class="qty-btn" onclick="changeQty(\''+ci.id+'\',1)">+</button>'
-      : '<span class="qty-n">'+(ti?'电子资料 × 1':'Digitaal × 1')+'</span>'
+  ? '<button class="qty-btn" onclick="changeQty(\''+ci.id+'\',-1)">−</button>'+
+    '<span class="qty-n">'+ci.qty+'</span>'+
+    '<button class="qty-btn" onclick="changeQty(\''+ci.id+'\',1)">+</button>'
+  : (
+      (ci.kind === 'course' || String(ci.id || '').indexOf('course_') === 0)
+        ? '<span class="qty-n">'+(ti?'线上小班课 × '+ci.qty:'Online groepsles × '+ci.qty)+'</span>'
+        : '<span class="qty-n">'+(ti?'电子资料 × 1':'Digitaal × 1')+'</span>'
+    )
   )+
   '<button class="ci-del" onclick="removeCart(\''+ci.id+'\')" aria-label="删除">×</button>'+
 '</div>'+
