@@ -1691,12 +1691,20 @@ label{
     不要强行同时显示 auth 和 user。
     只允许“没有被隐藏”的那个显示。
   */
-  #auth-btns:not(.hidden):not([hidden]),
-  #user-btns:not(.hidden):not([hidden]){
-    display:flex !important;
-    align-items:center !important;
-    gap:12px !important;
-  }
+  /* 默认：两个都不要由 typography.css 强行决定显示 */
+#auth-btns.hidden,
+#user-btns.hidden,
+#auth-btns[hidden],
+#user-btns[hidden]{
+  display:none !important;
+}
+
+/* 只调整已经显示出来的按钮样式，不负责登录逻辑 */
+#auth-btns,
+#user-btns{
+  align-items:center !important;
+  gap:12px !important;
+}
 
   #auth-btns.hidden,
   #user-btns.hidden,
