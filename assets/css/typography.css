@@ -1651,3 +1651,82 @@ label{
     letter-spacing:.24em;
   }
 }
+
+/* =====================================================
+   DESKTOP NARROW HEADER FIX
+   电脑端窄屏：隐藏中间导航，但保留登录/注册/个人主页
+   目录按钮只保留三条线图标，不显示“目录”文字
+===================================================== */
+
+@media(min-width:701px) and (max-width:1180px){
+
+  .tb{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    height:68px !important;
+    padding:0 18px !important;
+  }
+
+  .logo-main{
+    height:42px !important;
+    flex-shrink:0 !important;
+  }
+
+  /* 中间主导航收起来 */
+  .nc{
+    display:none !important;
+  }
+
+  /* 电脑端窄屏：登录注册 / 个人主页继续显示 */
+  #auth-btns,
+  #user-btns{
+    display:flex !important;
+    align-items:center !important;
+    gap:12px !important;
+  }
+
+  /* 右侧区域：登录/个人按钮 + 三条线 */
+  .nr{
+    margin-left:auto !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    gap:16px !important;
+  }
+
+  /* menu 按钮显示 */
+  .menu-toggle-btn{
+    display:inline-flex !important;
+    width:42px !important;
+    height:42px !important;
+    padding:0 !important;
+    border:none !important;
+    background:transparent !important;
+    color:#171717 !important;
+    align-items:center !important;
+    justify-content:center !important;
+    cursor:pointer !important;
+    font-size:0 !important;
+    line-height:1 !important;
+  }
+
+  /* 如果按钮里有“目录”两个字，直接隐藏文字 */
+  .menu-toggle-btn span:not(.material-symbols-outlined),
+  .menu-toggle-btn .menu-text,
+  .menu-toggle-btn .menu-label{
+    display:none !important;
+  }
+
+  /* 三条线图标 */
+  .menu-toggle-btn .material-symbols-outlined{
+    display:block !important;
+    font-family:"Material Symbols Outlined" !important;
+    font-size:34px !important;
+    line-height:1 !important;
+  }
+
+  .news-ticker{
+    top:68px !important;
+  }
+}
