@@ -1653,9 +1653,8 @@ label{
 }
 
 /* =====================================================
-   DESKTOP NARROW HEADER FIX
-   电脑端窄屏：隐藏中间导航，但保留登录/注册/个人主页
-   目录按钮只保留三条线图标，不显示“目录”文字
+   DESKTOP NARROW HEADER FIX — FINAL
+   电脑窄屏：保留登录状态逻辑，只收起中间导航
 ===================================================== */
 
 @media(min-width:701px) and (max-width:1180px){
@@ -1673,26 +1672,37 @@ label{
     flex-shrink:0 !important;
   }
 
-  /* 中间主导航收起来 */
+  /* 中间导航收进菜单 */
   .nc{
     display:none !important;
   }
 
-  /* 电脑端窄屏：登录注册 / 个人主页继续显示 */
-  #auth-btns,
-  #user-btns{
-    display:flex !important;
-    align-items:center !important;
-    gap:12px !important;
-  }
-
-  /* 右侧区域：登录/个人按钮 + 三条线 */
+  /* 右侧区域继续显示 */
   .nr{
     margin-left:auto !important;
     display:flex !important;
     align-items:center !important;
     justify-content:flex-end !important;
     gap:16px !important;
+  }
+
+  /*
+    关键修正：
+    不要强行同时显示 auth 和 user。
+    只允许“没有被隐藏”的那个显示。
+  */
+  #auth-btns:not(.hidden):not([hidden]),
+  #user-btns:not(.hidden):not([hidden]){
+    display:flex !important;
+    align-items:center !important;
+    gap:12px !important;
+  }
+
+  #auth-btns.hidden,
+  #user-btns.hidden,
+  #auth-btns[hidden],
+  #user-btns[hidden]{
+    display:none !important;
   }
 
   /* menu 按钮显示 */
@@ -1707,23 +1717,43 @@ label{
     align-items:center !important;
     justify-content:center !important;
     cursor:pointer !important;
-    font-size:0 !important;
     line-height:1 !important;
+    flex-shrink:0 !important;
   }
 
-  /* 如果按钮里有“目录”两个字，直接隐藏文字 */
+  /* 隐藏“目录”文字 */
   .menu-toggle-btn span:not(.material-symbols-outlined),
   .menu-toggle-btn .menu-text,
   .menu-toggle-btn .menu-label{
     display:none !important;
   }
 
-  /* 三条线图标 */
+  /* 如果原本有 material icon，就显示三条线 */
   .menu-toggle-btn .material-symbols-outlined{
     display:block !important;
     font-family:"Material Symbols Outlined" !important;
     font-size:34px !important;
     line-height:1 !important;
+    color:#171717 !important;
+  }
+
+  /*
+    备用方案：
+    如果你的按钮里没有真正的三条线 icon，
+    这里强行生成一个 ☰，避免按钮透明看不到。
+  */
+  .menu-toggle-btn::before{
+    content:"☰" !important;
+    display:block !important;
+    font-family:Arial, sans-serif !important;
+    font-size:32px !important;
+    line-height:1 !important;
+    font-weight:400 !important;
+    color:#171717 !important;
+  }
+
+  .menu-toggle-btn .material-symbols-outlined + *{
+    display:none !important;
   }
 
   .news-ticker{
