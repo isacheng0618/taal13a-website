@@ -9957,7 +9957,7 @@ button,input,label{
         data-zh="荷兰语学习<br>也可以变得简单,高效, 快乐。<br>。"
         data-nl="Een taal leren<br>hoeft niet ingewikkeld te zijn,<br>maar vraagt om de juiste inhoud,<br>heldere uitleg en<br>regelmatige oefening.">
         荷兰语学习<br>
-        也可以变得简单,高效,快乐。<br>
+        也可以变得简单、高效、快乐。<br>
       </h1>
 
       <p class="about-quote-nl">Nederlands leren kan ook rustig, duidelijk en stap voor stap.</p>
@@ -10010,7 +10010,7 @@ Ze is geregistreerd NT2-docent en werkt bij een door de Nederlandse overheid erk
 Als moedertaalspreker van het Chinees begrijpt zij goed waar Chinese leerders tegenaan lopen: onbekende klanken, abstracte grammatica en onzekerheid bij het spreken. Bij Taal13A legt zij het Nederlands daarom helder uit in het Chinees: zonder omwegen, zonder onnodig stampen, maar praktisch en begrijpelijk.
 
 Sinds 2022 deelt Isa online Nederlandse taallessen. Inmiddels heeft zij meer dan 200 video’s en leerposts gepubliceerd.">
-        Isa 毕业于上海外国语大学荷兰语专业，曾获全额奖学金赴荷兰莱顿大学交换学习，并在复旦大学取得国际新闻与传播硕士学位。并在荷兰取得NT2教室资格证,注册于荷兰NT2教师协会。<br><br>
+        Isa 毕业于上海外国语大学荷兰语专业，曾获全额奖学金赴荷兰莱顿大学交换学习，并在复旦大学取得国际新闻与传播硕士学位。并在荷兰取得NT2教师资格证,注册于荷兰NT2教师协会。<br><br>
 
         Isa 在荷兰政府认可的BOW语言融入学校任教，教授 Alfa A 到 B2 水平的荷兰语课程。学生来自不同国家、文化和教育背景。<br><br>
 
@@ -10250,9 +10250,9 @@ Sinds 2022 deelt Isa online Nederlandse taallessen. Inmiddels heeft zij meer dan
       去结算 →
     </button>
 
-    <button class="cart-continue" onclick="closeCart()" data-zh="继续浏览书店" data-nl="Verder winkelen">
-      继续浏览书店
-    </button>
+   <button class="cart-continue" onclick="continueShopping()" data-zh="继续浏览书店 ↗" data-nl="Verder winkelen ↗">
+  继续浏览书店 ↗
+</button>
   </div>
 </div>
 
@@ -12130,6 +12130,11 @@ function closeCart(){
   document.body.style.overflow='';
 }
 
+function continueShopping(){
+  closeCart();
+  nav('shop');
+}
+  
 function showCartToast(){
   var toast=document.getElementById('cart-toast');
   var bar=document.getElementById('cart-bar');
