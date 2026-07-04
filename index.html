@@ -10301,6 +10301,26 @@ var supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 var L='zh',USER=null,ET=null,PDT=null,USERS={},CF='all',SCARF='all';
 var CART=[],GUEST_ORDERS=[];
 
+try{
+  CART = JSON.parse(localStorage.getItem('taal13a_cart') || '[]');
+}catch(e){
+  CART = [];
+}
+
+function saveCart(){
+  try{
+    localStorage.setItem('taal13a_cart', JSON.stringify(CART));
+  }catch(e){
+    console.error('save cart failed', e);
+  }
+}
+
+function clearSavedCart(){
+  try{
+    localStorage.removeItem('taal13a_cart');
+  }catch(e){}
+}  
+
 function setAuthUI(isLoggedIn){
   var authBtns = document.getElementById('auth-btns');
   var userBtns = document.getElementById('user-btns');
@@ -11407,17 +11427,20 @@ function buyProduct(pid){addToCart(pid);}
 function fmtPrice(cents){return '€'+(cents/100).toFixed(2).replace('.',',');}
 function getCartItemData(id){
   var p = PRODUCTS.find(function(x){return x.id===id;});
-  if(p){
-    return {
-      id:p.id,
-      zn:p.zn,
-      nn:p.nn,
-      pr:p.pr,
-      old:p.old || null,
-      emoji:p.emoji || '📦',
-      img:p.img || ''
-    };
-  }
+ if(p){
+  return {
+    id:p.id,
+    zn:p.zn,
+    nn:p.nn,
+    pr:p.pr,
+    old:p.old || null,
+    emoji:p.emoji || '📦',
+    img:p.img || '',
+    type:p.type || '',
+    format:p.format || '',
+    shipping:p.shipping || false
+  };
+}
 
   var s = SES.find(function(x){return x.pid===id || x.id===id;});
   if(s){
@@ -12008,6 +12031,7 @@ function addToCart(pid){
 }
 
 function updCart(){
+  saveCart();
   var total=0,count=0,oldTotal=0;
   var ti=t();
   var el=document.getElementById('cart-items');
@@ -12839,14 +12863,30 @@ function courseCheckoutDirect(id){
     }
   }
 
-  CART = [{
-    id: item.pid,
-    qty: qty,
-    kind: 'course'
-  }];
+addCourseToCart(item.pid, qty);
+nav('checkout');
+
+
+function addCourseToCart(coursePid, qty){
+  var ti = t();
+
+  var existing = CART.find(function(item){
+    return item.id === coursePid;
+  });
+
+  if(existing){
+    existing.qty = qty || existing.qty || 1;
+  }else{
+    CART.push({
+      id: coursePid,
+      qty: qty || 1,
+      kind: 'course'
+    });
+  }
 
   updCart();
-  nav('checkout');
+}
+  
 }
   
 function oEnroll(id){
@@ -13553,8 +13593,9 @@ function handlePaymentReturn(){
   var order = params.get('order');
 
   if(payment === 'return' && order){
-    CART = [];
-    updCart();
+  CART = [];
+  clearSavedCart();
+  updCart();
 
     nav('payment-success', {push:false});
 
