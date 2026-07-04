@@ -9282,7 +9282,7 @@ button,input,label{
     <button class="register-btn" onclick="nav('register')" data-zh="注册" data-nl="Registreren">注册</button>
   </span>
 
-  <span id="user-btns" class="auth-actions is-hidden">
+  <span id="user-btns" class="auth-actions is-hidden" hidden>
     <button class="mobile-icon-btn account-icon-btn" onclick="nav('dashboard')" id="ulabel" aria-label="我的课程">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <circle cx="12" cy="8" r="4"></circle>
@@ -10224,6 +10224,31 @@ var supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 var L='zh',USER=null,ET=null,PDT=null,USERS={},CF='all',SCARF='all';
 var CART=[],GUEST_ORDERS=[];
 
+function setAuthUI(isLoggedIn){
+  var authBtns = document.getElementById('auth-btns');
+  var userBtns = document.getElementById('user-btns');
+
+  if(!authBtns || !userBtns) return;
+
+  if(isLoggedIn){
+    authBtns.classList.add('is-hidden');
+    authBtns.setAttribute('hidden','');
+    authBtns.style.display = 'none';
+
+    userBtns.classList.remove('is-hidden');
+    userBtns.removeAttribute('hidden');
+    userBtns.style.display = 'inline-flex';
+  }else{
+    authBtns.classList.remove('is-hidden');
+    authBtns.removeAttribute('hidden');
+    authBtns.style.display = 'inline-flex';
+
+    userBtns.classList.add('is-hidden');
+    userBtns.setAttribute('hidden','');
+    userBtns.style.display = 'none';
+  }
+}
+  
 var PIL=[
 
   {
@@ -13151,28 +13176,24 @@ async function refreshUser(){
       console.error('load user purchases error:', err);
     }
 
-    document.getElementById('auth-btns').classList.add('is-hidden');
-    document.getElementById('user-btns').classList.remove('is-hidden');
+    setAuthUI(true);
 
   }else{
     USER = null;
-document.getElementById('auth-btns').classList.remove('is-hidden');
-document.getElementById('user-btns').classList.add('is-hidden');
+setAuthUI(false);
   }
 }
   
 function loginAs(u){
   USER=u;
-  document.getElementById('auth-btns').classList.add('is-hidden');
-  document.getElementById('user-btns').classList.remove('is-hidden');
+  setAuthUI(true);
   nav('dashboard');
 }
   
 async function doLogout(){
   await supabaseClient.auth.signOut();
   USER=null;
-  document.getElementById('auth-btns').classList.remove('is-hidden');
-  document.getElementById('user-btns').classList.add('is-hidden');
+  setAuthUI(false);
   nav('home');
 }
 
