@@ -9245,6 +9245,70 @@ button,input,label{
     line-height:1 !important;
   }
 }
+
+
+/* === ABOUT PAGE DESKTOP WIDTH FIX === */
+/* 让关于页面电脑版宽度和书店页面一致，不再铺满全屏 */
+
+@media(min-width:901px){
+
+  #pg-about{
+    background:#FFFFFF;
+  }
+
+  #pg-about .about-editorial-hero{
+    max-width:1120px !important;
+    margin:0 auto !important;
+    padding:76px 20px 64px !important;
+    min-height:560px !important;
+    grid-template-columns:minmax(0,.9fr) minmax(380px,1fr) !important;
+    gap:56px !important;
+  }
+
+  #pg-about .about-quote{
+    max-width:430px !important;
+  }
+
+  #pg-about .about-quote h1{
+    font-size:44px !important;
+    line-height:1.36 !important;
+  }
+
+  #pg-about .about-portrait-wrap{
+    min-height:440px !important;
+  }
+
+  #pg-about .about-blue-blob{
+    width:470px !important;
+    height:340px !important;
+    right:0 !important;
+    bottom:26px !important;
+  }
+
+  #pg-about .about-portrait{
+    width:480px !important;
+    max-height:500px !important;
+    transform:none !important;
+  }
+
+  #pg-about .about-bio-section{
+    max-width:1120px !important;
+    margin:0 auto !important;
+    padding:56px 20px 86px !important;
+  }
+
+  #pg-about .about-bio-inner{
+    max-width:760px !important;
+    margin:0 !important;
+  }
+
+  #pg-about .about-contact-cta{
+    max-width:1120px !important;
+    margin:0 auto !important;
+    padding-left:20px !important;
+    padding-right:20px !important;
+  }
+}  
   
   
 </style>
