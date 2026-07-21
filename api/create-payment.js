@@ -105,12 +105,30 @@ export default async function handler(req, res) {
 
 
     const cleanItems = items
-      .map((item) => ({
-        productId: String(item.productId || item.id || ''),
-        quantity: Math.max(1, Number(item.quantity || item.qty || 1)),
-        kind: String(item.kind || 'product')
-      }))
-      .filter((item) => item.productId);
+  .map((item) => {
+    const parsedQuantity = Number(item.quantity || item.qty || 1);
+
+    return {
+      productId: cleanString(
+        String(item.productId || item.id || '')
+      ),
+
+      variantId:
+        cleanString(
+          String(item.variantId || item.variant_id || '')
+        ) || null,
+
+      quantity: Number.isFinite(parsedQuantity)
+        ? Math.max(1, Math.floor(parsedQuantity))
+        : 1,
+
+      kind:
+        cleanString(
+          String(item.kind || 'product')
+        ) || 'product'
+    };
+  })
+  .filter((item) => item.productId);
 
     if (!cleanItems.length) {
       return res.status(400).json({
