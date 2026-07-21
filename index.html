@@ -12028,6 +12028,73 @@ function goProductGalleryLightbox(index){
   productLightboxIndex = index;
   updateProductGalleryLightbox();
 }
+
+var PRODUCT_VARIANT_SELECTIONS = {};
+
+function getSelectedProductVariant(product){
+  if(
+    !product ||
+    !Array.isArray(product.variants) ||
+    !product.variants.length
+  ){
+    return null;
+  }
+
+  var selectedVariantId =
+    PRODUCT_VARIANT_SELECTIONS[product.id];
+
+  if(!selectedVariantId){
+    return null;
+  }
+
+  return product.variants.find(function(variant){
+    return variant.id === selectedVariantId;
+  }) || null;
+}
+
+function selectProductVariant(productId, variantId){
+  var product = PRODUCTS.find(function(item){
+    return item.id === productId;
+  });
+
+  if(
+    !product ||
+    !Array.isArray(product.variants)
+  ){
+    return;
+  }
+
+  var variant = product.variants.find(function(item){
+    return item.id === variantId;
+  });
+
+  if(!variant){
+    alert(
+      t()
+        ? '没有找到这个款式，请重新选择。'
+        : 'Deze uitvoering is niet gevonden. Kies opnieuw.'
+    );
+    return;
+  }
+
+  if(!isVariantAvailable(variant)){
+    alert(
+      t()
+        ? '这个款式目前已经售罄，请选择其他款式。'
+        : 'Deze uitvoering is momenteel uitverkocht.'
+    );
+    return;
+  }
+
+  PRODUCT_VARIANT_SELECTIONS[productId] = variantId;
+
+  productGalleryIndex = 0;
+  rProduct();
+
+  setTimeout(function(){
+    initProductGallery();
+  },0);
+}
   
 function oProduct(pid){PDT=pid;nav('product',{pid:pid});}
 function rProduct(){
