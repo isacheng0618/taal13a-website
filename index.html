@@ -12469,7 +12469,7 @@ function cartHasCourse(){
   var oldTotal=0;
 
   var lines=CART.map(function(ci){
-    var p=getCartItemData(ci.id);
+    var p=getCartItemData(ci.id,ci.variantId);
     if(!p)return '';
 
     var now=p.pr*ci.qty;
@@ -12480,7 +12480,23 @@ function cartHasCourse(){
     oldTotal+=old;
 
     return '<div class="order-line">'+
-      '<span>'+(ti?p.zn:p.nn)+' × '+ci.qty+'</span>'+
+      '<span>'+
+  '<span style="display:block">'+
+    (ti?p.zn:p.nn)+
+  '</span>'+
+
+  (
+    p.variantId
+      ? '<span style="display:block;margin-top:3px;font-size:11.5px;color:#786C5F;font-weight:750">'+
+          (ti?p.variantZn:p.variantNn)+
+        '</span>'
+      : ''
+  )+
+
+  '<span style="display:block;margin-top:3px;font-size:11px;color:var(--ink4)">'+
+    '× '+ci.qty+
+  '</span>'+
+'</span>'+
       '<span>'+
         (p.old
           ? '<span style="font-size:12px;color:var(--ink4);text-decoration:line-through;margin-right:6px">'+fmtPrice(old)+'</span>'
