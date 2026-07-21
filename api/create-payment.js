@@ -152,6 +152,39 @@ export default async function handler(req, res) {
       });
     }
 
+
+    const variantIds = [
+  ...new Set(
+    cleanItems
+      .map((item) => item.variantId)
+      .filter(Boolean)
+  )
+];
+
+let variants = [];
+
+if (variantIds.length > 0) {
+  const { data: variantRows, error: variantError } = await supabase
+    .from('product_variants')
+    .select(
+      'id, product_id, title_zh, title_nl, price_cents, stock_quantity, active'
+    )
+    .in('id', variantIds)
+    .eq('active', true);
+
+  if (variantError) {
+    throw variantError;
+  }
+
+  if (!variantRows || variantRows.length !== variantIds.length) {
+    return res.status(400).json({
+      error: 'One or more product variants are unavailable.'
+    });
+  }
+
+  variants = variantRows;
+}
+
     let totalCents = 0;
     const orderItems = [];
 
