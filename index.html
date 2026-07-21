@@ -12467,9 +12467,11 @@ if(hasPhysical){
   }
 
   try{
+    
 var items=CART.map(function(ci){
   return {
     productId: ci.id,
+    variantId: ci.variantId || null,
     quantity: ci.qty || 1,
     kind: ci.kind || 'product'
   };
