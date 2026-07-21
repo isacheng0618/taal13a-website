@@ -11959,50 +11959,149 @@ async function shareProduct(){
     }
   }
 }
+
+function makeCartKey(productId, variantId){
+  return String(productId || '') + '::' + String(variantId || 'default');
+}
+
+function isVariantAvailable(variant){
+  if(!variant)return false;
+
+  if(variant.active === false)return false;
+  if(variant.stock === false)return false;
+
+  if(
+    typeof variant.stock === 'number' &&
+    variant.stock <= 0
+  ){
+    return false;
+  }
+
+  return true;
+}
   
-function addToCart(pid){
+function addToCart(pid, variantId){
   var ti=t();
 
-  if(isProductPurchased(pid)){
-    alert(ti?'你已经购买过这个产品，可以在个人主页下载。':'U heeft dit product al gekocht. U kunt het downloaden in uw dashboard.');
+  var product=PRODUCTS.find(function(p){
+    return p.id===pid;
+  });
+
+  var hasVariants=
+    product &&
+    Array.isArray(product.variants) &&
+    product.variants.length>0;
+
+  var selectedVariant=null;
+
+  /*
+    有款式的商品必须先选款式。
+
+    顾客从书店列表点击“+”时，没有 variantId，
+    自动进入商品详情页选择款式。
+  */
+  if(hasVariants){
+    if(!variantId){
+      PDT=pid;
+
+      nav('product',{
+        pid:pid
+      });
+
+      return;
+    }
+
+    selectedVariant=product.variants.find(function(variant){
+      return variant.id===variantId;
+    });
+
+    if(!selectedVariant){
+      alert(
+        ti
+          ? '没有找到你选择的款式，请重新选择。'
+          : 'De gekozen uitvoering is niet gevonden. Kies opnieuw.'
+      );
+      return;
+    }
+
+    if(!isVariantAvailable(selectedVariant)){
+      alert(
+        ti
+          ? '这个款式目前已经售罄，请选择其他款式。'
+          : 'Deze uitvoering is momenteel uitverkocht. Kies een andere uitvoering.'
+      );
+      return;
+    }
+  }
+
+  /*
+    getCartItemData 下一步会改成支持 variantId。
+    当前多传一个参数不会影响原来的普通商品。
+  */
+  var prod=getCartItemData(pid,variantId);
+
+  if(!prod)return;
+
+  var isPhysical=isPhysicalProduct(prod);
+
+  /*
+    只有数字商品禁止重复购买。
+
+    钥匙扣、贴纸等实体商品，即使以前买过，
+    也应该允许再次购买。
+  */
+  if(!isPhysical && isProductPurchased(pid)){
+    alert(
+      ti
+        ? '你已经购买过这个产品，可以在个人主页下载。'
+        : 'U heeft dit product al gekocht. U kunt het downloaden in uw dashboard.'
+    );
+
     nav('dashboard');
     return;
   }
 
-  var prod=getCartItemData(pid);
-  if(!prod)return;
-
-  var bundle = PRODUCTS.find(function(p){
-    return p.id === 'a2_sprint_bundle_pdf';
+  var bundle=PRODUCTS.find(function(p){
+    return p.id==='a2_sprint_bundle_pdf';
   });
 
-  var bundleId = bundle ? bundle.id : null;
-  var bundleItems = bundle && Array.isArray(bundle.bundleItems) ? bundle.bundleItems : [];
+  var bundleId=bundle ? bundle.id : null;
 
-  var isBundle = pid === bundleId;
-  var isBundleChild = bundleItems.indexOf(pid) >= 0;
+  var bundleItems=
+    bundle && Array.isArray(bundle.bundleItems)
+      ? bundle.bundleItems
+      : [];
 
-  var hasBundleInCart = CART.some(function(item){
-    return item.id === bundleId;
+  var isBundle=pid===bundleId;
+  var isBundleChild=bundleItems.indexOf(pid)>=0;
+
+  var hasBundleInCart=CART.some(function(item){
+    return item.id===bundleId;
   });
 
-  var hasBundleChildInCart = CART.some(function(item){
-    return bundleItems.indexOf(item.id) >= 0;
+  var hasBundleChildInCart=CART.some(function(item){
+    return bundleItems.indexOf(item.id)>=0;
   });
 
-  // 情况 1：购物车里已有冲刺包，不允许再加入它包含的单品
+  /*
+    情况1：
+    购物车里已有冲刺包，不允许再加入它包含的单品。
+  */
   if(isBundleChild && hasBundleInCart){
     alert(
       ti
         ? '你已经把「A2口语词库冲刺包」加入购物车了。这个套餐已经包含答题卡、答题单词库和高频词表，不需要重复购买单个文件。'
         : 'Het A2-pakket staat al in uw winkelwagen. Dit pakket bevat dit losse bestand al, dus u hoeft het niet apart te kopen.'
     );
+
     openCart();
     return;
   }
 
-  // 情况 2：购物车里已有单品，用户又想加入冲刺包
-  // 只提示建议，不自动删除，也不阻止加入
+  /*
+    情况2：
+    购物车里已有单品，用户又想加入冲刺包。
+  */
   if(isBundle && hasBundleChildInCart){
     alert(
       ti
@@ -12011,25 +12110,60 @@ function addToCart(pid){
     );
   }
 
-  var ex=CART.find(function(c){
-    return c.id===pid;
+  /*
+    同一个主商品的不同款式拥有不同的 cartKey。
+
+    示例：
+    dutch_keychain_physical::tikkie_is_life
+    dutch_keychain_physical::alles_is_veel
+  */
+  var cartKey=makeCartKey(pid,variantId);
+
+  var ex=CART.find(function(item){
+    var existingKey=
+      item.key ||
+      makeCartKey(item.id,item.variantId);
+
+    return existingKey===cartKey;
   });
 
   if(ex){
-    alert(ti?'这个商品已经在购物车里了。':'Dit product staat al in uw winkelwagen.');
+    /*
+      同一款实体商品再次加入时，数量直接加1。
+    */
+    if(isPhysical){
+      ex.qty+=1;
+
+      updCart();
+      showCartToast();
+      openCart();
+      return;
+    }
+
+    /*
+      数字产品仍然不能重复加入。
+    */
+    alert(
+      ti
+        ? '这个商品已经在购物车里了。'
+        : 'Dit product staat al in uw winkelwagen.'
+    );
+
     openCart();
     return;
   }
 
   CART.push({
+    key:cartKey,
     id:pid,
+    variantId:variantId || null,
     qty:1
   });
 
-    updCart();
+  updCart();
   showCartToast();
 }
-
+  
 function updCart(){
   saveCart();
   var total=0,count=0,oldTotal=0;
