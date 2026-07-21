@@ -185,25 +185,124 @@ if (variantIds.length > 0) {
   variants = variantRows;
 }
 
-    let totalCents = 0;
-    const orderItems = [];
+    /*
+  汇总同一款式的数量。
+  防止同一款式以多行形式出现时，绕过库存检查。
+*/
+const requestedVariantQuantities = new Map();
 
-    for (const item of cleanItems) {
-      const product = products.find((p) => p.id === item.productId);
+for (const item of cleanItems) {
+  if (!item.variantId) continue;
 
-      if (!product) continue;
+  const currentQuantity =
+    requestedVariantQuantities.get(item.variantId) || 0;
 
-      const quantity = item.quantity;
-      const unitPriceCents = Number(product.price_cents || 0);
+  requestedVariantQuantities.set(
+    item.variantId,
+    currentQuantity + item.quantity
+  );
+}
 
-      totalCents += unitPriceCents * quantity;
+let totalCents = 0;
+const orderItems = [];
 
-      orderItems.push({
-        product_id: product.id,
-        quantity,
-        unit_price_cents: unitPriceCents
+for (const item of cleanItems) {
+  const product = products.find(
+    (productRow) => productRow.id === item.productId
+  );
+
+  if (!product) {
+    return res.status(400).json({
+      error: 'Product not found.'
+    });
+  }
+
+  const quantity = item.quantity;
+
+  let unitPriceCents = Number(product.price_cents || 0);
+  let variantId = null;
+  let variantName = null;
+
+  /*
+    有 variantId：从 product_variants 读取真实价格和库存。
+  */
+  if (item.variantId) {
+    const variant = variants.find(
+      (variantRow) => variantRow.id === item.variantId
+    );
+
+    if (!variant) {
+      return res.status(400).json({
+        error: 'Selected product variant is unavailable.'
       });
     }
+
+    /*
+      防止把另一个商品的款式套到当前商品上。
+    */
+    if (variant.product_id !== product.id) {
+      return res.status(400).json({
+        error: 'Selected variant does not belong to this product.'
+      });
+    }
+
+    const requestedQuantity =
+      requestedVariantQuantities.get(variant.id) || quantity;
+
+    const stockQuantity = Number(variant.stock_quantity);
+
+    if (
+      !Number.isInteger(stockQuantity) ||
+      stockQuantity < requestedQuantity
+    ) {
+      return res.status(400).json({
+        error: `Insufficient stock for variant ${variant.id}.`
+      });
+    }
+
+    unitPriceCents = Number(variant.price_cents || 0);
+    variantId = variant.id;
+
+    variantName =
+      variant.title_zh ||
+      variant.title_nl ||
+      variant.id;
+  }
+
+  /*
+    钥匙扣必须选择款式，不能只使用主商品最低价下单。
+  */
+  if (
+    product.id === 'dutch_keychain_physical' &&
+    !variantId
+  ) {
+    return res.status(400).json({
+      error: 'Please select a keychain variant.'
+    });
+  }
+
+  /*
+    最终价格必须来自数据库，并且大于0。
+  */
+  if (
+    !Number.isInteger(unitPriceCents) ||
+    unitPriceCents <= 0
+  ) {
+    return res.status(400).json({
+      error: 'Invalid product price.'
+    });
+  }
+
+  totalCents += unitPriceCents * quantity;
+
+  orderItems.push({
+    product_id: product.id,
+    quantity,
+    unit_price_cents: unitPriceCents,
+    variant_id: variantId,
+    variant_name: variantName
+  });
+}
 
     if (totalCents <= 0) {
       return res.status(400).json({
