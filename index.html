@@ -11425,24 +11425,84 @@ if(countEl){
 function buyProduct(pid){addToCart(pid);}
 
 function fmtPrice(cents){return '€'+(cents/100).toFixed(2).replace('.',',');}
-function getCartItemData(id){
-  var p = PRODUCTS.find(function(x){return x.id===id;});
- if(p){
-  return {
-    id:p.id,
-    zn:p.zn,
-    nn:p.nn,
-    pr:p.pr,
-    old:p.old || null,
-    emoji:p.emoji || '📦',
-    img:p.img || '',
-    type:p.type || '',
-    format:p.format || '',
-    shipping:p.shipping || false
-  };
-}
+function getCartItemData(id, variantId){
+  var p=PRODUCTS.find(function(x){
+    return x.id===id;
+  });
 
-  var s = SES.find(function(x){return x.pid===id || x.id===id;});
+  if(p){
+    var variant=null;
+
+    if(
+      variantId &&
+      Array.isArray(p.variants)
+    ){
+      variant=p.variants.find(function(v){
+        return v.id===variantId;
+      }) || null;
+    }
+
+    return {
+      id:p.id,
+
+      zn:p.zn,
+      nn:p.nn,
+
+      pr:
+        variant && typeof variant.pr==='number'
+          ? variant.pr
+          : p.pr,
+
+      old:
+        variant && typeof variant.old==='number'
+          ? variant.old
+          : (p.old || null),
+
+      emoji:p.emoji || '📦',
+
+      img:
+        variant && variant.img
+          ? variant.img
+          : (p.img || ''),
+
+      type:p.type || '',
+      format:p.format || '',
+      shipping:p.shipping || false,
+
+      variantId:variant ? variant.id : null,
+
+      variantZn:
+        variant
+          ? (
+              variant.zn ||
+              variant.titleZh ||
+              variant.title_zh ||
+              variant.id
+            )
+          : '',
+
+      variantNn:
+        variant
+          ? (
+              variant.nn ||
+              variant.titleNl ||
+              variant.title_nl ||
+              variant.zn ||
+              variant.id
+            )
+          : '',
+
+      variantStock:
+        variant && typeof variant.stock==='number'
+          ? variant.stock
+          : null
+    };
+  }
+
+  var s=SES.find(function(x){
+    return x.pid===id || x.id===id;
+  });
+
   if(s){
     return {
       id:s.pid || s.id,
@@ -11451,7 +11511,15 @@ function getCartItemData(id){
       pr:s.priceCents || 0,
       old:null,
       emoji:'👥',
-      img:''
+      img:'',
+      type:'course',
+      format:'',
+      shipping:false,
+
+      variantId:null,
+      variantZn:'',
+      variantNn:'',
+      variantStock:null
     };
   }
 
