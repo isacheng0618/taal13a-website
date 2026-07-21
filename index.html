@@ -12288,6 +12288,55 @@ var galleryHtml =
   
   el.className='pd-wrap fashion';
 
+var productActionHtml='';
+
+if(purchaseLocked){
+
+  productActionHtml=
+    '<button class="bpay" style="background:var(--grn);cursor:default">'+
+      (ti?'已购买':'Gekocht')+
+    '</button>';
+
+}else if(p.free){
+
+  productActionHtml=
+    '<button class="bpay" onclick="claimFreeProduct(\''+p.id+'\')">'+
+      (ti?'🎁 免费领取':'🎁 Gratis ophalen')+
+    '</button>';
+
+}else if(hasVariants){
+
+  if(selectedVariant){
+
+    productActionHtml=
+      '<button class="bpay" onclick="addToCart(\''+
+        p.id+
+        '\',\''+
+        selectedVariant.id+
+      '\')">'+
+        (ti?'加入购物车':'In winkelwagen')+
+      '</button>';
+
+  }else{
+
+    productActionHtml=
+      '<button class="bpay" type="button" onclick="alert(\''+
+        (ti?'请先选择一个款式。':'Kies eerst een uitvoering.')+
+      '\')">'+
+        (ti?'请先选择款式':'Kies eerst een uitvoering')+
+      '</button>';
+
+  }
+
+}else{
+
+  productActionHtml=
+    '<button class="bpay" onclick="addToCart(\''+p.id+'\')">'+
+      (ti?'加入购物车':'In winkelwagen')+
+    '</button>';
+
+}
+  
 var breadcrumbCurrent = ti ? p.zn : p.nn;
 
 el.innerHTML=
@@ -12324,15 +12373,7 @@ variantSelectorHtml+
 
 '<div class="pd-actions">'+
 
-  
-  (isProductPurchased(p.id)
-    ? '<button class="bpay" style="background:var(--grn);cursor:default">'+(ti?'已购买':'Gekocht')+'</button>'
-    : (
-      p.free
-        ? '<button class="bpay" onclick="claimFreeProduct(\''+p.id+'\')">'+(ti?'🎁 免费领取':'🎁 Gratis ophalen')+'</button>'
-        : '<button class="bpay" onclick="addToCart(\''+p.id+'\')">'+(ti?'加入购物车':'In winkelwagen')+'</button>'
-    )
-  )+
+  productActionHtml+
 
   '<button class="product-share-link" type="button" onclick="shareProduct()">'+
     (ti?'分享商品':'Delen')+
