@@ -15152,6 +15152,21 @@ function updateMobileCourseSticky(){
 
 window.addEventListener('scroll', updateMobileCourseSticky);
 window.addEventListener('resize', updateMobileCourseSticky);
+
+window.addEventListener('resize', updateMobileCourseSticky);
+
+/* 在这里加入 */
+function initCartUI(){
+  updCart();
+}
+
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', initCartUI);
+}else{
+  initCartUI();
+}
+
+</script>
   
 </script>
 
