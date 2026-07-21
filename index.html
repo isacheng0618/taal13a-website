@@ -12099,18 +12099,161 @@ function selectProductVariant(productId, variantId){
 function oProduct(pid){PDT=pid;nav('product',{pid:pid});}
 function rProduct(){
   var ti=t();
-  var p=PRODUCTS.find(function(x){return x.id===PDT;});
-  var physical = isPhysicalProduct(p);
+
+  var p=PRODUCTS.find(function(x){
+    return x.id===PDT;
+  });
+
+  var physical=isPhysicalProduct(p);
+
+  var hasVariants=
+    p &&
+    Array.isArray(p.variants) &&
+    p.variants.length>0;
+
+  var selectedVariant=
+    hasVariants
+      ? getSelectedProductVariant(p)
+      : null;
+
+  var displayPrice=
+    selectedVariant &&
+    typeof selectedVariant.pr==='number'
+      ? selectedVariant.pr
+      : p.pr;
+
+  var highestVariantPrice=
+    hasVariants
+      ? Math.max.apply(
+          null,
+          p.variants.map(function(variant){
+            return Number(variant.pr || 0);
+          })
+        )
+      : p.pr;
+
+  /*
+    PDF等数字商品购买后锁定。
+    实体商品仍然允许再次购买。
+  */
+  var purchaseLocked=
+    !physical &&
+    isProductPurchased(p.id);
+  
   var el=document.getElementById('product-detail');
   if(!el||!p)return;
   var el=document.getElementById('product-detail');if(!el||!p)return;
   var delivery=ti?'付款成功后可即时下载 PDF；如系统邮件延迟，可凭订单邮箱联系 Taal13A 手动补发。':'Na succesvolle betaling is de PDF direct te downloaden. Bij vertraging kan Taal13A het bestand handmatig nasturen op basis van het bestel-e-mailadres.';
   var access=ti?'注册/登录购买后，商品会出现在个人主页「我的商品 / 下载」中。游客购买则通过订单邮箱获取下载信息。':'Bij aankoop met account verschijnt het product in “Mijn producten / downloads”. Gastbestellingen ontvangen downloadinformatie via e-mail.';
   var refund=ti?'电子书属于即时交付的数字内容。结算时确认即时交付并放弃冷静期后，付款完成即不支持退款。':'Een e-book is digitale inhoud die direct wordt geleverd. Na toestemming voor directe levering en afstand van herroeping is terugbetaling na betaling niet mogelijk.';
-  var galleryImages = Array.isArray(p.gallery) && p.gallery.length
-  ? p.gallery
-  : [p.img, p.infoImg].filter(Boolean);
+ var baseGallery=
+  Array.isArray(p.gallery) && p.gallery.length
+    ? p.gallery.slice()
+    : [p.img,p.infoImg].filter(Boolean);
 
+var galleryImages=baseGallery.slice();
+
+/*
+  选择款式后：
+  对应单品扣图成为图库第一张，
+  后面继续保留7张使用场景图。
+*/
+if(selectedVariant && selectedVariant.img){
+  galleryImages=[
+    selectedVariant.img
+  ].concat(
+    baseGallery.filter(function(src){
+      return src!==selectedVariant.img;
+    })
+  );
+}
+
+if(!galleryImages.length && p.img){
+  galleryImages=[p.img];
+}
+
+var variantSelectorHtml='';
+
+if(hasVariants){
+  variantSelectorHtml=
+    '<div class="pd-variant-section">'+
+
+      '<div class="pd-variant-head">'+
+        '<span>'+
+          (ti?'选择款式':'Kies een uitvoering')+
+        '</span>'+
+
+        '<span class="pd-variant-current">'+
+          (
+            selectedVariant
+              ? (ti?selectedVariant.zn:selectedVariant.nn)
+              : (ti?'请选择一款':'Maak een keuze')
+          )+
+        '</span>'+
+      '</div>'+
+
+      '<div class="pd-variant-grid">'+
+
+        p.variants.map(function(variant){
+          var active=
+            selectedVariant &&
+            selectedVariant.id===variant.id;
+
+          var unavailable=
+            !isVariantAvailable(variant);
+
+          var sizeText=
+            ti
+              ? (variant.sizeZh || '')
+              : (variant.sizeNl || '');
+
+          return '<button '+
+            'type="button" '+
+            'class="pd-variant-option '+
+              (active?'active ':'')+
+              (unavailable?'sold-out':'')+
+            '" '+
+            (unavailable?'disabled ':'')+
+            'onclick="selectProductVariant(\''+
+              p.id+
+              '\',\''+
+              variant.id+
+            '\')">'+
+
+              '<span class="pd-variant-image">'+
+                '<img src="'+variant.img+'" alt="">'+
+              '</span>'+
+
+              '<span class="pd-variant-copy">'+
+                '<span class="pd-variant-name">'+
+                  (ti?variant.zn:variant.nn)+
+                '</span>'+
+
+                '<span class="pd-variant-meta">'+
+                  sizeText+
+                  (
+                    sizeText
+                      ? ' · '
+                      : ''
+                  )+
+                  fmtPrice(variant.pr)+
+                '</span>'+
+
+                (
+                  unavailable
+                    ? '<span class="pd-variant-stock">'+
+                        (ti?'暂时售罄':'Uitverkocht')+
+                      '</span>'
+                    : ''
+                )+
+              '</span>'+
+          '</button>';
+        }).join('')+
+
+      '</div>'+
+    '</div>';
+}
+  
 var galleryHtml =
   '<div class="pd-gallery-wrap desktop-book-gallery">'+
     '<div class="pd-main-book-shot" onclick="openProductGallery(productGalleryIndex)">'+
@@ -12163,16 +12306,25 @@ el.innerHTML=
     
         '<div class="pd-brand">Taal13A</div>'+ 
         '<h1>'+(ti?p.zn:p.nn)+'</h1>'+ 
-        '<div class="pd-price">'+
-  (p.free
-    ? '€0,00 <span style="font-size:18px;color:var(--ink3);font-weight:800;margin-left:10px">FREE</span>'
-    : fmtPrice(p.pr)
+       '<div class="pd-price">'+
+  (
+    p.free
+      ? '€0,00 <span style="font-size:18px;color:var(--ink3);font-weight:800;margin-left:10px">FREE</span>'
+      : (
+          hasVariants && !selectedVariant
+            ? fmtPrice(p.pr)+' – '+fmtPrice(highestVariantPrice)
+            : fmtPrice(displayPrice)
+        )
   )+
 '</div>'+
 
-        '<div class="pd-desc">'+(ti?p.zd:p.nd)+'</div>'+ 
+        '<div class="pd-desc">'+(ti?p.zd:p.nd)+'</div>'+
+
+variantSelectorHtml+
 
 '<div class="pd-actions">'+
+
+  
   (isProductPurchased(p.id)
     ? '<button class="bpay" style="background:var(--grn);cursor:default">'+(ti?'已购买':'Gekocht')+'</button>'
     : (
